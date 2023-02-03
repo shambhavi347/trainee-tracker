@@ -9,6 +9,9 @@ const RegInstitute = () => {
       <div>
         <h1>Institute</h1>
       </div>
+      <div>
+        <h1>tpo</h1>
+      </div>
     </>
   );
 };
