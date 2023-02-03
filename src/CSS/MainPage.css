@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+.divUpper {
+  background-color: #222831;
+  height: 100vh;
+  margin: 0px;
+}
+
+.divLower {
+  background-color: #393e46;
+  height: 70%;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  margin-top: 4%;
+  position: relative;
+}
