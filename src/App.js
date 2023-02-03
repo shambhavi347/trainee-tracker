@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainPage from "./components/MainPage";
-import RegInstitute from "./components/RegInstitute";
+import RegInstitute from "./components/Institute/RegInstitute";
 
 const App = () => {
   return (
