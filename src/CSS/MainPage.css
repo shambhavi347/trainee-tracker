@@ -1,18 +1,134 @@
 * {
   box-sizing: border-box;
 }
+
 .divUpper {
-  background-color: #222831;
   height: 100vh;
-  margin: 0px;
+  margin: 0;
+  width: auto;
+  background-color: #222831;
+  overflow-y: scroll;
+}
+.footer {
+  width: 100%;
+  height: 50%;
+  background-color: #393e46;
+  margin-top: 40px;
+  border-top: 2px #00adb5 solid;
+  padding: 20px 40px;
+
+  display: flex;
+  flex-direction: row; /* default value; can be omitted */
+  flex-wrap: nowrap; /*default value; can be omitted */
+  justify-content: space-between;
+  color: #00adb5;
 }
 
-.divLower {
-  background-color: #393e46;
+.footer-left {
+  margin-bottom: 10px;
+  /* float: right; */
+  width: 30%;
+}
+
+.footer-right {
+  /* background-color: #eeeeee; */
+  margin-bottom: 10px;
+  width: 50%;
+  height: auto;
+}
+
+.mediaLogo {
+  width: 10%;
+  height: 10%;
+  margin-right: 20px;
+}
+
+.address,
+.follow {
+  color: #eeeeee;
+}
+
+.follow,
+.links {
+  font-weight: bold;
+}
+
+a:visited,
+a:active,
+a:hover,
+a:link {
+  color: #00adb5;
+  text-decoration: none;
+}
+
+.div-text {
+  width: 45%;
   height: 70%;
-  width: 80%;
-  margin: 0 auto;
-  padding: 10px;
-  margin-top: 4%;
-  position: relative;
+  background-color: #393e46;
+  border-radius: 25px;
+  float: left;
+  margin-left: 5%;
+  margin-top: 5%;
+  border: 2px #1a1919 solid;
+  color: #dcdcdc;
+  padding: 20px;
+  text-align: justify;
+}
+
+.div-img {
+  width: 40%;
+  height: 80%;
+  float: right;
+  background-color: #393e46;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  padding: 2%;
+  padding-bottom: 7%;
+  border: 2px #1a1919 solid;
+  border-top: none;
+}
+
+.btn-learnMore {
+  width: 20%;
+  height: 15%;
+  margin-top: 2%;
+  border-radius: 8px;
+  background-color: #222831;
+  border: 1px #00adb5 solid;
+  color: #00adb5;
+  cursor: pointer;
+}
+
+.inner-div {
+  width: 100%;
+  height: 100%;
+  border: 2px #1a1919 solid;
+}
+
+.imgWallpaper {
+  width: 100%;
+  height: 100%;
+  width: fit-content;
+}
+
+.btn-regIns {
+  width: 100%;
+  height: 15%;
+  margin-top: 2%;
+  border-radius: 25px;
+  background-color: #222831;
+  border: 2px #00adb5 solid;
+  color: #00adb5;
+  cursor: pointer;
+}
+
+.btn-learnMore:hover,
+.btn-regIns:hover {
+  background-color: #00adb5;
+  color: #eeeeee;
+  font-weight: bold;
+}
+
+.divUpper::-webkit-scrollbar {
+  display: none;
 }

@@ -11,17 +11,15 @@ const NavBar1 = () => {
 
   return (
     <>
-      <div class="NavBody">
-        <div class="logoDiv">
+      <div className="NavBody">
+        <div className="logoDiv">
           <img src={cdacLogo} alt="CDAC LOGO" className="logo" />
         </div>
-        <div class="head-title">
+        <div className="head-title">
           <h1>Trainee Tracker</h1>
         </div>
-        <div class="buttonLogin">
-          <button class="btn-login" onClick={routeChange}>
-            Login
-          </button>
+        <div className="buttonLogin">
+          <button className="btn-login">Login</button>
         </div>
       </div>
     </>
