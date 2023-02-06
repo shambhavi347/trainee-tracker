@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { useHistory } from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from "react-router-dom";
@@ -8,16 +7,13 @@ import "../../CSS/RegStudent.css";
 import React, { useEffect } from "react";
 
 
-const RegStudent = ({page, setPage}) => {
+const RegStudent2 = ({page, setPage}) => {
     //js
     const [user, setUser] = useState({
         first_name: "",
-        // middle_name: "",
         last_name:"",
         email: "",
         dob: "",
-        // username: "",
-        // password: "",
         phone_no: "",
         gender: "male",
     });
@@ -27,27 +23,11 @@ const RegStudent = ({page, setPage}) => {
     const handleChange = (e) => {
         name = e.target.name;
         value = e.target.value;
+
         setUser({ ...user, [name]: value });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(user);
-    }
-
-    // const [req, setReq] = useState(false);
-    // const [count, setCount] = useState(0);
-    // console.log(count);
     let navigate = useNavigate();
-    // useEffect(() => {
-    //     if (req) {
-    //     const routeChange = () => {
-    //         let path = "/reg-student1";
-    //         navigate(path);
-    //     };
-    //     routeChange();
-    //     }
-    // }, [req, navigate]);
 
   return (
     //html
@@ -58,25 +38,16 @@ const RegStudent = ({page, setPage}) => {
                 <div className="main">
                     <h1 className="regHead">Register Yourself</h1>
                     <div className="regBox">
-                        <form onSubmit={handleSubmit}>
+                        <form>
                             <input
                                 className="form-element"
                                 type="text"
-                                placeholder="First Name"
+                                placeholder="First Name2"
                                 name="first_name"
                                 value={user.first_name}
                                 autoComplete="off"
                                 onChange={handleChange}
                             />
-                            {/* <input
-                                className="form-element"
-                                type="text"
-                                placeholder="Middle Name"
-                                name="name"
-                                value={user.middle_name}
-                                autoComplete="off"
-                                onChange={handleChange}
-                            /> */}
                             <input
                                 className="form-element"
                                 type="text"
@@ -113,24 +84,6 @@ const RegStudent = ({page, setPage}) => {
                                 autoComplete="off"
                                 onChange={handleChange}
                             />
-                            {/* <input
-                                className="form-element"
-                                type="text"
-                                name="username"
-                                value={user.username}
-                                placeholder="Username..."
-                                autoComplete="off"
-                                onChange={handleChange}
-                            /> */}
-                            {/* <input
-                                className="form-element"
-                                type="password"
-                                name="password"
-                                value={user.password}
-                                placeholder="Password..."
-                                autoComplete="off"
-                                onChange={handleChange}
-                            /> */}
                             <div className="radioGroup">
                                 <input
                                     type="radio"
@@ -158,7 +111,10 @@ const RegStudent = ({page, setPage}) => {
                                 Transgender
                             </div>
                             <button className="btn"onClick={() => navigate("/reg-student1")}>
-                                Next
+                                Previous
+                            </button>
+                            <button className="btn">
+                                Submit
                             </button>
                         </form>
                     </div>
@@ -169,4 +125,4 @@ const RegStudent = ({page, setPage}) => {
   )
 }
 
-export default RegStudent
+export default RegStudent2
