@@ -5,6 +5,7 @@ import youtube from "../Images/youtube.png";
 import twitter from "../Images/twitter.png";
 import wallpaperMain from "../Images/wallpaperMain.jpg";
 import settings from "../Images/settings.png";
+import arrowDown from "../Images/arrowDown.png";
 
 export {
   cdacLogo,
@@ -14,4 +15,5 @@ export {
   facebook,
   wallpaperMain,
   settings,
+  arrowDown,
 };
