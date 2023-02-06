@@ -7,6 +7,7 @@ import RegStudent1 from "./components/Student/RegStudent1";
 import RegStudent2 from "./components/Student/RegStudent2";
 import { Stepper, StepLabel, Step } from "@mui/material";
 import FinalPage from "./components/Student/FinalPage";
+import AdminDash from "./components/Admin/AdminDash";
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<MainPage />} />
           <Route path="/reg-institute" element={<RegInstitute />} />
+          <Route path="/admin-dashboard" element={<AdminDash />} />
           <Route path="/reg-final" element={<FinalPage />} />
           <Route path="/reg-student" element={<RegStudent />} />
           <Route path="/reg-student1" element={<RegStudent1 />} />

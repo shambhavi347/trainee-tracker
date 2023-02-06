@@ -4,4 +4,14 @@ import facebook from "../Images/facebook.png";
 import youtube from "../Images/youtube.png";
 import twitter from "../Images/twitter.png";
 import wallpaperMain from "../Images/wallpaperMain.jpg";
-export { cdacLogo, instagram, twitter, youtube, facebook, wallpaperMain };
+import settings from "../Images/settings.png";
+
+export {
+  cdacLogo,
+  instagram,
+  twitter,
+  youtube,
+  facebook,
+  wallpaperMain,
+  settings,
+};
