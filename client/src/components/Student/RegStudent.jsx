@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/RegStudent.css";
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"; 
 
 const RegStudent = ({ page, setPage }) => {
   //js
