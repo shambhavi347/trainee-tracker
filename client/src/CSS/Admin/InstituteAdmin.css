@@ -30,14 +30,14 @@
 }
 
 .filter-panel::-webkit-scrollbar,
-.institute-panel::-webkit-scrollbar {
+.institute-panel::-webkit-scrollbar,
+.applied-filter::-webkit-scrollbar {
   display: none;
 }
 
 .sort-div {
   background-color: #222831;
   width: 96%;
-  /* height: 10%; */
   border-radius: 10px;
   border: 1px #00adb5 solid;
   text-align: left;
@@ -71,21 +71,16 @@
 .filter-div {
   background-color: #222831;
   width: 96%;
-  /* height: 10%; */
   border-radius: 10px;
   border: 1px #00adb5 solid;
   text-align: left;
   padding: 5%;
   padding-top: 15px;
   margin: 5% 0;
-  margin-bottom: ;
-
-  /* height: 80%; */
 }
 
 .filter-name {
   padding: 3%;
-  /* border-bottom: 1px #393e46 solid; */
 }
 
 .check-filter {
@@ -111,7 +106,6 @@
   position: relative;
   padding-left: 25px;
   margin: 3%;
-  /* margin-bottom: 12px; */
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -149,6 +143,61 @@
   background-color: #00adb5;
 }
 
+.applied-filter {
+  width: 96%;
+  height: 30%;
+  background-color: #222831;
+  border-radius: 10px;
+  border: 1px #00adb5 solid;
+  padding: 5%;
+  padding-top: 15px;
+  margin: 5% 0;
+  margin-bottom: 50%;
+  color: #ccc;
+  overflow-y: scroll;
+}
+
+.filter {
+  width: auto;
+  height: 40%;
+  padding: 5%;
+  margin: 2% 0;
+  margin-right: 5%;
+  background-color: #393e46;
+  border: 1px #00adb5 solid;
+  float: left;
+  border-radius: 10px;
+  padding-bottom: -12%;
+}
+
+.cancel-text {
+  float: left;
+  /* margin-top: 1%; */
+}
+
+.cancel-btn {
+  /* height: 20%;
+  width: ; */
+  height: 80%;
+  margin: 0;
+  padding: 0;
+  /* margin-top: -5%; */
+  background-color: transparent;
+  border: none;
+  float: right;
+  /* margin-top: 6px; */
+  /* margin-top: -5%; */
+  margin-left: 15px;
+  /* margin-left: 10px;
+  margin-top: 4%; */
+  /* margin: 0 10%; */
+}
+
+.cancel-img {
+  width: fit-content;
+  height: 100%;
+  margin: 0;
+}
 /* colors used 
 
 
