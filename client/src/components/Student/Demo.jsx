@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/RegStudent.css";
-import Select from 'react-select';
-import Multiselect from 'multiselect-react-dropdown';
 
 
 const Demo = () => {
