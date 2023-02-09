@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "../../CSS/Admin/InstituteAdmin.css";
-import { arrowDown, cancel } from "../../Images/Images";
+import { arrowDown, cancel, expand } from "../../Images/Images";
 // import FilterPannel, { filter } from "./FilterPannel";
 
 const InstituteAdmin = () => {
   const [sortdrop, setSortdrop] = useState(false);
+
   const [sortvalue, setSortvalue] = useState("Sort By NAAC Ratings");
 
   const [filterdrop, setFilterdrop] = useState({
@@ -48,6 +49,48 @@ const InstituteAdmin = () => {
   const naac = ["A++", "A+", "A", "B++", "B+", "B", "C", "D"];
 
   const [appliedfilter, setAppliedfilter] = useState([]);
+
+  const [instInfo, setInstInfo] = useState([
+    {
+      name: "Banasthali Vidyapith",
+      month: "May",
+      duration: "6 Months",
+      rating: "A++",
+    },
+    {
+      name: "Banasthali Vidyapith",
+      month: "May",
+      duration: "6 Months",
+      rating: "A++",
+    },
+    {
+      name: "Banasthali Vidyapith",
+      month: "May",
+      duration: "6 Months",
+      rating: "A++",
+    },
+    ,
+    {
+      name: "Banasthali Vidyapith",
+      month: "May",
+      duration: "6 Months",
+      rating: "A++",
+    },
+    ,
+    {
+      name: "Banasthali Vidyapith",
+      month: "May",
+      duration: "6 Months",
+      rating: "A++",
+    },
+    ,
+    {
+      name: "Banasthali Vidyapith",
+      month: "May",
+      duration: "6 Months",
+      rating: "A++",
+    },
+  ]);
 
   const handleChange = (e) => {
     let value = e.target.value;
@@ -279,7 +322,31 @@ const InstituteAdmin = () => {
             </>
           )}
         </div>
-        <div className="institute-panel"> List of institutes</div>
+        <div className="institute-panel">
+          {instInfo.map((inst, key) => (
+            <div className="inst-bdy">
+              <div className="inst-expnd">
+                <button className="btn-expnd">
+                  <img src={expand} alt="" className="img-expnd" />
+                </button>
+              </div>
+              <div className="inst-first">{inst.name}</div>
+              <div className="inst-second">
+                <div className="inst-month">{inst.month}</div>
+                <div className="inst-rating">{inst.rating}</div>
+                <div className="inst-duration">{inst.duration}</div>
+              </div>
+              <div className="inst-third">
+                <div className="inst-accpt">
+                  <button className="btn-accpt">Accept</button>
+                </div>
+                <div className="inst-reject">
+                  <button className="btn-reject">Reject</button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

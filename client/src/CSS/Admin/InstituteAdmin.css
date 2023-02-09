@@ -5,13 +5,13 @@
 .divBdy {
   background-color: #eeeeee;
   margin: 0;
-  height: 100vh;
+  height: 100%;
   margin-top: -117px;
 }
 
 .filter-panel {
   width: 30%;
-  height: 100vh;
+  height: 100%;
   float: left;
   background-color: #393e46;
   color: #00adb5;
@@ -27,6 +27,7 @@
   background-color: #222831;
   color: #00adb5;
   overflow-y: scroll;
+  padding-bottom: 10%;
 }
 
 .filter-panel::-webkit-scrollbar,
@@ -198,10 +199,121 @@
   height: 100%;
   margin: 0;
 }
-/* colors used 
 
+/*
+ institute flashcard css
+*/
 
-#393e46
-#222831
-#00adb5
-#eeeeee */
+.inst-bdy {
+  width: 26%;
+  height: 60%;
+  background-color: #393e46;
+  margin: 3.33%;
+  float: left;
+  padding: 2%;
+  border-radius: 15px;
+  border: 1px #00adb5 solid;
+}
+
+.inst-expnd {
+  margin-top: -6%;
+  margin-right: -6%;
+  margin-bottom: -5%;
+}
+
+.btn-expnd {
+  /* padding: -1%; */
+  float: right;
+  height: 24px;
+  width: 30px;
+  margin-bottom: 5%;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.img-expnd {
+  height: fit-content;
+  width: 100%;
+  background-color: transparent;
+}
+
+.inst-first {
+  background-color: #eeeeee;
+  height: 50%;
+  border-radius: 8px;
+  border: 2px #222831 solid;
+  padding: 3%;
+  text-align: center;
+  color: #222831;
+}
+
+.inst-second {
+  /* background-color: aliceblue; */
+  height: 15%;
+  padding: 1%;
+}
+
+.inst-third {
+  /* background-color: aquamarine; */
+  height: 20%;
+}
+
+.inst-first,
+.inst-second,
+.inst-third {
+  margin: 4%;
+}
+
+.inst-month,
+.inst-duration,
+.inst-rating {
+  /* width: 25%; */
+  height: 100%;
+  float: left;
+  border: 1px #00adb5 solid;
+  padding: 2%;
+  border-radius: 5px;
+  background-color: #222831;
+}
+.inst-month,
+.inst-rating {
+  margin-right: 3%;
+}
+
+.inst-month {
+  margin-left: 1%;
+}
+
+.inst-accpt,
+.inst-reject {
+  width: 45%;
+
+  height: 100%;
+}
+
+.inst-accpt {
+  float: left;
+  margin-left: 3%;
+}
+
+.inst-reject {
+  float: right;
+  margin-right: 3%;
+}
+
+.btn-accpt,
+.btn-reject {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-accpt {
+  background-color: #bef0cb;
+}
+
+.btn-reject {
+  background-color: #f48484;
+}
