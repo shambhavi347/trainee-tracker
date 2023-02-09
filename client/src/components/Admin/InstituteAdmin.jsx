@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import "../../CSS/Admin/InstituteAdmin.css";
-import { arrowDown, cancel, cdacLogo } from "../../Images/Images";
-import FilterPannel, { filter } from "./FilterPannel";
+import { arrowDown, cancel } from "../../Images/Images";
+// import FilterPannel, { filter } from "./FilterPannel";
 
 const InstituteAdmin = () => {
-  console.log(filter);
-  // const { appliedfilter } = FilterPannel();
-  // const [sortdrop, setSortdrop] = useState(false);
-  // const [sortvalue, setSortvalue] = useState("Sort By NAAC Ratings");
+  const [sortdrop, setSortdrop] = useState(false);
+  const [sortvalue, setSortvalue] = useState("Sort By NAAC Ratings");
 
-  // const [filterdrop, setFilterdrop] = useState({
-  //   "Institute Type": false,
-  //   "Internship Start Month": false,
-  //   "Internship Duration": false,
-  //   "NAAC Rating": false,
-  // });
+  const [filterdrop, setFilterdrop] = useState({
+    "Institute Type": false,
+    "Internship Start Month": false,
+    "Internship Duration": false,
+    "NAAC Rating": false,
+  });
   // const [filterhead, setFilterhead] = useState([
   //   "Institute Type",
   //   "Internship Start Month",
@@ -22,65 +20,53 @@ const InstituteAdmin = () => {
   //   "NAAC Rating",
   // ]);
 
-  // const [itype, setItype] = useState([
-  //   "Community Colleges",
-  //   "Vocational Schools",
-  //   "Public Universities",
-  //   "Private Universities",
-  //   "Semi-Private universities",
-  // ]);
+  const itype = [
+    "Community Colleges",
+    "Vocational Schools",
+    "Public Universities",
+    "Private Universities",
+    "Semi-Private universities",
+  ];
 
-  // const [imonth, setImonth] = useState([
-  //   "January",
-  //   "Feburary",
-  //   "March",
-  //   "April",
-  //   "May",
-  //   "June",
-  //   "July",
-  //   "August",
-  //   "September",
-  //   "October",
-  //   "November",
-  //   "December",
-  // ]);
+  const imonth = [
+    "January",
+    "Feburary",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-  // const [iduration, setIduration] = useState(["3 Months", "6 Months"]);
+  const iduration = ["3 Months", "6 Months"];
 
-  // const [naac, setNaac] = useState([
-  //   "A++",
-  //   "A+",
-  //   "A",
-  //   "B++",
-  //   "B+",
-  //   "B",
-  //   "C",
-  //   "D",
-  // ]);
+  const naac = ["A++", "A+", "A", "B++", "B+", "B", "C", "D"];
 
-  // const [appliedfilter, setAppliedfilter] = useState([]);
+  const [appliedfilter, setAppliedfilter] = useState([]);
 
-  // const handleChange = (e) => {
-  //   let value = e.target.value;
-  //   let name = e.target.name;
-  //   if (e.target.checked) {
-  //     //so duplicate values are not added
-  //     if (appliedfilter.includes(value) === false)
-  //       setAppliedfilter([...appliedfilter, name]);
-  //   } else {
-  //     setAppliedfilter((oldValues) => {
-  //       return oldValues.filter((appliedfilter) => appliedfilter !== value);
-  //     });
-  //   }
-  // };
-
-  // const removefilter = () => {};
+  const handleChange = (e) => {
+    let value = e.target.value;
+    let name = e.target.name;
+    if (e.target.checked) {
+      //so duplicate values are not added
+      if (appliedfilter.includes(value) === false)
+        setAppliedfilter([...appliedfilter, name]);
+    } else {
+      setAppliedfilter((oldValues) => {
+        return oldValues.filter((appliedfilter) => appliedfilter !== value);
+      });
+    }
+  };
 
   return (
     <>
       <div className="divBdy">
-        <FilterPannel />
-        {/* <div className="filter-panel">
+        <div className="filter-panel">
           <div className="sort-div">
             {sortvalue}
             <button
@@ -266,7 +252,7 @@ const InstituteAdmin = () => {
           </div>
           <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
 
-          {Object.keys(appliedfilter).length == 0 ? null : (
+          {Object.keys(appliedfilter).length === 0 ? null : (
             <>
               <h4> Applied Filter</h4>
               <div className="applied-filter">
@@ -289,22 +275,11 @@ const InstituteAdmin = () => {
                     </div>
                   </>
                 ))}
-              </div> */}
-        {/* </>
-          )} */}
-        {/* {appliedfilter ? (
-            <>
-
+              </div>
             </>
-          ) : null} */}
-        {/* </div> */}
-        <div className="institute-panel">
-          {" "}
-          List of institutes
-          {/* {filter.map((val) => {
-            console.log("Gew" + val);
-          })} */}
+          )}
         </div>
+        <div className="institute-panel"> List of institutes</div>
       </div>
     </>
   );
