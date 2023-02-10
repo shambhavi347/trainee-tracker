@@ -7,6 +7,7 @@ import wallpaperMain from "../Images/wallpaperMain.jpg";
 import settings from "../Images/settings.png";
 import arrowDown from "../Images/arrowDown.png";
 import cancel from "../Images/cancel.png";
+import expand from "../Images/expand.png";
 
 export {
   cdacLogo,
@@ -18,4 +19,5 @@ export {
   settings,
   arrowDown,
   cancel,
+  expand,
 };
