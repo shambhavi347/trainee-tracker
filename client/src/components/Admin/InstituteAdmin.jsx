@@ -59,8 +59,8 @@ const InstituteAdmin = () => {
     },
     {
       name: "Banasthali Vidyapith",
-      month: "May",
-      duration: "6 Months",
+      month: "June",
+      duration: "3 Months",
       rating: "A++",
     },
     {
@@ -78,15 +78,15 @@ const InstituteAdmin = () => {
     },
     ,
     {
-      name: "Banasthali Vidyapith",
+      name: "Banasthali Vidyapith 3",
       month: "May",
-      duration: "6 Months",
-      rating: "A++",
+      duration: "3 Months",
+      rating: "C",
     },
     ,
     {
       name: "Banasthali Vidyapith",
-      month: "May",
+      month: "January",
       duration: "6 Months",
       rating: "A++",
     },

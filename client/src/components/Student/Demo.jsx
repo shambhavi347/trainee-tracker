@@ -1,13 +1,38 @@
 import React, { useState } from "react";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/RegStudent.css";
-
+import { arrowDown } from "../../Images/Images";
 
 const Demo = () => {
-
   const [page0, setPage0] = useState(true);
   const [page1, setPage1] = useState(false);
   const [page2, setPage2] = useState(false);
+
+  const [famdrop, setFamdrop] = useState(false);
+  const [intdrop, setIntdrop] = useState(false);
+
+  const [tech, setTech] = useState([
+    "Javascript",
+    "Python",
+    "Go",
+    "Java",
+    "Kotlin",
+    "PHP",
+    "C#",
+    "Swift",
+    "R",
+    "Ruby",
+    "C and C++",
+    "Matlab",
+    "TypeScript",
+    "ML/AI",
+    "SQL",
+    "HTML",
+    "CSS",
+    "NoSQL",
+    "Rust",
+    "Perl",
+  ]);
 
   const [user, setUser] = useState({
     first_name: "",
@@ -28,16 +53,16 @@ const Demo = () => {
     familiar_tech: "",
     intrested_tech: "",
   });
-  
+
   let name, value;
   const handleChange = (e) => {
-    // e.preventDefault()
+    e.preventDefault();
     name = e.target.name;
     value = e.target.value;
     console.log(name, value);
     setUser({ ...user, [name]: value });
   };
-
+  console.log(user);
   return (
     <>
       <NavBar2 />
@@ -45,7 +70,7 @@ const Demo = () => {
       {page0 ? (
         <>
           {/* write your page 1 code here*/}
-          <div class="DivUpper">
+          <div className="DivUpper">
             <div className="main">
               <h1 className="regHead">Register Yourself</h1>
               <div className="regBox">
@@ -121,7 +146,17 @@ const Demo = () => {
                     />
                     Transgender
                   </div>
-                  <button className="btn" onClick = {() => {setPage1(true) ; setPage0(false) ; setPage2(false);}}> NEXT</button>
+                  <button
+                    className="btn-form"
+                    onClick={() => {
+                      setPage1(true);
+                      setPage0(false);
+                      setPage2(false);
+                    }}
+                  >
+                    {" "}
+                    NEXT
+                  </button>
                 </form>
               </div>
             </div>
@@ -141,7 +176,7 @@ const Demo = () => {
                       className="drop-down"
                       value={user.course}
                       onChange={handleChange}
-                      >
+                    >
                       <option value="BCA">BCA</option>
                       <option value="MCA">MCA</option>
                       <option value="BTech">BTech</option>
@@ -154,15 +189,31 @@ const Demo = () => {
                       value={user.stream}
                       onChange={handleChange}
                     >
-                      <option value="Aeronautical Engineering">Aeronautical Engineering</option>
-                      <option value="Automobile Engineering">Automobile Engineering</option>
+                      <option value="Aeronautical Engineering">
+                        Aeronautical Engineering
+                      </option>
+                      <option value="Automobile Engineering">
+                        Automobile Engineering
+                      </option>
                       <option value="Biotechnology">Biotechnology</option>
-                      <option value="Civil Engineering">Civil Engineering</option>
-                      <option value="Computer Application">Computer Application</option>
-                      <option value="Electronics & Communication">Electronics & Communication</option>
-                      <option value="Mechanical Engineering">Mechanical Engineering</option>
-                      <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
-                      <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                      <option value="Civil Engineering">
+                        Civil Engineering
+                      </option>
+                      <option value="Computer Application">
+                        Computer Application
+                      </option>
+                      <option value="Electronics & Communication">
+                        Electronics & Communication
+                      </option>
+                      <option value="Mechanical Engineering">
+                        Mechanical Engineering
+                      </option>
+                      <option value="Electrical and Electronics Engineering">
+                        Electrical and Electronics Engineering
+                      </option>
+                      <option value="Computer Science and Engineering">
+                        Computer Science and Engineering
+                      </option>
                     </select>
                     <br />
                     <select
@@ -170,7 +221,7 @@ const Demo = () => {
                       className="drop-down1"
                       value={user.semester}
                       onChange={handleChange}
-                      >
+                    >
                       <option value="I">1</option>
                       <option value="II">2</option>
                       <option value="III">3</option>
@@ -207,8 +258,28 @@ const Demo = () => {
                       onChange={handleChange}
                     />
                     <br />
-                    <button className="btn" onClick = {() => {setPage2(false); setPage0(true); setPage1(false);}}> PREVIOUS </button>        
-                    <button className="btn" onClick = {() => {setPage2(true); setPage0(false); setPage1(false);}}> NEXT </button> 
+                    <button
+                      className="btn-form"
+                      onClick={() => {
+                        setPage2(false);
+                        setPage0(true);
+                        setPage1(false);
+                      }}
+                    >
+                      {" "}
+                      PREVIOUS{" "}
+                    </button>
+                    <button
+                      className="btn-form"
+                      onClick={() => {
+                        setPage2(true);
+                        setPage0(false);
+                        setPage1(false);
+                      }}
+                    >
+                      {" "}
+                      NEXT{" "}
+                    </button>
                   </form>
                 </div>
               </div>
@@ -223,10 +294,112 @@ const Demo = () => {
               <div className="main">
                 <h1 className="regHead">Register Yourself</h1>
                 <div className="regBox">
-                  <form>
-                    {/* multiselect */}
-                  <button className="btn" onClick = {() => {setPage1(true) ; setPage0(false);setPage2(false);}}> PREVIOUS</button>
-                  <button className="btn" >SUBMIT</button>
+                  <form onSubmit={(e) => e.preventDefault()}>
+                    <div className="fam-tech">
+                      <div className="drop-first">
+                        Familiar Technologies
+                        <button
+                          className="down-btn"
+                          onClick={() => {
+                            famdrop ? setFamdrop(false) : setFamdrop(true);
+                          }}
+                        >
+                          <img
+                            className="downarrow-img "
+                            src={arrowDown}
+                            alt=""
+                          />
+                        </button>
+                      </div>
+
+                      {famdrop ? (
+                        <>
+                          <div className="option">
+                            {tech.map((val, key) => (
+                              <>
+                                <label className="container-form">
+                                  {val}
+                                  <input
+                                    type="checkbox-form"
+                                    name={val}
+                                    id=""
+                                    value={val}
+                                    onClick={(e) => e.preventDefault()}
+                                  />
+
+                                  <span className="checkmark-form"></span>
+                                </label>
+                                <hr
+                                  style={{
+                                    backgroundColor: "#393e46",
+                                    opacity: "0.2",
+                                  }}
+                                />
+                              </>
+                            ))}
+                          </div>
+                        </>
+                      ) : null}
+                    </div>
+                    <div className="int-drop">
+                      Instrested Technologies
+                      <button
+                        className="down-btn"
+                        onClick={() => {
+                          intdrop ? setIntdrop(false) : setIntdrop(true);
+                        }}
+                      >
+                        <img
+                          className="downarrow-img "
+                          src={arrowDown}
+                          alt=""
+                        />
+                      </button>
+                      {intdrop ? (
+                        <>
+                          <div className="option">
+                            {tech.map((val, key) => (
+                              <>
+                                <label className="container-form">
+                                  {val}
+                                  <input
+                                    type="checkbox-form"
+                                    name={val}
+                                    id=""
+                                    value={val}
+                                    onClick={(e) => e.preventDefault()}
+                                  />
+
+                                  <span className="checkmark-form"></span>
+                                </label>
+                                <hr
+                                  style={{
+                                    backgroundColor: "#393e46",
+                                    opacity: "0.2",
+                                  }}
+                                />
+                              </>
+                            ))}
+                          </div>
+                        </>
+                      ) : null}
+                    </div>
+                    <button
+                      className="btn-form"
+                      onClick={() => {
+                        setPage1(true);
+                        setPage0(false);
+                        setPage2(false);
+                      }}
+                    >
+                      PREVIOUS
+                    </button>
+                    <button
+                      className="btn-form"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      SUBMIT
+                    </button>
                   </form>
                 </div>
               </div>
