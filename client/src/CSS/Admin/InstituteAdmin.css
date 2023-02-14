@@ -10,18 +10,18 @@
 }
 
 .filter-panel {
-  width: 30%;
+  width: 24%;
   height: 100%;
   float: left;
   background-color: #393e46;
   color: #00adb5;
   overflow-y: scroll;
-  padding: 2%;
+  padding: 1%;
   border-right: 2px #00adb5 solid;
 }
 
 .institute-panel {
-  width: 70%;
+  width: 76%;
   height: 100%;
   float: right;
   background-color: #222831;
@@ -34,6 +34,15 @@
 .institute-panel::-webkit-scrollbar,
 .applied-filter::-webkit-scrollbar {
   display: none;
+}
+
+.search-text {
+  background-color: #222831;
+  width: 96%;
+  border-radius: 10px;
+  border: 1px #00adb5 solid;
+  text-align: left;
+  padding: 5%;
 }
 
 .sort-div {
@@ -205,14 +214,16 @@
 */
 
 .inst-bdy {
-  width: 26%;
+  width: 28%;
   height: 60%;
   background-color: #393e46;
-  margin: 3.33%;
+  margin: 2%;
   float: left;
   padding: 2%;
   border-radius: 15px;
   border: 1px #00adb5 solid;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 .inst-expnd {
@@ -226,6 +237,7 @@
   float: right;
   height: 24px;
   width: 30px;
+  margin-right: 5%;
   margin-bottom: 5%;
   padding: 0;
   background-color: transparent;
@@ -278,11 +290,7 @@
 }
 .inst-month,
 .inst-rating {
-  margin-right: 3%;
-}
-
-.inst-month {
-  margin-left: 1%;
+  margin-right: 1%;
 }
 
 .inst-accpt,

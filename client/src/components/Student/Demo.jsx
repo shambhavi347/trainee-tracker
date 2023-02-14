@@ -76,7 +76,7 @@ const Demo = () => {
               <div className="regBox">
                 <form>
                   <input
-                    className="form-element"
+                    className="form-element form-text"
                     type="text"
                     placeholder="First Name"
                     name="first_name"
@@ -85,7 +85,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element"
+                    className="form-element form-text"
                     type="text"
                     placeholder="Last Name"
                     name="last_name"
@@ -94,7 +94,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element"
+                    className="form-element form-email"
                     type="email"
                     name="email"
                     placeholder="Email Address"
@@ -103,7 +103,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element"
+                    className="form-element form-text"
                     type="text"
                     name="phone_no"
                     value={user.phone_no}
@@ -112,7 +112,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element"
+                    className="form-element form-date"
                     type="date"
                     name="dob"
                     value={user.dob}
@@ -122,6 +122,7 @@ const Demo = () => {
                   />
                   <div className="radioGroup">
                     <input
+                      className="form-radio"
                       type="radio"
                       name="gender"
                       value="male"
@@ -130,6 +131,7 @@ const Demo = () => {
                     />
                     Male
                     <input
+                      className="form-radio"
                       type="radio"
                       name="gender"
                       value="female"
@@ -138,6 +140,7 @@ const Demo = () => {
                     />
                     Female
                     <input
+                      className="fomr-radio"
                       type="radio"
                       name="gender"
                       value="transgender"

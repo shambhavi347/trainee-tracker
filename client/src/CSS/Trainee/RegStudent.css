@@ -70,9 +70,9 @@
   font-size: 30px;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="email"] {
+.form-text,
+.form-date,
+.form-email {
   width: 250px;
   padding: 20px;
   color: black;
