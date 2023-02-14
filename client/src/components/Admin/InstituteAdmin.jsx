@@ -537,42 +537,41 @@ const InstituteAdmin = () => {
           <button onClick={() => setExpnd("none")} className="expnd-cancel">
             <img className="expnd-img" src={cancel} alt="" />
           </button>
-          <div className="info">
-            {/* Hello
-            {inst.name} {inst.month} */}
-            <div className="info-first">{inst.name}</div>
-            <div className="info-second">
-              <div className="info-type">Institute Type : {inst.type}</div>
-              <div className="info-rating"> NAAC Rating: {inst.rating}</div>
-            </div>
-            <div className="info-third">
-              {inst.street ? <div>Street: {inst.street} </div> : null}
-              <div>City: {inst.city}</div>
-              <div>State:{inst.state}</div>
-              <div>Country: {inst.country}</div>
-              <div>Zip code :{inst.zipCode}</div>
-            </div>
-            <div className="info-fourth">
-              {" "}
-              <div className="info-email">Email : {inst.email}</div>
-              <div className="info-phone">Phone No : {inst.phone}</div>
-            </div>
-            <div className="info-fifth">
-              <div className="info-month">
-                Internship Start Month: {inst.month}
+          <div className="info-outer">
+            <div className="info">
+              <div className="info-first">{inst.name}</div>
+              <div className="info-second">
+                <div className="info-type">Institute Type : {inst.type}</div>
+                <div className="info-rating"> NAAC Rating: {inst.rating}</div>
               </div>
-              <div className="info-duration">
-                Insternship Duration : {inst.duration}
+              <div className="info-third">
+                {inst.street ? <div>Street: {inst.street} </div> : null}
+                <div>City: {inst.city}</div>
+                <div>State:{inst.state}</div>
+                <div>Country: {inst.country}</div>
+                <div>Zip code :{inst.zipCode}</div>
               </div>
-            </div>
-            <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
-            <div className="info-coord-title">
-              Institute Coordinator's Details
-            </div>
-            <div className="info-sixth">Name : {inst.coordName}</div>
-            <div className="info-seventh">
-              <div className="info-coor-email">Email: {inst.coordEmail}</div>
-              <div className="info-coor-phone">Phone: {inst.coordPhone}</div>
+              <div className="info-fourth">
+                <div className="info-email">Email : {inst.email}</div>
+                <div className="info-phone">Phone No : {inst.phone}</div>
+              </div>
+              <div className="info-fifth">
+                <div className="info-month">
+                  Internship Start Month: {inst.month}
+                </div>
+                <div className="info-duration">
+                  Insternship Duration : {inst.duration}
+                </div>
+              </div>
+              <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
+              <div className="info-coord-title">
+                Institute Coordinator's Details
+              </div>
+              <div className="info-sixth">Name : {inst.coordName}</div>
+              <div className="info-seventh">
+                <div className="info-coor-email">Email: {inst.coordEmail}</div>
+                <div className="info-coor-phone">Phone: {inst.coordPhone}</div>
+              </div>
             </div>
           </div>
         </div>

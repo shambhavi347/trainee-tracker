@@ -357,13 +357,19 @@
   height: 100%;
 }
 
-.info {
+.info-outer {
   background-color: #222831;
   width: 70%;
   height: 100%;
-  overflow-y: scroll;
+  overflow: hidden;
   margin-left: 10%;
   padding: 2%;
+  border-radius: 25px;
+  border: 2px #00adb5 solid;
+}
+.info {
+  height: 100%;
+  overflow-y: auto;
 }
 
 .info-first,
