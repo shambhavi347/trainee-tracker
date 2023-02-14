@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Admin/InstituteAdmin.css";
 import { arrowDown, cancel, expand } from "../../Images/Images";
-// import FilterPannel, { filter } from "./FilterPannel";
 
 const InstituteAdmin = () => {
   const itype = [
-    "Community Colleges",
-    "Vocational Schools",
-    "Public Universities",
-    "Private Universities",
-    "Semi-Private universities",
+    "Central University",
+    "State University",
+    "Private Institution",
+    "Deemed University",
+    "Autonomous College",
+    "Affialted College",
   ];
 
   const imonth = [
@@ -56,31 +56,75 @@ const InstituteAdmin = () => {
       duration: "3 Months",
       rating: "A++",
       rvalue: 8,
-      type: "Private University",
+      type: "Central University",
+      email: "iitdelhi@gmail.com",
+      street: "",
+      city: "Delhi",
+      state: "Delhi",
+      country: "India",
+      zipCode: "201012",
+      phone: "987654321",
+
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
     },
     {
-      name: " IIM Delhi",
+      name: " IIM Ahemdabad",
       month: "December",
       duration: "6 Months",
       rating: "A",
       rvalue: 6,
-      type: "Private University",
+      type: "Central University",
+      email: "iitAhemdabad@gmail.com",
+      street: "",
+      city: "Ahemdabad",
+      state: "Gujrat",
+      country: "India",
+      zipCode: "201012",
+      phone: "987654321",
+
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
     },
     {
-      name: " IIM Delhi",
+      name: " GGSIPU",
       month: "July",
       duration: "6 Months",
       rating: "A+",
       rvalue: 7,
-      type: "Private University",
+      type: "Private Institution",
+      email: "iitdelhi@gmail.com",
+      street: "",
+      city: "Delhi",
+      state: "Delhi",
+      country: "India",
+      zipCode: "201012",
+      phone: "987654321",
+
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
     },
     {
       name: " Bansathli Vidyapith",
-      month: "June",
+      month: "January",
       duration: "6 Months",
       rating: "A++",
       rvalue: 8,
-      type: "Private University",
+      type: "Deemed University",
+      email: "iitdelhi@gmail.com",
+      street: "",
+      city: "Newai, Tonk",
+      state: "Rajasthan",
+      country: "India",
+      zipCode: "304022",
+      phone: "987654321",
+
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
     },
     {
       name: " Amity University",
@@ -88,7 +132,18 @@ const InstituteAdmin = () => {
       duration: "3 Months",
       rating: "C",
       rvalue: 2,
-      type: "Private University",
+      type: "Private Institution",
+      email: "iitdelhi@gmail.com",
+      street: "Amity Road",
+      city: "Delhi",
+      state: "Delhi",
+      country: "India",
+      zipCode: "201012",
+      phone: "987654321",
+
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
     },
     {
       name: "JNU",
@@ -96,13 +151,28 @@ const InstituteAdmin = () => {
       duration: "3 Months",
       rating: "B+",
       rvalue: 4,
-      type: "Private University",
+      type: "Central University",
+      email: "iitdelhi@gmail.com",
+      street: "JNU Road",
+      city: "Delhi",
+      state: "Delhi",
+      country: "India",
+      zipCode: "201012",
+      phone: "987654321",
+
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
     },
   ]);
 
   const [institute, setInstitute] = useState([]);
 
   const [text, setText] = useState("");
+
+  const [expnd, setExpnd] = useState("none");
+
+  const [inst, setInst] = useState([]);
 
   const handleChange = (e) => {
     let value = e.target.value;
@@ -407,18 +477,7 @@ const InstituteAdmin = () => {
 
           {Object.keys(appliedfilter).length === 0 ? null : (
             <>
-              <h4>
-                {" "}
-                Applied Filter
-                <button
-                // onClick={() =>
-
-                // }
-                >
-                  {}
-                  Apply
-                </button>
-              </h4>
+              <h4>Applied Filter</h4>
               <div className="applied-filter">
                 {appliedfilter.map((key) => (
                   <>
@@ -447,7 +506,13 @@ const InstituteAdmin = () => {
           {institute.map((inst, key) => (
             <div className="inst-bdy">
               <div className="inst-expnd">
-                <button className="btn-expnd">
+                <button
+                  className="btn-expnd"
+                  onClick={() => {
+                    setExpnd("block");
+                    setInst(inst);
+                  }}
+                >
                   <img src={expand} alt="" className="img-expnd" />
                 </button>
               </div>
@@ -467,6 +532,49 @@ const InstituteAdmin = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="expanded-div" style={{ display: expnd }}>
+          <button onClick={() => setExpnd("none")} className="expnd-cancel">
+            <img className="expnd-img" src={cancel} alt="" />
+          </button>
+          <div className="info">
+            {/* Hello
+            {inst.name} {inst.month} */}
+            <div className="info-first">{inst.name}</div>
+            <div className="info-second">
+              <div className="info-type">Institute Type : {inst.type}</div>
+              <div className="info-rating"> NAAC Rating: {inst.rating}</div>
+            </div>
+            <div className="info-third">
+              {inst.street ? <div>Street: {inst.street} </div> : null}
+              <div>City: {inst.city}</div>
+              <div>State:{inst.state}</div>
+              <div>Country: {inst.country}</div>
+              <div>Zip code :{inst.zipCode}</div>
+            </div>
+            <div className="info-fourth">
+              {" "}
+              <div className="info-email">Email : {inst.email}</div>
+              <div className="info-phone">Phone No : {inst.phone}</div>
+            </div>
+            <div className="info-fifth">
+              <div className="info-month">
+                Internship Start Month: {inst.month}
+              </div>
+              <div className="info-duration">
+                Insternship Duration : {inst.duration}
+              </div>
+            </div>
+            <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
+            <div className="info-coord-title">
+              Institute Coordinator's Details
+            </div>
+            <div className="info-sixth">Name : {inst.coordName}</div>
+            <div className="info-seventh">
+              <div className="info-coor-email">Email: {inst.coordEmail}</div>
+              <div className="info-coor-phone">Phone: {inst.coordPhone}</div>
+            </div>
+          </div>
         </div>
       </div>
     </>
