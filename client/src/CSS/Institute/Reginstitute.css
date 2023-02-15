@@ -9,7 +9,7 @@
     height: 100vh;
     margin: 0;
     width: auto;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
 }
 
 .form-body {
