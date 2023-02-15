@@ -70,9 +70,9 @@
   font-size: 30px;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="email"] {
+.form-text,
+.form-date,
+.form-email {
   width: 250px;
   padding: 20px;
   color: black;
@@ -254,6 +254,65 @@ input[type="file"]::file-selector-button:hover {
   overflow-y: scroll;
 }
 
-.option::-webkit-scrollbar {
-  display: none;
+.tech-box {
+  width: 60%;
+  height: 10%;
+  background-color: #222831;
+  border-radius: 10px;
+  border: 1px #00adb5 solid;
+  padding: 5%;
+  padding-top: 15px;
+  margin: 5% 0;
+  margin-bottom: 50%;
+  margin-left: 20%;
+  color: #ccc;
+  overflow-y: scroll;
 }
+
+.tech {
+  width: auto;
+  height: 10%;
+  padding: 5%;
+  margin: 2% 0;
+  margin-right: 5%;
+  background-color: #393e46;
+  border: 1px #00adb5 solid;
+  float: left;
+  border-radius: 10px;
+  padding-bottom: -12%;
+}
+
+.cancel-text-tech {
+  float: left;
+  /* margin-top: 1%; */
+}
+
+.cancel-btn-tech {
+  /* height: 20%;
+  width: ; */
+  width: 10%;
+  height: 2%;
+  margin: 0;
+  padding: 0;
+  /* margin-top: -5%; */
+  background-color: transparent;
+  border: none;
+  float: right;
+  margin-left: 5px;
+  /* margin-top: 6px; */
+  /* margin-top: -5%; */
+  /* margin-left: 15px; */
+  /* margin-left: 10px;
+  margin-top: 4%; */
+  /* margin: 0 10%; */
+}
+
+.cancel-img-tech {
+  width: 100%;
+  height: 10%;
+  margin: 0;
+}
+
+/* .option::-webkit-scrollbar {
+  display: none;
+} */

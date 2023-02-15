@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/RegStudent.css";
-import { arrowDown } from "../../Images/Images";
+import { arrowDown, cancel } from "../../Images/Images";
 
 
 const Demo = () => {
@@ -56,6 +56,8 @@ const Demo = () => {
   });
 
   const fileType = ['application/pdf']
+  const [famtech, setFamtech] = useState([]);
+  const [inttech, setInttech] = useState([]);
 
   let name, value;
   const handleChange = (e) => {
@@ -91,6 +93,37 @@ const Demo = () => {
   //     setViewPdf(null)
   //   }
   // }
+
+  const handlefamTech = (e) => {
+    e.preventDefault();
+    let value = e.target.value;
+    // let name = e.target.name;
+    if (e.target.checked) {
+      //so duplicate values are not added
+      if (famtech.includes(value) === false) setFamtech([...famtech, value]);
+    } else {
+      setFamtech((oldValues) => {
+        return oldValues.filter((famtech) => famtech !== value);
+      });
+    }
+  };
+
+  const handleintTech = (e) => {
+    e.preventDefault();
+    let value = e.target.value;
+    // let name = e.target.name;
+    if (e.target.checked) {
+      //so duplicate values are not added
+      if (inttech.includes(value) === false) setInttech([...inttech, value]);
+    } else {
+      setInttech((oldValues) => {
+        return oldValues.filter((inttech) => inttech !== value);
+      });
+    }
+  };
+
+  console.log(famtech);
+
   console.log(user);
   return (
     <>
@@ -105,7 +138,7 @@ const Demo = () => {
               <div className="regBox">
                 <form>
                   <input
-                    className="form-element"
+                    className="form-element form-text"
                     type="text"
                     placeholder="First Name"
                     name="first_name"
@@ -114,7 +147,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element"
+                    className="form-element form-text"
                     type="text"
                     placeholder="Last Name"
                     name="last_name"
@@ -123,7 +156,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element"
+                    className="form-element form-email"
                     type="email"
                     name="email"
                     placeholder="Email Address"
@@ -132,7 +165,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element"
+                    className="form-element form-text"
                     type="text"
                     name="phone_no"
                     value={user.phone_no}
@@ -141,7 +174,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element"
+                    className="form-element form-date"
                     type="date"
                     name="dob"
                     value={user.dob}
@@ -151,6 +184,7 @@ const Demo = () => {
                   />
                   <div className="radioGroup">
                     <input
+                      className="form-radio"
                       type="radio"
                       name="gender"
                       value="male"
@@ -159,6 +193,7 @@ const Demo = () => {
                     />
                     Male
                     <input
+                      className="form-radio"
                       type="radio"
                       name="gender"
                       value="female"
@@ -167,6 +202,7 @@ const Demo = () => {
                     />
                     Female
                     <input
+                      className="fomr-radio"
                       type="radio"
                       name="gender"
                       value="transgender"
@@ -197,7 +233,9 @@ const Demo = () => {
           <div class="DivUpper">
             <div className="body">
               <div className="main">
-                <h1 className="regHead">Register Yourself</h1>
+                <h1 className="regHead">
+                  Hey {user.first_name},Register Yourself
+                </h1>
                 <div className="regBox">
                   <form>
                     <select
@@ -334,7 +372,10 @@ const Demo = () => {
           <div class="DivUpper">
             <div className="body">
               <div className="main">
-                <h1 className="regHead">Register Yourself</h1>
+                <h1 className="regHead">
+                  {" "}
+                  hey {user.first_name},Register Yourself
+                </h1>
                 <div className="regBox">
                   <form onSubmit={(e) => e.preventDefault()}>
                     <div className="fam-tech">
@@ -362,11 +403,11 @@ const Demo = () => {
                                 <label className="container-form">
                                   {val}
                                   <input
-                                    type="checkbox-form"
+                                    type="checkbox"
                                     name={val}
                                     id=""
                                     value={val}
-                                    onClick={(e) => e.preventDefault()}
+                                    onClick={handlefamTech}
                                   />
 
                                   <span className="checkmark-form"></span>
@@ -405,11 +446,11 @@ const Demo = () => {
                                 <label className="container-form">
                                   {val}
                                   <input
-                                    type="checkbox-form"
+                                    type="checkbox"
                                     name={val}
                                     id=""
                                     value={val}
-                                    onClick={(e) => e.preventDefault()}
+                                    onChange={handleintTech}
                                   />
 
                                   <span className="checkmark-form"></span>
@@ -426,6 +467,69 @@ const Demo = () => {
                         </>
                       ) : null}
                     </div>
+
+                    {Object.keys(famtech).length === 0 ? null : (
+                      <>
+                        <h4>Familiar Technologies</h4>
+                        <div className="tech-box">
+                          {famtech.map((key) => (
+                            <>
+                              <div className="tech-outer"></div>
+                              <div className="tech">
+                                <div className="cancel-text-tech">{key}</div>
+                                <button
+                                  className="cancel-btn-tech"
+                                  onClick={() => {
+                                    setFamtech((oldValues) => {
+                                      return oldValues.filter(
+                                        (famtech) => famtech !== key
+                                      );
+                                    });
+                                  }}
+                                >
+                                  <img
+                                    className="cancel-img-tech"
+                                    src={cancel}
+                                    alt=""
+                                  />
+                                </button>
+                              </div>
+                            </>
+                          ))}
+                        </div>
+                      </>
+                    )}
+
+                    {Object.keys(inttech).length === 0 ? null : (
+                      <>
+                        <h4>Applied Filter</h4>
+                        <div className="tech-box">
+                          {inttech.map((key) => (
+                            <>
+                              <div className="tech">
+                                <div className="cancel-text-tech">{key}</div>
+                                <button
+                                  className="cancel-btn-tech"
+                                  onClick={() => {
+                                    setInttech((oldValues) => {
+                                      return oldValues.filter(
+                                        (inttech) => inttech !== key
+                                      );
+                                    });
+                                  }}
+                                >
+                                  {/* <img
+                                    className="cancel-img-tech"
+                                    src={cancel}
+                                    alt=""
+                                  /> */}
+                                </button>
+                              </div>
+                            </>
+                          ))}
+                        </div>
+                      </>
+                    )}
                     <button
                       className="btn-form"
                       onClick={() => {
