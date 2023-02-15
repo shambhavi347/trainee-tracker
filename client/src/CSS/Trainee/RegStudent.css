@@ -8,7 +8,7 @@
   /* background-color: #222831; */
   height: 100vh;
   margin: 0px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 /* .divLower {
@@ -116,7 +116,7 @@ input[type="file"]::file-selector-button:hover {
 .regForm {
   display: table-cell;
   vertical-align: middle;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 .regBox {
   display: flex;
@@ -129,7 +129,7 @@ input[type="file"]::file-selector-button:hover {
   height: 100%;
   margin: auto;
   border-radius: 15px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 .form-element {
   justify-content: left;
