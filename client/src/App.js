@@ -4,12 +4,12 @@ import MainPage from "./components/MainPage";
 import RegInstitute from "./components/Institute/RegInstitute";
 import AdminDash from "./components/Admin/AdminDash";
 import Demo from "./components/Student/Demo";
+import Regtpo from "./components/Institute/Regtpo";
 // import RegStudent from "./components/Student/RegStudent";
 // import RegStudent1 from "./components/Student/RegStudent1";
 // import RegStudent2 from "./components/Student/RegStudent2";
 // import FinalPage from "./components/Student/FinalPage";
 const App = () => {
-
   return (
     <>
       <Router>
@@ -22,6 +22,7 @@ const App = () => {
           <Route path="/reg-student1" element={<RegStudent1 />} />
           <Route path="/reg-student2" element={<RegStudent2 />} /> */}
           <Route path="/reg-stud" element={<Demo />} />
+          <Route path="/reg-tpo" element={<Regtpo />} />
         </Routes>
       </Router>
     </>
