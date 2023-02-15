@@ -3,7 +3,6 @@ import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/RegStudent.css";
 import { arrowDown, cancel } from "../../Images/Images";
 
-
 const Demo = () => {
   const [page0, setPage0] = useState(true);
   const [page1, setPage1] = useState(false);
@@ -50,40 +49,47 @@ const Demo = () => {
     cgpa: "",
     passout_year: "",
     resume: null,
+    pdfname: "",
 
     familiar_tech: "",
     intrested_tech: "",
   });
 
-  const fileType = ['application/pdf']
+  const fileType = ["application/pdf"];
   const [famtech, setFamtech] = useState([]);
   const [inttech, setInttech] = useState([]);
 
-  let name, value;
+  let name, value, pdf;
   const handleChange = (e) => {
     e.preventDefault();
     name = e.target.name;
     if (name === "resume") {
-      let selectedFile = e.target.files[0]
-      if(selectedFile) {
-        if(selectedFile && fileType.includes(selectedFile.type)) {
-          let reader = new FileReader()
-          reader.readAsDataURL(selectedFile)
+      let selectedFile = e.target.files[0];
+      pdf = e.target.files[0].name;
+      if (selectedFile) {
+        if (selectedFile && fileType.includes(selectedFile.type)) {
+          let reader = new FileReader();
+          reader.readAsDataURL(selectedFile);
           reader.onload = (v) => {
-            value = v.target.result
-          }
+            // setPdf(v.target.result);
+            // setUser({ ...user });
+            setUser({ ...user, pdfname: pdf, resume: v.target.result });
+            // setUser({ ...user,});
+          };
         }
+      } else {
+        setUser({ ...user, resume: null });
       }
-      else {
-        value = null
-      }
-    }
-    else {
+    } else {
       value = e.target.value;
+      setUser({ ...user, [name]: value });
     }
     console.log(name, value);
-    setUser({ ...user, [name]: value });
+
+    // setUser({ ...user, resume: pdf });
   };
+
+  // console.log(pdf);
   // const handleSubmit = (e) => {
   //   e.preventDefault()
   //   if(name === "resume" && value != null) {
@@ -325,16 +331,24 @@ const Demo = () => {
                       onChange={handleChange}
                     />
                     <br />
-                    
+
                     <div className="img-holder">
                       <input
-                        style={{ border: 0 }}
+                        style={{ border: 0, display: "none" }}
                         className="form-control"
                         type="file"
                         accept="application/pdf"
                         name="resume"
+                        id="files"
                         onChange={handleChange}
                       />
+                      <label htmlFor="files" onChange={handleChange}>
+                        {user.pdfname ? (
+                          <div className="choose-file">{user.pdfname}</div>
+                        ) : (
+                          <div className="choose-file">Choose file</div>
+                        )}
+                      </label>
                     </div>
 
                     <br />

@@ -313,6 +313,17 @@ input[type="file"]::file-selector-button:hover {
   margin: 0;
 }
 
+.choose-file {
+  border: 2px #00adb5 solid;
+  padding: 2%;
+  background-color: #222831;
+  width: 30%;
+  margin: 2%;
+  margin-top: 5%;
+  margin-left: 35%;
+  border-radius: 20px;
+}
+
 /* .option::-webkit-scrollbar {
   display: none;
 } */
