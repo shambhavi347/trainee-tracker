@@ -6,6 +6,8 @@ import AdminDash from "./components/Admin/AdminDash";
 import Demo from "./components/Student/Demo";
 import Regtpo from "./components/Institute/Regtpo";
 import Home from "./components/Institute/Home";
+import RegCoordinator from "./components/Coordinator/RegCoordinator";
+import CoordinatorDash from "./components/Coordinator/CoordinatorDash";
 // import RegStudent from "./components/Student/RegStudent";
 // import RegStudent1 from "./components/Student/RegStudent1";
 // import RegStudent2 from "./components/Student/RegStudent2";
@@ -25,6 +27,8 @@ const App = () => {
           <Route path="/reg-stud" element={<Demo />} />
           <Route path="/reg-tpo" element={<Regtpo />} />
           <Route path="/institute-home" element={<Home />} />
+          <Route path="/reg-coordinator" element={<RegCoordinator />} />
+          <Route path="/coordinator-home" element={<CoordinatorDash />} />
           </Routes>
       </Router>
     </>

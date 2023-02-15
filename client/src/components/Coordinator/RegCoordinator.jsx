@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import NavBar2 from "../NavBar2";
-import "../../CSS/Institute/Regtpo.css";
+import "../../CSS/Coordinator/RegCoordinator.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-const Regtpo = () => {
+const RegCoordinator = () => {
   const [req, setReq] = useState(false);
 
   const [userRegistration, setUserRegistration] = useState({
@@ -37,7 +37,7 @@ const Regtpo = () => {
   useEffect(() => {
     if (req) {
       const routeChange = () => {
-        let path = "/institute-home";
+        let path = "/coordinator-home";
         navigate(path);
       };
       routeChange();
@@ -134,4 +134,4 @@ const Regtpo = () => {
     </>
   );
 };
-export default Regtpo;
+export default RegCoordinator;
