@@ -85,7 +85,7 @@ const RegInstitute = () => {
   return (
     <>
       <NavBar2 />
-      <div className="body">
+      <div className="body main">
         <h1 className="regHead">Register Your Institute</h1>
         <form action="" className="form-body" onSubmit={handleSubmit}>
           <div className="instname">
