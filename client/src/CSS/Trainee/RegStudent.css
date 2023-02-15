@@ -146,6 +146,29 @@ input[type="file"]::file-selector-button:hover {
 .regHead {
   color: white;
 }
+.signupImg {
+  max-width: 100%;
+  flex-basis: 40%;
+  padding: 0;
+  margin-top: auto;
+}
+.Img {
+  width: 500px;
+  height: 400px;
+  flex-basis: 40%;
+  padding: 0;
+  margin-top: auto;
+}
+.img,
+.Img {
+  border-left: 1px solid rgba(52, 73, 94, 0.1);
+}
+.img,
+.Img,
+.regForm {
+  display: table-cell;
+  vertical-align: middle;
+}
 .drop-down {
   width: 250px;
   padding: 20px;

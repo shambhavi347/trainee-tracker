@@ -3,6 +3,7 @@ import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/RegStudent.css";
 import { arrowDown } from "../../Images/Images";
 
+
 const Demo = () => {
   const [page0, setPage0] = useState(true);
   const [page1, setPage1] = useState(false);
@@ -48,20 +49,48 @@ const Demo = () => {
     semester: "",
     cgpa: "",
     passout_year: "",
-    //resume: "",
+    resume: null,
 
     familiar_tech: "",
     intrested_tech: "",
   });
 
+  const fileType = ['application/pdf']
+
   let name, value;
   const handleChange = (e) => {
     e.preventDefault();
     name = e.target.name;
-    value = e.target.value;
+    if (name === "resume") {
+      let selectedFile = e.target.files[0]
+      if(selectedFile) {
+        if(selectedFile && fileType.includes(selectedFile.type)) {
+          let reader = new FileReader()
+          reader.readAsDataURL(selectedFile)
+          reader.onload = (v) => {
+            value = v.target.result
+          }
+        }
+      }
+      else {
+        value = null
+      }
+    }
+    else {
+      value = e.target.value;
+    }
     console.log(name, value);
     setUser({ ...user, [name]: value });
   };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   if(name === "resume" && value != null) {
+  //     setViewPdf(value)
+  //   }
+  //   else {
+  //     setViewPdf(null)
+  //   }
+  // }
   console.log(user);
   return (
     <>
@@ -257,6 +286,19 @@ const Demo = () => {
                       autoComplete="off"
                       onChange={handleChange}
                     />
+                    <br />
+                    
+                    <div className="img-holder">
+                      <input
+                        style={{ border: 0 }}
+                        className="form-control"
+                        type="file"
+                        accept="application/pdf"
+                        name="resume"
+                        onChange={handleChange}
+                      />
+                    </div>
+
                     <br />
                     <button
                       className="btn-form"
