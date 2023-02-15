@@ -254,25 +254,30 @@ input[type="file"]::file-selector-button:hover {
   overflow-y: scroll;
 }
 
-.tech-box {
+.tech-box-outer {
   width: 60%;
-  height: 10%;
+  height: 150px;
   background-color: #222831;
   border-radius: 10px;
   border: 1px #00adb5 solid;
-  padding: 5%;
-  padding-top: 15px;
+
   margin: 5% 0;
-  margin-bottom: 50%;
+  margin-bottom: 10%;
   margin-left: 20%;
   color: #ccc;
+  padding: 1%;
+}
+.tech-box {
+  height: 100%;
+  padding: 5%;
+  padding-top: 15px;
   overflow-y: scroll;
 }
 
 .tech {
   width: auto;
-  height: 10%;
-  padding: 5%;
+  height: auto;
+  padding: 2%;
   margin: 2% 0;
   margin-right: 5%;
   background-color: #393e46;
@@ -284,13 +289,14 @@ input[type="file"]::file-selector-button:hover {
 
 .cancel-text-tech {
   float: left;
+  /* margin-right: -20px; */
   /* margin-top: 1%; */
 }
 
 .cancel-btn-tech {
   /* height: 20%;
   width: ; */
-  width: 10%;
+  width: 5%;
   height: 2%;
   margin: 0;
   padding: 0;
@@ -299,6 +305,7 @@ input[type="file"]::file-selector-button:hover {
   border: none;
   float: right;
   margin-left: 5px;
+  /* margin-right: -20px; */
   /* margin-top: 6px; */
   /* margin-top: -5%; */
   /* margin-left: 15px; */

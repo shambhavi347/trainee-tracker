@@ -474,62 +474,70 @@ const Demo = () => {
                   {Object.keys(famtech).length === 0 ? null : (
                     <>
                       <h4>Familiar Technologies</h4>
-                      <div className="tech-box">
-                        {famtech.map((key) => (
-                          <>
-                            <div className="tech-outer"></div>
-                            <div className="tech">
-                              <div className="cancel-text-tech">{key}</div>
-                              <button
-                                className="cancel-btn-tech"
-                                onClick={() => {
-                                  setFamtech((oldValues) => {
-                                    return oldValues.filter(
-                                      (famtech) => famtech !== key
-                                    );
-                                  });
-                                }}
-                              >
-                                <img
-                                  className="cancel-img-tech"
-                                  src={cancel}
-                                  alt=""
-                                />
-                              </button>
-                            </div>
-                          </>
-                        ))}
+                      <div className="tech-box-outer">
+                        <div className="tech-box">
+                          {famtech.map((key) => (
+                            <>
+                              <div className="tech-outer"></div>
+                              <div className="tech">
+                                <div className="cancel-text-tech">
+                                  {key}
+                                  <button
+                                    className="cancel-btn-tech"
+                                    onClick={() => {
+                                      setFamtech((oldValues) => {
+                                        return oldValues.filter(
+                                          (famtech) => famtech !== key
+                                        );
+                                      });
+                                    }}
+                                  >
+                                    <img
+                                      className="cancel-img-tech"
+                                      src={cancel}
+                                      alt=""
+                                    />
+                                  </button>
+                                </div>
+                              </div>
+                            </>
+                          ))}
+                        </div>
                       </div>
                     </>
                   )}
 
                   {Object.keys(inttech).length === 0 ? null : (
                     <>
-                      <h4>Applied Filter</h4>
-                      <div className="tech-box">
-                        {inttech.map((key) => (
-                          <>
-                            <div className="tech">
-                              <div className="cancel-text-tech">{key}</div>
-                              <button
-                                className="cancel-btn-tech"
-                                onClick={() => {
-                                  setInttech((oldValues) => {
-                                    return oldValues.filter(
-                                      (inttech) => inttech !== key
-                                    );
-                                  });
-                                }}
-                              >
-                                {/* <img
-                                    className="cancel-img-tech"
-                                    src={cancel}
-                                    alt=""
-                                  /> */}
-                              </button>
-                            </div>
-                          </>
-                        ))}
+                      <h4>Interested Technologies</h4>
+                      <div className="tech-box-outer">
+                        <div className="tech-box">
+                          {inttech.map((key) => (
+                            <>
+                              <div className="tech">
+                                <div className="cancel-text-tech">
+                                  {key}
+                                  <button
+                                    className="cancel-btn-tech"
+                                    onClick={() => {
+                                      setInttech((oldValues) => {
+                                        return oldValues.filter(
+                                          (inttech) => inttech !== key
+                                        );
+                                      });
+                                    }}
+                                  >
+                                    <img
+                                      className="cancel-img-tech"
+                                      src={cancel}
+                                      alt=""
+                                    />
+                                  </button>
+                                </div>
+                              </div>
+                            </>
+                          ))}
+                        </div>
                       </div>
                     </>
                   )}
