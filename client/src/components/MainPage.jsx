@@ -13,6 +13,7 @@ import {
 
 const MainPage = () => {
   const [req, setReq] = useState(false);
+
   let navigate = useNavigate();
   useEffect(() => {
     if (req) {
