@@ -3,19 +3,19 @@ import "../CSS/NavBar2.css";
 import { cdacLogo } from "../Images/Images";
 import { useNavigate } from "react-router-dom";
 const NavBar2 = () => {
-//   let navigate = useNavigate();
-//   const routeChange = () => {
-//     let path = "/reg-institute";
-//     navigate(path);
-//   };
+  //   let navigate = useNavigate();
+  //   const routeChange = () => {
+  //     let path = "/reg-institute";
+  //     navigate(path);
+  //   };
 
   return (
     <>
-      <div class="NavBody">
-        <div class="logoDiv">
+      <div className="NavBody">
+        <div className="logoDiv">
           <img src={cdacLogo} alt="CDAC LOGO" className="logo" />
         </div>
-        <div class="head-title">
+        <div className="head-title">
           <h1>Trainee Tracker</h1>
         </div>
       </div>
