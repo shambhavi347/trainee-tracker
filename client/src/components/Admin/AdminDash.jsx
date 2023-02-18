@@ -10,6 +10,32 @@ const AdminDash = () => {
   const [trainee, setTrainee] = useState(false);
   const [Coord, setCoord] = useState(false);
 
+  const callHome = async () => {
+    try {
+      const res = await fetch("/admin-dashboard", {
+        method: "GET",
+        headers: {
+          "Content-Type": "appllication/json",
+          Accept: "application/json",
+        },
+        Credential: "include ",
+      });
+      const data = await res.json();
+      setUserdata(data);
+      if (!res.status === 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.log(err);
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    callHome();
+  }, []);
+
   return (
     <>
       <NavBar3 />

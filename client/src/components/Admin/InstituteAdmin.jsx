@@ -9,7 +9,7 @@ const InstituteAdmin = () => {
     "Private Institution",
     "Deemed University",
     "Autonomous College",
-    "Affialted College",
+    "Affiliated College",
   ];
 
   const imonth = [
