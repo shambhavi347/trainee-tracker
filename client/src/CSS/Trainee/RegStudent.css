@@ -35,7 +35,7 @@
 }
 
 .btn-form:hover {
-  background-color: #00adb5;
+  background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
   font-style: italic;
@@ -255,17 +255,26 @@ input[type="file"]::file-selector-button:hover {
 }
 
 .tech-box-outer {
-  width: 60%;
-  height: 150px;
-  background-color: #222831;
-  border-radius: 10px;
-  border: 1px #00adb5 solid;
+  /* width: 60%; */
+  height: 90px;
+  /* background-color: #222831; */
+  /* border-radius: 10px; */
+  /* border: 1px #00adb5 solid; */
 
-  margin: 5% 0;
-  margin-bottom: 10%;
-  margin-left: 20%;
-  color: #ccc;
-  padding: 1%;
+  /* margin: 5% 0; */
+  margin-bottom: 2%;
+  /* margin-left: 20%; */
+  /* color: #ccc; */
+  /* padding: 1%; */
+  
+  border: 2px #00adb5 solid;
+  width: 40%;
+  margin-left: 30%;
+  border-radius: 15px;
+  /* padding: 1px; */
+  background-color: #222831;
+  /* margin-bottom: 5%;
+  margin-top: 2%; */
 }
 .tech-box {
   height: 100%;
@@ -277,7 +286,7 @@ input[type="file"]::file-selector-button:hover {
 .tech {
   width: auto;
   height: auto;
-  padding: 2%;
+  padding: 1.5%;
   margin: 2% 0;
   margin-right: 5%;
   background-color: #393e46;
@@ -321,7 +330,7 @@ input[type="file"]::file-selector-button:hover {
 }
 
 .choose-file {
-  border: 2px #00adb5 solid;
+  /* border: 2px #00adb5 solid;
   padding: 2%;
   background-color: #222831;
   width: 30%;
@@ -329,6 +338,30 @@ input[type="file"]::file-selector-button:hover {
   margin-top: 5%;
   margin-left: 35%;
   border-radius: 20px;
+  color: #00adb5;
+  font-size: x-large; */
+  text-align: center;
+  padding: 1%;
+  border-radius: 22px;
+  border: 0;
+  height: 60px;
+  width: 259px;
+  margin: 10px 15px;
+  margin-bottom: 15px;
+  margin: 2%;
+  margin-top: 20px;
+  margin-left: 40%;
+  font-size: x-large;
+  background-color: #222831;
+  border: 2px #00adb5 solid;
+  color: #00adb5;
+}
+
+.choose-file:hover {
+  background-color: #222831;
+  color: #eeeeee;
+  font-weight: bolder;
+  font-style: italic;
 }
 
 /* .option::-webkit-scrollbar {
