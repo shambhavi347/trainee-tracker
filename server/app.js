@@ -1,5 +1,4 @@
 const express = require("express");
-require("./db/database");
 
 const http = require("http");
 const cookieparser = require("cookie-parser");
@@ -7,7 +6,7 @@ const cookieparser = require("cookie-parser");
 const app = express();
 
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config1.env" });
+dotenv.config({ path: "./.env" });
 const PORT = process.env.PORT;
 
 const server = http.createServer(app);
@@ -20,7 +19,11 @@ app.use(
 );
 app.use(cookieparser());
 
+require("./db/database");
+
 app.use(express.json());
+
+//link router file for routing
 app.use(require("./router/adminRoute"));
 
 //MiddleWare
@@ -30,8 +33,10 @@ app.use(require("./router/adminRoute"));
 //   next();
 // };
 
-// app.get("/", (req, res) => {
-//   console.log(`hello main page`);
+const adminAuth = require("./middleware/adminauth");
+
+// app.get("/admin-dashboard", (req, res) => {
+//   console.log(`hello admin`);
 //   res.send(`hello about from the server`);
 // });
 
@@ -45,6 +50,6 @@ app.use(require("./router/adminRoute"));
 //   res.send(`hello insititute about from the server`);
 // });
 
-app.listen(PORT, () => {
-  console.log(`server is running on ${PORT} `);
+server.listen(PORT, () => {
+  console.log(`server is running on port no. ${PORT}`);
 });
