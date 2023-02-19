@@ -61,39 +61,37 @@ router.get("/admin-dashboard", (req, res) => {
 // });
 
 router.post("/admin-login", async (req, res) => {
-  try {
-    let token;
-    const { email, password } = req.body;
-    console.log(req.body);
-    if (!email || !password) {
-      return res
-        .status(400)
-        .json({ error: "Field not filled properly in login page " });
-    }
-
-    const adminLogin = await Admin.findOne({ email: email });
-
-    if (adminLogin) {
-      // const isMatch = await bcrypt.compare(password, adminLogin.password);
-
-      token = await adminLogin.generateAuthToken();
-      res.cookie("jwtoken", token, {
-        expires: new Date(Date.now() + 25892000000),
-        httpOnly: true,
-      });
-      console.log(adminLogin);
-
-      if (password != adminLogin.password) {
-        console.log("Pssword incorrect");
-        res.status(400).json({ error: "Incorrect Password" });
-      } else {
-        res.status(200).json({ message: "Admin login successfully ✌🏼" });
+  const { user } = req.body;
+  if (user === "admin") {
+    try {
+      let token;
+      const { email, password } = req.body;
+      if (!email || !password) {
+        return res
+          .status(400)
+          .json({ error: "Field not filled properly in login page " });
       }
-    } else {
-      res.status(400).json({ error: "Invalid Credientials" });
+
+      const adminLogin = await Admin.findOne({ email: email });
+
+      if (adminLogin) {
+        token = await adminLogin.generateAuthToken();
+        res.cookie("jwtoken", token, {
+          expires: new Date(Date.now() + 25892000000),
+          httpOnly: true,
+        });
+
+        if (password != adminLogin.password) {
+          res.status(400).json({ error: "Incorrect Password" });
+        } else {
+          res.status(200).json({ message: "Admin login successfully ✌🏼" });
+        }
+      } else {
+        res.status(400).json({ error: "Invalid Credientials" });
+      }
+    } catch (err) {
+      console.log(err);
     }
-  } catch (err) {
-    console.log(err);
   }
 });
 
