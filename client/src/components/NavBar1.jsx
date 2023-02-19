@@ -27,7 +27,6 @@ const NavBar1 = () => {
 
   const PostData = async (e) => {
     e.preventDefault();
-    //console.log(admin);
 
     const { user, email, password } = admin;
 
@@ -50,7 +49,6 @@ const NavBar1 = () => {
     if (res.status === 400) {
       window.alert(reason.error);
     } else {
-      // console.log("Successfull Login");
       routeChange();
     }
   };
