@@ -8,6 +8,7 @@ import Regtpo from "./components/Institute/Regtpo";
 import Home from "./components/Institute/Home";
 import RegCoordinator from "./components/Coordinator/RegCoordinator";
 import CoordinatorDash from "./components/Coordinator/CoordinatorDash";
+import Login from "./components/Login";
 import StudDash from "./components/Student/StudDash";
 
 const App = () => {
@@ -23,8 +24,9 @@ const App = () => {
           <Route path="/institute-home" element={<Home />} />
           <Route path="/reg-coordinator" element={<RegCoordinator />} />
           <Route path="/coordinator-home" element={<CoordinatorDash />} />
+          <Route path="/admin-login" element={<Login />} />
           <Route path="/trainee-dashboard" element={<StudDash />} />
-          </Routes>
+        </Routes>
       </Router>
     </>
   );
