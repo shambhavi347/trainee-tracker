@@ -35,6 +35,7 @@ const Demo = () => {
   ]);
 
   const [user, setUser] = useState({
+    prefix: "",
     first_name: "",
     last_name: "",
     Father_name: "",
@@ -141,8 +142,21 @@ const Demo = () => {
           <div className="DivUpper">
             <div className="main">
               <h1 className="regHead">Register Yourself</h1>
+              <br />
               <div className="regBox">
                 <form>
+                <select
+                    name="prefix"
+                    className="drop-down"
+                    value={user.prefix}
+                    onChange={handleChange}
+                  >
+                    <option value="Mr">Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Dr">Dr</option>
+                  </select>
+                  <br />
                   <input
                     className="form-element form-text"
                     type="text"
@@ -240,7 +254,7 @@ const Demo = () => {
           <div class="DivUpper">
             <div className="main">
               <h1 className="regHead">
-                Hey {user.first_name}, fill your Academic details
+                Hey {user.prefix} {user.first_name}, fill your Academic details
               </h1>
               <br />
               <div className="regBox">
@@ -381,7 +395,7 @@ const Demo = () => {
             <div className="main">
               <h1 className="regHead">
                 {" "}
-                hey {user.first_name}, choose Technologies
+                {user.prefix} {user.first_name}, choose Technologies
               </h1>
               <div className="regBox">
                 <form onSubmit={(e) => e.preventDefault()}>
