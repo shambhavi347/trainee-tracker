@@ -13,6 +13,9 @@ import CoordinatorDash from "./components/Coordinator/CoordinatorDash";
 // import RegStudent1 from "./components/Student/RegStudent1";
 // import RegStudent2 from "./components/Student/RegStudent2";
 // import FinalPage from "./components/Student/FinalPage";
+// import Login from "./components/Login";
+import StudDash from "./components/Student/StudDash";
+
 const App = () => {
   return (
     <>
@@ -21,16 +24,14 @@ const App = () => {
           <Route exact path="/" element={<MainPage />} />
           <Route path="/reg-institute" element={<RegInstitute />} />
           <Route path="/admin-dashboard" element={<AdminDash />} />
-          {/* <Route path="/reg-final" element={<FinalPage />} />
-          <Route path="/reg-student" element={<RegStudent />} />
-          <Route path="/reg-student1" element={<RegStudent1 />} />
-          <Route path="/reg-student2" element={<RegStudent2 />} /> */}
           <Route path="/reg-stud" element={<Demo />} />
           <Route path="/reg-tpo" element={<Regtpo />} />
           <Route path="/institute-home" element={<Home />} />
           <Route path="/reg-coordinator" element={<RegCoordinator />} />
           <Route path="/coordinator-home" element={<CoordinatorDash />} />
           {/* <Route path="/admin-login" element={<Login />} /> */}
+          {/* <Route path="/admin-login" element={<Login />} /> */}
+          <Route path="/trainee-dashboard" element={<StudDash />} />
         </Routes>
       </Router>
     </>
