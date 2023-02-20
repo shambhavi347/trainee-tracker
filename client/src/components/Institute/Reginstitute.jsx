@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar2 from "../NavBar2";
-import "../../CSS/Institute/RegInstitute.css";
+import "../../CSS/Institute/Reginstitute.css";
 import { useEffect } from "react";
 
 //function RegInstitute() {
@@ -233,4 +233,4 @@ const RegInstitute = () => {
     </>
   );
 };
-export default RegInstitute;
+export default Reginstitute;
