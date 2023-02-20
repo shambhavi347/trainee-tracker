@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 // const multer = require("multer");
 const bcrypt = require("bcryptjs");
+const validator = require("validator");
 const jwt = require("jsonwebtoken");
 
 const adminSchema = new mongoose.Schema({
@@ -27,7 +28,7 @@ const adminSchema = new mongoose.Schema({
     },
   ],
 });
-//hashing password
+//hashing password  - reg
 adminSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 12);
@@ -35,7 +36,7 @@ adminSchema.pre("save", async function (next) {
   next();
 });
 
-//generating token
+//generating token - login
 adminSchema.methods.generateAuthToken = async function () {
   try {
     let token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);

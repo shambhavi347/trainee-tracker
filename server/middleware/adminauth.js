@@ -1,22 +1,21 @@
 const jwt = require("jsonwebtoken");
-const Admin = require("../dbmodel/admin");
+const User = require("../model/admin");
 
-const Authenticate = async (req, res, next) => {
+const adminAuthenticate = async (req, res, next) => {
   try {
-    // const token = req.cookies.jwtoken;
-    // const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
+    const token = req.cookies.jwtoken;
+    const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
 
-    const admin = await Admin.findOne({
-      _id: _id,
-      // _id: verifyToken._id,
-      // "tokens.token": token,
+    const rootUser = await User.findOne({
+      _id: verifyToken._id,
+      "tokens.token": token,
     });
-    if (!admin) {
-      throw new Error("Admin not found");
+    if (!rootUser) {
+      throw new Error("User not found");
     }
-    // req.token = token;
-    req.rootUser = admin;
-    // req.AdminID = rootAdmin._id;
+    req.token = token;
+    req.rootUser = rootUser;
+    // req.userID = rootUser._id;
 
     next();
   } catch (err) {
@@ -24,4 +23,4 @@ const Authenticate = async (req, res, next) => {
     console.log(err);
   }
 };
-module.exports = Authenticate;
+module.exports = adminAuthenticate;

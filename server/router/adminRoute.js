@@ -2,10 +2,12 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const adminAuthenticate = require("../middleware/adminauth");
 
 require("../db/database");
 router.use(express.static("../client/src/"));
-const Admin = require("../dbmodel/admin");
+const Admin = require("../model/admin");
+const Institute = require("../model/instituteSchema");
 
 router.post("/admin-login", async (req, res) => {
   const { user } = req.body;
@@ -13,12 +15,15 @@ router.post("/admin-login", async (req, res) => {
     try {
       let token;
       const { email, password } = req.body;
+
+      //first validation - fileds not empty
       if (!email || !password) {
         return res
           .status(400)
           .json({ error: "Field not filled properly in login page " });
       }
 
+      //second if email exist
       const adminLogin = await Admin.findOne({ email: email });
 
       if (adminLogin) {
@@ -28,6 +33,7 @@ router.post("/admin-login", async (req, res) => {
           httpOnly: true,
         });
 
+        //third validation - password matching
         if (password != adminLogin.password) {
           res.status(400).json({ error: "Incorrect Password" });
         } else {
@@ -39,6 +45,21 @@ router.post("/admin-login", async (req, res) => {
     } catch (err) {
       console.log(err);
     }
+  }
+});
+
+//get pending institute list
+router.get("/get-pending-institute", adminAuthenticate, async (req, res) => {
+  try {
+    const inst = await Institute.find({ status: "pending" });
+    if (inst) {
+      console.log(inst);
+      res.send(inst);
+    } else {
+      console.log("none");
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 
