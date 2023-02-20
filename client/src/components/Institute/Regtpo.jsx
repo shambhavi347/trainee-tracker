@@ -7,15 +7,6 @@ import { useEffect } from "react";
 const Regtpo = () => {
   const [req, setReq] = useState(false);
 
-  //function Regt() {
-  /*const [userRegistration, setUserRegistration] = useState({
-   name:"",
-   email:"",
-   phone:"",
-   password:"",
-   confirm_password:"",
-  });*/
-  //}
   const [userRegistration, setUserRegistration] = useState({
     name: "",
     email: "",
@@ -53,6 +44,16 @@ const Regtpo = () => {
     }
   }, [req, navigate]);
 
+  const [salutation, setsalutation] = useState([
+    "Select",
+    "Mr",
+    "Ms",
+    "Mrs",
+    "Dr",
+  ]);
+  const Add5 = salutation.map((Add5) => Add5);
+  const handleSalutation = (e) => console.log(salutation[e.target.value]);
+
   return (
     <>
       <NavBar2 />
@@ -62,6 +63,11 @@ const Regtpo = () => {
             <h1 className="regHead">Register Yourself</h1>
             <div className="regbox">
               <form action="" className="form-body" onSubmit={handleSubmit}>
+                <select onChange={(e) => handleSalutation(e)} className="drop-down">
+                  {Add5.map((salutation, key) => (
+                  <option value={key}>{salutation}</option>
+                  ))}
+                </select>
                 <div className="name">
                   <input
                     className="form-text form__input"
