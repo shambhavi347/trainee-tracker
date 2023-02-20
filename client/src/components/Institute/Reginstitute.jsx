@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar2 from "../NavBar2";
-import "../../CSS/Institute/Reginstitute.css";
+import "../../CSS/Institute/RegInstitute.css";
 import { useEffect } from "react";
 
 //function RegInstitute() {
@@ -82,29 +82,6 @@ const RegInstitute = () => {
   const Add2 = startmon.map((Add2) => Add2);
   const handleStartMon = (e) => console.log(startmon[e.target.value]);
 
-  const [naac, setnaac] = useState([
-    "Select",
-    "A++",
-    "A+",
-    "A",
-    "B++",
-    "B+",
-    "B",
-    "C",
-    "D",
-  ]);
-  const Add3 = naac.map((Add3) => Add3);
-  const handleNaac = (e) => console.log(naac[e.target.value]);
-
-  const [intprog, setintprog] = useState([
-    "Select",
-    "3 Months",
-    "6 Months",
-  ]);
-  const Add4 = intprog.map((Add4) => Add4);
-  const handleIntprog = (e) => console.log(intprog[e.target.value]);
-
-
   return (
     <>
       <NavBar2 />
@@ -141,24 +118,36 @@ const RegInstitute = () => {
               placeholder="Email"
             />
           </div>
-          <select onChange={(e) => handleIntprog(e)} className="drop-down">
-            {Add4.map((duration, key) => (
-              <option value={key}>{duration}</option>
-            ))}
-          </select>
-
+          <div className="intprog">
+            <input
+              className="form-text form__input"
+              type="text"
+              autoComplete="off"
+              value={userRegistration.intprog}
+              onChange={handlechange}
+              name="intprog"
+              id="intprog"
+              placeholder="Internship Program"
+            />
+          </div>
           <select onChange={(e) => handleStartMon(e)} className="drop-down">
             {Add2.map((month, key) => (
               <option value={key}>{month}</option>
             ))}
           </select>
 
-          <select onChange={(e) => handleNaac(e)} className="drop-down">
-            {Add3.map((rating, key) => (
-              <option value={key}>{rating}</option>
-            ))}
-          </select>
-
+          <div className="naac">
+            <input
+              className="form-text form__input"
+              type="text"
+              autoComplete="off"
+              value={userRegistration.naac}
+              onChange={handlechange}
+              name="naac"
+              id="naac"
+              placeholder="NAAC Rating"
+            />
+          </div>
           <div className="street">
             <input
               className="form-text form__input"
@@ -233,4 +222,4 @@ const RegInstitute = () => {
     </>
   );
 };
-export default Reginstitute;
+export default RegInstitute;
