@@ -7,9 +7,9 @@ import TraineeDiscuss from "./TraineeDiscuss";
 import "../../CSS/Admin/AdminDash.css";
 
 const StudDash = () => {
-  const [Grp, setGrp] = useState(true);
+  const [Grp, setGrp] = useState(false);
   const [Proj, setProj] = useState(false);
-  const [Diss, setDiss] = useState(false);
+  const [Diss, setDiss] = useState(true);
 
 //   const callHome = async () => {
 //     try {
@@ -45,12 +45,12 @@ const StudDash = () => {
           <button
             className="btn-institute"
             onClick={() => {
-              setGrp(true);
-              setDiss(false);
+              setGrp(false);
+              setDiss(true);
               setProj(false);
             }}
           >
-            Institute
+            Discussion
           </button>
           <button
             className="btn-trainee"
@@ -60,17 +60,17 @@ const StudDash = () => {
               setProj(true);
             }}
           >
-            Trainee
+            Project Work
           </button>
           <button
             className="btn-coordinator"
             onClick={() => {
-              setGrp(false);
-              setDiss(true);
+              setGrp(true);
+              setDiss(false);
               setProj(false);
             }}
           >
-            Coordinator
+            People
           </button>
         </div>
         {Grp ? (
