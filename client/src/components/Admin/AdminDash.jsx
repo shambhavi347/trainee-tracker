@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar3 from "../NavBar3";
 import InstituteAdmin from "./InstituteAdmin";
 import TraineeAdmin from "./TraineeAdmin";

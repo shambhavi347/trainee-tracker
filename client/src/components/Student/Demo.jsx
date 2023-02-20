@@ -35,6 +35,7 @@ const Demo = () => {
   ]);
 
   const [user, setUser] = useState({
+    prefix: "",
     first_name: "",
     last_name: "",
     Father_name: "",
@@ -141,8 +142,21 @@ const Demo = () => {
           <div className="DivUpper">
             <div className="main">
               <h1 className="regHead">Register Yourself</h1>
+              <br />
               <div className="regBox">
                 <form>
+                <select
+                    name="prefix"
+                    className="drop-down"
+                    value={user.prefix}
+                    onChange={handleChange}
+                  >
+                    <option value="Mr">Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Dr">Dr</option>
+                  </select>
+                  <br />
                   <input
                     className="form-element form-text"
                     type="text"
@@ -217,6 +231,7 @@ const Demo = () => {
                     />
                     Transgender
                   </div>
+                  <br />
                   <button
                     className="btn-form"
                     onClick={() => {
@@ -235,12 +250,13 @@ const Demo = () => {
         </>
       ) : page1 ? (
         <>
-          {/* write your page 2 code here */}
+          {/* write your page 1 code here */}
           <div class="DivUpper">
             <div className="main">
               <h1 className="regHead">
-                Hey {user.first_name},Register Yourself
+                Hey {user.prefix} {user.first_name}, fill your Academic details
               </h1>
+              <br />
               <div className="regBox">
                 <form>
                   <select
@@ -327,9 +343,8 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
-                  <br />
 
-                  <div className="img-holder">
+                  <div>
                     <input
                       style={{ border: 0, display: "none" }}
                       className="form-control"
@@ -343,12 +358,11 @@ const Demo = () => {
                       {user.pdfname ? (
                         <div className="choose-file">{user.pdfname}</div>
                       ) : (
-                        <div className="choose-file">Choose file</div>
+                        <div className="choose-file">Choose File</div>
                       )}
                     </label>
                   </div>
 
-                  <br />
                   <button
                     className="btn-form"
                     onClick={() => {
@@ -381,7 +395,7 @@ const Demo = () => {
             <div className="main">
               <h1 className="regHead">
                 {" "}
-                hey {user.first_name},Register Yourself
+                {user.prefix} {user.first_name}, choose Technologies
               </h1>
               <div className="regBox">
                 <form onSubmit={(e) => e.preventDefault()}>
@@ -432,15 +446,17 @@ const Demo = () => {
                     ) : null}
                   </div>
                   <div className="int-drop">
-                    Instrested Technologies
-                    <button
-                      className="down-btn"
-                      onClick={() => {
-                        intdrop ? setIntdrop(false) : setIntdrop(true);
-                      }}
-                    >
-                      <img className="downarrow-img " src={arrowDown} alt="" />
-                    </button>
+                      <div className="drop-first">
+                      Instrested Technologies
+                      <button
+                        className="down-btn"
+                        onClick={() => {
+                          intdrop ? setIntdrop(false) : setIntdrop(true);
+                        }}
+                      >
+                        <img className="downarrow-img " src={arrowDown} alt="" />
+                      </button>
+                    </div>
                     {intdrop ? (
                       <>
                         <div className="option">
@@ -514,6 +530,7 @@ const Demo = () => {
                         <div className="tech-box">
                           {inttech.map((key) => (
                             <>
+                              <div className="tech-outer"></div>
                               <div className="tech">
                                 <div className="cancel-text-tech">
                                   {key}
