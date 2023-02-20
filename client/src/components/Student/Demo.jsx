@@ -52,8 +52,8 @@ const Demo = () => {
     resume: null,
     pdfname: "",
 
-    familiar_tech: "",
-    intrested_tech: "",
+    // familiar_tech: "",
+    // intrested_tech: "",
   });
 
   const fileType = ["application/pdf"];
@@ -131,6 +131,34 @@ const Demo = () => {
 
   console.log(famtech);
 
+  const postData = async (e) => {
+      e.preventDefault();
+      const { prefix,first_name,last_name,Father_name,email,dob,gender,course,stream,
+            semester,cgpa,passout_year } = user;
+      
+      const res = await fetch("/reg-stud", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          prefix,first_name,last_name,Father_name,email,dob,gender,course,stream,
+            semester,cgpa,passout_year,famtech,inttech
+        })
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      if(data.status === 422 || !data) {
+          window.alert("Invalid Registration");
+          console.log("Invalid Regestration");
+      } else {
+          window.alert("Registration Successfullyy");
+          console.log("Successfull Regestration");
+      }
+  }
+
   console.log(user);
   return (
     <>
@@ -175,6 +203,15 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
+                  {/* <input
+                    className="form-element form-text"
+                    type="text"
+                    placeholder="Father Name"
+                    name="Father_name"
+                    value={user.Father_name}
+                    autoComplete="off"
+                    onChange={handleChange}
+                  /> */}
                   <input
                     className="form-element form-email"
                     type="email"
@@ -204,7 +241,7 @@ const Demo = () => {
                   />
                   <div className="radioGroup">
                     <input
-                      className="form-radio"
+                      // className="form-radio"
                       type="radio"
                       name="gender"
                       value="male"
@@ -213,7 +250,7 @@ const Demo = () => {
                     />
                     Male
                     <input
-                      className="form-radio"
+                      // className="form-radio"
                       type="radio"
                       name="gender"
                       value="female"
@@ -222,7 +259,7 @@ const Demo = () => {
                     />
                     Female
                     <input
-                      className="fomr-radio"
+                      // className="form-radio"
                       type="radio"
                       name="gender"
                       value="transgender"
@@ -308,14 +345,14 @@ const Demo = () => {
                     value={user.semester}
                     onChange={handleChange}
                   >
-                    <option value="I">1</option>
-                    <option value="II">2</option>
-                    <option value="III">3</option>
-                    <option value="IV">4</option>
-                    <option value="v">5</option>
-                    <option value="VI">6</option>
-                    <option value="VII">7</option>
-                    <option value="VIII">8</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
                   </select>
                   <br />
                   <input
@@ -570,7 +607,7 @@ const Demo = () => {
                   </button>
                   <button
                     className="btn-form"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={postData}
                   >
                     SUBMIT
                   </button>
