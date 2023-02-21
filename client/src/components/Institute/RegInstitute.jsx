@@ -11,10 +11,11 @@ const RegInstitute = () => {
   const [userRegistration, setUserRegistration] = useState({
     name: "",
     email: "",
-    month: "",
-    duration: "",
-    rating: "",
-    type: "",
+    month: "January",
+    duration: "3 Months",
+    rating: "A++",
+    rvalue: "8",
+    type: "Private Institute",
     street: "",
     city: "",
     state: "",
@@ -30,7 +31,7 @@ const RegInstitute = () => {
   useEffect(() => {
     if (req) {
       const routeChange = () => {
-        let path = "/reg-tpo";
+        let path = "/institute-home";
         navigate(path);
       };
       routeChange();
@@ -55,7 +56,7 @@ const RegInstitute = () => {
     setRecord([...record, newRecord]);
   };
 
-  
+  console.log(userRegistration);
   const [type, settype] = useState([
     "Select",
     "Central University",
@@ -86,15 +87,11 @@ const RegInstitute = () => {
   const Add2 = month.map((Add2) => Add2);
   const handleMonth = (e) => console.log(month[e.target.value]);
 
-  const [duration, setduration] = useState([
-    "Select",
-    "3 Months",
-    "6 Months",
-  ]);
+  const [duration, setduration] = useState(["Select", "3 Months", "6 Months"]);
   const Add3 = duration.map((Add3) => Add3);
   const handleDuration = (e) => console.log(duration[e.target.value]);
 
-   const [rating, setrating] = useState([
+  const [rating, setrating] = useState([
     "Select",
     "A++",
     "A+",
@@ -118,48 +115,69 @@ const RegInstitute = () => {
   const Add5 = salutation.map((Add5) => Add5);
   const handleSalutation = (e) => console.log(salutation[e.target.value]);
 
-  const PostData = async (e) =>{
+  const PostData = async (e) => {
     e.preventDefault();
-    const { 
-    name,
-    email,
-    month,
-    duration,
-    rating,
-    type,
-    street,
-    city,
-    state,
-    country,
-    zipcode} = user;
+    const {
+      name,
+      email,
+      month,
+      duration,
+      rating,
+      rvalue,
+      type,
+      street,
+      city,
+      state,
+      country,
+      zipcode,
+      coordname,
+      coordemail,
+      coordphone,
+      password,
+    } = userRegistration;
 
-      const res = await fetch('/institute-reg',{
-        methos: "POST",
-        headers:{
-          "Content-Type" : "application/json"
-        },
-        body:JSON.stringify({
-          name,email,month,duration,rating,type,street,city,state,country,zipcode
-        })
-      });
+    const res = await fetch("/institute-reg", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        month,
+        duration,
+        rating,
+        rvalue,
+        type,
+        street,
+        city,
+        state,
+        country,
+        zipcode,
+        coordname,
+        coordemail,
+        coordphone,
+        password,
+      }),
+    });
 
-      const data = await res.json();
-      if(data.status === 422 || !data){
-        window.alert("Invalid Registration!❌");
-        console.log("Invalid Registration!❌");
-      }else{
-        window.alert("Registration Successful!✔");
-        console.log("Registration Successful!✔");
-      }
-
-  }
+    const data = await res.json();
+    console.log(data);
+    if (data.status === 422 || !data) {
+      window.alert("Invalid Registration!❌");
+      console.log("Invalid Registration!❌");
+    } else {
+      window.alert("Registration Successful!✔");
+      console.log("Registration Successful!✔");
+    }
+  };
 
   return (
     <>
       <NavBar2 />
       <div className="body">
         <h1 className="regHead">Register Your Institute</h1>
-        <form action="" method="POST" className="form-body" onSubmit={handleSubmit}>
+        <form action="" method="POST" className="form-body">
           <div className="name">
             <input
               className="form-text form__input"
@@ -173,7 +191,7 @@ const RegInstitute = () => {
             />
           </div>
 
-           <div className="email">
+          <div className="email">
             <input
               className="form-email form__input"
               type="email"
@@ -186,25 +204,25 @@ const RegInstitute = () => {
             />
           </div>
 
-          <select onChange={(e) => handleMonth(e)} className="drop-down">
+          <select className="drop-down">
             {Add2.map((month, key) => (
               <option value={key}>{month}</option>
             ))}
           </select>
 
-          <select onChange={(e) => handleDuration(e)} className="drop-down">
+          <select className="drop-down">
             {Add3.map((duration, key) => (
               <option value={key}>{duration}</option>
             ))}
           </select>
 
-           <select onChange={(e) => handleRating(e)} className="drop-down">
+          <select className="drop-down">
             {Add4.map((rating, key) => (
               <option value={key}>{rating}</option>
             ))}
           </select>
 
-          <select onChange={(e) => handleType(e)} className="drop-down">
+          <select className="drop-down">
             {Add1.map((institute, key) => (
               <option value={key}>{institute}</option>
             ))}
@@ -275,78 +293,74 @@ const RegInstitute = () => {
             />
           </div>
 
-          <div className="footer">
-            <button type="submit" className="btn" onClick={PostData} onSubmit={() => setReq(true)}>
+          {/*<div className="footer">
+            <button type="submit" className="btn">
               Register
             </button>
+          </div>*/}
+
+          <select className="drop-down">
+            {Add5.map((salutation, key) => (
+              <option value={key}>{salutation}</option>
+            ))}
+          </select>
+
+          <div className="coordname">
+            <input
+              className="form-text form__input"
+              type="text"
+              autoComplete="off"
+              value={userRegistration.coordname}
+              onChange={handlechange}
+              name="coordname"
+              id="coordname"
+              placeholder="Coordinator's Name"
+            />
           </div>
 
-          <select onChange={(e) => handleSalutation(e)} className="drop-down">
-                  {Add5.map((salutation, key) => (
-                  <option value={key}>{salutation}</option>
-                  ))}
-           </select>
+          <div className="coordemail">
+            <input
+              className="form-email form__input"
+              type="email"
+              autoComplete="off"
+              value={userRegistration.coordemail}
+              onChange={handlechange}
+              name="coordemail"
+              id="coordemail"
+              placeholder="Coordinator's Email"
+            />
+          </div>
 
-           <div className="coordname">
-              <input
-                  className="form-text form__input"
-                  type="text"
-                  autoComplete="off"
-                  value={userRegistration.instname}
-                  onChange={handlechange}
-                  name="coordname"
-                  id="coordname"
-                  placeholder="Coordinator's Name"
-                />
-            </div>
+          <div className="coordphone">
+            <input
+              className="form-text form__input"
+              type="text"
+              autoComplete="off"
+              value={userRegistration.coordphone}
+              onChange={handlechange}
+              name="coordphone"
+              id="coordphone"
+              placeholder="Coordinator's Phone No."
+            />
+          </div>
 
-            <div className="coordemail">
-              <input
-                className="form-email form__input"
-                type="email"
-                autoComplete="off"
-                value={userRegistration.email}
-                onChange={handlechange}
-                name="coordemail"
-                id="coordemail"
-                placeholder="Coordinator's Email"
-              />
-            </div>
+          <div className="password">
+            <input
+              className="form-text form__input"
+              type="text"
+              autoComplete="off"
+              value={userRegistration.password}
+              onChange={handlechange}
+              name="password"
+              id="password"
+              placeholder="Set Password"
+            />
+          </div>
 
-            <div className="coordphone">
-              <input
-                className="form-text form__input"
-                type="text"
-                autoComplete="off"
-                value={userRegistration.phone}
-                onChange={handlechange}
-                name="coordphone"
-                id="coordphone"
-                placeholder="Coordinator's Phone No."
-              />
-            </div>
-
-            <div className="password">
-              <input
-                className="form-text form__input"
-                type="text"
-                autoComplete="off"
-                value={userRegistration.password}
-                onChange={handlechange}
-                name="password"
-                id="password"
-                placeholder="Set Password"
-              />
-           </div>
-                 
           <div className="footer">
-              <button
-                type="submit"
-                className="btn"
-                onClick={() => setReq(true)}
-              >
-                Register
-              </button>
+            <button type="submit" className="btn" onClick={PostData}>
+              Register
+            </button>
           </div>
         </form>
       </div>
