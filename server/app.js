@@ -25,6 +25,7 @@ app.use(express.json());
 
 //link router file for routing
 app.use(require("./router/adminRoute"));
+app.use(require("./router/studentRoute"));
 
 //MiddleWare
 
@@ -33,7 +34,7 @@ app.use(require("./router/adminRoute"));
 //   next();
 // };
 
-const adminAuth = require("./middleware/adminauth");
+// const adminAuth = require("./middleware/adminauth");
 
 // app.get("/admin-dashboard", (req, res) => {
 //   console.log(`hello admin`);

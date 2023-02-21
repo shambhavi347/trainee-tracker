@@ -88,7 +88,11 @@ const instituteSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-
+  status: {
+    type: String,
+    enum: ["pending", "accept", "reject"],
+    required: true,
+  },
   coordName: {
     type: String,
     required: true,
@@ -108,7 +112,10 @@ const instituteSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-
+  password: {
+    type: String,
+    required: true,
+  },
   tokens: [
     {
       token: {
@@ -119,7 +126,7 @@ const instituteSchema = new mongoose.Schema({
   ],
 });
 //hashing password
-userSchema.pre("save", async function (next) {
+instituteSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 12);
   }
@@ -127,7 +134,7 @@ userSchema.pre("save", async function (next) {
 });
 
 //generating token
-userSchema.methods.generateAuthToken = async function () {
+instituteSchema.methods.generateAuthToken = async function () {
   try {
     let token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
     this.tokens = this.tokens.concat({ token: token });

@@ -35,10 +35,9 @@ const Demo = () => {
   ]);
 
   const [user, setUser] = useState({
-    prefix: "",
+    prefix: "Mr.",
     first_name: "",
     last_name: "",
-    Father_name: "",
     email: "",
     dob: "",
     phone_no: "",
@@ -52,8 +51,8 @@ const Demo = () => {
     resume: null,
     pdfname: "",
 
-    familiar_tech: "",
-    intrested_tech: "",
+    // familiar_tech: "",
+    // intrested_tech: "",
   });
 
   const fileType = ["application/pdf"];
@@ -131,6 +130,58 @@ const Demo = () => {
 
   console.log(famtech);
 
+  const postData = async (e) => {
+    e.preventDefault();
+    const {
+      prefix,
+      first_name,
+      last_name,
+      email,
+      dob,
+      gender,
+      course,
+      stream,
+      phone_no,
+      semester,
+      cgpa,
+      passout_year,
+    } = user;
+
+    const res = await fetch("/reg-stud", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prefix,
+        first_name,
+        last_name,
+        email,
+        dob,
+        gender,
+        course,
+        stream,
+        phone_no,
+        semester,
+        cgpa,
+        passout_year,
+        famtech,
+        inttech,
+      }),
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if (data.error) {
+      window.alert("Invalid Registration " + data.error);
+      console.log("Invalid Regestration");
+    } else {
+      window.alert("Registration Successfullyy");
+      console.log("Successfull Regestration");
+    }
+  };
+
   console.log(user);
   return (
     <>
@@ -144,8 +195,12 @@ const Demo = () => {
               <h1 className="regHead">Register Yourself</h1>
               <br />
               <div className="regBox">
-                <form>
-                <select
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  <select
                     name="prefix"
                     className="drop-down"
                     value={user.prefix}
@@ -175,6 +230,7 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
+
                   <input
                     className="form-element form-email"
                     type="email"
@@ -204,7 +260,7 @@ const Demo = () => {
                   />
                   <div className="radioGroup">
                     <input
-                      className="form-radio"
+                      // className="form-radio"
                       type="radio"
                       name="gender"
                       value="male"
@@ -213,7 +269,7 @@ const Demo = () => {
                     />
                     Male
                     <input
-                      className="form-radio"
+                      // className="form-radio"
                       type="radio"
                       name="gender"
                       value="female"
@@ -222,7 +278,7 @@ const Demo = () => {
                     />
                     Female
                     <input
-                      className="fomr-radio"
+                      // className="form-radio"
                       type="radio"
                       name="gender"
                       value="transgender"
@@ -265,6 +321,7 @@ const Demo = () => {
                     value={user.course}
                     onChange={handleChange}
                   >
+                    <option value="null">Enter your course</option>
                     <option value="BCA">BCA</option>
                     <option value="MCA">MCA</option>
                     <option value="BTech">BTech</option>
@@ -308,14 +365,14 @@ const Demo = () => {
                     value={user.semester}
                     onChange={handleChange}
                   >
-                    <option value="I">1</option>
-                    <option value="II">2</option>
-                    <option value="III">3</option>
-                    <option value="IV">4</option>
-                    <option value="v">5</option>
-                    <option value="VI">6</option>
-                    <option value="VII">7</option>
-                    <option value="VIII">8</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
                   </select>
                   <br />
                   <input
@@ -446,7 +503,7 @@ const Demo = () => {
                     ) : null}
                   </div>
                   <div className="int-drop">
-                      <div className="drop-first">
+                    <div className="drop-first">
                       Instrested Technologies
                       <button
                         className="down-btn"
@@ -454,7 +511,11 @@ const Demo = () => {
                           intdrop ? setIntdrop(false) : setIntdrop(true);
                         }}
                       >
-                        <img className="downarrow-img " src={arrowDown} alt="" />
+                        <img
+                          className="downarrow-img "
+                          src={arrowDown}
+                          alt=""
+                        />
                       </button>
                     </div>
                     {intdrop ? (
@@ -568,10 +629,7 @@ const Demo = () => {
                   >
                     PREVIOUS
                   </button>
-                  <button
-                    className="btn-form"
-                    onClick={(e) => e.preventDefault()}
-                  >
+                  <button className="btn-form" onClick={postData}>
                     SUBMIT
                   </button>
                 </form>

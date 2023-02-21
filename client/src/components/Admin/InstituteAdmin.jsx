@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Admin/InstituteAdmin.css";
 import { arrowDown, cancel, expand } from "../../Images/Images";
+import { getInstitutes } from "../../service/api";
 
 const InstituteAdmin = () => {
   const itype = [
@@ -49,122 +50,125 @@ const InstituteAdmin = () => {
 
   const [appliedfilter, setAppliedfilter] = useState([]);
 
-  const [instInfo, setInstInfo] = useState([
-    {
-      name: " IIT Delhi",
-      month: "September",
-      duration: "3 Months",
-      rating: "A++",
-      rvalue: 8,
-      type: "Central University",
-      email: "iitdelhi@gmail.com",
-      street: "",
-      city: "Delhi",
-      state: "Delhi",
-      country: "India",
-      zipCode: "201012",
-      phone: "987654321",
+  // const [instInfo, setInstInfo] = useState([
+  //   {
+  //     name: " IIT Delhi",
+  //     month: "September",
+  //     duration: "3 Months",
+  //     rating: "A++",
+  //     rvalue: 8,
+  //     type: "Central University",
+  //     email: "iitdelhi@gmail.com",
+  //     street: "",
+  //     city: "Delhi",
+  //     state: "Delhi",
+  //     country: "India",
+  //     zipCode: "201012",
+  //     phone: "987654321",
 
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-    {
-      name: " IIM Ahemdabad",
-      month: "December",
-      duration: "6 Months",
-      rating: "A",
-      rvalue: 6,
-      type: "Central University",
-      email: "iitAhemdabad@gmail.com",
-      street: "",
-      city: "Ahemdabad",
-      state: "Gujrat",
-      country: "India",
-      zipCode: "201012",
-      phone: "987654321",
+  //     coordName: "Mr. Vas dsds ",
+  //     coordEmail: "iitdelhicoord@gmail.com",
+  //     coordPhone: "987654333",
+  //   },
+  //   {
+  //     name: " IIM Ahemdabad",
+  //     month: "December",
+  //     duration: "6 Months",
+  //     rating: "A",
+  //     rvalue: 6,
+  //     type: "Central University",
+  //     email: "iitAhemdabad@gmail.com",
+  //     street: "",
+  //     city: "Ahemdabad",
+  //     state: "Gujrat",
+  //     country: "India",
+  //     zipCode: "201012",
+  //     phone: "987654321",
 
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-    {
-      name: " GGSIPU",
-      month: "July",
-      duration: "6 Months",
-      rating: "A+",
-      rvalue: 7,
-      type: "Private Institution",
-      email: "iitdelhi@gmail.com",
-      street: "",
-      city: "Delhi",
-      state: "Delhi",
-      country: "India",
-      zipCode: "201012",
-      phone: "987654321",
+  //     coordName: "Mr. Vas dsds ",
+  //     coordEmail: "iitdelhicoord@gmail.com",
+  //     coordPhone: "987654333",
+  //   },
+  //   {
+  //     name: " GGSIPU",
+  //     month: "July",
+  //     duration: "6 Months",
+  //     rating: "A+",
+  //     rvalue: 7,
+  //     type: "Private Institution",
+  //     email: "iitdelhi@gmail.com",
+  //     street: "",
+  //     city: "Delhi",
+  //     state: "Delhi",
+  //     country: "India",
+  //     zipCode: "201012",
+  //     phone: "987654321",
 
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-    {
-      name: " Bansathli Vidyapith",
-      month: "January",
-      duration: "6 Months",
-      rating: "A++",
-      rvalue: 8,
-      type: "Deemed University",
-      email: "iitdelhi@gmail.com",
-      street: "",
-      city: "Newai, Tonk",
-      state: "Rajasthan",
-      country: "India",
-      zipCode: "304022",
-      phone: "987654321",
+  //     coordName: "Mr. Vas dsds ",
+  //     coordEmail: "iitdelhicoord@gmail.com",
+  //     coordPhone: "987654333",
+  //   },
+  //   {
+  //     name: " Bansathli Vidyapith",
+  //     month: "January",
+  //     duration: "6 Months",
+  //     rating: "A++",
+  //     rvalue: 8,
+  //     type: "Deemed University",
+  //     email: "iitdelhi@gmail.com",
+  //     street: "",
+  //     city: "Newai, Tonk",
+  //     state: "Rajasthan",
+  //     country: "India",
+  //     zipCode: "304022",
+  //     phone: "987654321",
 
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-    {
-      name: " Amity University",
-      month: "May",
-      duration: "3 Months",
-      rating: "C",
-      rvalue: 2,
-      type: "Private Institution",
-      email: "iitdelhi@gmail.com",
-      street: "Amity Road",
-      city: "Delhi",
-      state: "Delhi",
-      country: "India",
-      zipCode: "201012",
-      phone: "987654321",
+  //     coordName: "Mr. Vas dsds ",
+  //     coordEmail: "iitdelhicoord@gmail.com",
+  //     coordPhone: "987654333",
+  //   },
+  //   {
+  //     name: " Amity University",
+  //     month: "May",
+  //     duration: "3 Months",
+  //     rating: "C",
+  //     rvalue: 2,
+  //     type: "Private Institution",
+  //     email: "iitdelhi@gmail.com",
+  //     street: "Amity Road",
+  //     city: "Delhi",
+  //     state: "Delhi",
+  //     country: "India",
+  //     zipCode: "201012",
+  //     phone: "987654321",
 
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-    {
-      name: "JNU",
-      month: "July",
-      duration: "3 Months",
-      rating: "B+",
-      rvalue: 4,
-      type: "Central University",
-      email: "iitdelhi@gmail.com",
-      street: "JNU Road",
-      city: "Delhi",
-      state: "Delhi",
-      country: "India",
-      zipCode: "201012",
-      phone: "987654321",
+  //     coordName: "Mr. Vas dsds ",
+  //     coordEmail: "iitdelhicoord@gmail.com",
+  //     coordPhone: "987654333",
+  //   },
+  //   {
+  //     name: "JNU",
+  //     month: "July",
+  //     duration: "3 Months",
+  //     rating: "B+",
+  //     rvalue: 4,
+  //     type: "Central University",
+  //     email: "iitdelhi@gmail.com",
+  //     street: "JNU Road",
+  //     city: "Delhi",
+  //     state: "Delhi",
+  //     country: "India",
+  //     zipCode: "201012",
+  //     phone: "987654321",
 
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-  ]);
+  //     coordName: "Mr. Vas dsds ",
+  //     coordEmail: "iitdelhicoord@gmail.com",
+  //     coordPhone: "987654333",
+  //   },
+  // ]);
+
+  const [instInfo, setInstInfo] = useState([]);
+  // const [inst, setInst] = useState([]);
 
   const [institute, setInstitute] = useState([]);
 
@@ -174,7 +178,68 @@ const InstituteAdmin = () => {
 
   const [inst, setInst] = useState([]);
 
+  // const callInst = async () => {
+  //   try {
+  //     const res = await fetch("/get-pending-institute", {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //       },
+  //       Credential: "include ",
+  //     });
+  //     const data = await res.json();
+  //     setInstitute(data);
+  //     console.log(data);
+  //     if (!res.status === 200) {
+  //       const error = new Error(res.error);
+  //       throw error;
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     // navigate("/");
+  //   }
+  // };
+
+  // instInfo.map((val, key) => {
+  //   console.log(val);
+  // });
+  // console.log(institute);
+  // useEffect(() => {
+  //   callInst();
+  // }, []);
+  let data1 = [];
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getInstitutes();
+      // console.log(data);
+      setInst(data);
+      // console.log("inst " + inst);
+      data.map((val) => {
+        setInstInfo([data]);
+      });
+
+      console.log(instInfo);
+      // setInstitute(data);
+      // setInstInfo(data);
+      // data.map((val) => console.log(val));
+      // data1 = data.map((val) => data1.push(val));
+      // data.map((val) => {
+      //   console.log(val);
+      //   // setInstInfo(val);
+      // });
+    };
+    fetchData();
+    // console.log(data1);
+    // data1.map((val) => setInstInfo(val));
+    // console.log(instInfo);
+    // console.log(instInfo);
+    // console.log("inst " + instInfo);
+    // data.map((val) => console.log(val));
+  }, []);
+
   const handleChange = (e) => {
+    // callInst();
     let value = e.target.value;
     // let name = e.target.name;
     if (e.target.checked) {
@@ -190,6 +255,7 @@ const InstituteAdmin = () => {
 
   if (institute.length == 0) setInstitute(instInfo);
   useEffect(() => {
+    // callInst();
     appliedfilter.length > 0
       ? appliedfilter.map((val) => {
           if (itype.includes(val)) {
@@ -238,6 +304,7 @@ const InstituteAdmin = () => {
   }, [appliedfilter]);
 
   useEffect(() => {
+    // callInst();
     let strDescending = [];
     // original = institute;
     // setInstitute(strDescending);
@@ -260,6 +327,7 @@ const InstituteAdmin = () => {
   }, [sortdrop]);
 
   useEffect(() => {
+    // callInst();
     let filteredData1 = "";
     // if (countSrch == 1) org = institute;
     // countSrch += 1;
@@ -503,35 +571,39 @@ const InstituteAdmin = () => {
           )}
         </div>
         <div className="institute-panel">
-          {institute.map((inst, key) => (
-            <div className="inst-bdy">
-              <div className="inst-expnd">
-                <button
-                  className="btn-expnd"
-                  onClick={() => {
-                    setExpnd("block");
-                    setInst(inst);
-                  }}
-                >
-                  <img src={expand} alt="" className="img-expnd" />
-                </button>
-              </div>
-              <div className="inst-first">{inst.name}</div>
-              <div className="inst-second">
-                <div className="inst-month">{inst.month}</div>
-                <div className="inst-rating">{inst.rating}</div>
-                <div className="inst-duration">{inst.duration}</div>
-              </div>
-              <div className="inst-third">
-                <div className="inst-accpt">
-                  <button className="btn-accpt">Accept</button>
+          {institute ? (
+            institute.map((inst, key) => (
+              <div className="inst-bdy">
+                <div className="inst-expnd">
+                  <button
+                    className="btn-expnd"
+                    onClick={() => {
+                      setExpnd("block");
+                      setInst(inst);
+                    }}
+                  >
+                    <img src={expand} alt="" className="img-expnd" />
+                  </button>
                 </div>
-                <div className="inst-reject">
-                  <button className="btn-reject">Reject</button>
+                <div className="inst-first">{inst.name}</div>
+                <div className="inst-second">
+                  <div className="inst-month">{inst.month}</div>
+                  <div className="inst-rating">{inst.rating}</div>
+                  <div className="inst-duration">{inst.duration}</div>
+                </div>
+                <div className="inst-third">
+                  <div className="inst-accpt">
+                    <button className="btn-accpt">Accept</button>
+                  </div>
+                  <div className="inst-reject">
+                    <button className="btn-reject">Reject</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <> </>
+          )}
         </div>
         <div className="expanded-div" style={{ display: expnd }}>
           <button onClick={() => setExpnd("none")} className="expnd-cancel">

@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+  }
+  .DivUp1 {
+    background: #222831;
+    background: -webkit-linear-gradient(to top, #222831, #393e46);
+    background: linear-gradient(to bottom, #393e46, #00adb5);
+    /* background-color: #222831; */
+    height: 100vh;
+    margin: 0px;
+    /* overflow-y: scroll; */
+  }
+  .main1 {
+    width: 100%;
+    height: 100%;
+    padding: 160px;
+    padding-top: 50px;
+    align-content: center;
+    background-size: cover;
+    color: azure;
+    overflow-y: scroll;
+  }
+  
+  .Head1 {
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 5px;
+    font-size: 30px;
+  }
