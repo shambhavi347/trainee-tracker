@@ -61,7 +61,7 @@ a:link {
   text-decoration: none;
 }
 
-.div-text {
+.div-text-upper {
   width: 45%;
   height: 70%;
   background-color: #393e46;
@@ -71,8 +71,15 @@ a:link {
   margin-top: 5%;
   border: 2px #1a1919 solid;
   color: #dcdcdc;
-  padding: 20px;
+  padding: 1%;
   text-align: justify;
+}
+.div-text {
+  /* padding: 1%; */
+  height: 100%;
+  overflow-y: auto;
+  /* background-color: #dcdcdc; */
+  margin: 0;
 }
 
 .div-img {
