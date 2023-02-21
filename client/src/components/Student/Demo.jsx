@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/RegStudent.css";
 import { arrowDown, cancel } from "../../Images/Images";
-import { validEmail, validPhone} from "../../components/Regex";
+import { validEmail} from "../../components/Regex";
 
 const Demo = () => {
   const [page0, setPage0] = useState(true);
@@ -181,7 +181,7 @@ const Demo = () => {
       console.log("Invalid Regestration");
     } 
     else {
-      window.alert("Registration Successfullyy");
+      window.alert("Registration Successfully");
       console.log("Successfull Regestration");
     }
   };

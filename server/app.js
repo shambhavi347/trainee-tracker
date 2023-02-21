@@ -26,6 +26,7 @@ app.use(express.json());
 //link router file for routing
 app.use(require("./router/adminRoute"));
 app.use(require("./router/studentRoute"));
+app.use(require("./router/traineeRegRoute"));
 
 //MiddleWare
 
