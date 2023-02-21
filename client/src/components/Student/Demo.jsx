@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/RegStudent.css";
 import { arrowDown, cancel } from "../../Images/Images";
+import { validEmail, validPhone} from "../../components/Regex";
 
 const Demo = () => {
   const [page0, setPage0] = useState(true);
@@ -51,8 +52,6 @@ const Demo = () => {
     resume: null,
     pdfname: "",
 
-    // familiar_tech: "",
-    // intrested_tech: "",
   });
 
   const fileType = ["application/pdf"];
@@ -173,10 +172,19 @@ const Demo = () => {
     const data = await res.json();
     console.log(data);
 
-    if (data.error) {
-      window.alert("Invalid Registration " + data.error);
+    if (!validEmail.test(email)) {
+      window.alert("please fill the correct Email Id ");
+      console.log("Invalid Email id");
+    }
+    // else if (!validPhone.test(phone_no)) {
+    //   window.alert("please fill the correct Phone no. ");
+    //   console.log("Invalid Phone no.");
+    // }
+    else if (data.error) {
+      window.alert("Invalid Registration, " + data.error);
       console.log("Invalid Regestration");
-    } else {
+    } 
+    else {
       window.alert("Registration Successfullyy");
       console.log("Successfull Regestration");
     }
@@ -206,6 +214,7 @@ const Demo = () => {
                     value={user.prefix}
                     onChange={handleChange}
                   >
+                    <option value="null">Enter Salutation</option>
                     <option value="Mr">Mr</option>
                     <option value="Mrs">Mrs</option>
                     <option value="Miss">Miss</option>
@@ -321,7 +330,7 @@ const Demo = () => {
                     value={user.course}
                     onChange={handleChange}
                   >
-                    <option value="null">Enter your course</option>
+                    <option value="null">Enter your Course</option>
                     <option value="BCA">BCA</option>
                     <option value="MCA">MCA</option>
                     <option value="BTech">BTech</option>
@@ -334,6 +343,7 @@ const Demo = () => {
                     value={user.stream}
                     onChange={handleChange}
                   >
+                    <option value="null">Enter your Stream</option>
                     <option value="Aeronautical Engineering">
                       Aeronautical Engineering
                     </option>
@@ -365,6 +375,7 @@ const Demo = () => {
                     value={user.semester}
                     onChange={handleChange}
                   >
+                    <option value="null">Enter your Semester</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
