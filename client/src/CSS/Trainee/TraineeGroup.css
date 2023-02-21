@@ -2,47 +2,58 @@
   box-sizing: border-box;
 }
 .DivUp1 {
-  background: #222831;
+  background-color: #222831;
   background: -webkit-linear-gradient(to top, #222831, #393e46);
   background: linear-gradient(to bottom, #393e46, #00adb5);
   margin-top: -18.5%;
-  border: 2px #00adb5 solid;
+  /* border: 20px #00adb5 solid; */
   padding: 2%;
-  /* background-color: #222831; */
   height: 100vh;
-  /* margin: 0px; */
-  /* overflow-y: scroll; */
+  margin-bottom: 15%;
+  overflow: hidden;
+  overflow-y: auto;
 }
-.main1 {
+.coord-title {
   width: 100%;
-  height: 20%;
-  /* padding: 160px; */
-  /* padding-top: 50px; */
+  height: auto;
+  margin-bottom: -1%;
+  font-size: 200%;
   padding: 2%;
-  align-content: center;
-  background-size: cover;
-  color: azure;
-  /* overflow-y: scroll; */
-  background-color: antiquewhite;
+  padding-top: 7%;
+  margin-left: 23.5%;
+  /* background-color: #222831; */
 }
 
-.Head1 {
+.mentor {
+  height: 11%;
+  margin: 2%;
+  font-size: 170%;
+  margin-bottom: -2%;
+  padding-top: -2%;
+  margin-left: 26%;
+}
+
+.trainee {
   height: auto;
-  /* align-content: center;
-  justify-content: center; */
-  /* display: flex; */
-  margin-bottom: 5px;
-  font-size: 30px;
-  background-color: aquamarine;
+  font-size: 190%;
+  padding: 0%;
+  margin-bottom: 6%;
+  /* border: 2px #00adb5 solid; */
+}
+
+.trainee-title {
+  width: 100%;
+  height: auto;
+  margin-bottom: -1.5%;
+  font-size: 120%;
   padding: 2%;
+  padding-top: -6%;
+  margin-left: 24%;
 }
 
 .people {
   margin: 2%;
-  background-color: azure;
-  padding: 2%;
-}
-.trainee-title {
-  background-color: aqua;
-  text-align: center;
+  margin-bottom: -1.5%;
+  font-size: 85%;
+  margin-left: 26.5%;
 }
