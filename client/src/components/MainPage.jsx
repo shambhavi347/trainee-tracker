@@ -29,34 +29,38 @@ const MainPage = () => {
     <>
       <NavBar1 />
       <div className="divUpper">
-        <div className="div-text">
-          <h3>
-            Join CDAC to have a hassel free and enriching internship training
-            experience.
-          </h3>
-          <li>
-            We provide a way to track and manage the onboarding process for new
-            trainees.
-          </li>
-          <li>
-            We provide features like goal setting, progress tracking, and
-            evaluation.
-          </li>
-          <li>
-            We facilitate smooth facilitate communication between trainees,
-            institute coordinators, and trainers, including the ability to share
-            documents, schedule meetings, and receive updates.
-          </li>
-          <li>
-            We also provide functionalities like storage, sharing and management
-            of trainee's documents like resumes , project documentation, etc
-          </li>{" "}
-          <br />
-          <a href="https://www.cdac.in/">
-            <button className="btn-learnMore">Learn More</button>
-          </a>
-          {/* <button className="btn-learnMore">Learn More</button> */}
+        <div className="div-text-upper">
+          <div className="div-text">
+            <h3>
+              Join CDAC to have a hassel free and enriching internship training
+              experience.
+            </h3>
+            <li>
+              We provide a way to track and manage the onboarding process for
+              new trainees.
+            </li>
+            <li>
+              We provide features like goal setting, progress tracking, and
+              evaluation.
+            </li>
+            <li>
+              We facilitate smooth facilitate communication between trainees,
+              institute coordinators, and trainers, including the ability to
+              share documents, schedule meetings, and receive updates.
+            </li>
+            <li>
+              We also provide functionalities like storage, sharing and
+              management of trainee's documents like resumes , project
+              documentation, etc
+            </li>{" "}
+            <br />
+            <a href="https://www.cdac.in/">
+              <button className="btn-learnMore">Learn More</button>
+            </a>
+            {/* <button className="btn-learnMore">Learn More</button> */}
+          </div>
         </div>
+
         <div className="div-img">
           <div className="inner-div">
             <img className="imgWallpaper" src={wallpaperMain} alt="" />

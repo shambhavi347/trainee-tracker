@@ -57,7 +57,7 @@ router.post("/institute-reg", async (req, res) => {
       .status(422)
       .json({ error: "Please fill all the fields properly" });
   }
-  console.log(req.body);
+  // console.log("Succes");
   try {
     //checks if its a new registration or not
     const instituteExist = await Institute.findOne({ email: email });
@@ -65,7 +65,7 @@ router.post("/institute-reg", async (req, res) => {
       return res.status(422).json({ error: "Institute already Exists" });
     }
     //if both key and value are same then you dont need to write name of both like name:name
-    const institute = new institute({
+    const institute = new Institute({
       name,
       email,
       month,
@@ -79,6 +79,7 @@ router.post("/institute-reg", async (req, res) => {
       country,
       zipcode,
       phoneno,
+      status,
       coordName,
       coordEmail,
       coordPhone,

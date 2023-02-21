@@ -1,28 +1,28 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .body {
-    background: #222831;
-    background: -webkit-linear-gradient(to top, #222831, #393e46);
-    background: linear-gradient(to bottom, #393e46, #00adb5);
-    height: 100vh;
-    margin: 0;
-    width: auto;
+  background: #222831;
+  background: -webkit-linear-gradient(to top, #222831, #393e46);
+  background: linear-gradient(to bottom, #393e46, #00adb5);
+  height: 100vh;
+  margin: 0;
+  width: auto;
 }
 
 .btn {
-    width: 100%;
-    height: 15%;
-    margin-top: 2%;
-    border-radius: 25px;
-    background-color: #222831;
-    border: 2px #00adb5 solid;
-    color: #00adb5;
-    cursor: pointer;
+  width: 100%;
+  height: 15%;
+  margin-top: 2%;
+  border-radius: 25px;
+  background-color: #222831;
+  border: 2px #00adb5 solid;
+  color: #00adb5;
+  cursor: pointer;
 }
 
-.footer {
+/* .footer {
     text-align: center;
     margin-bottom: 20%;
-}
+} */
