@@ -9,6 +9,7 @@ router.use(express.static("../client/src/"));
 const Admin = require("../model/admin");
 const Institute = require("../model/instituteSchema");
 
+//adminlogin
 router.post("/admin-login", async (req, res) => {
   const { user } = req.body;
   if (user === "admin") {
@@ -45,21 +46,6 @@ router.post("/admin-login", async (req, res) => {
     } catch (err) {
       console.log(err);
     }
-  }
-});
-
-//get pending institute list
-router.get("/get-pending-institute", adminAuthenticate, async (req, res) => {
-  try {
-    const inst = await Institute.find({ status: "pending" });
-    if (inst) {
-      console.log(inst);
-      res.send(inst);
-    } else {
-      console.log("none");
-    }
-  } catch (error) {
-    console.log(error);
   }
 });
 
