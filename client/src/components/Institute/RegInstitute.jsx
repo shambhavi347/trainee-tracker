@@ -15,12 +15,14 @@ const RegInstitute = () => {
     duration: "3 Months",
     rating: "A++",
     rvalue: "8",
-    type: "Private Institute",
+    type: "Private Institution",
     street: "",
     city: "",
     state: "",
     country: "",
     zipcode: "",
+    phoneno: "9818261055",
+    status: "pending",
     coordname: "",
     coordemail: "",
     coordphone: "",
@@ -42,7 +44,7 @@ const RegInstitute = () => {
   const handlechange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(name, value);
+    // console.log(name, value);
 
     setUserRegistration({ ...userRegistration, [name]: value });
   };
@@ -67,7 +69,7 @@ const RegInstitute = () => {
     "Autonomous College",
   ]);
   const Add1 = type.map((Add1) => Add1);
-  const handleType = (e) => console.log(type[e.target.value]);
+  // const handleType = (e) => console.log(type[e.target.value]);
 
   const [month, setmonth] = useState([
     "Select",
@@ -130,6 +132,8 @@ const RegInstitute = () => {
       state,
       country,
       zipcode,
+      phoneno,
+      status,
       coordname,
       coordemail,
       coordphone,
@@ -154,6 +158,8 @@ const RegInstitute = () => {
         state,
         country,
         zipcode,
+        phoneno,
+        status,
         coordname,
         coordemail,
         coordphone,

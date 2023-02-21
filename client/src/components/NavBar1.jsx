@@ -5,13 +5,17 @@ import { useNavigate } from "react-router-dom";
 const NavBar1 = () => {
   let navigate = useNavigate();
   const [openLogin, setOpenLogin] = useState(false);
-  const routeChange = () => {
+  const routeChangeAdmin = () => {
     let path = "/admin-dashboard";
     navigate(path);
   };
 
+  const routeChangeTrainee = () => {
+    let path = "/trainee-dashboard";
+    navigate(path);
+  };
+
   const [admin, setAdmin] = useState({
-    user: "admin",
     email: "",
     password: "",
   });
@@ -28,7 +32,7 @@ const NavBar1 = () => {
   const PostData = async (e) => {
     e.preventDefault();
 
-    const { user, email, password } = admin;
+    const { email, password } = admin;
 
     e.preventDefault();
     const res = await fetch("/admin-login", {
@@ -38,7 +42,6 @@ const NavBar1 = () => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        user,
         email,
         password,
       }),
@@ -49,7 +52,14 @@ const NavBar1 = () => {
     if (res.status === 400) {
       window.alert(reason.error);
     } else {
-      routeChange();
+      if (reason.message === "Admin") {
+        console.log("Admin login");
+        routeChangeAdmin();
+      } else if (reason.message === "Institute") console.log("Institute Login");
+      else if (reason.message === "Trainee") {
+        console.log("Trainee Login");
+        routeChangeTrainee();
+      } else console.log("Coord Login");
     }
   };
 

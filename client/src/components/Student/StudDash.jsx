@@ -11,32 +11,6 @@ const StudDash = () => {
   const [Proj, setProj] = useState(false);
   const [Diss, setDiss] = useState(true);
 
-//   const callHome = async () => {
-//     try {
-//       const res = await fetch("/admin-dashboard", {
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "appllication/json",
-//           Accept: "application/json",
-//         },
-//         Credential: "include ",
-//       });
-//       const data = await res.json();
-//       setUserdata(data);
-//       if (!res.status === 200) {
-//         const error = new Error(res.error);
-//         throw error;
-//       }
-//     } catch (err) {
-//       console.log(err);
-//       navigate("/");
-//     }
-//   };
-
-//   useEffect(() => {
-//     callHome();
-//   }, []);
-
   return (
     <>
       <NavBar3 />
@@ -83,6 +57,7 @@ const StudDash = () => {
           <p> ERROR </p>
         )}
       </div>
+      {/* <div>Heelo</div> */}
     </>
   );
 };

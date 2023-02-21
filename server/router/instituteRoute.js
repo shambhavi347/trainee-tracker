@@ -26,11 +26,13 @@ router.post("/institute-reg", async (req, res) => {
     country,
     zipcode,
     phoneno,
+    status,
     coordName,
     coordEmail,
     coordPhone,
     password,
   } = req.body;
+  console.log(req.body);
   if (
     !name ||
     !email ||
@@ -45,6 +47,7 @@ router.post("/institute-reg", async (req, res) => {
     !country ||
     !zipcode ||
     !phoneno ||
+    !status ||
     !coordName ||
     !coordEmail ||
     !coordPhone ||
