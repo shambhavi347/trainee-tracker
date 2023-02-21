@@ -29,19 +29,19 @@ var id = 0;
 //         inttech: req.body.inttech
 //     });
 //     if (!prefix ||
-//         !first_name || 
-//         !last_name || 
-//         !Father_name || 
-//         !email || 
-//         !dob || 
-//         !phone_no || 
-//         !gender || 
-//         !course || 
-//         !stream || 
-//         !semester || 
-//         !cgpa || 
-//         !passout_year || 
-//         !famtech || 
+//         !first_name ||
+//         !last_name ||
+//         !Father_name ||
+//         !email ||
+//         !dob ||
+//         !phone_no ||
+//         !gender ||
+//         !course ||
+//         !stream ||
+//         !semester ||
+//         !cgpa ||
+//         !passout_year ||
+//         !famtech ||
 //         !inttech) {
 //         return res
 //         .status(400)
@@ -54,9 +54,9 @@ var id = 0;
 //         return res.status(422).json({ message: "email id already exists" });
 //       }
 //       await user1.save();
-  
+
 //       id = user1._id;
-  
+
 //       res.status(201).json({ message: "user register successfull ✌🏼" });
 //     } catch (err) {
 //       console.log(err);
@@ -64,70 +64,81 @@ var id = 0;
 // });
 
 router.post("/reg-stud", async (req, res) => {
+  try {
+    const {
+      prefix,
+      first_name,
+      last_name,
+      email,
+      dob,
+      phone_no,
+      gender,
+      course,
+      stream,
+      semester,
+      cgpa,
+      passout_year,
+      famtech,
+      inttech,
+    } = req.body;
 
-      try {
-        const { prefix, 
-        first_name,
-        last_name,
-        Father_name,
-        email,
-        dob,
-        phone_no,
-        gender,
-        course,
-        stream,
-        semester,
-        cgpa,
-        passout_year,
-        famtech,
-        inttech } = req.body;
-        
-        console.log(req.body);
-        //first validation - fileds not empty
-        if (
-          // !prefix ||
-          // !first_name || 
-          // !last_name || 
-          // !Father_name || 
-          // !email || 
-          // !dob || 
-          !phone_no 
-          // || 
-          // !gender || 
-          // !course || 
-          // !stream || 
-          // !semester || 
-          // !cgpa || 
-          // !passout_year || 
-          // !famtech || 
-          // !inttech
-          ) {
-          return res
-            .status(400)
-            .json({ error: "Fields not filled properly in Registration page " });
-        }
-        console.log("success");
-        const userExist = await Student.findOne({email: email })
-        if(userExist) {
-            return res.status(422).json({error: "Email already Exist"});
-        }
+    console.log(req.body);
+    //first validation - fileds not empty
+    if (
+      !prefix ||
+      !first_name ||
+      !last_name ||
+      !email ||
+      !dob ||
+      !phone_no ||
+      !gender ||
+      !course ||
+      !stream ||
+      !semester ||
+      !cgpa ||
+      !passout_year ||
+      !famtech ||
+      !inttech
+    ) {
+      return res
+        .status(422)
+        .json({ error: "Fields not filled properly in Registration page " });
+    }
+    console.log("success");
+    const userExist = await Student.findOne({ email: email });
+    if (userExist) {
+      return res.status(422).json({ error: "Email already Exist" });
+    }
 
-        const user = new Student({ prefix, first_name, last_name, Father_name, email, dob, phone_no, gender, course, stream, semester, cgpa, passout_year, famtech, inttech });
+    const user = new Student({
+      prefix,
+      first_name,
+      last_name,
+      email,
+      dob,
+      phone_no,
+      gender,
+      course,
+      stream,
+      semester,
+      cgpa,
+      passout_year,
+      famtech,
+      inttech,
+    });
 
-        await user.save();
-        res.status(201).json({ message: "user registered successfully !!"});
-        
-        const userRegister = await user.save();
-        if(userRegister) {
-            res.status(201).json({ message: "user registered successfully !!"});
-        } else {
-            res.status(500).json({ error: "failed to registered !!"});
-        }
+    await user.save();
+    res.status(201).json({ message: "user registered successfully !!" });
 
-      } catch(err) {
-        console.log(err);
-      }
-      
+    // const userRegister = await user.save();
+    // if (userRegister) {
+    //   res.status(201).json({ message: "user registered successfully !!" });
+    // } else {
+    //   res.status(422).json({ error: "failed to registered !!" });
+    // }
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;

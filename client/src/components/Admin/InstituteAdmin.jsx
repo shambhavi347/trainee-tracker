@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Admin/InstituteAdmin.css";
 import { arrowDown, cancel, expand } from "../../Images/Images";
+import { getInstitutes } from "../../service/api";
 
 const InstituteAdmin = () => {
   const itype = [
@@ -166,9 +167,10 @@ const InstituteAdmin = () => {
   //   },
   // ]);
 
-  const [instInfo, setInstInfo] = useState([{}]);
+  const [instInfo, setInstInfo] = useState([]);
+  // const [inst, setInst] = useState([]);
 
-  const [institute, setInstitute] = useState([{}]);
+  const [institute, setInstitute] = useState([]);
 
   const [text, setText] = useState("");
 
@@ -176,35 +178,64 @@ const InstituteAdmin = () => {
 
   const [inst, setInst] = useState([]);
 
-  const callInst = async () => {
-    try {
-      const res = await fetch("/get-pending-institute", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        Credential: "include ",
-      });
-      const data = await res.json();
-      setInstitute(data);
-      console.log(data);
-      if (!res.status === 200) {
-        const error = new Error(res.error);
-        throw error;
-      }
-    } catch (err) {
-      console.log(err);
-      // navigate("/");
-    }
-  };
+  // const callInst = async () => {
+  //   try {
+  //     const res = await fetch("/get-pending-institute", {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //       },
+  //       Credential: "include ",
+  //     });
+  //     const data = await res.json();
+  //     setInstitute(data);
+  //     console.log(data);
+  //     if (!res.status === 200) {
+  //       const error = new Error(res.error);
+  //       throw error;
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     // navigate("/");
+  //   }
+  // };
 
-  instInfo.map((val, key) => {
-    console.log(val);
-  });
-  console.log(institute);
+  // instInfo.map((val, key) => {
+  //   console.log(val);
+  // });
+  // console.log(institute);
+  // useEffect(() => {
+  //   callInst();
+  // }, []);
+  let data1 = [];
   useEffect(() => {
-    callInst();
+    const fetchData = async () => {
+      const data = await getInstitutes();
+      // console.log(data);
+      setInst(data);
+      // console.log("inst " + inst);
+      data.map((val) => {
+        setInstInfo([data]);
+      });
+
+      console.log(instInfo);
+      // setInstitute(data);
+      // setInstInfo(data);
+      // data.map((val) => console.log(val));
+      // data1 = data.map((val) => data1.push(val));
+      // data.map((val) => {
+      //   console.log(val);
+      //   // setInstInfo(val);
+      // });
+    };
+    fetchData();
+    // console.log(data1);
+    // data1.map((val) => setInstInfo(val));
+    // console.log(instInfo);
+    // console.log(instInfo);
+    // console.log("inst " + instInfo);
+    // data.map((val) => console.log(val));
   }, []);
 
   const handleChange = (e) => {
@@ -540,35 +571,39 @@ const InstituteAdmin = () => {
           )}
         </div>
         <div className="institute-panel">
-          {institute?.map((inst, key) => (
-            <div className="inst-bdy">
-              <div className="inst-expnd">
-                <button
-                  className="btn-expnd"
-                  onClick={() => {
-                    setExpnd("block");
-                    setInst(inst);
-                  }}
-                >
-                  <img src={expand} alt="" className="img-expnd" />
-                </button>
-              </div>
-              <div className="inst-first">{inst.name}</div>
-              <div className="inst-second">
-                <div className="inst-month">{inst.month}</div>
-                <div className="inst-rating">{inst.rating}</div>
-                <div className="inst-duration">{inst.duration}</div>
-              </div>
-              <div className="inst-third">
-                <div className="inst-accpt">
-                  <button className="btn-accpt">Accept</button>
+          {institute ? (
+            institute.map((inst, key) => (
+              <div className="inst-bdy">
+                <div className="inst-expnd">
+                  <button
+                    className="btn-expnd"
+                    onClick={() => {
+                      setExpnd("block");
+                      setInst(inst);
+                    }}
+                  >
+                    <img src={expand} alt="" className="img-expnd" />
+                  </button>
                 </div>
-                <div className="inst-reject">
-                  <button className="btn-reject">Reject</button>
+                <div className="inst-first">{inst.name}</div>
+                <div className="inst-second">
+                  <div className="inst-month">{inst.month}</div>
+                  <div className="inst-rating">{inst.rating}</div>
+                  <div className="inst-duration">{inst.duration}</div>
+                </div>
+                <div className="inst-third">
+                  <div className="inst-accpt">
+                    <button className="btn-accpt">Accept</button>
+                  </div>
+                  <div className="inst-reject">
+                    <button className="btn-reject">Reject</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <> </>
+          )}
         </div>
         <div className="expanded-div" style={{ display: expnd }}>
           <button onClick={() => setExpnd("none")} className="expnd-cancel">

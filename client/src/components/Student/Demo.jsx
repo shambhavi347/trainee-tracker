@@ -35,10 +35,9 @@ const Demo = () => {
   ]);
 
   const [user, setUser] = useState({
-    prefix: "",
+    prefix: "Mr.",
     first_name: "",
     last_name: "",
-    Father_name: "",
     email: "",
     dob: "",
     phone_no: "",
@@ -132,32 +131,56 @@ const Demo = () => {
   console.log(famtech);
 
   const postData = async (e) => {
-      e.preventDefault();
-      const { prefix,first_name,last_name,Father_name,email,dob,gender,course,stream,
-            semester,cgpa,passout_year } = user;
-      
-      const res = await fetch("/reg-stud", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          prefix,first_name,last_name,Father_name,email,dob,gender,course,stream,
-            semester,cgpa,passout_year,famtech,inttech
-        })
-      });
+    e.preventDefault();
+    const {
+      prefix,
+      first_name,
+      last_name,
+      email,
+      dob,
+      gender,
+      course,
+      stream,
+      phone_no,
+      semester,
+      cgpa,
+      passout_year,
+    } = user;
 
-      const data = await res.json();
-      console.log(data);
+    const res = await fetch("/reg-stud", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prefix,
+        first_name,
+        last_name,
+        email,
+        dob,
+        gender,
+        course,
+        stream,
+        phone_no,
+        semester,
+        cgpa,
+        passout_year,
+        famtech,
+        inttech,
+      }),
+    });
 
-      if(data.status === 422 || !data) {
-          window.alert("Invalid Registration");
-          console.log("Invalid Regestration");
-      } else {
-          window.alert("Registration Successfullyy");
-          console.log("Successfull Regestration");
-      }
-  }
+    const data = await res.json();
+    console.log(data);
+
+    if (data.error) {
+      window.alert("Invalid Registration " + data.error);
+      console.log("Invalid Regestration");
+    } else {
+      window.alert("Registration Successfullyy");
+      console.log("Successfull Regestration");
+    }
+  };
 
   console.log(user);
   return (
@@ -172,8 +195,12 @@ const Demo = () => {
               <h1 className="regHead">Register Yourself</h1>
               <br />
               <div className="regBox">
-                <form>
-                <select
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  <select
                     name="prefix"
                     className="drop-down"
                     value={user.prefix}
@@ -203,15 +230,7 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
-                  {/* <input
-                    className="form-element form-text"
-                    type="text"
-                    placeholder="Father Name"
-                    name="Father_name"
-                    value={user.Father_name}
-                    autoComplete="off"
-                    onChange={handleChange}
-                  /> */}
+
                   <input
                     className="form-element form-email"
                     type="email"
@@ -302,6 +321,7 @@ const Demo = () => {
                     value={user.course}
                     onChange={handleChange}
                   >
+                    <option value="null">Enter your course</option>
                     <option value="BCA">BCA</option>
                     <option value="MCA">MCA</option>
                     <option value="BTech">BTech</option>
@@ -483,7 +503,7 @@ const Demo = () => {
                     ) : null}
                   </div>
                   <div className="int-drop">
-                      <div className="drop-first">
+                    <div className="drop-first">
                       Instrested Technologies
                       <button
                         className="down-btn"
@@ -491,7 +511,11 @@ const Demo = () => {
                           intdrop ? setIntdrop(false) : setIntdrop(true);
                         }}
                       >
-                        <img className="downarrow-img " src={arrowDown} alt="" />
+                        <img
+                          className="downarrow-img "
+                          src={arrowDown}
+                          alt=""
+                        />
                       </button>
                     </div>
                     {intdrop ? (
@@ -605,10 +629,7 @@ const Demo = () => {
                   >
                     PREVIOUS
                   </button>
-                  <button
-                    className="btn-form"
-                    onClick={postData}
-                  >
+                  <button className="btn-form" onClick={postData}>
                     SUBMIT
                   </button>
                 </form>
