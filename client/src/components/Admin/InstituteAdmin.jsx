@@ -50,125 +50,125 @@ const InstituteAdmin = () => {
 
   const [appliedfilter, setAppliedfilter] = useState([]);
 
-  // const [instInfo, setInstInfo] = useState([
-  //   {
-  //     name: " IIT Delhi",
-  //     month: "September",
-  //     duration: "3 Months",
-  //     rating: "A++",
-  //     rvalue: 8,
-  //     type: "Central University",
-  //     email: "iitdelhi@gmail.com",
-  //     street: "",
-  //     city: "Delhi",
-  //     state: "Delhi",
-  //     country: "India",
-  //     zipCode: "201012",
-  //     phone: "987654321",
+  const [instInfo, setInstInfo] = useState([
+    {
+      name: " IIT Delhi",
+      month: "September",
+      duration: "3 Months",
+      rating: "A++",
+      rvalue: 8,
+      type: "Central University",
+      email: "iitdelhi@gmail.com",
+      street: "",
+      city: "Delhi",
+      state: "Delhi",
+      country: "India",
+      zipCode: "201012",
+      phone: "987654321",
 
-  //     coordName: "Mr. Vas dsds ",
-  //     coordEmail: "iitdelhicoord@gmail.com",
-  //     coordPhone: "987654333",
-  //   },
-  //   {
-  //     name: " IIM Ahemdabad",
-  //     month: "December",
-  //     duration: "6 Months",
-  //     rating: "A",
-  //     rvalue: 6,
-  //     type: "Central University",
-  //     email: "iitAhemdabad@gmail.com",
-  //     street: "",
-  //     city: "Ahemdabad",
-  //     state: "Gujrat",
-  //     country: "India",
-  //     zipCode: "201012",
-  //     phone: "987654321",
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
+    },
+    {
+      name: " IIM Ahemdabad",
+      month: "December",
+      duration: "6 Months",
+      rating: "A",
+      rvalue: 6,
+      type: "Central University",
+      email: "iitAhemdabad@gmail.com",
+      street: "",
+      city: "Ahemdabad",
+      state: "Gujrat",
+      country: "India",
+      zipCode: "201012",
+      phone: "987654321",
 
-  //     coordName: "Mr. Vas dsds ",
-  //     coordEmail: "iitdelhicoord@gmail.com",
-  //     coordPhone: "987654333",
-  //   },
-  //   {
-  //     name: " GGSIPU",
-  //     month: "July",
-  //     duration: "6 Months",
-  //     rating: "A+",
-  //     rvalue: 7,
-  //     type: "Private Institution",
-  //     email: "iitdelhi@gmail.com",
-  //     street: "",
-  //     city: "Delhi",
-  //     state: "Delhi",
-  //     country: "India",
-  //     zipCode: "201012",
-  //     phone: "987654321",
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
+    },
+    {
+      name: " GGSIPU",
+      month: "July",
+      duration: "6 Months",
+      rating: "A+",
+      rvalue: 7,
+      type: "Private Institution",
+      email: "iitdelhi@gmail.com",
+      street: "",
+      city: "Delhi",
+      state: "Delhi",
+      country: "India",
+      zipCode: "201012",
+      phone: "987654321",
 
-  //     coordName: "Mr. Vas dsds ",
-  //     coordEmail: "iitdelhicoord@gmail.com",
-  //     coordPhone: "987654333",
-  //   },
-  //   {
-  //     name: " Bansathli Vidyapith",
-  //     month: "January",
-  //     duration: "6 Months",
-  //     rating: "A++",
-  //     rvalue: 8,
-  //     type: "Deemed University",
-  //     email: "iitdelhi@gmail.com",
-  //     street: "",
-  //     city: "Newai, Tonk",
-  //     state: "Rajasthan",
-  //     country: "India",
-  //     zipCode: "304022",
-  //     phone: "987654321",
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
+    },
+    {
+      name: " Bansathli Vidyapith",
+      month: "January",
+      duration: "6 Months",
+      rating: "A++",
+      rvalue: 8,
+      type: "Deemed University",
+      email: "iitdelhi@gmail.com",
+      street: "",
+      city: "Newai, Tonk",
+      state: "Rajasthan",
+      country: "India",
+      zipCode: "304022",
+      phone: "987654321",
 
-  //     coordName: "Mr. Vas dsds ",
-  //     coordEmail: "iitdelhicoord@gmail.com",
-  //     coordPhone: "987654333",
-  //   },
-  //   {
-  //     name: " Amity University",
-  //     month: "May",
-  //     duration: "3 Months",
-  //     rating: "C",
-  //     rvalue: 2,
-  //     type: "Private Institution",
-  //     email: "iitdelhi@gmail.com",
-  //     street: "Amity Road",
-  //     city: "Delhi",
-  //     state: "Delhi",
-  //     country: "India",
-  //     zipCode: "201012",
-  //     phone: "987654321",
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
+    },
+    {
+      name: " Amity University",
+      month: "May",
+      duration: "3 Months",
+      rating: "C",
+      rvalue: 2,
+      type: "Private Institution",
+      email: "iitdelhi@gmail.com",
+      street: "Amity Road",
+      city: "Delhi",
+      state: "Delhi",
+      country: "India",
+      zipCode: "201012",
+      phone: "987654321",
 
-  //     coordName: "Mr. Vas dsds ",
-  //     coordEmail: "iitdelhicoord@gmail.com",
-  //     coordPhone: "987654333",
-  //   },
-  //   {
-  //     name: "JNU",
-  //     month: "July",
-  //     duration: "3 Months",
-  //     rating: "B+",
-  //     rvalue: 4,
-  //     type: "Central University",
-  //     email: "iitdelhi@gmail.com",
-  //     street: "JNU Road",
-  //     city: "Delhi",
-  //     state: "Delhi",
-  //     country: "India",
-  //     zipCode: "201012",
-  //     phone: "987654321",
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
+    },
+    {
+      name: "JNU",
+      month: "July",
+      duration: "3 Months",
+      rating: "B+",
+      rvalue: 4,
+      type: "Central University",
+      email: "iitdelhi@gmail.com",
+      street: "JNU Road",
+      city: "Delhi",
+      state: "Delhi",
+      country: "India",
+      zipCode: "201012",
+      phone: "987654321",
 
-  //     coordName: "Mr. Vas dsds ",
-  //     coordEmail: "iitdelhicoord@gmail.com",
-  //     coordPhone: "987654333",
-  //   },
-  // ]);
+      coordName: "Mr. Vas dsds ",
+      coordEmail: "iitdelhicoord@gmail.com",
+      coordPhone: "987654333",
+    },
+  ]);
 
-  const [instInfo, setInstInfo] = useState([]);
-  // const [inst, setInst] = useState([]);
+  // const [instInfo, setInstInfo] = useState([{}]);
+  const [insti, setInsti] = useState([]);
 
   const [institute, setInstitute] = useState([]);
 
@@ -212,14 +212,16 @@ const InstituteAdmin = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getInstitutes();
-      // console.log(data);
-      setInst(data);
+      console.log("dta " + data);
+      setInsti(data);
+      console.log(inst);
+      // setInst(data);
       // console.log("inst " + inst);
-      data.map((val) => {
-        setInstInfo([data]);
-      });
+      // data.map((val) => {
+      //   setInstInfo([data]);
+      // });
 
-      console.log(instInfo);
+      // console.log(instInfo);
       // setInstitute(data);
       // setInstInfo(data);
       // data.map((val) => console.log(val));
@@ -571,8 +573,8 @@ const InstituteAdmin = () => {
           )}
         </div>
         <div className="institute-panel">
-          {institute ? (
-            institute.map((inst, key) => (
+          {insti ? (
+            insti.map((inst, key) => (
               <div className="inst-bdy">
                 <div className="inst-expnd">
                   <button

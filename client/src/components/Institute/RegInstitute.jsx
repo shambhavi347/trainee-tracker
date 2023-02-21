@@ -23,11 +23,15 @@ const RegInstitute = () => {
     zipcode: "",
     phoneno: "9818261055",
     status: "pending",
-    coordname: "",
-    coordemail: "",
-    coordphone: "",
+    coordName: "",
+    coordEmail: "",
+    coordPhone: "",
     password: "",
   });
+
+  useEffect(() => {
+    // if(userRegistration.rating === "A++")
+  }, [userRegistration.rating]);
 
   let navigate = useNavigate();
   useEffect(() => {
@@ -134,9 +138,9 @@ const RegInstitute = () => {
       zipcode,
       phoneno,
       status,
-      coordname,
-      coordemail,
-      coordphone,
+      coordName,
+      coordEmail,
+      coordPhone,
       password,
     } = userRegistration;
 
@@ -160,9 +164,9 @@ const RegInstitute = () => {
         zipcode,
         phoneno,
         status,
-        coordname,
-        coordemail,
-        coordphone,
+        coordName,
+        coordEmail,
+        coordPhone,
         password,
       }),
     });
@@ -316,9 +320,9 @@ const RegInstitute = () => {
               className="form-text form__input"
               type="text"
               autoComplete="off"
-              value={userRegistration.coordname}
+              value={userRegistration.coordName}
               onChange={handlechange}
-              name="coordname"
+              name="coordName"
               id="coordname"
               placeholder="Coordinator's Name"
             />
@@ -329,9 +333,9 @@ const RegInstitute = () => {
               className="form-email form__input"
               type="email"
               autoComplete="off"
-              value={userRegistration.coordemail}
+              value={userRegistration.coordEmail}
               onChange={handlechange}
-              name="coordemail"
+              name="coordEmail"
               id="coordemail"
               placeholder="Coordinator's Email"
             />
@@ -342,9 +346,9 @@ const RegInstitute = () => {
               className="form-text form__input"
               type="text"
               autoComplete="off"
-              value={userRegistration.coordphone}
+              value={userRegistration.coordPhone}
               onChange={handlechange}
-              name="coordphone"
+              name="coordPhone"
               id="coordphone"
               placeholder="Coordinator's Phone No."
             />

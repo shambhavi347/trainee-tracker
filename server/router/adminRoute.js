@@ -75,4 +75,13 @@ router.post("/admin-login", async (req, res) => {
   }
 });
 
+router.get("/get-pending-institute", adminAuthenticate, async (req, res) => {
+  try {
+    const inst = await Institute.find({ status: "pending" });
+    console.log(inst);
+    res.send(inst);
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;
