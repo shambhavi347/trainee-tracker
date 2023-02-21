@@ -27,6 +27,7 @@ app.use(express.json());
 app.use(require("./router/adminRoute"));
 app.use(require("./router/studentRoute"));
 app.use(require("./router/instituteRoute"));
+app.use(require("./router/traineeRegRoute"));
 
 //MiddleWare
 

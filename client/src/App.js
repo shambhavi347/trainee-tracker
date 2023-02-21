@@ -8,6 +8,7 @@ import Home from "./components/Institute/Home";
 import RegCoordinator from "./components/Coordinator/RegCoordinator";
 import CoordinatorDash from "./components/Coordinator/CoordinatorDash";
 import StudDash from "./components/Student/StudDash";
+import TraineeReg from "./components/Student/TraineeReg";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/reg-coordinator" element={<RegCoordinator />} />
           <Route path="/coordinator-home" element={<CoordinatorDash />} />
           <Route path="/trainee-dashboard" element={<StudDash />} />
+          <Route path="/trainee-reg" element={<TraineeReg />} />
         </Routes>
       </Router>
     </>

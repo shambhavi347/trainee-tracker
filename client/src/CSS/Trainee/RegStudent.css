@@ -72,7 +72,8 @@
 
 .form-text,
 .form-date,
-.form-email {
+.form-email,
+.form-password{
   width: 250px;
   padding: 20px;
   color: black;

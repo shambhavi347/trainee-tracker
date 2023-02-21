@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const studentSchema = new mongoose.Schema({
   prefix: {
     type: String,
+    enum: ["Mr", "Mrs", "Miss", "Dr"],
     required: true,
   },
   first_name: {
@@ -34,10 +35,6 @@ const studentSchema = new mongoose.Schema({
     type: Number,
     unique: true,
     required: true,
-    match: [
-      /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
-      "Enter a valid phone number",
-    ],
   },
   gender: {
     type: String,
