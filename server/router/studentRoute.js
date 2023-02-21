@@ -134,8 +134,8 @@ router.post("/reg-stud", async (req, res) => {
       return res.status(422).json({ error: "Fill the Email ID correctly !!\n" });
     }
 
-    var valid = emailRegex.test(email);
-    if(!valid) {
+    var emailValid = emailRegex.test(email);
+    if(!emailValid) {
       return res.status(422).json({ error: "Fill the Email ID correctly !!\n" });
     }
 
@@ -148,6 +148,14 @@ router.post("/reg-stud", async (req, res) => {
     var domainParts = parts[1].split(".");
     if(domainParts.some(function(part) { return part.length>63; })) {
       return res.status(422).json({ error: "Fill the Email ID correctly !!\n" });
+    }
+
+    const phoneRegex = /^[6-9]\d{9}$/gi;
+
+    const phoneValid = phoneRegex.test(phone_no);
+
+    if(!phoneValid) {
+      return res.status(422).json({ error: "Fill the Phone no. correctly !!\n" });
     }
 
     console.log("success");

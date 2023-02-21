@@ -131,7 +131,7 @@ const RegInstitute = () => {
     city,
     state,
     country,
-    zipcode} = user;
+    zipcode} = userRegistration;
 
       const res = await fetch('/institute-reg',{
         methos: "POST",

@@ -173,13 +173,9 @@ const Demo = () => {
     console.log(data);
 
     if (!validEmail.test(email)) {
-      window.alert("please fill the correct Email Id ");
+      window.alert("Fill the correct Email Id ");
       console.log("Invalid Email id");
     }
-    // else if (!validPhone.test(phone_no)) {
-    //   window.alert("please fill the correct Phone no. ");
-    //   console.log("Invalid Phone no.");
-    // }
     else if (data.error) {
       window.alert("Invalid Registration, " + data.error);
       console.log("Invalid Regestration");
