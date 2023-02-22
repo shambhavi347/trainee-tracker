@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Institute/RegInstitute.css";
 import { useEffect } from "react";
+import { validEmail } from "../../components/Regex";
+import { validPassword } from "../../components/Regex";
 
 //function RegInstitute() {
 const RegInstitute = () => {
@@ -30,7 +32,14 @@ const RegInstitute = () => {
   });
 
   useEffect(() => {
-    // if(userRegistration.rating === "A++")
+    if (userRegistration.rating === "A++") userRegistration.rvalue = 8;
+    else if (userRegistration.rating === "A+") userRegistration.rvalue = 7;
+    else if (userRegistration.rating === "A") userRegistration.rvalue = 6;
+    else if (userRegistration.rating === "B++") userRegistration.rvalue = 5;
+    else if (userRegistration.rating === "B+") userRegistration.rvalue = 4;
+    else if (userRegistration.rating === "B") userRegistration.rvalue = 3;
+    else if (userRegistration.rating === "C") userRegistration.rvalue = 2;
+    else if (userRegistration.rating === "D") userRegistration.rvalue = 1;
   }, [userRegistration.rating]);
 
   let navigate = useNavigate();
@@ -73,7 +82,7 @@ const RegInstitute = () => {
     "Autonomous College",
   ]);
   const Add1 = type.map((Add1) => Add1);
-  // const handleType = (e) => console.log(type[e.target.value]);
+  const handleType = (e) => console.log(type[e.target.value]);
 
   const [month, setmonth] = useState([
     "Select",
@@ -173,7 +182,20 @@ const RegInstitute = () => {
 
     const data = await res.json();
     console.log(data);
-    if (data.status === 422 || !data) {
+
+    //email and password validation
+    if (!validEmail.test(email)) {
+      window.alert("Invalid Institute Email ID☹");
+      console.log("Invalid Email ID");
+    } else if (!validEmail.test(coordEmail)) {
+      window.alert("Invalid Coordinator Email ID☹");
+      console.log("Invalid Email ID");
+    } else if (!validPassword.test(password)) {
+      window.alert(
+        "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
+      );
+      console.log("Make the Password Strong !!");
+    } else if (data.status === 422 || !data) {
       window.alert("Invalid Registration!❌");
       console.log("Invalid Registration!❌");
     } else {
@@ -214,25 +236,25 @@ const RegInstitute = () => {
             />
           </div>
 
-          <select className="drop-down">
+          <select className="drop-down" onClick={handleMonth}>
             {Add2.map((month, key) => (
               <option value={key}>{month}</option>
             ))}
           </select>
 
-          <select className="drop-down">
+          <select className="drop-down" onClick={handleDuration}>
             {Add3.map((duration, key) => (
               <option value={key}>{duration}</option>
             ))}
           </select>
 
-          <select className="drop-down">
+          <select className="drop-down" onClick={handleRating}>
             {Add4.map((rating, key) => (
               <option value={key}>{rating}</option>
             ))}
           </select>
 
-          <select className="drop-down">
+          <select className="drop-down" onClick={handleType}>
             {Add1.map((institute, key) => (
               <option value={key}>{institute}</option>
             ))}
@@ -309,7 +331,7 @@ const RegInstitute = () => {
             </button>
           </div>*/}
 
-          <select className="drop-down">
+          <select className="drop-down" onClick={handleSalutation}>
             {Add5.map((salutation, key) => (
               <option value={key}>{salutation}</option>
             ))}
