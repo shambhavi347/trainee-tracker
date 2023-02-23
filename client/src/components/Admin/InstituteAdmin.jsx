@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Admin/InstituteAdmin.css";
 import { arrowDown, cancel, expand } from "../../Images/Images";
-import { getInstitutes } from "../../service/api";
+import { getInstitutes, acceptInsitute } from "../../service/api";
+import PendingInst from "./PendingInst";
 
 const InstituteAdmin = () => {
   const itype = [
@@ -174,9 +175,11 @@ const InstituteAdmin = () => {
 
   const [text, setText] = useState("");
 
-  const [expnd, setExpnd] = useState("none");
+  // const [expnd, setExpnd] = useState("none");
 
   const [inst, setInst] = useState([]);
+
+  const [sendEmail, setSendEmail] = useState("");
 
   // const callInst = async () => {
   //   try {
@@ -212,33 +215,12 @@ const InstituteAdmin = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getInstitutes();
-      console.log("dta " + data);
+      // console.log("dta " + data);
       setInsti(data);
-      console.log(inst);
-      // setInst(data);
-      // console.log("inst " + inst);
-      // data.map((val) => {
-      //   setInstInfo([data]);
-      // });
-
-      // console.log(instInfo);
-      // setInstitute(data);
-      // setInstInfo(data);
-      // data.map((val) => console.log(val));
-      // data1 = data.map((val) => data1.push(val));
-      // data.map((val) => {
-      //   console.log(val);
-      //   // setInstInfo(val);
-      // });
+      // console.log(inst);
     };
     fetchData();
-    // console.log(data1);
-    // data1.map((val) => setInstInfo(val));
-    // console.log(instInfo);
-    // console.log(instInfo);
-    // console.log("inst " + instInfo);
-    // data.map((val) => console.log(val));
-  }, []);
+  }, [insti]);
 
   const handleChange = (e) => {
     // callInst();
@@ -343,6 +325,15 @@ const InstituteAdmin = () => {
       setInstitute(filteredData1);
     }
   }, [text]);
+
+  // const handleAccept = async () => {
+  //   try {
+  //     // console.log(email);
+  //     await acceptInsitute({ email: sendEmail });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <>
@@ -574,80 +565,10 @@ const InstituteAdmin = () => {
         </div>
         <div className="institute-panel">
           {insti ? (
-            insti.map((inst, key) => (
-              <div className="inst-bdy">
-                <div className="inst-expnd">
-                  <button
-                    className="btn-expnd"
-                    onClick={() => {
-                      setExpnd("block");
-                      setInst(inst);
-                    }}
-                  >
-                    <img src={expand} alt="" className="img-expnd" />
-                  </button>
-                </div>
-                <div className="inst-first">{inst.name}</div>
-                <div className="inst-second">
-                  <div className="inst-month">{inst.month}</div>
-                  <div className="inst-rating">{inst.rating}</div>
-                  <div className="inst-duration">{inst.duration}</div>
-                </div>
-                <div className="inst-third">
-                  <div className="inst-accpt">
-                    <button className="btn-accpt">Accept</button>
-                  </div>
-                  <div className="inst-reject">
-                    <button className="btn-reject">Reject</button>
-                  </div>
-                </div>
-              </div>
-            ))
+            insti.map((inst, key) => <PendingInst inst={inst} />)
           ) : (
-            <> </>
+            <>No Application as of yet</>
           )}
-        </div>
-        <div className="expanded-div" style={{ display: expnd }}>
-          <button onClick={() => setExpnd("none")} className="expnd-cancel">
-            <img className="expnd-img" src={cancel} alt="" />
-          </button>
-          <div className="info-outer">
-            <div className="info">
-              <div className="info-first">{inst.name}</div>
-              <div className="info-second">
-                <div className="info-type">Institute Type : {inst.type}</div>
-                <div className="info-rating"> NAAC Rating: {inst.rating}</div>
-              </div>
-              <div className="info-third">
-                {inst.street ? <div>Street: {inst.street} </div> : null}
-                <div>City: {inst.city}</div>
-                <div>State:{inst.state}</div>
-                <div>Country: {inst.country}</div>
-                <div>Zip code :{inst.zipCode}</div>
-              </div>
-              <div className="info-fourth">
-                <div className="info-email">Email : {inst.email}</div>
-                <div className="info-phone">Phone No : {inst.phone}</div>
-              </div>
-              <div className="info-fifth">
-                <div className="info-month">
-                  Internship Start Month: {inst.month}
-                </div>
-                <div className="info-duration">
-                  Insternship Duration : {inst.duration}
-                </div>
-              </div>
-              <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
-              <div className="info-coord-title">
-                Institute Coordinator's Details
-              </div>
-              <div className="info-sixth">Name : {inst.coordName}</div>
-              <div className="info-seventh">
-                <div className="info-coor-email">Email: {inst.coordEmail}</div>
-                <div className="info-coor-phone">Phone: {inst.coordPhone}</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>
