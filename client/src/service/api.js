@@ -17,3 +17,11 @@ export const acceptInsitute = async (data) => {
     console.log(error);
   }
 };
+
+export const rejectInsitute = async (data) => {
+  try {
+    await axios.post("/reject-inst", data);
+  } catch (error) {
+    console.log(error);
+  }
+};

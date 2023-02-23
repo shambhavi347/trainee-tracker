@@ -98,4 +98,17 @@ router.post("/accept-inst", adminAuthenticate, async (req, res) => {
     console.log(error);
   }
 });
+
+router.post("/reject-inst", adminAuthenticate, async (req, res) => {
+  try {
+    const { email } = req.body;
+    // console.log(email);
+    await Institute.findOneAndUpdate(
+      { email: email },
+      { $set: { status: "reject" } }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;
