@@ -13,17 +13,17 @@ const RegInstitute = () => {
   const [userRegistration, setUserRegistration] = useState({
     name: "",
     email: "",
-    month: "January",
-    duration: "3 Months",
-    rating: "A++",
-    rvalue: "8",
-    type: "Private Institution",
+    month: "",
+    duration: "",
+    rating: "",
+    rvalue: "",
+    type: "",
     street: "",
     city: "",
     state: "",
     country: "",
     zipcode: "",
-    phoneno: "9818261055",
+    phoneno: "",
     status: "pending",
     coordName: "",
     coordEmail: "",
@@ -62,7 +62,8 @@ const RegInstitute = () => {
     setUserRegistration({ ...userRegistration, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  {
+    /*const handleSubmit = (e) => {
     e.preventDefault();
     const newRecord = {
       ...userRegistration,
@@ -81,10 +82,12 @@ const RegInstitute = () => {
     "Affiliated College",
     "Autonomous College",
   ]);
-  const Add1 = type.map((Add1) => Add1);
-  const handleType = (e) => console.log(type[e.target.value]);
 
-  const [month, setmonth] = useState([
+  const Add1 = type.map((Add1) => Add1);
+  const handleChange = (e) => console.log(type[e.target.value]);
+
+  {
+    /*} const [month, setmonth] = useState([
     "Select",
     "January",
     "February",
@@ -100,7 +103,7 @@ const RegInstitute = () => {
     "December",
   ]);
   const Add2 = month.map((Add2) => Add2);
-  const handleMonth = (e) => console.log(month[e.target.value]);
+const handleMonth = (e) => console.log(month[e.target.value]);
 
   const [duration, setduration] = useState(["Select", "3 Months", "6 Months"]);
   const Add3 = duration.map((Add3) => Add3);
@@ -128,7 +131,8 @@ const RegInstitute = () => {
     "Dr",
   ]);
   const Add5 = salutation.map((Add5) => Add5);
-  const handleSalutation = (e) => console.log(salutation[e.target.value]);
+const handleSalutation = (e) => console.log(salutation[e.target.value]);*/
+  }
 
   const PostData = async (e) => {
     e.preventDefault();
@@ -222,7 +226,6 @@ const RegInstitute = () => {
               placeholder="Institute Name"
             />
           </div>
-
           <div className="email">
             <input
               className="form-email form__input"
@@ -236,28 +239,68 @@ const RegInstitute = () => {
             />
           </div>
 
-          <select className="drop-down" onClick={handleMonth}>
-            {Add2.map((month, key) => (
-              <option value={key}>{month}</option>
-            ))}
+          <select
+            name="month"
+            className="drop-down"
+            value={userRegistration.month}
+            onChange={handlechange}
+          >
+            <option value="Select">Select</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
           </select>
 
-          <select className="drop-down" onClick={handleDuration}>
-            {Add3.map((duration, key) => (
-              <option value={key}>{duration}</option>
-            ))}
+          <select
+            name="duration"
+            className="drop-down"
+            value={userRegistration.duration}
+            onChange={handlechange}
+          >
+            <option value="Select">Select</option>
+            <option value="3 Months">3 Months</option>
+            <option value="6 Months">6 Months</option>
           </select>
 
-          <select className="drop-down" onClick={handleRating}>
-            {Add4.map((rating, key) => (
-              <option value={key}>{rating}</option>
-            ))}
+          <select
+            name="rating"
+            className="drop-down"
+            value={userRegistration.rating}
+            onChange={handlechange}
+          >
+            <option value="Select">Select</option>
+            <option value="A++">A++</option>
+            <option value="A+">A+</option>
+            <option value="A">A</option>
+            <option value="B++">B++</option>
+            <option value="B+">B+</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
           </select>
 
-          <select className="drop-down" onClick={handleType}>
-            {Add1.map((institute, key) => (
-              <option value={key}>{institute}</option>
-            ))}
+          <select
+            name="type"
+            className="drop-down"
+            value={userRegistration.type}
+            onChange={handlechange}
+          >
+            <option value="Select">Select</option>
+            <option value="Central University">Central University</option>
+            <option value="State University">State University</option>
+            <option value="Deemed University">Deemed University</option>
+            <option value="Private Institute">Private Institute</option>
+            <option value="Affiliated College">Affiliated College</option>
+            <option value="Autonomous College">Autonomous College</option>
           </select>
 
           <div className="street">
@@ -272,7 +315,6 @@ const RegInstitute = () => {
               placeholder="Street"
             />
           </div>
-
           <div className="city">
             <input
               className="form-text form__input"
@@ -285,7 +327,6 @@ const RegInstitute = () => {
               placeholder="City"
             />
           </div>
-
           <div className="state">
             <input
               className="form-text form__input"
@@ -298,7 +339,6 @@ const RegInstitute = () => {
               placeholder="State"
             />
           </div>
-
           <div className="country">
             <input
               className="form-text form__input"
@@ -325,16 +365,36 @@ const RegInstitute = () => {
             />
           </div>
 
+          <div className="phoneno">
+            <input
+              className="form-text form__input"
+              type="text"
+              autoComplete="off"
+              value={userRegistration.phoneno}
+              onChange={handlechange}
+              name="phoneno"
+              id="phoneno"
+              placeholder="Institute Phone No."
+            />
+          </div>
+
           {/*<div className="footer">
             <button type="submit" className="btn">
               Register
             </button>
           </div>*/}
 
-          <select className="drop-down" onClick={handleSalutation}>
-            {Add5.map((salutation, key) => (
-              <option value={key}>{salutation}</option>
-            ))}
+          <select
+            name="salutation"
+            className="drop-down"
+            value={userRegistration.salutation}
+            onChange={handlechange}
+          >
+            <option value="Select">Select</option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Ms">Ms</option>
+            <option value="Dr">Dr</option>
           </select>
 
           <div className="coordname">
@@ -349,7 +409,6 @@ const RegInstitute = () => {
               placeholder="Coordinator's Name"
             />
           </div>
-
           <div className="coordemail">
             <input
               className="form-email form__input"
@@ -362,7 +421,6 @@ const RegInstitute = () => {
               placeholder="Coordinator's Email"
             />
           </div>
-
           <div className="coordphone">
             <input
               className="form-text form__input"
@@ -375,7 +433,6 @@ const RegInstitute = () => {
               placeholder="Coordinator's Phone No."
             />
           </div>
-
           <div className="password">
             <input
               className="form-text form__input"
@@ -388,7 +445,6 @@ const RegInstitute = () => {
               placeholder="Set Password"
             />
           </div>
-
           <div className="footer">
             <button type="submit" className="btn" onClick={PostData}>
               Register
