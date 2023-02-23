@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Admin/InstituteAdmin.css";
 import { arrowDown, cancel, expand } from "../../Images/Images";
-import { getInstitutes } from "../../service/api";
+import { getInstitutes, acceptInsitute } from "../../service/api";
 
 const InstituteAdmin = () => {
   const itype = [
@@ -178,6 +178,8 @@ const InstituteAdmin = () => {
 
   const [inst, setInst] = useState([]);
 
+  const [sendEmail, setSendEmail] = useState("");
+
   // const callInst = async () => {
   //   try {
   //     const res = await fetch("/get-pending-institute", {
@@ -215,29 +217,8 @@ const InstituteAdmin = () => {
       console.log("dta " + data);
       setInsti(data);
       console.log(inst);
-      // setInst(data);
-      // console.log("inst " + inst);
-      // data.map((val) => {
-      //   setInstInfo([data]);
-      // });
-
-      // console.log(instInfo);
-      // setInstitute(data);
-      // setInstInfo(data);
-      // data.map((val) => console.log(val));
-      // data1 = data.map((val) => data1.push(val));
-      // data.map((val) => {
-      //   console.log(val);
-      //   // setInstInfo(val);
-      // });
     };
     fetchData();
-    // console.log(data1);
-    // data1.map((val) => setInstInfo(val));
-    // console.log(instInfo);
-    // console.log(instInfo);
-    // console.log("inst " + instInfo);
-    // data.map((val) => console.log(val));
   }, []);
 
   const handleChange = (e) => {
@@ -343,6 +324,15 @@ const InstituteAdmin = () => {
       setInstitute(filteredData1);
     }
   }, [text]);
+
+  // const handleAccept = async () => {
+  //   try {
+  //     // console.log(email);
+  //     await acceptInsitute({ email: sendEmail });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <>
@@ -595,7 +585,17 @@ const InstituteAdmin = () => {
                 </div>
                 <div className="inst-third">
                   <div className="inst-accpt">
-                    <button className="btn-accpt">Accept</button>
+                    <button
+                      className="btn-accpt"
+                      onClick={async () => {
+                        await acceptInsitute({ email: inst.email });
+                        const data = await getInstitutes();
+                        console.log("dta " + data);
+                        setInsti(data);
+                      }}
+                    >
+                      Accept
+                    </button>
                   </div>
                   <div className="inst-reject">
                     <button className="btn-reject">Reject</button>
@@ -607,6 +607,7 @@ const InstituteAdmin = () => {
             <> </>
           )}
         </div>
+
         <div className="expanded-div" style={{ display: expnd }}>
           <button onClick={() => setExpnd("none")} className="expnd-cancel">
             <img className="expnd-img" src={cancel} alt="" />

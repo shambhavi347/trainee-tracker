@@ -77,9 +77,23 @@ router.post("/admin-login", async (req, res) => {
 
 router.get("/get-pending-institute", adminAuthenticate, async (req, res) => {
   try {
+    // console.log("Hello");
     const inst = await Institute.find({ status: "pending" });
-    console.log(inst);
+    // console.log("Institue " + inst);
     res.send(inst);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/accept-inst", adminAuthenticate, async (req, res) => {
+  try {
+    const { email } = req.body;
+    // console.log(email);
+    await Institute.findOneAndUpdate(
+      { email: email },
+      { $set: { status: "accept" } }
+    );
   } catch (error) {
     console.log(error);
   }
