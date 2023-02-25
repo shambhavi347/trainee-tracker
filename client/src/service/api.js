@@ -35,6 +35,17 @@ export const rejectInsitute = async (data) => {
   }
 };
 
+//institute application status
+export const getAppstatus = async () => {
+  try {
+    let respone = await axios.get("/get-application-status");
+    // console.log("Ins " + respone.data);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const acceptTrainee = async (data) => {
   try {
     const response = await axios.post("/send-student-mail", data);

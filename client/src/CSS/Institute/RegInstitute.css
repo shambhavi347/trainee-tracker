@@ -1,73 +1,42 @@
 * {
   box-sizing: border-box;
 }
-.DivUpper {
+
+.body {
   background: #222831;
   background: -webkit-linear-gradient(to top, #222831, #393e46);
   background: linear-gradient(to bottom, #393e46, #00adb5);
-  /* background-color: #222831; */
   height: 100vh;
   margin: 0px;
-  /* overflow-y: scroll; */
+  overflow-y: auto;
 }
 
-/* .divLower {
-    background-color: #393e46;
-    height: 70%;
-    width: 80%;
-    margin: 0 auto;
-    padding: 10px;
-    margin-top: 4%;
-    position: relative;
-  } */
-.btn-form {
+.form-body {
+  background-color: #222831;
+  border-style: hidden;
+  width: 50px;
+  overflow-y: auto;
+}
+
+.btn {
   text-align: center;
   border-radius: 20px;
   border: 0;
-  height: 60px;
-  width: 250px;
-  margin: 10px 15px;
-  margin-bottom: 15px;
+  height: 20px;
+  width: 20px;
+  /*margin: 10px 15px;*/
+  /*margin-bottom: 15px;*/
   font-size: x-large;
   background-color: #222831;
   border: 2px #00adb5 solid;
   color: #00adb5;
 }
 
-.btn-form:hover {
+.btn:hover {
   background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
   font-style: italic;
-}
-/* .body {
-    /* padding-top: 0vh; */
-/* margin: 0;
-    height: 100%;
-    color: azure;
-    overflow-y: scroll; */
-/* } */
-/* #main {
-    height: 98vh;
-  } */
-
-.body {
-  overflow-y: auto;
-}
-
-.form-body {
-  overflow-y: auto;
-}
-
-.main {
-  width: 100%;
-  height: 100%;
-  padding: 160px;
-  padding-top: 50px;
-  align-content: center;
-  background-size: cover;
-  color: azure;
-  overflow-y: scroll;
 }
 
 .regHead {

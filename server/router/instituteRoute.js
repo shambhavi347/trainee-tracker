@@ -3,12 +3,7 @@ const router = express.Router();
 require("../db/database");
 router.use(express.static("../client/src/"));
 const Institute = require("../model/instituteSchema");
-
-{
-  /*router.get('/',(req, res) => {
-    res.send("hello this is institute reg backend");
-});*/
-}
+const instituteAuthenticate = require("../middleware/instituteauth");
 
 router.post("/institute-reg", async (req, res) => {
   const {
@@ -26,6 +21,7 @@ router.post("/institute-reg", async (req, res) => {
     zipcode,
     phoneno,
     status,
+    salutation,
     coordName,
     coordEmail,
     coordPhone,
@@ -49,6 +45,7 @@ router.post("/institute-reg", async (req, res) => {
     !zipcode ||
     !phoneno ||
     !status ||
+    !salutation ||
     !coordName ||
     !coordEmail ||
     !coordPhone ||
@@ -171,6 +168,7 @@ router.post("/institute-reg", async (req, res) => {
       zipcode,
       phoneno,
       status,
+      salutation,
       coordName,
       coordEmail,
       coordPhone,
@@ -184,6 +182,16 @@ router.post("/institute-reg", async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+  }
+});
+
+router.get("/get-application-status",instituteAuthenticate,async (req ,res) =>{
+  try {
+  const id = req.rootUser._id;
+  const inst = await Institute.find({_id:id});
+  console.log(inst);  
+  } catch (error) {
+   console.log(error); 
   }
 });
 
