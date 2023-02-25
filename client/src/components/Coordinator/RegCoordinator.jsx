@@ -21,7 +21,7 @@ const RegCoordinator = () => {
   const handlechange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(name, value);
+    //console.log(name, value);
 
     setUserRegistration({ ...userRegistration, [name]: value });
   };
@@ -38,18 +38,53 @@ const RegCoordinator = () => {
   }
 
   let navigate = useNavigate();
-  useEffect(() => {
-    if (req) {
-      const routeChange = () => {
-        let path = "/coordinator-home";
-        navigate(path);
-      };
-      routeChange();
-    }
-  }, [req, navigate]);
+  const routeChange = () => {
+    let path = "/coordinator-home";
+    navigate(path);
+  };
+
+  // const PostData = async (e) => {
+  //   e.preventDefault();
+  //   const { salutation, name, email, phone, password } = userRegistration;
+  //   console.log(userRegistration);
+  //   const res = await fetch("/coordinator-reg", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       salutation,
+  //       name,
+  //       email,
+  //       phone,
+  //       password,
+  //     }),
+  //   });
+
+  //   const data = await res.json();
+  //   console.log(data);
+
+  //   //email and password validation
+  //   if (!validEmail.test(email)) {
+  //     window.alert("Invalid Institute Email ID☹");
+  //     console.log("Invalid Email ID");
+  //   } else if (!validPassword.test(password)) {
+  //     window.alert(
+  //       "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
+  //     );
+  //     console.log("Make the Password Strong !!");
+  //   } else if (data.status === 422 || !data) {
+  //     window.alert("Invalid Registration!❌");
+  //     console.log("Invalid Registration!❌");
+  //   } else {
+  //     window.alert("Registration Successful!✔");
+  //     console.log("Registration Successful!✔");
+  //   }
+  // };
 
   const PostData = async (e) => {
     e.preventDefault();
+    console.log(userRegistration);
     const { salutation, name, email, phone, password } = userRegistration;
 
     const res = await fetch("/coordinator-reg", {
@@ -73,17 +108,21 @@ const RegCoordinator = () => {
     if (!validEmail.test(email)) {
       window.alert("Invalid Institute Email ID☹");
       console.log("Invalid Email ID");
+    } else if (!validEmail.test(email)) {
+      window.alert("Invalid Coordinator Email ID☹");
+      console.log("Invalid Email ID");
     } else if (!validPassword.test(password)) {
       window.alert(
         "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
       );
-      console.log("Make the Password Strong !!");
+      //console.log("Make the Password Strong !!");
     } else if (data.status === 422 || !data) {
       window.alert("Invalid Registration!❌");
       console.log("Invalid Registration!❌");
     } else {
       window.alert("Registration Successful!✔");
-      console.log("Registration Successful!✔");
+      routeChange();
+      //console.log("Registration Successful!✔");
     }
   };
 
@@ -113,7 +152,7 @@ const RegCoordinator = () => {
                     className="form-text form__input"
                     type="text"
                     autoComplete="off"
-                    value={userRegistration.instname}
+                    value={userRegistration.name}
                     onChange={handlechange}
                     name="name"
                     id="name"
@@ -156,19 +195,6 @@ const RegCoordinator = () => {
                     name="password"
                     id="password"
                     placeholder="Set Password"
-                  />
-                </div>
-
-                <div className="confirm_password">
-                  <input
-                    className="form-text form__input"
-                    type="text"
-                    autoComplete="off"
-                    value={userRegistration.confirm_password}
-                    onChange={handlechange}
-                    name="confirm_password"
-                    id="confirm_password"
-                    placeholder="Confirm Password"
                   />
                 </div>
 

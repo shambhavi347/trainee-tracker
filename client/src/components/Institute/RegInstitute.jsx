@@ -9,7 +9,13 @@ import { validPassword } from "../../components/Regex";
 //function RegInstitute() {
 const RegInstitute = () => {
   const [req, setReq] = useState(false);
-
+  const [display, setDisplay] = useState(false); //will not show tpo to us until we make display true
+  const [inst, setInst] = useState(true); //will show us institute foem and on clicking next it will become false
+  //for navigation to login page
+  const routeChange = () => {
+    let path = "/";
+    navigate(path);
+  };
   const [userRegistration, setUserRegistration] = useState({
     name: "",
     email: "",
@@ -130,259 +136,269 @@ const RegInstitute = () => {
       window.alert(
         "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
       );
-      console.log("Make the Password Strong !!");
+      //console.log("Make the Password Strong !!");
     } else if (data.status === 422 || !data) {
       window.alert("Invalid Registration!❌");
       console.log("Invalid Registration!❌");
     } else {
       window.alert("Registration Successful!✔");
-      console.log("Registration Successful!✔");
+      routeChange();
+      //console.log("Registration Successful!✔");
     }
   };
 
   return (
     <>
       <NavBar2 />
-      <div className="body">
-        <h1 className="regHead">Register Your Institute</h1>
-        <form action="" method="POST" className="form-body">
-          <div className="name">
-            <input
-              className="form-text form__input"
-              type="text"
-              autoComplete="off"
-              value={userRegistration.instname}
-              onChange={handlechange}
-              name="name"
-              id="name"
-              placeholder="Institute Name"
-            />
-          </div>
-          <div className="email">
-            <input
-              className="form-email form__input"
-              type="email"
-              autoComplete="off"
-              value={userRegistration.email}
-              onChange={handlechange}
-              name="email"
-              id="email"
-              placeholder="Email"
-            />
-          </div>
+      <div className="body-reg-inst">
+        <h1 className="regHead-inst">Register Your Institute</h1>
+        <div className="form-body-inst-up">
+          <form action="" method="POST" className="form-body-inst">
+            {inst ? (
+              <>
+                <input
+                  className="form-text-inst"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.instname}
+                  onChange={handlechange}
+                  name="name"
+                  id="name"
+                  placeholder="Institute Name"
+                />
 
-          <select
-            name="month"
-            className="drop-down"
-            value={userRegistration.month}
-            onChange={handlechange}
-          >
-            <option value="Select">Select</option>
-            <option value="January">January</option>
-            <option value="February">February</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
-          </select>
+                <input
+                  className="form-text-inst"
+                  type="email"
+                  autoComplete="off"
+                  value={userRegistration.email}
+                  onChange={handlechange}
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                />
 
-          <select
-            name="duration"
-            className="drop-down"
-            value={userRegistration.duration}
-            onChange={handlechange}
-          >
-            <option value="Select">Select</option>
-            <option value="3 Months">3 Months</option>
-            <option value="6 Months">6 Months</option>
-          </select>
+                <select
+                  name="month"
+                  className="drop-down-inst"
+                  value={userRegistration.month}
+                  onChange={handlechange}
+                >
+                  <option value="Select">Select</option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
 
-          <select
-            name="rating"
-            className="drop-down"
-            value={userRegistration.rating}
-            onChange={handlechange}
-          >
-            <option value="Select">Select</option>
-            <option value="A++">A++</option>
-            <option value="A+">A+</option>
-            <option value="A">A</option>
-            <option value="B++">B++</option>
-            <option value="B+">B+</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-          </select>
+                <select
+                  name="duration"
+                  className="drop-down-inst"
+                  value={userRegistration.duration}
+                  onChange={handlechange}
+                >
+                  <option value="Select">Select</option>
+                  <option value="3 Months">3 Months</option>
+                  <option value="6 Months">6 Months</option>
+                </select>
 
-          <select
-            name="type"
-            className="drop-down"
-            value={userRegistration.type}
-            onChange={handlechange}
-          >
-            <option value="Select">Select</option>
-            <option value="Central University">Central University</option>
-            <option value="State University">State University</option>
-            <option value="Deemed University">Deemed University</option>
-            <option value="Private Institute">Private Institute</option>
-            <option value="Affiliated College">Affiliated College</option>
-            <option value="Autonomous College">Autonomous College</option>
-          </select>
+                <select
+                  name="rating"
+                  className="drop-down-inst"
+                  value={userRegistration.rating}
+                  onChange={handlechange}
+                >
+                  <option value="Select">Select</option>
+                  <option value="A++">A++</option>
+                  <option value="A+">A+</option>
+                  <option value="A">A</option>
+                  <option value="B++">B++</option>
+                  <option value="B+">B+</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                </select>
 
-          <div className="street">
-            <input
-              className="form-text form__input"
-              type="text"
-              autoComplete="off"
-              value={userRegistration.street}
-              onChange={handlechange}
-              name="street"
-              id="street"
-              placeholder="Street"
-            />
-          </div>
-          <div className="city">
-            <input
-              className="form-text form__input"
-              type="text"
-              autoComplete="off"
-              value={userRegistration.city}
-              onChange={handlechange}
-              name="city"
-              id="city"
-              placeholder="City"
-            />
-          </div>
-          <div className="state">
-            <input
-              className="form-text form__input"
-              type="text"
-              autoComplete="off"
-              value={userRegistration.state}
-              onChange={handlechange}
-              name="state"
-              id="state"
-              placeholder="State"
-            />
-          </div>
-          <div className="country">
-            <input
-              className="form-text form__input"
-              type="text"
-              autoComplete="off"
-              value={userRegistration.country}
-              onChange={handlechange}
-              name="country"
-              id="country"
-              placeholder="Country"
-            />
-          </div>
+                <select
+                  name="type"
+                  className="drop-down-inst"
+                  value={userRegistration.type}
+                  onChange={handlechange}
+                >
+                  <option value="Select">Select</option>
+                  <option value="Central University">Central University</option>
+                  <option value="State University">State University</option>
+                  <option value="Deemed University">Deemed University</option>
+                  <option value="Private Institute">Private Institute</option>
+                  <option value="Affiliated College">Affiliated College</option>
+                  <option value="Autonomous College">Autonomous College</option>
+                </select>
 
-          <div className="zipcode">
-            <input
-              className="form-text form__input"
-              type="text"
-              autoComplete="off"
-              value={userRegistration.zipcode}
-              onChange={handlechange}
-              name="zipcode"
-              id="zipcode"
-              placeholder="Zipcode"
-            />
-          </div>
+                <input
+                  className="form-text-inst"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.street}
+                  onChange={handlechange}
+                  name="street"
+                  id="street"
+                  placeholder="Street"
+                />
 
-          <div className="phoneno">
-            <input
-              className="form-text form__input"
-              type="text"
-              autoComplete="off"
-              value={userRegistration.phoneno}
-              onChange={handlechange}
-              name="phoneno"
-              id="phoneno"
-              placeholder="Institute Phone No."
-            />
-          </div>
+                <input
+                  className="form-text-inst"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.city}
+                  onChange={handlechange}
+                  name="city"
+                  id="city"
+                  placeholder="City"
+                />
 
-          {/*<div className="footer">
-            <button type="submit" className="btn">
-              Register
-            </button>
-          </div>*/}
+                <input
+                  className="form-text-inst"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.state}
+                  onChange={handlechange}
+                  name="state"
+                  id="state"
+                  placeholder="State"
+                />
 
-          <select
-            name="salutation"
-            className="drop-down"
-            value={userRegistration.salutation}
-            onChange={handlechange}
-          >
-            <option value="Select">Select</option>
-            <option value="Mr">Mr</option>
-            <option value="Mrs">Mrs</option>
-            <option value="Ms">Ms</option>
-            <option value="Dr">Dr</option>
-          </select>
+                <input
+                  className="form-text-inst"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.country}
+                  onChange={handlechange}
+                  name="country"
+                  id="country"
+                  placeholder="Country"
+                />
 
-          <div className="coordname">
-            <input
-              className="form-text form__input"
-              type="text"
-              autoComplete="off"
-              value={userRegistration.coordName}
-              onChange={handlechange}
-              name="coordName"
-              id="coordname"
-              placeholder="Coordinator's Name"
-            />
-          </div>
-          <div className="coordemail">
-            <input
-              className="form-email form__input"
-              type="email"
-              autoComplete="off"
-              value={userRegistration.coordEmail}
-              onChange={handlechange}
-              name="coordEmail"
-              id="coordemail"
-              placeholder="Coordinator's Email"
-            />
-          </div>
-          <div className="coordphone">
-            <input
-              className="form-text form__input"
-              type="text"
-              autoComplete="off"
-              value={userRegistration.coordPhone}
-              onChange={handlechange}
-              name="coordPhone"
-              id="coordphone"
-              placeholder="Coordinator's Phone No."
-            />
-          </div>
-          <div className="password">
-            <input
-              className="form-text form__input"
-              type="text"
-              autoComplete="off"
-              value={userRegistration.password}
-              onChange={handlechange}
-              name="password"
-              id="password"
-              placeholder="Set Password"
-            />
-          </div>
-          <div className="footer">
-            <button type="submit" className="btn" onClick={PostData}>
-              Register
-            </button>
-          </div>
-        </form>
+                <input
+                  className="form-text-inst"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.zipcode}
+                  onChange={handlechange}
+                  name="zipcode"
+                  id="zipcode"
+                  placeholder="Zipcode"
+                />
+
+                <input
+                  className="form-text-inst"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.phoneno}
+                  onChange={handlechange}
+                  name="phoneno"
+                  id="phoneno"
+                  placeholder="Institute Phone No."
+                />
+
+                <div className="footer-inst">
+                  <button
+                    type="submit"
+                    className="btn-inst"
+                    onClick={() => {
+                      setInst(false);
+                      setDisplay(true);
+                    }}
+                  >
+                    Next
+                  </button>
+                </div>
+              </>
+            ) : display ? (
+              <>
+                <select
+                  name="salutation"
+                  className="drop-down-inst"
+                  value={userRegistration.salutation}
+                  onChange={handlechange}
+                >
+                  <option value="Select">Select</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="Ms">Ms</option>
+                  <option value="Dr">Dr</option>
+                </select>
+
+                <input
+                  className="form-text-inst"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.coordName}
+                  onChange={handlechange}
+                  name="coordName"
+                  id="coordname"
+                  placeholder="Coordinator's Name"
+                />
+
+                <input
+                  className="form-text-inst"
+                  type="email"
+                  autoComplete="off"
+                  value={userRegistration.coordEmail}
+                  onChange={handlechange}
+                  name="coordEmail"
+                  id="coordemail"
+                  placeholder="Coordinator's Email"
+                />
+
+                <input
+                  className="form-text-inst"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.coordPhone}
+                  onChange={handlechange}
+                  name="coordPhone"
+                  id="coordphone"
+                  placeholder="Coordinator's Phone No."
+                />
+
+                <input
+                  className="form-text-inst"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.password}
+                  onChange={handlechange}
+                  name="password"
+                  id="password"
+                  placeholder="Set Password"
+                />
+
+                <div className="footer-inst">
+                  <button
+                    type="submit"
+                    className="btn-inst"
+                    onClick={() => {
+                      setDisplay(false);
+                      setInst(true);
+                    }}
+                  >
+                    Previous
+                  </button>
+                  <button type="submit" className="btn-inst" onClick={PostData}>
+                    Register
+                  </button>
+                </div>
+              </>
+            ) : null}
+          </form>
+        </div>
       </div>
     </>
   );
