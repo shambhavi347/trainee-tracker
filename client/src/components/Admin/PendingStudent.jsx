@@ -5,7 +5,11 @@ const PendingStudent = ({ stud }) => {
   const date = new Date(stud.dob);
   const acceptStud = async () => {
     try {
-      await acceptTrainee({ email: stud.email });
+      const res = await acceptTrainee({ email: stud.email });
+      const data = await res.json();
+      console.log(data);
+      // console.log(data);
+      window.alert(data);
     } catch (error) {
       console.log(error);
     }

@@ -37,8 +37,9 @@ export const rejectInsitute = async (data) => {
 
 export const acceptTrainee = async (data) => {
   try {
-    await axios.post("/send-student-mail", data);
-    console.log(data);
+    const response = await axios.post("/send-student-mail", data);
+    return response.data;
+    // console.log(data);
   } catch (error) {
     console.log(error);
   }

@@ -15,6 +15,11 @@ const NavBar1 = () => {
     navigate(path);
   };
 
+  const routeChangeInst = () => {
+    let path = "/institute-home";
+    navigate(path);
+  };
+
   const [admin, setAdmin] = useState({
     email: "",
     password: "",
@@ -55,8 +60,10 @@ const NavBar1 = () => {
       if (reason.message === "Admin") {
         console.log("Admin login");
         routeChangeAdmin();
-      } else if (reason.message === "Institute") console.log("Institute Login");
-      else if (reason.message === "Trainee") {
+      } else if (reason.message === "Institute") {
+        console.log("Trainee Login");
+        routeChangeInst();
+      } else if (reason.message === "Trainee") {
         console.log("Trainee Login");
         routeChangeTrainee();
       } else console.log("Coord Login");

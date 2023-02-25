@@ -11,6 +11,7 @@ const Admin = require("../model/admin");
 const Institute = require("../model/instituteSchema");
 const Trainee = require("../model/traineeSchema");
 const Student = require("../model/studentSchema");
+const { $where } = require("../model/traineeSchema");
 
 //adminlogin
 router.post("/admin-login", async (req, res) => {
@@ -123,6 +124,8 @@ router.post("/reject-inst", adminAuthenticate, async (req, res) => {
 router.post("/send-student-mail", adminAuthenticate, async (req, res) => {
   try {
     const { email } = req.body;
+    URL = "http://localhost:3000/trainee-reg";
+
     console.log(email);
     let testAccount = await nodemailer.createTestAccount();
 
@@ -141,14 +144,14 @@ router.post("/send-student-mail", adminAuthenticate, async (req, res) => {
     let info = await transporter.sendMail({
       from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
       to: email, // list of receivers
-      subject: "Hello from CDAC", // Subject line
-      text: "Hello from trainee tracker", // plain text body
-      html: "<b>Hello from trainee tracker</b>", // html body
+      subject: "CDAC Student Registration", // Subject line
+      text: "Hello from trainee tracker!! The interested student must register on the below link copy paste it in your browser  Link: http://localhost:3000/trainee-reg", // plain text body
+      html: " <b>Hello from trainee tracker</b> <a href= ${URl} > Register </a> <br/> Copy Paste the below URL :- http://localhost:3000/trainee-reg", // html body
     });
     if (info.messageId) {
-      res.send("Mail send");
+      res.status(200).json({ message: "Mail Sent" });
     } else {
-      res.send("Mail not sent");
+      res.status(200).json({ message: "Mail Not Sent" });
     }
   } catch (error) {
     console.log(error);
