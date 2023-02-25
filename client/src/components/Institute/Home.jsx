@@ -28,6 +28,11 @@ const Home = () => {
           <h3>Application Status</h3>
           <p>{status}</p>
         </div>
+        {status === "accept" ? (
+          <div>Register Your Student @ http://localhost:3000/reg-stud</div>
+        ) : status === "reject" ? (
+          <div>Rejected</div>
+        ) : null}
       </div>
     </>
   );
