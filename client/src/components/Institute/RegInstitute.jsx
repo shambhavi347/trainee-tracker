@@ -65,6 +65,7 @@ const RegInstitute = () => {
 
   const PostData = async (e) => {
     e.preventDefault();
+    console.log(userRegistration);
     const {
       name,
       email,
