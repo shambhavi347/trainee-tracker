@@ -10,6 +10,15 @@ export const getInstitutes = async () => {
   }
 };
 
+export const getStudent = async () => {
+  try {
+    let respone = await axios.get("/get-pending-student");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const acceptInsitute = async (data) => {
   try {
     await axios.post("/accept-inst", data);
@@ -21,6 +30,15 @@ export const acceptInsitute = async (data) => {
 export const rejectInsitute = async (data) => {
   try {
     await axios.post("/reject-inst", data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const acceptTrainee = async (data) => {
+  try {
+    await axios.post("/send-student-mail", data);
+    console.log(data);
   } catch (error) {
     console.log(error);
   }
