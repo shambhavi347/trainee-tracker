@@ -93,6 +93,16 @@ const instituteSchema = new mongoose.Schema({
     enum: ["pending", "accept", "reject"],
     required: true,
   },
+  salutation: {
+    type: String,
+    enum: [
+      "Mr",
+      "Mrs",
+      "Ms",
+      "Dr",
+    ],
+    required: true,
+  },
   coordName: {
     type: String,
     required: true,

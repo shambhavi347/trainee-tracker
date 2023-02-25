@@ -25,3 +25,14 @@ export const rejectInsitute = async (data) => {
     console.log(error);
   }
 };
+
+//institute application status
+export const getAppstatus = async () => {
+  try {
+    let respone = await axios.get("/get-application-status");
+    // console.log("Ins " + respone.data);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

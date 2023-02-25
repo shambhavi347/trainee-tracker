@@ -25,6 +25,7 @@ const RegInstitute = () => {
     zipcode: "",
     phoneno: "",
     status: "pending",
+    salutation: "",
     coordName: "",
     coordEmail: "",
     coordPhone: "",
@@ -62,78 +63,6 @@ const RegInstitute = () => {
     setUserRegistration({ ...userRegistration, [name]: value });
   };
 
-  {
-    /*const handleSubmit = (e) => {
-    e.preventDefault();
-    const newRecord = {
-      ...userRegistration,
-      id: new Date().getTime().toString(),
-    };
-    setRecord([...record, newRecord]);
-  };
-
-  console.log(userRegistration);
-  const [type, settype] = useState([
-    "Select",
-    "Central University",
-    "State University",
-    "Deemed University",
-    "Private Institute",
-    "Affiliated College",
-    "Autonomous College",
-  ]);
-
-  const Add1 = type.map((Add1) => Add1);
-  const handleChange = (e) => console.log(type[e.target.value]);
-
-  {
-    /*} const [month, setmonth] = useState([
-    "Select",
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ]);
-  const Add2 = month.map((Add2) => Add2);
-const handleMonth = (e) => console.log(month[e.target.value]);
-
-  const [duration, setduration] = useState(["Select", "3 Months", "6 Months"]);
-  const Add3 = duration.map((Add3) => Add3);
-  const handleDuration = (e) => console.log(duration[e.target.value]);
-
-  const [rating, setrating] = useState([
-    "Select",
-    "A++",
-    "A+",
-    "A",
-    "B++",
-    "B+",
-    "B",
-    "C",
-    "D",
-  ]);
-  const Add4 = rating.map((Add4) => Add4);
-  const handleRating = (e) => console.log(rating[e.target.value]);
-
-  const [salutation, setsalutation] = useState([
-    "Select",
-    "Mr",
-    "Ms",
-    "Mrs",
-    "Dr",
-  ]);
-  const Add5 = salutation.map((Add5) => Add5);
-const handleSalutation = (e) => console.log(salutation[e.target.value]);*/
-  }
-
   const PostData = async (e) => {
     e.preventDefault();
     const {
@@ -151,6 +80,7 @@ const handleSalutation = (e) => console.log(salutation[e.target.value]);*/
       zipcode,
       phoneno,
       status,
+      salutation,
       coordName,
       coordEmail,
       coordPhone,
@@ -177,6 +107,7 @@ const handleSalutation = (e) => console.log(salutation[e.target.value]);*/
         zipcode,
         phoneno,
         status,
+        salutation,
         coordName,
         coordEmail,
         coordPhone,
