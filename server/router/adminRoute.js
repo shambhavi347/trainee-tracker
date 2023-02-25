@@ -52,7 +52,8 @@ router.post("/admin-login", async (req, res) => {
       });
 
       //third validation - password matching
-      if (password != instLogin.password) {
+      const isMatch = await bcrypt.compare(password, traineeLogin.password);
+      if (!isMatch) {
         res.status(400).json({ error: "Incorrect Password" });
       } else {
         res.status(200).json({ message: "Institute" });
