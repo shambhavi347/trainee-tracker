@@ -52,7 +52,7 @@ router.post("/admin-login", async (req, res) => {
       });
 
       //third validation - password matching
-      const isMatch = await bcrypt.compare(password, traineeLogin.password);
+      const isMatch = await bcrypt.compare(password, instLogin.password);
       if (!isMatch) {
         res.status(400).json({ error: "Incorrect Password" });
       } else {
