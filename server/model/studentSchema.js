@@ -41,6 +41,10 @@ const studentSchema = new mongoose.Schema({
     enum: ["male", "female", "transgender"],
     required: true,
   },
+  instname: {
+    type: String,
+    required: true,
+  },
   course: {
     type: String,
     enum: ["BCA", "MCA", "Btech", "Mtech"],

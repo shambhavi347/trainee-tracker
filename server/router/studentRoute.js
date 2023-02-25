@@ -5,6 +5,7 @@ const router = express.Router();
 require("../db/database");
 router.use(express.static("../client/src/"));
 const Student = require("../model/studentSchema");
+const Institute = require("../model/instituteSchema");
 const { default: isURL } = require("validator/lib/isURL");
 
 router.post("/reg-stud", async (req, res) => {
@@ -16,6 +17,7 @@ router.post("/reg-stud", async (req, res) => {
       email,
       dob,
       phone_no,
+      instname,
       gender,
       course,
       stream,
@@ -77,6 +79,10 @@ router.post("/reg-stud", async (req, res) => {
         .json({ error: "Select atleast one Intrested Technology !!\n" });
     }
 
+    if (!instname) {
+      return res.status(422).json({ error: "Enter your Institute Name!!\n" });
+    }
+
     var emailRegex =
       /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
@@ -133,7 +139,13 @@ router.post("/reg-stud", async (req, res) => {
     if (userExist1) {
       return res.status(422).json({ error: "Phone no. already Exist" });
     }
-
+    const instExist = await Institute.findOne({ instname: instname });
+    if (!instExist) {
+      return res.status(422).json({
+        error:
+          "Your Institute is either not registered or spelling name is wrong",
+      });
+    }
     const user = new Student({
       prefix,
       first_name,
@@ -142,6 +154,7 @@ router.post("/reg-stud", async (req, res) => {
       dob,
       phone_no,
       gender,
+      instname,
       course,
       stream,
       semester,

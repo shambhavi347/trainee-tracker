@@ -43,7 +43,7 @@ const Demo = () => {
     dob: "",
     phone_no: "",
     gender: "male",
-
+    instname: "",
     course: "",
     stream: "",
     semester: "",
@@ -138,6 +138,7 @@ const Demo = () => {
       email,
       dob,
       gender,
+      instname,
       course,
       stream,
       phone_no,
@@ -159,6 +160,7 @@ const Demo = () => {
         email,
         dob,
         gender,
+        instname,
         course,
         stream,
         phone_no,
@@ -320,6 +322,16 @@ const Demo = () => {
               <br />
               <div className="regBox">
                 <form>
+                  <input
+                    className="form-element form-text"
+                    type="text"
+                    placeholder="Institute Name"
+                    name="instname"
+                    value={user.instname}
+                    autoComplete="off"
+                    onChange={handleChange}
+                  />
+                  <br />
                   <select
                     name="course"
                     className="drop-down"
