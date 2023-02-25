@@ -216,11 +216,11 @@ const InstituteAdmin = () => {
     const fetchData = async () => {
       const data = await getInstitutes();
       // console.log("dta " + data);
-      setInsti(data);
+      setInstitute(data);
       // console.log(inst);
     };
     fetchData();
-  }, [insti]);
+  }, [institute]);
 
   const handleChange = (e) => {
     // callInst();
@@ -564,8 +564,8 @@ const InstituteAdmin = () => {
           )}
         </div>
         <div className="institute-panel">
-          {insti ? (
-            insti.map((inst, key) => <PendingInst inst={inst} />)
+          {institute ? (
+            institute.map((inst, key) => <PendingInst inst={inst} />)
           ) : (
             <>No Application as of yet</>
           )}

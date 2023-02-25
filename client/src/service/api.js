@@ -10,6 +10,15 @@ export const getInstitutes = async () => {
   }
 };
 
+export const getStudent = async () => {
+  try {
+    let respone = await axios.get("/get-pending-student");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const acceptInsitute = async (data) => {
   try {
     await axios.post("/accept-inst", data);
@@ -32,6 +41,15 @@ export const getAppstatus = async () => {
     let respone = await axios.get("/get-application-status");
     // console.log("Ins " + respone.data);
     return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const acceptTrainee = async (data) => {
+  try {
+    await axios.post("/send-student-mail", data);
+    console.log(data);
   } catch (error) {
     console.log(error);
   }
