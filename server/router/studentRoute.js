@@ -7,7 +7,6 @@ router.use(express.static("../client/src/"));
 const Student = require("../model/studentSchema");
 const { default: isURL } = require("validator/lib/isURL");
 
-
 router.post("/reg-stud", async (req, res) => {
   try {
     const {
@@ -25,6 +24,7 @@ router.post("/reg-stud", async (req, res) => {
       passout_year,
       famtech,
       inttech,
+      status,
     } = req.body;
 
     console.log(req.body);
@@ -32,75 +32,94 @@ router.post("/reg-stud", async (req, res) => {
     if (!prefix) {
       return res.status(422).json({ error: "Fill the salutation field !!\n" });
     }
-    if(!first_name) {
+    if (!first_name) {
       return res.status(422).json({ error: "Fill the First Name !!\n" });
     }
-    if(!last_name) {
+    if (!last_name) {
       return res.status(422).json({ error: "Fill the Last Name !!\n" });
     }
-    if(!email) {
+    if (!email) {
       return res.status(422).json({ error: "Fill the Email ID !!\n" });
     }
-    if(!dob) {
+    if (!dob) {
       return res.status(422).json({ error: "Fill the Date of Birth !!\n" });
     }
-    if(!phone_no) {
+    if (!phone_no) {
       return res.status(422).json({ error: "Fill the Phone no !!\n" });
     }
-    if(!gender) {
+    if (!gender) {
       return res.status(422).json({ error: "Fill the Gender !!\n" });
     }
-    if(!course) {
+    if (!course) {
       return res.status(422).json({ error: "Fill the Course !!\n" });
     }
-    if(!stream) {
+    if (!stream) {
       return res.status(422).json({ error: "Fill the Stream !!\n" });
     }
-    if(!semester) {
+    if (!semester) {
       return res.status(422).json({ error: "Fill the Semester !!\n" });
     }
-    if(!cgpa) {
+    if (!cgpa) {
       return res.status(422).json({ error: "Fill the CGPA !!\n" });
     }
-    if(!passout_year) {
+    if (!passout_year) {
       return res.status(422).json({ error: "Fill the Passout Year !!\n" });
     }
-    if(!famtech) {
+    if (!famtech) {
       console.log("fam tech empty");
-      return res.status(422).json({ error: "Select atleast one Familiar Technology !!\n" });
+      return res
+        .status(422)
+        .json({ error: "Select atleast one Familiar Technology !!\n" });
     }
-    if(!inttech) {
-      return res.status(422).json({ error: "Select atleast one Intrested Technology !!\n" });
+    if (!inttech) {
+      return res
+        .status(422)
+        .json({ error: "Select atleast one Intrested Technology !!\n" });
     }
 
-    var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    var emailRegex =
+      /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
-    if(email.length>254) {
-      return res.status(422).json({ error: "Fill the Email ID correctly !!\n" });
+    if (email.length > 254) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Email ID correctly !!\n" });
     }
 
     var emailValid = emailRegex.test(email);
-    if(!emailValid) {
-      return res.status(422).json({ error: "Fill the Email ID correctly !!\n" });
+    if (!emailValid) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Email ID correctly !!\n" });
     }
 
     // Further checking of some things regex can't handle
     var parts = email.split("@");
-    if(parts[0].length>64) {
-      return res.status(422).json({ error: "Fill the Email ID correctly !!\n" });
+    if (parts[0].length > 64) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Email ID correctly !!\n" });
     }
 
     var domainParts = parts[1].split(".");
-    if(domainParts.some(function(part) { return part.length>63; })) {
-      return res.status(422).json({ error: "Fill the Email ID correctly !!\n" });
+    if (
+      domainParts.some(function (part) {
+        return part.length > 63;
+      })
+    ) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Email ID correctly !!\n" });
     }
 
     const phoneRegex = /^[6-9]\d{9}$/gi;
 
     const phoneValid = phoneRegex.test(phone_no);
 
-    if(!phoneValid) {
-      return res.status(422).json({ error: "Fill the Phone no. correctly !!\n" });
+    if (!phoneValid) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Phone no. correctly !!\n" });
     }
 
     console.log("success");
@@ -130,6 +149,7 @@ router.post("/reg-stud", async (req, res) => {
       passout_year,
       famtech,
       inttech,
+      status,
     });
 
     await user.save();

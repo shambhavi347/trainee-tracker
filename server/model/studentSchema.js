@@ -90,6 +90,11 @@ const studentSchema = new mongoose.Schema({
       required: true,
     },
   ],
+  status: {
+    type: String,
+    enum: ["pending", "accept", "reject"],
+    required: true,
+  },
   tokens: [
     {
       token: {

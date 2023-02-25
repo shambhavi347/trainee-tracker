@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/RegStudent.css";
 import { arrowDown, cancel } from "../../Images/Images";
-import { validEmail} from "../../components/Regex";
+import { validEmail } from "../../components/Regex";
 
 const Demo = () => {
   const [page0, setPage0] = useState(true);
@@ -51,7 +51,7 @@ const Demo = () => {
     passout_year: "",
     resume: null,
     pdfname: "",
-
+    status: "pending",
   });
 
   const fileType = ["application/pdf"];
@@ -144,6 +144,7 @@ const Demo = () => {
       semester,
       cgpa,
       passout_year,
+      status,
     } = user;
 
     const res = await fetch("/reg-stud", {
@@ -166,6 +167,7 @@ const Demo = () => {
         passout_year,
         famtech,
         inttech,
+        status,
       }),
     });
 
@@ -175,12 +177,10 @@ const Demo = () => {
     if (!validEmail.test(email)) {
       window.alert("Fill the correct Email Id ");
       console.log("Invalid Email id");
-    }
-    else if (data.error) {
+    } else if (data.error) {
       window.alert("Invalid Registration, " + data.error);
       console.log("Invalid Regestration");
-    } 
-    else {
+    } else {
       window.alert("Registration Successfully");
       console.log("Successfull Regestration");
     }

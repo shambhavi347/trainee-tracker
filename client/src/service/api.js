@@ -55,3 +55,13 @@ export const acceptTrainee = async (data) => {
     console.log(error);
   }
 };
+
+export const rejectTrainee = async (data) => {
+  try {
+    const response = await axios.post("/reject-student", data);
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};

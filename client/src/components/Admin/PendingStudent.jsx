@@ -1,15 +1,20 @@
 import React from "react";
-import { acceptTrainee } from "../../service/api";
+import { acceptTrainee, rejectTrainee } from "../../service/api";
 
 const PendingStudent = ({ stud }) => {
   const date = new Date(stud.dob);
   const acceptStud = async () => {
     try {
       const res = await acceptTrainee({ email: stud.email });
-      const data = await res.json();
-      console.log(data);
-      // console.log(data);
-      window.alert(data);
+      window.alert(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const rejectStud = async () => {
+    try {
+      const res = await rejectTrainee({ email: stud.email });
+      window.alert(res);
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +49,7 @@ const PendingStudent = ({ stud }) => {
         </div>
         <div>
           <button onClick={acceptStud}>Accept</button>
-          <button>Reject</button>
+          <button onClick={rejectStud}>Reject</button>
         </div>
       </div>
       <br />
