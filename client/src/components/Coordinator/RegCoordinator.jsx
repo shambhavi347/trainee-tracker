@@ -95,7 +95,7 @@ const RegCoordinator = () => {
           <div className="main">
             <h1 className="regHead">Register Yourself</h1>
             <div className="regbox">
-              <form action="" className="form-body" onSubmit={handleSubmit}>
+              <form action="" method="POST" className="form-body">
                 <select
                   name="salutation"
                   className="drop-down"
