@@ -185,14 +185,19 @@ router.post("/institute-reg", async (req, res) => {
   }
 });
 
-router.get("/get-application-status",instituteAuthenticate,async (req ,res) =>{
-  try {
-  const id = req.rootUser._id;
-  const inst = await Institute.find({_id:id});
-  console.log(inst);  
-  } catch (error) {
-   console.log(error); 
+router.get(
+  "/get-application-status",
+  instituteAuthenticate,
+  async (req, res) => {
+    try {
+      const id = req.rootUser._id;
+      const inst = await Institute.find({ _id: id });
+      console.log(inst.status);
+      res.status(200).json({ message: inst.status });
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 module.exports = router;

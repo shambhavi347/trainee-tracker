@@ -5,12 +5,15 @@ import "../Institute/RegInstitute";
 import { getAppstatus } from "../../service/api";
 
 const Home = () => {
-  const [Status, setStatus] = useState("");
+  const [status, setStatus] = useState("");
   //made a function for calling api.js and then calling same function below
   useEffect(() => {
     const fetchStatus = async () => {
       const status = await getAppstatus();
+      const data = await status.json();
+      console.log(data);
       setStatus(status);
+      console.log(status);
     };
     fetchStatus();
   }, []);
@@ -24,10 +27,10 @@ const Home = () => {
           Thankyou for registering with us.🤝🏽Your application is successfully
           submitted and it's current status can be viewed here.
         </h3>
-      </div>
-      <div className="container">
-        <h3>Application Status</h3>
-        <p>{Status}</p>
+        <div className="container">
+          <h3>Application Status</h3>
+          <p>{status}</p>
+        </div>
       </div>
     </>
   );
