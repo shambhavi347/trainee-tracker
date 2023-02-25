@@ -3,7 +3,7 @@ import axios from "axios";
 export const getInstitutes = async () => {
   try {
     let respone = await axios.get("/get-pending-institute");
-    // console.log("Ins " + respone.data);
+
     return respone.data;
   } catch (error) {
     console.log(error);

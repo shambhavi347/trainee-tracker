@@ -192,8 +192,8 @@ router.get(
     try {
       const id = req.rootUser._id;
       const inst = await Institute.find({ _id: id });
-      console.log(inst.status);
-      res.status(200).json({ message: inst.status });
+      console.log(inst[0].status);
+      res.send(inst[0].status);
     } catch (error) {
       console.log(error);
     }

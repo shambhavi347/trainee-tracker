@@ -9,11 +9,8 @@ const Home = () => {
   //made a function for calling api.js and then calling same function below
   useEffect(() => {
     const fetchStatus = async () => {
-      const status = await getAppstatus();
-      const data = await status.json();
-      console.log(data);
-      setStatus(status);
-      console.log(status);
+      const response = await getAppstatus();
+      setStatus(response);
     };
     fetchStatus();
   }, []);
