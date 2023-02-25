@@ -1,5 +1,5 @@
 import React from "react";
-import "../CSS/NavBar2.css";
+import "../CSS/NavBar1.css";
 import { cdacLogo } from "../Images/Images";
 import { useNavigate } from "react-router-dom";
 const NavBar2 = () => {

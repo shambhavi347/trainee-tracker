@@ -26,6 +26,20 @@
   margin-left: -30%;
   margin-top: 1px;
 }
+
+.head-title-2 {
+  text-align: left;
+  padding-left: 0px;
+  width: 45%;
+  color: #00adb5;
+  float: left;
+
+  margin: -10px 0px;
+  margin-right: 48%;
+  margin-left: -50%;
+  margin-top: 1px;
+}
+
 .buttonLogin {
   width: 15%;
 
