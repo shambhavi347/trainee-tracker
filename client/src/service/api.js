@@ -65,3 +65,33 @@ export const rejectTrainee = async (data) => {
     console.log(error);
   }
 };
+
+export const getInvitation = async () => {
+  try {
+    let respone = await axios.get("/get-invitation");
+
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCoordinators = async () => {
+  try {
+    let respone = await axios.get("/get-coordinators");
+
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const revokeInvitation = async (data) => {
+  try {
+    const response = await axios.post("/revoke-invitation", data);
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};

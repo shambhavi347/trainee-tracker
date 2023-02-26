@@ -3,6 +3,7 @@ const router = express.Router();
 require("../db/database");
 router.use(express.static("../client/src/"));
 const Coordinator = require("../model/coordinatorSchema");
+const Invitation = require("../model/invitationSchema");
 
 router.post("/coordinator-reg", async (req, res) => {
   try {
@@ -78,7 +79,10 @@ router.post("/coordinator-reg", async (req, res) => {
     });
     const coordinatorReg = await coordinator.save();
     if (coordinatorReg) {
-      res.status(201).json({ message: "You are successfully registered!✌" });
+      {
+        await Invitation.findOneAndDelete({ email: email });
+        res.status(201).json({ message: "You are successfully registered!✌" });
+      }
     } else {
       res.status(500).json({ error: "Failed to register☹" });
     }
