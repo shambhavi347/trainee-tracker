@@ -184,7 +184,7 @@ const RegInstitute = () => {
                   value={userRegistration.month}
                   onChange={handlechange}
                 >
-                  <option value="Select">Select</option>
+                  <option value="Select">Select Start Month</option>
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -205,7 +205,7 @@ const RegInstitute = () => {
                   value={userRegistration.duration}
                   onChange={handlechange}
                 >
-                  <option value="Select">Select</option>
+                  <option value="Select">Select Internship Duration</option>
                   <option value="3 Months">3 Months</option>
                   <option value="6 Months">6 Months</option>
                 </select>
@@ -216,7 +216,7 @@ const RegInstitute = () => {
                   value={userRegistration.rating}
                   onChange={handlechange}
                 >
-                  <option value="Select">Select</option>
+                  <option value="Select">Select NAAC Rating</option>
                   <option value="A++">A++</option>
                   <option value="A+">A+</option>
                   <option value="A">A</option>
@@ -233,7 +233,7 @@ const RegInstitute = () => {
                   value={userRegistration.type}
                   onChange={handlechange}
                 >
-                  <option value="Select">Select</option>
+                  <option value="Select">Select Institute Type</option>
                   <option value="Central University">Central University</option>
                   <option value="State University">State University</option>
                   <option value="Deemed University">Deemed University</option>

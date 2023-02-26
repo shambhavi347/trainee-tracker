@@ -129,83 +129,73 @@ const RegCoordinator = () => {
   return (
     <>
       <NavBar2 />
-      <div class="divUpper">
-        <div className="body">
-          <div className="main">
-            <h1 className="regHead">Register Yourself</h1>
-            <div className="regbox">
-              <form action="" method="POST" className="form-body">
-                <select
-                  name="salutation"
-                  className="drop-down"
-                  value={userRegistration.salutation}
-                  onChange={handlechange}
-                >
-                  <option value="Select">Select</option>
-                  <option value="Mr">Mr</option>
-                  <option value="Mrs">Mrs</option>
-                  <option value="Ms">Ms</option>
-                  <option value="Dr">Dr</option>
-                </select>
-                <div className="name">
-                  <input
-                    className="form-text form__input"
-                    type="text"
-                    autoComplete="off"
-                    value={userRegistration.name}
-                    onChange={handlechange}
-                    name="name"
-                    id="name"
-                    placeholder="Coordinator's Name"
-                  />
-                </div>
+      <div className="body-reg-coord">
+        <h1 className="regHead-coord">Register Yourself</h1>
+        <div className="form-body-coord-up">
+          <form action="" method="POST" className="form-body-coord">
+            <select
+              name="salutation"
+              className="drop-down-coord"
+              value={userRegistration.salutation}
+              onChange={handlechange}
+            >
+              <option value="Select">Select Salutation</option>
+              <option value="Mr">Mr</option>
+              <option value="Mrs">Mrs</option>
+              <option value="Ms">Ms</option>
+              <option value="Dr">Dr</option>
+            </select>
 
-                <div className="email">
-                  <input
-                    className="form-email form__input"
-                    type="email"
-                    autoComplete="off"
-                    value={userRegistration.email}
-                    onChange={handlechange}
-                    name="email"
-                    id="email"
-                    placeholder="Coordinator's Email"
-                  />
-                </div>
+            <input
+              className="form-text-coord"
+              type="text"
+              autoComplete="off"
+              value={userRegistration.name}
+              onChange={handlechange}
+              name="name"
+              id="name"
+              placeholder="Coordinator's Name"
+            />
 
-                <div className="phone">
-                  <input
-                    className="form-text form__input"
-                    type="text"
-                    autoComplete="off"
-                    value={userRegistration.phone}
-                    onChange={handlechange}
-                    name="phone"
-                    id="phone"
-                    placeholder="Coordinator's Phone No."
-                  />
-                </div>
-                <div className="password">
-                  <input
-                    className="form-text form__input"
-                    type="text"
-                    autoComplete="off"
-                    value={userRegistration.password}
-                    onChange={handlechange}
-                    name="password"
-                    id="password"
-                    placeholder="Set Password"
-                  />
-                </div>
+            <input
+              className="form-text-coord"
+              type="email"
+              autoComplete="off"
+              value={userRegistration.email}
+              onChange={handlechange}
+              name="email"
+              id="email"
+              placeholder="Coordinator's Email"
+            />
 
-                <div className="footer">
-                  <button type="submit" className="btn" onClick={PostData}>
-                    Register
-                  </button>
-                </div>
-              </form>
+            <input
+              className="form-text-coord"
+              type="text"
+              autoComplete="off"
+              value={userRegistration.phone}
+              onChange={handlechange}
+              name="phone"
+              id="phone"
+              placeholder="Coordinator's Phone No."
+            />
+
+            <input
+              className="form-text-coord"
+              type="text"
+              autoComplete="off"
+              value={userRegistration.password}
+              onChange={handlechange}
+              name="password"
+              id="password"
+              placeholder="Set Password"
+            />
+
+            <div className="footer-coord">
+              <button type="submit" className="btn-coord" onClick={PostData}>
+                Register
+              </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>
