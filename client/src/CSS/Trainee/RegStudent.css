@@ -73,7 +73,7 @@
 .form-text,
 .form-date,
 .form-email,
-.form-password{
+.form-password {
   width: 250px;
   padding: 20px;
   color: black;
@@ -267,7 +267,7 @@ input[type="file"]::file-selector-button:hover {
   /* margin-left: 20%; */
   /* color: #ccc; */
   /* padding: 1%; */
-  
+
   border: 2px #00adb5 solid;
   width: 40%;
   margin-left: 30%;
@@ -351,7 +351,7 @@ input[type="file"]::file-selector-button:hover {
   margin-bottom: 15px;
   margin: 2%;
   margin-top: 20px;
-  margin-left: 40%;
+  margin-left: 36%;
   font-size: x-large;
   background-color: #222831;
   border: 2px #00adb5 solid;
