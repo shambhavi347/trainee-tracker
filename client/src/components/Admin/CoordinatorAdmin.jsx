@@ -73,7 +73,7 @@ const CoordinatorAdmin = () => {
       window.alert("Invalid Registration, " + data.error);
       console.log("Invalid Regestration");
     } else {
-      window.alert("Registration Successfully");
+      // window.alert("Registration Successfully");
       console.log("Successfull Regestration");
     }
   };
@@ -140,7 +140,7 @@ const CoordinatorAdmin = () => {
                   className="coord-drop"
                   onChange={handleChange}
                 >
-                  <option value="null">Enter Salutation</option>
+                  <option value="null">Salutation</option>
                   <option value="Mr">Mr</option>
                   <option value="Mrs">Mrs</option>
                   <option value="Ms">Miss</option>

@@ -15,6 +15,10 @@ const NavBar3 = () => {
     navigate(path);
   };
 
+  const routeMain = () => {
+    let path = "/";
+    navigate(path);
+  };
   //Drop-Down Menu
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -28,7 +32,7 @@ const NavBar3 = () => {
   return (
     <>
       <div className="NavBody">
-        <div className="logoDiv">
+        <div className="logoDiv" onClick={routeMain}>
           <img src={cdacLogo} alt="CDAC LOGO" className="logo" />
         </div>
         <div className="head-title">

@@ -242,6 +242,7 @@
   padding: 0;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .img-expnd {
@@ -318,6 +319,7 @@
   border: none;
   border-radius: 5px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .btn-accpt {
@@ -355,6 +357,7 @@
   /* width: fit-content; */
   width: 100%;
   height: 100%;
+  /* cursor: pointer; */
 }
 
 .info-outer {
