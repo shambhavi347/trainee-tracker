@@ -116,6 +116,7 @@
   margin: 1%;
   padding: 2%;
   cursor: pointer;
+  font-weight: bold;
   height: 100%;
   text-align: justify;
 }
