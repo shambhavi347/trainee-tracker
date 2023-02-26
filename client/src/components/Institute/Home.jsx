@@ -18,13 +18,13 @@ const Home = () => {
   return (
     <>
       <NavBar3 />
-      <div className="body">
+      <div className="body-inst-home">
         <h1>Welcome to CDAC Trainee Tracker👩🏽‍💻</h1>
         <h3>
           Thankyou for registering with us.🤝🏽Your application is successfully
           submitted and it's current status can be viewed here.
         </h3>
-        <div className="container">
+        <div className="container-inst-home">
           <h3>Application Status</h3>
           <p>{status}</p>
         </div>
