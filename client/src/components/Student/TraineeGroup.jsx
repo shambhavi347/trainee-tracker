@@ -45,7 +45,7 @@ const TraineeGroup = () => {
           <div className="trainee">
             <h3 className="trainee-title">Trainee</h3>
             <h3 className="strength-title">{trainee.length} trainees </h3>
-            <hr style={{ marginLeft: "26.2%", marginRight: "25.6%" }} />
+            <hr style={{ marginLeft: "25.2%", marginRight: "24.6%" }} />
             {trainee.map((val, key) => (
               <div className="people">
                 {" "}
