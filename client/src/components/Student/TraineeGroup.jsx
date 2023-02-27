@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "../../CSS/Trainee/TraineeGroup.css";
-
+// import { getStudent } from "../../service/api";
 const TraineeGroup = () => {
   const [mentor, setMentor] = useState({ name: "Sunil Kumar" });
+  // const [tra, setTra] = useState([]);
   const [trainee, setTrainee] = useState([
     {
       name: "Aakriti Saxena",
@@ -32,6 +33,14 @@ const TraineeGroup = () => {
       name: "Prachee Singh",
     },
   ]);
+
+  // useEffect(() => {
+  //   const fetchPeople = async () => {
+  //     const response = await getStudent();
+  //     setTra(response);
+  //   };
+  //   fetchPeople();
+  // }, [tra]);
 
   return (
     <>
