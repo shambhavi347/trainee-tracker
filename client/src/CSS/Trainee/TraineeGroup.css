@@ -1,18 +1,28 @@
 * {
   box-sizing: border-box;
 }
-.DivUp1 {
-  background-color: #222831;
-  background: -webkit-linear-gradient(to top, #222831, #393e46);
+.DivUp2 {
   background: linear-gradient(to bottom, #393e46, #00adb5);
-  margin-top: -18.5%;
+
+  /* background-color: blue; */
+  margin-top: 0;
   /* border: 20px #00adb5 solid; */
-  padding: 2%;
+  /* padding: 2%; */
   height: 100vh;
-  margin-bottom: 15%;
-  overflow: hidden;
+  /* margin: -8%; */
+  /* margin-bottom: 15%; */
+  /* overflow: hidden; */
   overflow-y: scroll;
+  border: 2px #00adb5 solid;
+  padding-bottom: 10%;
+  /* padding-top: -10%; */
 }
+
+/* .scroll {
+  height: 100vh;
+  background-color: aqua;
+  overflow-y: scroll;
+} */
 
 .coord-title {
   width: 100%;
