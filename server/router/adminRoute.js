@@ -209,6 +209,7 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
 router.post("/reg-coord", adminAuthenticate, async (req, res) => {
   try {
     const { salutation, first_name, last_name, email, date } = req.body;
+    console.log(req.body);
     if (!salutation) {
       return res.status(422).json({ error: "Fill the salutation field !!\n" });
     }

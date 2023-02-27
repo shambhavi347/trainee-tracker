@@ -48,7 +48,7 @@ const CoordinatorAdmin = () => {
     e.preventDefault();
     setCoord({ ...coord, date: new Date() });
     const { salutation, first_name, last_name, email, date } = coord;
-
+    console.log(coord);
     const res = await fetch("/reg-coord", {
       method: "POST",
       headers: {
