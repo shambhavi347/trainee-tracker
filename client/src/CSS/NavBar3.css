@@ -71,3 +71,17 @@
 .menu {
   background-color: #393e46;
 }
+
+.pass-box {
+  position: absolute;
+  /* margin: 5%; */
+  margin-top: 5%;
+  margin-right: 2%;
+  right: 0;
+  height: 45%;
+  width: 30%;
+  background-color: #eeeeee;
+  border-radius: 20px;
+  padding: 2%;
+  border: 2px #00adb5 solid;
+}

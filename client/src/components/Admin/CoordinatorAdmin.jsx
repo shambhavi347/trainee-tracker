@@ -114,15 +114,12 @@ const CoordinatorAdmin = () => {
       return parseInt(secondsPast / 3600) + "h";
     }
     if (secondsPast > 86400) {
-      day = timeStamp.getDate();
-      month = timeStamp
+      day = d.getDate();
+      month = d
         .toDateString()
         .match(/ [a-zA-Z]*/)[0]
         .replace(" ", "");
-      year =
-        timeStamp.getFullYear() === now.getFullYear()
-          ? ""
-          : " " + timeStamp.getFullYear();
+      year = d.getFullYear() === now.getFullYear() ? "" : " " + d.getFullYear();
       return day + " " + month + year;
     }
   }
@@ -196,7 +193,7 @@ const CoordinatorAdmin = () => {
                           </button>
                           {val.date ? (
                             <div className="timestamp">
-                              {timeSince(val.date)} ago
+                              {timeSince(val.date)}
                             </div>
                           ) : null}
                         </div>
