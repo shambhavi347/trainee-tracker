@@ -47,10 +47,8 @@ const TraineeGroup = () => {
       <div className="DivUp2">
         <div className="scroll">
           <h3 className="coord-title">Coordinator Name</h3>
-          {/* <hr /> */}
           <hr style={{ marginLeft: "26.2%", marginRight: "25.6%" }} />
           <div className="mentor"> {mentor.name}</div>
-          {/* <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} /> */}
           <div className="trainee">
             <h3 className="trainee-title">Trainee</h3>
             <h3 className="strength-title">{trainee.length} trainees </h3>
