@@ -1,6 +1,161 @@
-.divBdy {
-  background-color: #eeeeee;
+.divBdyCoord {
+  background-color: #222831;
   margin: 0;
   height: 100vh;
   margin-top: -117px;
+  padding: 2%;
+  overflow-y: auto;
+}
+
+.additon {
+  height: 100vh;
+  padding: 1%;
+  margin: 0;
+  margin-bottom: 3%;
+}
+.coord-form-body {
+  margin-left: 8%;
+}
+.coord-panel {
+  color: #00adb5;
+}
+.coord-form,
+.coord-form-name {
+  margin: 1%;
+  padding: 1%;
+  width: 30%;
+  border-radius: 10px;
+  background-color: #393e46;
+  border: 1px #00adb5 solid;
+  color: #eeeeee;
+}
+.coord-form-name {
+  width: 15%;
+}
+.coord-drop {
+  padding: 1%;
+  border-radius: 10px;
+  background-color: #393e46;
+  border: 1px #00adb5 solid;
+  color: #eeeeee;
+}
+.coord-btn {
+  width: 10%;
+  padding: 1%;
+  border-radius: 10px;
+  background-color: #00adb5;
+  border: 1px #eeeeee solid;
+  color: #eeeeee;
+  font-weight: bold;
+  margin-left: 3%;
+}
+.coord-btn:hover {
+  background-color: #eeeeee;
+  color: #00adb5;
+  border: 1px #00adb5 solid;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.title-invites {
+  color: #00adb5;
+}
+
+.invitated-panel,
+.accepted-panel {
+  color: #00adb5;
+  width: 50%;
+  margin-left: 26%;
+}
+.invites {
+  padding: 2% 3%;
+  width: 95%;
+  background-color: #393e46;
+  margin: 1%;
+  border-radius: 10px;
+  border: 1px #00adb5 solid;
+}
+.name-invites {
+  width: 50%;
+  padding: 0;
+  float: left;
+  font-weight: bold;
+}
+.right-invites {
+  width: 50%;
+  float: right;
+}
+
+.btn-invites {
+  margin-left: 50%;
+  background-color: #f48484;
+  border: 1px #222831 solid;
+  color: #222831;
+  padding: 2%;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 1%;
+}
+.btn-invites:hover {
+  background-color: #eeeeee;
+  color: #f48484;
+}
+
+.timestamp {
+  float: right;
+  color: #eeeeee;
+  opacity: 0.5;
+  margin-top: 2%;
+  /* margin-left: 2px; */
+  /* background-color: #f48484; */
+}
+
+.coordName {
+  background-color: #393e46;
+  border-radius: 10px;
+  border: 1px #00adb5 solid;
+  width: 95%;
+  margin: 1%;
+  padding: 2%;
+  cursor: pointer;
+  font-weight: bold;
+  height: 100%;
+  text-align: justify;
+}
+
+.coordName:hover {
+  background-color: #eeeeee;
+  font-weight: bold;
+  font-size: large;
+}
+
+.img-arrow {
+  margin: 0;
+  width: 30px;
+  height: 20%;
+  float: right;
+  padding: 1%;
+}
+
+.img-arr {
+  width: 100%;
+  height: 100%;
+}
+
+.img-arrow-left {
+  width: 30px;
+  height: 5%;
+  float: left;
+  cursor: pointer;
+}
+
+.title-coord {
+  margin-left: 2%;
+  margin-top: 0;
+  color: #00adb5;
+}
+.coordAssign {
+  margin: 0 2%;
+  color: #00adb5;
 }

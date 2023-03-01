@@ -8,7 +8,9 @@ import settings from "../Images/settings.png";
 import arrowDown from "../Images/arrowDown.png";
 import cancel from "../Images/cancel.png";
 import expand from "../Images/expand.png";
-
+import arrowLeft from "../Images/left-arrow.png";
+import arrowRight from "../Images/right-arrow.png";
+import caveman from "../Images/caveman.gif";
 export {
   cdacLogo,
   instagram,
@@ -20,4 +22,7 @@ export {
   arrowDown,
   cancel,
   expand,
+  arrowLeft,
+  arrowRight,
+  caveman,
 };

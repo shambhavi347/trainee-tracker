@@ -345,13 +345,17 @@ input[type="file"]::file-selector-button:hover {
   padding: 1%;
   border-radius: 22px;
   border: 0;
-  height: 60px;
-  width: 259px;
-  margin: 10px 15px;
-  margin-bottom: 15px;
+  height: 55px;
+  /* height: 50%; */
+  /* width: 259px; */
+  width: 20.1%;
+  /* margin: 10px 15px; */
+  /* margin-bottom: 15px; */
+  margin-bottom: 2%;
   margin: 2%;
-  margin-top: 20px;
-  margin-left: 36%;
+  /* margin-top: 20px; */
+  margin-top: 1.5%;
+  margin-left: 40%;
   font-size: x-large;
   background-color: #222831;
   border: 2px #00adb5 solid;

@@ -9,6 +9,10 @@ import RegCoordinator from "./components/Coordinator/RegCoordinator";
 import CoordinatorDash from "./components/Coordinator/CoordinatorDash";
 import StudDash from "./components/Student/StudDash";
 import TraineeReg from "./components/Student/TraineeReg";
+import Error from "./components/Error";
+import Logout from "./components/Logout";
+import LogoutTrainee from "./components/LogoutTrainee";
+import TraineeProfile from "./components/Student/TraineeProfile";
 
 const App = () => {
   return (
@@ -24,6 +28,10 @@ const App = () => {
           <Route path="/coordinator-home" element={<CoordinatorDash />} />
           <Route path="/trainee-dashboard" element={<StudDash />} />
           <Route path="/trainee-reg" element={<TraineeReg />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="*" element={<Error />} />
+          <Route path="/trainee-profile" element={<TraineeProfile />} />
+          <Route path="/trainee-logout" element={<LogoutTrainee />} />
         </Routes>
       </Router>
     </>

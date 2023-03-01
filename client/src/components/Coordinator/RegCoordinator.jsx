@@ -39,7 +39,7 @@ const RegCoordinator = () => {
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = "/coordinator-home";
+    let path = "/";
     navigate(path);
   };
 

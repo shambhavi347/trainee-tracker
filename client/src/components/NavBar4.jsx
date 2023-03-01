@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../CSS/NavBar3.css";
+import "../CSS/NavBar4.css";
 import { cdacLogo, settings, cancel } from "../Images/Images";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-const NavBar3 = () => {
+const NavBar4 = () => {
   //navigation
   let navigate = useNavigate();
   // const routeChange = () => {
@@ -44,7 +44,7 @@ const NavBar3 = () => {
     if (old_pass === new_pass) {
       window.alert("New Password is same as old Password! Enter again");
     } else {
-      const res = await fetch("/change-password", {
+      const res = await fetch("/change-password-trainee", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -123,9 +123,14 @@ const NavBar3 = () => {
             <MenuItem id="menu-items" onClick={handlePassword}>
               Change Password
             </MenuItem>
-            <Link to="/logout">
+            <Link to="/trainee-logout">
               <MenuItem id="menu-items" onClick={handleClose}>
                 Logout
+              </MenuItem>
+            </Link>
+            <Link to="/trainee-profile">
+              <MenuItem id="menu-items" onClick={handleClose}>
+                Profile
               </MenuItem>
             </Link>
           </Menu>
@@ -171,4 +176,4 @@ const NavBar3 = () => {
   );
 };
 
-export default NavBar3;
+export default NavBar4;

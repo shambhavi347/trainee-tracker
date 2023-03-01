@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import NavBar3 from "../NavBar3";
+import NavBar4 from "../NavBar4";
 import TraineeGroup from "./TraineeGroup";
 import TraineeProject from "./TraineeProject";
 import TraineeDiscuss from "./TraineeDiscuss";
 
-import "../../CSS/Admin/AdminDash.css";
+import "../../CSS/Trainee/TraineeDash.css";
 
 const StudDash = () => {
   const [Grp, setGrp] = useState(false);
@@ -13,11 +13,11 @@ const StudDash = () => {
 
   return (
     <>
-      <NavBar3 />
-      <div className="selector">
-        <div className="btn-select">
+      <NavBar4 />
+      <div className="selector-stud">
+        <div className="btn-select-stud">
           <button
-            className="btn-institute"
+            className="btn-institute-stud"
             onClick={() => {
               setGrp(false);
               setDiss(true);
@@ -27,7 +27,7 @@ const StudDash = () => {
             Discussion
           </button>
           <button
-            className="btn-trainee"
+            className="btn-trainee-stud"
             onClick={() => {
               setGrp(false);
               setDiss(false);
@@ -37,7 +37,7 @@ const StudDash = () => {
             Project Work
           </button>
           <button
-            className="btn-coordinator"
+            className="btn-coordinator-stud"
             onClick={() => {
               setGrp(true);
               setDiss(false);
@@ -47,16 +47,16 @@ const StudDash = () => {
             People
           </button>
         </div>
-        {Grp ? (
-          <TraineeGroup />
-        ) : Proj ? (
-          <TraineeProject />
-        ) : Diss ? (
-          <TraineeDiscuss />
-        ) : (
-          <p> ERROR </p>
-        )}
       </div>
+      {Grp ? (
+        <TraineeGroup />
+      ) : Proj ? (
+        <TraineeProject />
+      ) : Diss ? (
+        <TraineeDiscuss />
+      ) : (
+        <p> ERROR </p>
+      )}
       {/* <div>Heelo</div> */}
     </>
   );

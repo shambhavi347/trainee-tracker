@@ -76,3 +76,45 @@ export const getSelectedStudents = async () => {
     console.log(error);
   }
 };
+
+export const getInvitation = async () => {
+  try {
+    let respone = await axios.get("/get-invitation");
+
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCoordinators = async () => {
+  try {
+    let respone = await axios.get("/get-coordinators");
+
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const revokeInvitation = async (data) => {
+  try {
+    const response = await axios.post("/revoke-invitation", data);
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get student data
+
+export const StudentData = async () => {
+  try {
+    const response = await axios.get("/student-data");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
