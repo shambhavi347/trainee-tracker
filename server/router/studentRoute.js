@@ -8,6 +8,7 @@ const Student = require("../model/studentSchema");
 const Institute = require("../model/instituteSchema");
 const { default: isURL } = require("validator/lib/isURL");
 
+// login page
 router.post("/reg-stud", async (req, res) => {
   try {
     const {
@@ -178,5 +179,6 @@ router.post("/reg-stud", async (req, res) => {
     console.log(err);
   }
 });
+
 
 module.exports = router;

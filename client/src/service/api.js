@@ -95,3 +95,15 @@ export const revokeInvitation = async (data) => {
     console.log(error);
   }
 };
+
+// get student data
+
+export const StudentData = async () => {
+  try {
+    const response = await axios.get("/student-data");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};

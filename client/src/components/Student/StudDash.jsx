@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavBar3 from "../NavBar3";
+import NavBar4 from "../NavBar4";
 import TraineeGroup from "./TraineeGroup";
 import TraineeProject from "./TraineeProject";
 import TraineeDiscuss from "./TraineeDiscuss";
@@ -13,7 +13,7 @@ const StudDash = () => {
 
   return (
     <>
-      <NavBar3 />
+      <NavBar4 />
       <div className="selector-stud">
         <div className="btn-select-stud">
           <button
