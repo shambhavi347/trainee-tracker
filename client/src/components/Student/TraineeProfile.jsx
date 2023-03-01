@@ -12,13 +12,13 @@ const TraineeProfile = () => {
       setuserData(response);
     };
     fetchPeople();
-  }, [userData]);
+  }, []);
 
   return (
     <>
       <NavBar5 />
     </>
-  )
-}
+  );
+};
 
-export default TraineeProfile
+export default TraineeProfile;

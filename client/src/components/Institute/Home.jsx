@@ -19,6 +19,8 @@ const Home = () => {
   useEffect(() => {
     const getStudent = async () => {
       const response = await getSelectedStudents();
+      console.log(response);
+      setStud(response);
     };
     getStudent();
   }, [stud]);
@@ -60,7 +62,11 @@ const Home = () => {
         </div>
         <div className="info-inst-home">
           <h3 className="content">List of selected Students</h3>
-          {stud}
+          {stud.map((val) => (
+            <div>
+              {val.first_name} {val.last_name}
+            </div>
+          ))}
         </div>
       </div>
     </>

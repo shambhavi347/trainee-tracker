@@ -211,18 +211,19 @@ router.get(
       const inst = await Institute.findOne({ _id: req.rootUser._id });
       console.log(inst.name);
       const stud = await Student.find({
-        // $and: [
-        //   {
-        //     instname: inst.name,
-        //   },
-        //   {
-        //     status: "accept",
-        //   },
-        // ],
-        instname: inst.name,
+        $and: [
+          {
+            instname: inst.name,
+          },
+          {
+            status: "accept",
+          },
+        ],
+        // instname: inst.name,
       });
-      console.log("student" + stud);
-      console.log("DE NA OUTPUT");
+      // console.log("student" + stud);
+      // console.log("Name: " + stud[0].first_name + " " + stud[0].last_name);
+      // console.log("DE NA OUTPUT");
       //checking if we are getting any results in stud or its empty
       if (stud) {
         res.send(stud);
