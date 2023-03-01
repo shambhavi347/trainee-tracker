@@ -199,4 +199,37 @@ router.get(
   }
 );
 
+router.get(
+  "/get-selected-students",
+  instituteAuthenticate,
+  async (req, res) => {
+    try {
+      // const {
+      //   name, //sending name of institute to further match it with student's institute name
+      // } = req.body;
+      const inst = await Institute.findOne({ _id: req.rootUser._id });
+      console.log(inst);
+      const stud = await Student.find({
+        $and: [
+          {
+            instname: inst.name,
+          },
+          {
+            status: "accept",
+          },
+        ],
+      });
+      console.log(stud);
+      //checking if we are getting any results in stud or its empty
+      if (stud) {
+        res.send(stud);
+      } else {
+        res.send("No students");
+      }
+    } catch (error) {
+      res.send(error);
+    }
+  }
+);
+
 module.exports = router;

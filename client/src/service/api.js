@@ -65,3 +65,14 @@ export const rejectTrainee = async (data) => {
     console.log(error);
   }
 };
+
+//getting list of selected students
+export const getSelectedStudents = async () => {
+  try {
+    let respone = await axios.get("/get-selected-students");
+    // console.log(data);
+    return respone.data; //talking about data getting from response
+  } catch (error) {
+    console.log(error);
+  }
+};

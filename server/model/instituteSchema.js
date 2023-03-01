@@ -95,12 +95,7 @@ const instituteSchema = new mongoose.Schema({
   },
   salutation: {
     type: String,
-    enum: [
-      "Mr",
-      "Mrs",
-      "Ms",
-      "Dr",
-    ],
+    enum: ["Mr", "Mrs", "Ms", "Dr"],
     required: true,
   },
   coordName: {
