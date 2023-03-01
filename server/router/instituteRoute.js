@@ -209,7 +209,7 @@ router.get(
       //   name, //sending name of institute to further match it with student's institute name
       // } = req.body;
       const inst = await Institute.findOne({ _id: req.rootUser._id });
-      console.log(inst.name);
+      //console.log(inst.name);
       const stud = await Student.find({
         $and: [
           {
