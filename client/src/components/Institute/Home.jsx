@@ -60,9 +60,6 @@ const Home = () => {
         </div>
         <div className="info-inst-home">
           <h3 className="content">List of selected Students</h3>
-          <p className="line">
-            ---------------------------------------------------------------------------
-          </p>
           {stud}
         </div>
       </div>

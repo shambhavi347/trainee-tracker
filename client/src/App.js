@@ -13,6 +13,9 @@ import Error from "./components/Error";
 import Logout from "./components/Logout";
 import LogoutTrainee from "./components/LogoutTrainee";
 import TraineeProfile from "./components/Student/TraineeProfile";
+import CoordPeople from "./components/Coordinator/CoordPeople";
+import CoordProject from "./components/Coordinator/CoordProject";
+import CoordDiscussion from "./components/Coordinator/CoordDiscussion";
 
 const App = () => {
   return (
@@ -32,6 +35,9 @@ const App = () => {
           <Route path="*" element={<Error />} />
           <Route path="/trainee-profile" element={<TraineeProfile />} />
           <Route path="/trainee-logout" element={<LogoutTrainee />} />
+          <Route path="/coordinator-people" element={<CoordPeople />} />
+          <Route path="/coodinator-project" element={<CoordProject />} />
+          <Route path="/coordinator-discussion" element={<CoordDiscussion />} />
         </Routes>
       </Router>
     </>

@@ -3,7 +3,7 @@
 }
 
 .selector-coord-home {
-  height: 100vh;
+  height: 10vh;
   width: auto;
   margin: 0;
   background-color: #393e46;
@@ -11,14 +11,18 @@
 
 .btn-select-coord-home {
   width: 100%;
-  height: 30%;
+  height: 100%;
+  /* background-color: aquamarine;
+  display: block;
+  padding-bottom: 0%;
+  margin-bottom: 0%; */
 }
 
 .btn-coord-home,
 .btn-coord-home2,
 .btn-coord-home3 {
   width: 33.33%;
-  height: 30%;
+  height: 98%;
   border: none;
   background-color: #393e46;
   color: #00adb5;

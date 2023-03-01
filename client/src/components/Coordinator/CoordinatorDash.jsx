@@ -46,16 +46,16 @@ const CoordinatorDash = () => {
             People
           </button>
         </div>
-        {Ppl ? (
-          <CoordPeople />
-        ) : Proj ? (
-          <CoordProject />
-        ) : Diss ? (
-          <CoordDiscussion />
-        ) : (
-          <p> ERROR </p>
-        )}
       </div>
+      {Ppl ? (
+        <CoordPeople />
+      ) : Proj ? (
+        <CoordProject />
+      ) : Diss ? (
+        <CoordDiscussion />
+      ) : (
+        <p> ERROR </p>
+      )}
       {/* <div>Heelo</div> */}
     </>
   );

@@ -50,9 +50,10 @@
   padding-top: 2px;
   padding-left: 20px;
   margin-top: 2px;
-  height: 100%;
+  height: 80vh;
   width: 60%;
   margin-left: 20%;
+  margin-bottom: 10%;
   margin-right: 25%;
   overflow-y: scroll;
 }
@@ -63,11 +64,7 @@
   margin: 0%;
   display: block;
   padding-top: 2%;
-}
-
-.line {
-  margin: 0%;
-  display: block;
-  padding-top: 0;
-  width: 98%;
+  padding-bottom: 1%;
+  border-bottom: #eeeeee solid;
+  color: #eeeeee;
 }

@@ -1,0 +1,13 @@
+.body-coord-pro {
+  background: #222831;
+  background: -webkit-linear-gradient(to top, #222831, #393e46);
+  background: linear-gradient(to bottom, #393e46, #00adb5);
+  height: 100vh;
+}
+
+.list-coord-pro {
+  background: #222831;
+  color: #eeeeee;
+  width: 30%;
+  border: #eeeeee solid;
+}

@@ -4,6 +4,7 @@ require("../db/database");
 router.use(express.static("../client/src/"));
 const Institute = require("../model/instituteSchema");
 const instituteAuthenticate = require("../middleware/instituteauth");
+const Student = require("../model/studentSchema");
 
 router.post("/institute-reg", async (req, res) => {
   const {
@@ -208,18 +209,20 @@ router.get(
       //   name, //sending name of institute to further match it with student's institute name
       // } = req.body;
       const inst = await Institute.findOne({ _id: req.rootUser._id });
-      console.log(inst);
+      console.log(inst.name);
       const stud = await Student.find({
-        $and: [
-          {
-            instname: inst.name,
-          },
-          {
-            status: "accept",
-          },
-        ],
+        // $and: [
+        //   {
+        //     instname: inst.name,
+        //   },
+        //   {
+        //     status: "accept",
+        //   },
+        // ],
+        instname: inst.name,
       });
-      console.log(stud);
+      console.log("student" + stud);
+      console.log("DE NA OUTPUT");
       //checking if we are getting any results in stud or its empty
       if (stud) {
         res.send(stud);
