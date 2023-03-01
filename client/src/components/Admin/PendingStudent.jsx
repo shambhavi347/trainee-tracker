@@ -1,5 +1,6 @@
 import React from "react";
 import { acceptTrainee, rejectTrainee } from "../../service/api";
+import { expand } from "../../Images/Images";
 
 const PendingStudent = ({ stud }) => {
   const date = new Date(stud.dob);
@@ -21,7 +22,12 @@ const PendingStudent = ({ stud }) => {
   };
   return (
     <>
-      <div>
+      <div className="inst-bdy">
+        <div className="inst-expnd">
+          <button className="btn-expnd">
+            <img src={expand} alt="" className="img-expnd" />
+          </button>
+        </div>
         <div>
           {stud.prefix} {stud.first_name} {stud.last_name}
         </div>
@@ -40,9 +46,14 @@ const PendingStudent = ({ stud }) => {
           <div>{stud.passout_year}</div>
         </div>
         <div>
+          Familiar Technology
           {stud.famtech.map((val) => (
             <div>{val}</div>
           ))}
+        </div>
+
+        <div>
+          Interested Technology
           {stud.inttech.map((val) => (
             <div>{val}</div>
           ))}
@@ -52,9 +63,6 @@ const PendingStudent = ({ stud }) => {
           <button onClick={rejectStud}>Reject</button>
         </div>
       </div>
-      <br />
-      <br />
-      <br />
     </>
   );
 };

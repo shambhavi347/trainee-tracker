@@ -384,7 +384,7 @@ router.get("/logout", adminAuthenticate, async (req, res) => {
 //change password
 router.post("/change-password", adminAuthenticate, async (req, res) => {
   const { old_pass, new_pass } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
 
   //checks if all the fields are filled or not
   if (!old_pass || !new_pass) {
@@ -419,7 +419,7 @@ router.post("/change-password", adminAuthenticate, async (req, res) => {
     if (update) {
       res.status(201).json({ message: "Password Updated" });
     } else {
-      res.status(500).json({ error: "Failed to update" });
+      res.status(422).json({ error: "Failed to update" });
     }
   } catch (err) {
     console.log(err);
