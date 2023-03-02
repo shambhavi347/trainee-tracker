@@ -68,13 +68,13 @@ router.post("/reg-stud", async (req, res) => {
     if (!passout_year) {
       return res.status(422).json({ error: "Fill the Passout Year !!\n" });
     }
-    if (!famtech) {
+    if (famtech.length === 0) {
       console.log("fam tech empty");
       return res
         .status(422)
         .json({ error: "Select atleast one Familiar Technology !!\n" });
     }
-    if (!inttech) {
+    if (inttech.length === 0) {
       return res
         .status(422)
         .json({ error: "Select atleast one Intrested Technology !!\n" });
@@ -140,7 +140,8 @@ router.post("/reg-stud", async (req, res) => {
     if (userExist1) {
       return res.status(422).json({ error: "Phone no. already Exist" });
     }
-    const instExist = await Institute.findOne({ instname: instname });
+    const instExist = await Institute.findOne({ name: instname });
+    console.log("Inst name: " + instExist);
     if (!instExist) {
       return res.status(422).json({
         error:
@@ -179,6 +180,5 @@ router.post("/reg-stud", async (req, res) => {
     console.log(err);
   }
 });
-
 
 module.exports = router;
