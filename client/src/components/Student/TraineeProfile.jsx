@@ -59,77 +59,78 @@ const TraineeProfile = () => {
       <NavBar5 />
       <div className="DivUpper">
         <div className="main">
-        <h1 className="regHead">Profile Page</h1>
-        <div className="form-body-inst-up" style={{ marginTop:"-1.7%", overflow:"auto" }}>
-          {edit ? (
-            <>
-              <form action="POST" onSubmit={updateUser}>
-                <p className="dd">
-                  <h3 style={{ marginLeft:"38.5%" }}>Edit Your Phone no.</h3>
-                  <input
-                    className="form-element form-text"
-                    name="phone_no"
-                    placeholder={userData.phone_no}
-                    value={update.name}
-                    type="text"
-                    onChange={handleChange}
-                  />
+          <h1 className="regHead">Profile Page</h1>
+          <div className="form-body-inst-up" style={{ marginTop:"-1.7%", overflow:"auto" }}>
+            {edit ? (
+              <>
+                <form action="POST" onSubmit={updateUser}>
+                  <p>
+                    <h3 style={{ marginLeft:"38.5%" }}>Edit Your Phone no.</h3>
+                    <input
+                      className="form-element form-text"
+                      name="phone_no"
+                      placeholder={userData.phone_no}
+                      value={update.name}
+                      type="text"
+                      autoComplete="off"
+                      onChange={handleChange}
+                    />
+                  </p>
+                  <button style={{ marginLeft:"15%" }} className="btn-form">Save</button>
+                  <button className="btn-form" style={{ float:"right", marginRight:"15%" }} onClick={() => setEdit(false)}>
+                    Cancel
+                  </button>
+                </form>
+              </>
+            ) : (
+              <>
+                <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%"}}>
+                  Name : 
+                  <span> {userData.prefix} {userData.first_name} {userData.last_name}</span> <br />
                 </p>
-                <button style={{ marginLeft:"15%" }} className="btn-form">Save</button>
-                <button className="btn-form" style={{ float:"right", marginRight:"15%" }} onClick={() => setEdit(false)}>
-                  Cancel
+                <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
+                  Email ID :
+                  <span> {userData.email}</span>
+                </p>
+                <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
+                  Gender :
+                  <span> {userData.gender}</span>
+                </p>
+                <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
+                  Phone Number :
+                  <span> {userData.phone_no}</span>
+                </p>
+                <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
+                  Institute Name :
+                  <span> {userData.instname}</span>
+                </p>
+                <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
+                  Course :
+                  <span> {userData.course}</span>
+                </p>
+                <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
+                  Stream :
+                  <span> {userData.stream}</span>
+                </p>
+                <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
+                  Semester :
+                  <span> {userData.semester}</span>
+                </p>
+                <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
+                  CGPA :
+                  <span> {userData.cgpa}</span>
+                </p>
+                <p className="tech" style={{ marginLeft:"31%", width:"40%" }}>
+                  Passout Year : 
+                  <span> {userData.passout_year}</span>
+                </p>
+                <button onClick={() => setEdit(true)} className="btn-form" style={{ marginLeft:"33%" }}>
+                  Edit Profile
                 </button>
-              </form>
-            </>
-          ) : (
-            <>
-              <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%"}}>
-                Name : 
-                <span className="items"> {userData.prefix} {userData.first_name} {userData.last_name}</span> <br />
-              </p>
-              <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
-                Email ID :
-                <span className="items"> {userData.email}</span>
-              </p>
-              <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
-                Gender :
-                <span className="items"> {userData.gender}</span>
-              </p>
-              <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
-                Phone Number :
-                <span className="items"> {userData.phone_no}</span>
-              </p>
-              <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
-                Institute Name :
-                <span className="items"> {userData.instname}</span>
-              </p>
-              <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
-                Course :
-                <span className="items"> {userData.course}</span>
-              </p>
-              <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
-                Stream :
-                <span className="items"> {userData.stream}</span>
-              </p>
-              <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
-                Semester :
-                <span className="items"> {userData.semester}</span>
-              </p>
-              <p className="tech" style={{ marginLeft:"31%", marginBottom:"0%", width:"40%" }}>
-                CGPA :
-                <span className="items"> {userData.cgpa}</span>
-              </p>
-              <p className="tech" style={{ marginLeft:"31%", width:"40%" }}>
-                Passout Year : 
-                <span className="items"> {userData.passout_year}</span>
-              </p>
-              <button onClick={() => setEdit(true)} className="btn-form" style={{ marginLeft:"33%" }}>
-                Edit Profile
-              </button>
-            </>
-          )}
+              </>
+            )}
+          </div>
         </div>
-      </div>
       </div>
     </>
   );
