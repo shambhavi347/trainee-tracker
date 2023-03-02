@@ -134,7 +134,7 @@ router.post(
     // console.log("Success");
     try {
       //check password is correct
-      const traineee = await trainee.findOne({});
+      const traineee = await trainee.findOne({_id: req.rootUser.id});
       if (!traineee.password === old_pass)
         return res.status(422).json({ error: "Password Incorrect" });
 
@@ -219,11 +219,11 @@ router.post("/update", traineeAuthenticate, async (req, res) => {
   }
 });
 
-// router.get("/get-pending-student", Authenticate, async (req, res) => {
+// router.get("/get-trainee-list", traineeAuthenticate, async (req, res) => {
 //   try {
 //     const id = req.rootUser._id;
-//     const inst = await Trainee.findOne({ trainee_id: id });
-//     const class = await Trainee.find({coord_id : inst.coord_id});
+//     const inst = await trainee.findOne({ trainee_id: id });
+//     const class = await trainee.find({coord_id : inst.coord_id});
 //     res.send(class);
 //   } catch (error) {
 //     console.log(error);
