@@ -66,9 +66,9 @@ router.post("/admin-login", async (req, res) => {
         expires: new Date(Date.now() + 25892000000),
         httpOnly: true,
       });
-      const isMatch = await bcrypt.compare(password, traineeLogin.password);
+      // const isMatch = await bcrypt.compare(password, traineeLogin.password);
       //third validation - password matching
-      if (!isMatch) {
+      if (password !== traineeLogin.password) {
         res.status(400).json({ error: "Incorrect Password" });
       } else {
         res.status(200).json({ message: "Trainee" });
