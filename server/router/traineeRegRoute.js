@@ -166,12 +166,54 @@ router.post(
   }
 );
 
+// get student details
 router.get("/student-data", traineeAuthenticate, async (req, res) => {
   try {
     const ID = req.rootUser.id;
-    const Trainee = await trainee.findOne({ _id: ID });
+    const Trainee = await trainee.findOne({_id:ID});
+    const stud = await student.findOne({email:Trainee.email});
+    if (stud) res.send(stud);
+    // res.send(Trainee);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-    res.send(Trainee);
+// update user details
+
+router.post("/update", traineeAuthenticate, async (req, res) => {
+  try {
+    const { phone_no } = req.body;
+    const ID = req.rootUser.id;
+    const Trainee = await trainee.findOne({_id:ID});
+    if (!phone_no) {
+      return res.status(422).json({ error: "Your Phone no. is same as the previous one !!\n" });
+    }
+
+    const phoneRegex = /^[6-9]\d{9}$/gi;
+
+    const phoneValid = phoneRegex.test(phone_no);
+
+    if (!phoneValid) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Phone no. correctly !!\n" });
+    }
+
+    const userExist1 = await student.findOne({ phone_no: phone_no });
+    if (userExist1) {
+      return res.status(422).json({ error: "Phone no. already Exist" });
+    }
+
+    const stud = await student.findOneAndUpdate( 
+      {email:Trainee.email},
+      { phone_no: phone_no }
+    );
+    if (stud) {
+      res.status(201).json({ message: "Phone no. Updated" });
+    } else {
+      res.status(500).json({ error: "Failed to update Phone no." });
+    }
   } catch (error) {
     console.log(error);
   }
