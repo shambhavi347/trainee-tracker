@@ -132,7 +132,7 @@ const TraineeProfile = () => {
       </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default TraineeProfile
+export default TraineeProfile;

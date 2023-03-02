@@ -9,7 +9,6 @@ const student = require("../model/studentSchema");
 const trainee = require("../model/traineeSchema");
 const traineeAuthenticate = require("../middleware/traineeauth");
 
-
 //trainee Regestration
 router.post("/trainee-reg", async (req, res) => {
   try {
@@ -69,12 +68,10 @@ router.post("/trainee-reg", async (req, res) => {
     const passwordValid = passwordRegex.test(password);
 
     if (!passwordValid) {
-      return res
-        .status(422)
-        .json({
-          error:
-            "Min 8 letter password, with at least a symbol, upper and lower case letters and a number !!",
-        });
+      return res.status(422).json({
+        error:
+          "Min 8 letter password, with at least a symbol, upper and lower case letters and a number !!",
+      });
     }
 
     //fifth if email exist in student db
@@ -121,49 +118,53 @@ router.get("/trainee-logout", traineeAuthenticate, async (req, res) => {
 });
 
 //change password
-router.post("/change-password-trainee", traineeAuthenticate, async (req, res) => {
-  const { old_pass, new_pass } = req.body;
-  console.log(req.body);
+router.post(
+  "/change-password-trainee",
+  traineeAuthenticate,
+  async (req, res) => {
+    const { old_pass, new_pass } = req.body;
+    console.log(req.body);
 
-  //checks if all the fields are filled or not
-  if (!old_pass || !new_pass) {
-    return res
-      .status(422)
-      .json({ error: "Please fill all the fields properly" });
-  }
-  // console.log("Success");
-  try {
-    //check password is correct
-    const traineee = await trainee.findOne({});
-    if (!traineee.password === old_pass)
-      return res.status(422).json({ error: "Password Incorrect" });
-
-    //check password format
-    const passwordRegex =
-      /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    const passwordValid = passwordRegex.test(new_pass);
-    if (!passwordValid) {
-      return res.status(422).json({
-        error:
-          "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!",
-      });
+    //checks if all the fields are filled or not
+    if (!old_pass || !new_pass) {
+      return res
+        .status(422)
+        .json({ error: "Please fill all the fields properly" });
     }
+    // console.log("Success");
+    try {
+      //check password is correct
+      const traineee = await trainee.findOne({});
+      if (!traineee.password === old_pass)
+        return res.status(422).json({ error: "Password Incorrect" });
 
-    //if both key and value are same then you dont need to write name of both like name:name
-    const update = await trainee.findOneAndUpdate(
-      { _id: req.rootUser.id },
-      { password: new_pass }
-    );
+      //check password format
+      const passwordRegex =
+        /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+      const passwordValid = passwordRegex.test(new_pass);
+      if (!passwordValid) {
+        return res.status(422).json({
+          error:
+            "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!",
+        });
+      }
 
-    if (update) {
-      res.status(201).json({ message: "Password Updated" });
-    } else {
-      res.status(500).json({ error: "Failed to update" });
+      //if both key and value are same then you dont need to write name of both like name:name
+      const update = await trainee.findOneAndUpdate(
+        { _id: req.rootUser.id },
+        { password: new_pass }
+      );
+
+      if (update) {
+        res.status(201).json({ message: "Password Updated" });
+      } else {
+        res.status(500).json({ error: "Failed to update" });
+      }
+    } catch (err) {
+      console.log(err);
     }
-  } catch (err) {
-    console.log(err);
   }
-});
+);
 
 // get student details
 router.get("/student-data", traineeAuthenticate, async (req, res) => {

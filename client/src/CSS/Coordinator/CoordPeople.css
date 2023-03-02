@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+.info-coord-people {
+  /* background: #222831;
+  background: -webkit-linear-gradient(to top, #222831, #393e46); */
+  background: linear-gradient(to bottom, #393e46, #00adb5);
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+}
+
+.content-coord-people {
+  text-align: center;
+  color: #eeeeee;
+  border-top: #eeeeee solid;
+  border-bottom: #eeeeee solid;
+  padding-bottom: 1%;
+  padding-top: 1%;
+  margin-top: 0;
+}

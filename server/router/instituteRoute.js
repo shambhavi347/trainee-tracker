@@ -4,6 +4,7 @@ require("../db/database");
 router.use(express.static("../client/src/"));
 const Institute = require("../model/instituteSchema");
 const instituteAuthenticate = require("../middleware/instituteauth");
+const Student = require("../model/studentSchema");
 
 router.post("/institute-reg", async (req, res) => {
   const {
@@ -195,6 +196,42 @@ router.get(
       res.send(inst[0].status);
     } catch (error) {
       console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-selected-students",
+  instituteAuthenticate,
+  async (req, res) => {
+    try {
+      // const {
+      //   name, //sending name of institute to further match it with student's institute name
+      // } = req.body;
+      const inst = await Institute.findOne({ _id: req.rootUser._id });
+      //console.log(inst.name);
+      const stud = await Student.find({
+        $and: [
+          {
+            instname: inst.name,
+          },
+          {
+            status: "accept",
+          },
+        ],
+        // instname: inst.name,
+      });
+      // console.log("student" + stud);
+      // console.log("Name: " + stud[0].first_name + " " + stud[0].last_name);
+      // console.log("DE NA OUTPUT");
+      //checking if we are getting any results in stud or its empty
+      if (stud) {
+        res.send(stud);
+      } else {
+        res.send("No students");
+      }
+    } catch (error) {
+      res.send(error);
     }
   }
 );

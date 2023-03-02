@@ -137,8 +137,8 @@ const RegInstitute = () => {
         "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
       );
       //console.log("Make the Password Strong !!");
-    } else if (data.status === 422 || !data) {
-      window.alert("Invalid Registration!❌");
+    } else if (data.status === 422 || data.error) {
+      window.alert("Invalid Registration!❌" + data.error);
       console.log("Invalid Registration!❌");
     } else {
       window.alert("Registration Successful!✔");
