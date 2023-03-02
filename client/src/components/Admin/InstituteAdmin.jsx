@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Admin/InstituteAdmin.css";
-import { arrowDown, cancel, expand } from "../../Images/Images";
-import { getInstitutes, acceptInsitute } from "../../service/api";
+import { arrowDown, arrowLeft, cancel } from "../../Images/Images";
+import { getInstitutes, getInstAccept } from "../../service/api";
 import PendingInst from "./PendingInst";
 
 const InstituteAdmin = () => {
@@ -174,6 +174,8 @@ const InstituteAdmin = () => {
   const [institute, setInstitute] = useState([]);
 
   const [text, setText] = useState("");
+  const [acceptList, setAcceptList] = useState([]);
+  const [disAccept, setDisAccept] = useState("none");
 
   // const [expnd, setExpnd] = useState("none");
 
@@ -221,6 +223,17 @@ const InstituteAdmin = () => {
     };
     fetchData();
   }, [institute]);
+  console.log(institute);
+  // useEffect(() => {
+  const handleAcceptList = async () => {
+    // setDisAccept("block");
+    const data = await getInstAccept();
+    setInstitute(data);
+    // setAcceptList(data);
+    // setDisAccept("block");
+  };
+  //   handleAcceptList();
+  // }, []);
 
   const handleChange = (e) => {
     // callInst();
@@ -329,7 +342,7 @@ const InstituteAdmin = () => {
   // const handleAccept = async () => {
   //   try {
   //     // console.log(email);
-  //     await acceptInsitute({ email: sendEmail });
+  //     await getInstAccept({ email: sendEmail });
   //   } catch (error) {
   //     console.log(error);
   //   }
@@ -339,6 +352,18 @@ const InstituteAdmin = () => {
     <>
       <div className="divBdy">
         <div className="filter-panel">
+          <div className="btns-inst">
+            <button
+              className="accepted-btn"
+              onClick={() => {
+                // setDisAccept("block");
+                handleAcceptList();
+              }}
+            >
+              Accepted List
+            </button>
+            <button className="rejected-btn">Rejected List</button>
+          </div>
           <div className="search-bar">
             <input
               className="search-text"
@@ -564,6 +589,20 @@ const InstituteAdmin = () => {
           )}
         </div>
         <div className="institute-panel">
+          {/* {acceptList?.map((val) => (
+            <div className="accept-bdy" style={{ display: disAccept }}>
+              <button>
+                <img src={arrowLeft} alt="" onClick={setDisAccept("none")} />
+                <h3>Accepted Institute List</h3>
+              </button>
+              <PendingInst inst={val} />
+            </div>
+          ))} */}
+
+          {/* // ) : institute ? ( // institute.map((inst, key) =>{" "}
+          <PendingInst inst={inst} />) // ) : ( // <>No Application as of yet</>
+          // )} */}
+
           {institute ? (
             institute.map((inst, key) => <PendingInst inst={inst} />)
           ) : (

@@ -19,6 +19,7 @@ router.post("/admin-login", async (req, res) => {
   try {
     let token;
     const { email, password } = req.body;
+    console.log(req.body);
 
     //first validation - fileds not empty
     if (!email || !password) {
@@ -65,9 +66,9 @@ router.post("/admin-login", async (req, res) => {
         expires: new Date(Date.now() + 25892000000),
         httpOnly: true,
       });
-      const isMatch = await bcrypt.compare(password, traineeLogin.password);
+      // const isMatch = await bcrypt.compare(password, traineeLogin.password);
       //third validation - password matching
-      if (!isMatch) {
+      if (password !== traineeLogin.password) {
         res.status(400).json({ error: "Incorrect Password" });
       } else {
         res.status(200).json({ message: "Trainee" });
@@ -83,6 +84,15 @@ router.post("/admin-login", async (req, res) => {
 router.get("/get-pending-institute", adminAuthenticate, async (req, res) => {
   try {
     const inst = await Institute.find({ status: "pending" });
+    res.send(inst);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-accepted-institute", adminAuthenticate, async (req, res) => {
+  try {
+    const inst = await Institute.find({ status: "accept" });
     res.send(inst);
   } catch (error) {
     console.log(error);

@@ -134,8 +134,9 @@ router.post(
     // console.log("Success");
     try {
       //check password is correct
-      const traineee = await trainee.findOne({_id: req.rootUser.id});
-      if (!traineee.password === old_pass)
+      const traineee = await trainee.findOne({ _id: req.rootUser.id });
+
+      if (traineee.password !== old_pass)
         return res.status(422).json({ error: "Password Incorrect" });
 
       //check password format
@@ -170,8 +171,8 @@ router.post(
 router.get("/student-data", traineeAuthenticate, async (req, res) => {
   try {
     const ID = req.rootUser.id;
-    const Trainee = await trainee.findOne({_id:ID});
-    const stud = await student.findOne({email:Trainee.email});
+    const Trainee = await trainee.findOne({ _id: ID });
+    const stud = await student.findOne({ email: Trainee.email });
     if (stud) res.send(stud);
     // res.send(Trainee);
   } catch (error) {
@@ -185,9 +186,11 @@ router.post("/update", traineeAuthenticate, async (req, res) => {
   try {
     const { phone_no } = req.body;
     const ID = req.rootUser.id;
-    const Trainee = await trainee.findOne({_id:ID});
+    const Trainee = await trainee.findOne({ _id: ID });
     if (!phone_no) {
-      return res.status(422).json({ error: "Your Phone no. is same as the previous one !!\n" });
+      return res
+        .status(422)
+        .json({ error: "Your Phone no. is same as the previous one !!\n" });
     }
 
     const phoneRegex = /^[6-9]\d{9}$/gi;
@@ -205,8 +208,8 @@ router.post("/update", traineeAuthenticate, async (req, res) => {
       return res.status(422).json({ error: "Phone no. already Exist" });
     }
 
-    const stud = await student.findOneAndUpdate( 
-      {email:Trainee.email},
+    const stud = await student.findOneAndUpdate(
+      { email: Trainee.email },
       { phone_no: phone_no }
     );
     if (stud) {
