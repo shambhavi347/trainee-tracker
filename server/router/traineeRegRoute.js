@@ -135,8 +135,8 @@ router.post(
     try {
       //check password is correct
       const traineee = await trainee.findOne({ _id: req.rootUser.id });
-
-      if (traineee.password !== old_pass)
+      const isMatch = await bcrypt.compare(new_pass, admin.password);
+      if (!isMatch)
         return res.status(422).json({ error: "Password Incorrect" });
 
       //check password format
@@ -149,11 +149,11 @@ router.post(
             "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!",
         });
       }
-
+      const new_pass_hash = await bcrypt.hash(new_pass, 12);
       //if both key and value are same then you dont need to write name of both like name:name
       const update = await trainee.findOneAndUpdate(
         { _id: req.rootUser.id },
-        { password: new_pass }
+        { password: new_pass_hash }
       );
 
       if (update) {

@@ -39,9 +39,9 @@ router.post("/admin-login", async (req, res) => {
         expires: new Date(Date.now() + 25892000000),
         httpOnly: true,
       });
-
+      const isMatch = await bcrypt.compare(password, adminLogin.password);
       //third validation - password matching
-      if (password != adminLogin.password) {
+      if (!isMatch) {
         res.status(400).json({ error: "Incorrect Password" });
       } else {
         res.status(200).json({ message: "Admin" });
@@ -66,9 +66,9 @@ router.post("/admin-login", async (req, res) => {
         expires: new Date(Date.now() + 25892000000),
         httpOnly: true,
       });
-      // const isMatch = await bcrypt.compare(password, traineeLogin.password);
+      const isMatch = await bcrypt.compare(password, traineeLogin.password);
       //third validation - password matching
-      if (password !== traineeLogin.password) {
+      if (!isMatch) {
         res.status(400).json({ error: "Incorrect Password" });
       } else {
         res.status(200).json({ message: "Trainee" });
@@ -406,8 +406,8 @@ router.post("/change-password", adminAuthenticate, async (req, res) => {
   try {
     //check password is correct
     const admin = await Admin.findOne({});
-    if (!admin.password === old_pass)
-      return res.status(422).json({ error: "Password Incorrect" });
+    const isMatch = await bcrypt.compare(new_pass, admin.password);
+    if (!isMatch) return res.status(422).json({ error: "Password Incorrect" });
 
     //check password format
     const passwordRegex =
@@ -419,11 +419,11 @@ router.post("/change-password", adminAuthenticate, async (req, res) => {
           "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!",
       });
     }
-
+    const new_pass_hash = await bcrypt.hash(new_pass, 12);
     //if both key and value are same then you dont need to write name of both like name:name
     const update = await Admin.findOneAndUpdate(
       { _id: req.rootUser.id },
-      { password: new_pass }
+      { password: new_pass_hash }
     );
 
     if (update) {
