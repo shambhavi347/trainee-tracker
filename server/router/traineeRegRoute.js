@@ -135,7 +135,7 @@ router.post(
     try {
       //check password is correct
       const traineee = await trainee.findOne({ _id: req.rootUser.id });
-      const isMatch = await bcrypt.compare(new_pass, admin.password);
+      const isMatch = await bcrypt.compare(new_pass, traineee.password);
       if (!isMatch)
         return res.status(422).json({ error: "Password Incorrect" });
 
