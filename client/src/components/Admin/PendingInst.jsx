@@ -42,16 +42,32 @@ const PendingInst = ({ inst }) => {
           <div className="inst-duration">{inst.duration}</div>
         </div>
         <div className="inst-third">
-          <div className="inst-accpt">
-            <button className="btn-accpt" onClick={handleAccept}>
-              Accept
-            </button>
-          </div>
-          <div className="inst-reject">
-            <button className="btn-reject" onClick={handleReject}>
-              Reject
-            </button>
-          </div>
+          {inst.status === "pending" ? (
+            <>
+              <div className="inst-accpt">
+                <button className="btn-accpt" onClick={handleAccept}>
+                  Accept
+                </button>
+              </div>
+              <div className="inst-reject">
+                <button className="btn-reject" onClick={handleReject}>
+                  Reject
+                </button>
+              </div>
+            </>
+          ) : inst.status === "accept" ? null : (
+            <>
+              {" "}
+              <div className="inst-accpt">
+                <button className="btn-accpt" onClick={handleAccept}>
+                  Accept
+                </button>
+              </div>
+              <div className="inst-reject">
+                <button className="btn-reject">Delete</button>
+              </div>
+            </>
+          )}
         </div>
       </div>
 

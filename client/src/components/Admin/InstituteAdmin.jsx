@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Admin/InstituteAdmin.css";
 import { arrowDown, arrowLeft, cancel } from "../../Images/Images";
-import { getInstitutes, getInstAccept } from "../../service/api";
+import { getInstitutes, getInstAccept, getInstReject } from "../../service/api";
 import PendingInst from "./PendingInst";
 
 const InstituteAdmin = () => {
@@ -175,7 +175,10 @@ const InstituteAdmin = () => {
 
   const [text, setText] = useState("");
   const [acceptList, setAcceptList] = useState([]);
-  const [disAccept, setDisAccept] = useState("none");
+  const [rejectList, setRejectList] = useState([]);
+  const [disAccept, setDisAccept] = useState(false);
+  const [disPending, setDisPending] = useState(true);
+  const [disReject, setDisReject] = useState(false);
 
   // const [expnd, setExpnd] = useState("none");
 
@@ -224,16 +227,22 @@ const InstituteAdmin = () => {
     fetchData();
   }, [institute]);
   console.log(institute);
-  // useEffect(() => {
-  const handleAcceptList = async () => {
-    // setDisAccept("block");
-    const data = await getInstAccept();
-    setInstitute(data);
-    // setAcceptList(data);
-    // setDisAccept("block");
-  };
-  //   handleAcceptList();
-  // }, []);
+
+  useEffect(() => {
+    const handleAcceptList = async () => {
+      const data = await getInstAccept();
+      setAcceptList(data);
+    };
+    handleAcceptList();
+  }, []);
+
+  useEffect(() => {
+    const handleRejectList = async () => {
+      const data = await getInstReject();
+      setRejectList(data);
+    };
+    handleRejectList();
+  }, []);
 
   const handleChange = (e) => {
     // callInst();
@@ -356,13 +365,25 @@ const InstituteAdmin = () => {
             <button
               className="accepted-btn"
               onClick={() => {
-                // setDisAccept("block");
-                handleAcceptList();
+                setDisAccept(true);
+                setDisPending(false);
+                setDisReject(false);
+                // handleAcceptList();
               }}
             >
               Accepted List
             </button>
-            <button className="rejected-btn">Rejected List</button>
+            <button
+              className="rejected-btn"
+              onClick={() => {
+                setDisAccept(false);
+                setDisPending(false);
+                setDisReject(true);
+                // handleAcceptList();
+              }}
+            >
+              Rejected List
+            </button>
           </div>
           <div className="search-bar">
             <input
@@ -589,25 +610,82 @@ const InstituteAdmin = () => {
           )}
         </div>
         <div className="institute-panel">
-          {/* {acceptList?.map((val) => (
-            <div className="accept-bdy" style={{ display: disAccept }}>
-              <button>
-                <img src={arrowLeft} alt="" onClick={setDisAccept("none")} />
-                <h3>Accepted Institute List</h3>
-              </button>
-              <PendingInst inst={val} />
-            </div>
-          ))} */}
+          {disAccept ? (
+            <>
+              <div className="accept-bdy">
+                <div className="head-inst">
+                  <button className="back-inst-btn">
+                    <img
+                      src={arrowLeft}
+                      alt=""
+                      className="back-inst"
+                      onClick={() => {
+                        setDisAccept(false);
+                        setDisPending(true);
+                      }}
+                    />
+                  </button>
+                  <h3 className="title-inst-accpt"> Accepted Institute List</h3>
+                </div>
+                <div
+                  style={{
+                    padding: "1%",
+                    height: "80vh",
+                    overflowY: "auto",
+                  }}
+                >
+                  {acceptList ? (
+                    acceptList.map((val) => <PendingInst inst={val} />)
+                  ) : (
+                    <>No accepted list</>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : null}
 
-          {/* // ) : institute ? ( // institute.map((inst, key) =>{" "}
-          <PendingInst inst={inst} />) // ) : ( // <>No Application as of yet</>
-          // )} */}
+          {disPending ? (
+            institute ? (
+              institute.map((inst, key) => <PendingInst inst={inst} />)
+            ) : (
+              <>No application</>
+            )
+          ) : null}
 
-          {institute ? (
-            institute.map((inst, key) => <PendingInst inst={inst} />)
-          ) : (
-            <>No Application as of yet</>
-          )}
+          {disReject ? (
+            <>
+              <div className="accept-bdy">
+                <div className="head-inst">
+                  <button className="back-inst-btn">
+                    <img
+                      src={arrowLeft}
+                      alt=""
+                      className="back-inst"
+                      onClick={() => {
+                        setDisAccept(false);
+                        setDisPending(true);
+                        setDisReject(false);
+                      }}
+                    />
+                  </button>
+                  <h3 className="title-inst-accpt">Rejected Institute List</h3>
+                </div>
+                <div
+                  style={{
+                    padding: "1%",
+                    height: "80vh",
+                    overflowY: "auto",
+                  }}
+                >
+                  {rejectList ? (
+                    rejectList.map((val) => <PendingInst inst={val} />)
+                  ) : (
+                    <>No rejected list</>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </>
