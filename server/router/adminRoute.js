@@ -19,6 +19,7 @@ router.post("/admin-login", async (req, res) => {
   try {
     let token;
     const { email, password } = req.body;
+    console.log(req.body);
 
     //first validation - fileds not empty
     if (!email || !password) {
@@ -83,6 +84,15 @@ router.post("/admin-login", async (req, res) => {
 router.get("/get-pending-institute", adminAuthenticate, async (req, res) => {
   try {
     const inst = await Institute.find({ status: "pending" });
+    res.send(inst);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-accepted-institute", adminAuthenticate, async (req, res) => {
+  try {
+    const inst = await Institute.find({ status: "accept" });
     res.send(inst);
   } catch (error) {
     console.log(error);

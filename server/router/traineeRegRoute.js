@@ -134,7 +134,7 @@ router.post(
     // console.log("Success");
     try {
       //check password is correct
-      const traineee = await trainee.findOne({});
+      const traineee = await trainee.findOne({ _id: req.rootUser.id });
       if (!traineee.password === old_pass)
         return res.status(422).json({ error: "Password Incorrect" });
 
