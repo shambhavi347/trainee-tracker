@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+  }  
+  .DivUPro {
+    background: #222831;
+    background: -webkit-linear-gradient(to top, #222831, #393e46);
+    /* background: linear-gradient(to bottom, #393e46, #00adb5); */
+    background-color: #222831;
+    height: 100vh;
+    margin: 0px;
+    overflow-y: auto;
+  }
+    .progress {
+    width: 60%;
+    height: 20%;
+    background-color: #393e46;
+    margin: 2%;
+    margin-left: 19.8%;
+    padding: 2%;
+    border-radius: 15px;
+    border: 1px #00adb5 solid;
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+
+  .project {
+    width: 10%;
+    height: 48%;
+    background-color: #393e46;
+    margin: 2%;
+    padding: 2%;
+    border-radius: 15px;
+    border: 1px #00adb5 solid;
+    /* padding-left: 1%; */
+    /* padding-right: 1%; */
+  }
+
+  .document {
+    width: 10%;
+    height: 40%;
+    background-color: #393e46;
+    margin: 2%;
+    padding: 2%;
+    float: right;
+    margin-left: 50%;
+    border-radius: 15px;
+    border: 1px #00adb5 solid;
+    /* padding-left: 1%; */
+    /* padding-right: 1%; */
+  }
+  
