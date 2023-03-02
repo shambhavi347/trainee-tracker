@@ -99,6 +99,15 @@ router.get("/get-accepted-institute", adminAuthenticate, async (req, res) => {
   }
 });
 
+router.get("/get-rejected-institute", adminAuthenticate, async (req, res) => {
+  try {
+    const inst = await Institute.find({ status: "reject" });
+    res.send(inst);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get("/get-pending-student", adminAuthenticate, async (req, res) => {
   try {
     const inst = await Student.find({ status: "pending" });

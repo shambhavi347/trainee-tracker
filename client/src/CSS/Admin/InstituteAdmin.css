@@ -182,25 +182,16 @@
 
 .cancel-text {
   float: left;
-  /* margin-top: 1%; */
 }
 
 .cancel-btn {
-  /* height: 20%;
-  width: ; */
   height: 80%;
   margin: 0;
   padding: 0;
-  /* margin-top: -5%; */
   background-color: transparent;
   border: none;
   float: right;
-  /* margin-top: 6px; */
-  /* margin-top: -5%; */
   margin-left: 15px;
-  /* margin-left: 10px;
-  margin-top: 4%; */
-  /* margin: 0 10%; */
 }
 
 .cancel-img {
@@ -440,4 +431,40 @@
   color: #00adb5;
   font-weight: bolder;
   font-size: larger;
+}
+
+.back-inst-btn {
+  margin: 1%;
+  width: 5%;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.back-inst {
+  /* width: fit-content;
+  height: fit-content; */
+  width: 100%;
+}
+
+.title-inst-accpt {
+  margin-left: 6%;
+  margin-top: -4%;
+}
+
+.accepted-btn,
+.rejected-btn {
+  margin: 5% 1%;
+  padding: 5%;
+  border-radius: 15px;
+  background-color: #222831;
+  border: 1px #00adb5 solid;
+  color: #00adb5;
+  font-size: medium;
+  cursor: pointer;
+}
+.accepted-btn:hover,
+.rejected-btn:hover {
+  background-color: #393e46;
 }
