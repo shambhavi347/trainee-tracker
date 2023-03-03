@@ -193,6 +193,7 @@
   border: none;
   float: right;
   margin-left: 15px;
+  cursor: pointer;
 }
 
 .cancel-img {

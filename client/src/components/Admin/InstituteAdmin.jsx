@@ -418,6 +418,104 @@ const InstituteAdmin = () => {
   //   }
   // };
 
+  useEffect(() => {
+    // callInst();
+    appliedfilter.length > 0
+      ? appliedfilter.map((val) => {
+          if (itype.includes(val)) {
+            const newItem =
+              accepts.length > 0
+                ? accepts.filter((newVal) => {
+                    return newVal.type === val;
+                  })
+                : acceptList.filter((newVal) => {
+                    return newVal.type === val;
+                  });
+            setAccepts(newItem);
+          } else if (imonth.includes(val)) {
+            const newItem =
+              accepts.length > 0
+                ? accepts.filter((newVal) => {
+                    return newVal.month === val;
+                  })
+                : acceptList.filter((newVal) => {
+                    return newVal.month === val;
+                  });
+            setAccepts(newItem);
+          } else if (iduration.includes(val)) {
+            const newItem =
+              accepts.length > 0
+                ? accepts.filter((newVal) => {
+                    return newVal.duration === val;
+                  })
+                : acceptList.filter((newVal) => {
+                    return newVal.duration === val;
+                  });
+            setAccepts(newItem);
+          } else {
+            const newItem =
+              accepts.length > 0
+                ? accepts.filter((newVal) => {
+                    return newVal.rating === val;
+                  })
+                : acceptList.filter((newVal) => {
+                    return newVal.rating === val;
+                  });
+            setAccepts(newItem);
+          }
+        })
+      : setAccepts(acceptList);
+  }, [appliedfilter]);
+
+  useEffect(() => {
+    // callInst();
+    appliedfilter.length > 0
+      ? appliedfilter.map((val) => {
+          if (itype.includes(val)) {
+            const newItem =
+              rejects.length > 0
+                ? rejects.filter((newVal) => {
+                    return newVal.type === val;
+                  })
+                : rejectList.filter((newVal) => {
+                    return newVal.type === val;
+                  });
+            setRejects(newItem);
+          } else if (imonth.includes(val)) {
+            const newItem =
+              rejects.length > 0
+                ? rejects.filter((newVal) => {
+                    return newVal.month === val;
+                  })
+                : rejectList.filter((newVal) => {
+                    return newVal.month === val;
+                  });
+            setRejects(newItem);
+          } else if (iduration.includes(val)) {
+            const newItem =
+              rejects.length > 0
+                ? rejects.filter((newVal) => {
+                    return newVal.duration === val;
+                  })
+                : rejectList.filter((newVal) => {
+                    return newVal.duration === val;
+                  });
+            setRejects(newItem);
+          } else {
+            const newItem =
+              rejects.length > 0
+                ? rejects.filter((newVal) => {
+                    return newVal.rating === val;
+                  })
+                : rejectList.filter((newVal) => {
+                    return newVal.rating === val;
+                  });
+            setRejects(newItem);
+          }
+        })
+      : setRejects(rejectList);
+  }, [appliedfilter]);
+
   return (
     <>
       <div className="divBdy">
