@@ -24,7 +24,7 @@
   }
 
   .project {
-    width: 10%;
+    width: 35%;
     height: 48%;
     background-color: #393e46;
     margin: 2%;
@@ -33,19 +33,43 @@
     border: 1px #00adb5 solid;
     /* padding-left: 1%; */
     /* padding-right: 1%; */
+    overflow-y: scroll;
   }
 
   .document {
-    width: 10%;
-    height: 40%;
+    width: 59%;
+    height: 48%;
     background-color: #393e46;
     margin: 2%;
     padding: 2%;
+    margin-top: -25%;
     float: right;
-    margin-left: 50%;
+    /* margin-left: 50%; */
     border-radius: 15px;
     border: 1px #00adb5 solid;
-    /* padding-left: 1%; */
-    /* padding-right: 1%; */
+    padding-left: 1%;
+    padding-right: 1%;
+    /* overflow-y: auto; */
+  }
+
+  .pro {
+    padding: 1%;
+    margin: 1%;
+    margin-left: 25%;
+    margin-top: -4%;
+    float: left;
+    /* border-radius: 15px;
+    border: 1px #00adb5 solid; */
+  }
+
+  .proName {
+    padding: 1%;
+    padding-bottom: -1%;
+    margin: 10%;
+    margin-bottom: -11%;
+    margin-left: 23%;
+    width: 55%;
+    /* border-radius: 15px;
+    border: 1px #00adb5 solid; */
   }
   

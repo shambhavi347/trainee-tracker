@@ -4,7 +4,7 @@ import "../../CSS/Trainee/TraineeGroup.css";
 const TraineeGroup = () => {
   const [mentor, setMentor] = useState({ name: "Sunil Kumar" });
   const [Tra, setTra] = useState([]);
-  const [trainee, settrainee] = useState([
+  const [trainee, setTrainee] = useState([
     {
       name: "Aakriti Saxena",
     },
@@ -51,13 +51,13 @@ const TraineeGroup = () => {
           <hr style={{ marginLeft: "26.2%", marginRight: "25.6%" }} />
           <div className="mentor"> {mentor.name}</div>
           <div className="trainee">
-            <h3 className="trainee-title">trainee</h3>
-            <h3 className="strength-title">{trainee.length} trainees </h3>
+            <h3 className="trainee-title">Trainee</h3>
+            <h3 className="strength-title">{trainee.length} Trainees </h3>
             <hr style={{ marginLeft: "25.2%", marginRight: "24.6%" }} />
-            {/* {trainee.map((val, key) => (
+            {trainee.map((val, key) => (
               <div className="people">
                 {" "}
-                {val.first_name}{" "}
+                {val.name}{" "}
                 <hr
                   style={{
                     backgroundColor: "#393e46",
@@ -66,7 +66,7 @@ const TraineeGroup = () => {
                   }}
                 />{" "}
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
       </div>
