@@ -10,6 +10,25 @@ export const getInstitutes = async () => {
   }
 };
 
+export const getInstAccept = async () => {
+  try {
+    let respone = await axios.get("/get-accepted-institute");
+
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getInstReject = async () => {
+  try {
+    let respone = await axios.get("/get-rejected-institute");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getStudent = async () => {
   try {
     let respone = await axios.get("/get-pending-student");

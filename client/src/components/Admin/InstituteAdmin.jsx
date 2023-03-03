@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Admin/InstituteAdmin.css";
-import { arrowDown, cancel, expand } from "../../Images/Images";
-import { getInstitutes, acceptInsitute } from "../../service/api";
+import { arrowDown, arrowLeft, cancel } from "../../Images/Images";
+import { getInstitutes, getInstAccept, getInstReject } from "../../service/api";
 import PendingInst from "./PendingInst";
 
 const InstituteAdmin = () => {
@@ -174,6 +174,13 @@ const InstituteAdmin = () => {
   const [institute, setInstitute] = useState([]);
 
   const [text, setText] = useState("");
+  const [acceptList, setAcceptList] = useState([]);
+  const [accepts, setAccepts] = useState([]);
+  const [rejectList, setRejectList] = useState([]);
+  const [rejects, setRejects] = useState([]);
+  const [disAccept, setDisAccept] = useState(false);
+  const [disPending, setDisPending] = useState(true);
+  const [disReject, setDisReject] = useState(false);
 
   // const [expnd, setExpnd] = useState("none");
 
@@ -216,11 +223,31 @@ const InstituteAdmin = () => {
     const fetchData = async () => {
       const data = await getInstitutes();
       // console.log("dta " + data);
-      setInstitute(data);
+      // setInstitute(data);
+      setInsti(data);
+      if (institute.length == 0) setInstitute(insti);
       // console.log(inst);
     };
     fetchData();
-  }, [institute]);
+  }, [insti]);
+
+  useEffect(() => {
+    const handleAcceptList = async () => {
+      const data = await getInstAccept();
+      setAcceptList(data);
+      if (accepts.length == 0) setAccepts(acceptList);
+    };
+    handleAcceptList();
+  }, []);
+
+  useEffect(() => {
+    const handleRejectList = async () => {
+      const data = await getInstReject();
+      setRejectList(data);
+      if (rejects.length == 0) setRejects(rejectList);
+    };
+    handleRejectList();
+  }, []);
 
   const handleChange = (e) => {
     // callInst();
@@ -237,7 +264,6 @@ const InstituteAdmin = () => {
     }
   };
 
-  if (institute.length == 0) setInstitute(instInfo);
   useEffect(() => {
     // callInst();
     appliedfilter.length > 0
@@ -248,7 +274,7 @@ const InstituteAdmin = () => {
                 ? institute.filter((newVal) => {
                     return newVal.type === val;
                   })
-                : instInfo.filter((newVal) => {
+                : insti.filter((newVal) => {
                     return newVal.type === val;
                   });
             setInstitute(newItem);
@@ -258,7 +284,7 @@ const InstituteAdmin = () => {
                 ? institute.filter((newVal) => {
                     return newVal.month === val;
                   })
-                : instInfo.filter((newVal) => {
+                : insti.filter((newVal) => {
                     return newVal.month === val;
                   });
             setInstitute(newItem);
@@ -268,7 +294,7 @@ const InstituteAdmin = () => {
                 ? institute.filter((newVal) => {
                     return newVal.duration === val;
                   })
-                : instInfo.filter((newVal) => {
+                : insti.filter((newVal) => {
                     return newVal.duration === val;
                   });
             setInstitute(newItem);
@@ -278,36 +304,26 @@ const InstituteAdmin = () => {
                 ? institute.filter((newVal) => {
                     return newVal.rating === val;
                   })
-                : instInfo.filter((newVal) => {
+                : insti.filter((newVal) => {
                     return newVal.rating === val;
                   });
             setInstitute(newItem);
           }
         })
-      : setInstitute(instInfo);
+      : setInstitute(insti);
   }, [appliedfilter]);
 
   useEffect(() => {
-    // callInst();
     let strDescending = [];
-    // original = institute;
-    // setInstitute(strDescending);
-    // if (countSort == 1) original = institute;
-    // countSort += 1;
-    // console.log(original);
     if (sortvalue === "Highest to Lowest") {
       strDescending = [...institute].sort((a, b) => b.rvalue - a.rvalue);
       setInstitute(strDescending);
-      // console.log(institute);
-      //console.log(strDescending);
     } else if (sortvalue === "Lowest to Highest") {
       strDescending = [...institute].sort((a, b) => a.rvalue - b.rvalue);
       setInstitute(strDescending);
-      // console.log(institute);
     } else {
-      // setInstitute(original);
+      setInstitute(insti);
     }
-    // setInstitute(strDescending);
   }, [sortdrop]);
 
   useEffect(() => {
@@ -317,7 +333,7 @@ const InstituteAdmin = () => {
     // countSrch += 1;
     // console.log("prev" + org);
     if (text.length == 0) {
-      setInstitute(org);
+      setInstitute(insti);
     } else {
       filteredData1 = institute.filter((user) =>
         user.name.toLowerCase().includes(text.toLowerCase())
@@ -326,19 +342,209 @@ const InstituteAdmin = () => {
     }
   }, [text]);
 
+  useEffect(() => {
+    // callInst();
+    let filteredData1 = "";
+    // if (countSrch == 1) org = institute;
+    // countSrch += 1;
+    // console.log("prev" + org);
+    if (text.length == 0) {
+      // setInstitute(insti);
+      setAccepts(acceptList);
+    } else {
+      filteredData1 = accepts.filter((user) =>
+        user.name.toLowerCase().includes(text.toLowerCase())
+      );
+      setAccepts(filteredData1);
+    }
+  }, [text]);
+
+  useEffect(() => {
+    // callInst();
+    let filteredData1 = "";
+    // if (countSrch == 1) org = institute;
+    // countSrch += 1;
+    // console.log("prev" + org);
+    if (text.length == 0) {
+      // setInstitute(insti);
+      // setAccepts(acceptList);
+      setRejects(rejectList);
+    } else {
+      filteredData1 = rejects.filter((user) =>
+        user.name.toLowerCase().includes(text.toLowerCase())
+      );
+      // setAccepts(filteredData1);
+      setRejects(filteredData1);
+    }
+  }, [text]);
+
+  useEffect(() => {
+    let strDescending = [];
+    if (sortvalue === "Highest to Lowest") {
+      strDescending = [...institute].sort((a, b) => b.rvalue - a.rvalue);
+
+      setAccepts(strDescending);
+    } else if (sortvalue === "Lowest to Highest") {
+      strDescending = [...institute].sort((a, b) => a.rvalue - b.rvalue);
+
+      setAccepts(strDescending);
+    } else {
+      setAccepts(acceptList);
+    }
+  }, [sortdrop]);
+
+  useEffect(() => {
+    let strDescending = [];
+    if (sortvalue === "Highest to Lowest") {
+      strDescending = [...institute].sort((a, b) => b.rvalue - a.rvalue);
+      // setInstitute(strDescending);
+      setRejects(strDescending);
+    } else if (sortvalue === "Lowest to Highest") {
+      strDescending = [...institute].sort((a, b) => a.rvalue - b.rvalue);
+      // setInstitute(strDescending);
+      setRejects(strDescending);
+    } else {
+      // setInstitute(insti);
+      setRejects(rejectList);
+    }
+  }, [sortdrop]);
+
   // const handleAccept = async () => {
   //   try {
   //     // console.log(email);
-  //     await acceptInsitute({ email: sendEmail });
+  //     await getInstAccept({ email: sendEmail });
   //   } catch (error) {
   //     console.log(error);
   //   }
   // };
 
+  useEffect(() => {
+    // callInst();
+    appliedfilter.length > 0
+      ? appliedfilter.map((val) => {
+          if (itype.includes(val)) {
+            const newItem =
+              accepts.length > 0
+                ? accepts.filter((newVal) => {
+                    return newVal.type === val;
+                  })
+                : acceptList.filter((newVal) => {
+                    return newVal.type === val;
+                  });
+            setAccepts(newItem);
+          } else if (imonth.includes(val)) {
+            const newItem =
+              accepts.length > 0
+                ? accepts.filter((newVal) => {
+                    return newVal.month === val;
+                  })
+                : acceptList.filter((newVal) => {
+                    return newVal.month === val;
+                  });
+            setAccepts(newItem);
+          } else if (iduration.includes(val)) {
+            const newItem =
+              accepts.length > 0
+                ? accepts.filter((newVal) => {
+                    return newVal.duration === val;
+                  })
+                : acceptList.filter((newVal) => {
+                    return newVal.duration === val;
+                  });
+            setAccepts(newItem);
+          } else {
+            const newItem =
+              accepts.length > 0
+                ? accepts.filter((newVal) => {
+                    return newVal.rating === val;
+                  })
+                : acceptList.filter((newVal) => {
+                    return newVal.rating === val;
+                  });
+            setAccepts(newItem);
+          }
+        })
+      : setAccepts(acceptList);
+  }, [appliedfilter]);
+
+  useEffect(() => {
+    // callInst();
+    appliedfilter.length > 0
+      ? appliedfilter.map((val) => {
+          if (itype.includes(val)) {
+            const newItem =
+              rejects.length > 0
+                ? rejects.filter((newVal) => {
+                    return newVal.type === val;
+                  })
+                : rejectList.filter((newVal) => {
+                    return newVal.type === val;
+                  });
+            setRejects(newItem);
+          } else if (imonth.includes(val)) {
+            const newItem =
+              rejects.length > 0
+                ? rejects.filter((newVal) => {
+                    return newVal.month === val;
+                  })
+                : rejectList.filter((newVal) => {
+                    return newVal.month === val;
+                  });
+            setRejects(newItem);
+          } else if (iduration.includes(val)) {
+            const newItem =
+              rejects.length > 0
+                ? rejects.filter((newVal) => {
+                    return newVal.duration === val;
+                  })
+                : rejectList.filter((newVal) => {
+                    return newVal.duration === val;
+                  });
+            setRejects(newItem);
+          } else {
+            const newItem =
+              rejects.length > 0
+                ? rejects.filter((newVal) => {
+                    return newVal.rating === val;
+                  })
+                : rejectList.filter((newVal) => {
+                    return newVal.rating === val;
+                  });
+            setRejects(newItem);
+          }
+        })
+      : setRejects(rejectList);
+  }, [appliedfilter]);
+
   return (
     <>
       <div className="divBdy">
         <div className="filter-panel">
+          <div className="btns-inst">
+            <button
+              className="accepted-btn"
+              onClick={() => {
+                setDisAccept(true);
+                setDisPending(false);
+                setDisReject(false);
+                // handleAcceptList();
+              }}
+            >
+              Accepted List
+            </button>
+            <button
+              className="rejected-btn"
+              onClick={() => {
+                setDisAccept(false);
+                setDisPending(false);
+                setDisReject(true);
+                // handleAcceptList();
+              }}
+            >
+              Rejected List
+            </button>
+          </div>
+
           <div className="search-bar">
             <input
               className="search-text"
@@ -350,7 +556,6 @@ const InstituteAdmin = () => {
             />
           </div>
           <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
-
           <div className="sort-div">
             {sortvalue}
             <button
@@ -391,7 +596,9 @@ const InstituteAdmin = () => {
                   None
                 </ul>
               </>
-            ) : null}
+            ) : (
+              <></>
+            )}
           </div>
           <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
           <div className="filter-div">
@@ -534,6 +741,7 @@ const InstituteAdmin = () => {
               ) : null}
             </div>
           </div>
+
           <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
 
           {Object.keys(appliedfilter).length === 0 ? null : (
@@ -564,11 +772,82 @@ const InstituteAdmin = () => {
           )}
         </div>
         <div className="institute-panel">
-          {institute ? (
-            institute.map((inst, key) => <PendingInst inst={inst} />)
-          ) : (
-            <>No Application as of yet</>
-          )}
+          {disAccept ? (
+            <>
+              <div className="accept-bdy">
+                <div className="head-inst">
+                  <button className="back-inst-btn">
+                    <img
+                      src={arrowLeft}
+                      alt=""
+                      className="back-inst"
+                      onClick={() => {
+                        setDisAccept(false);
+                        setDisPending(true);
+                      }}
+                    />
+                  </button>
+                  <h3 className="title-inst-accpt"> Accepted Institute List</h3>
+                </div>
+                <div
+                  style={{
+                    padding: "1%",
+                    height: "80vh",
+                    overflowY: "auto",
+                  }}
+                >
+                  {accepts ? (
+                    accepts.map((val) => <PendingInst inst={val} />)
+                  ) : (
+                    <>No accepted list</>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : null}
+
+          {disPending ? (
+            institute ? (
+              institute.map((inst, key) => <PendingInst inst={inst} />)
+            ) : (
+              <>No application</>
+            )
+          ) : null}
+
+          {disReject ? (
+            <>
+              <div className="accept-bdy">
+                <div className="head-inst">
+                  <button className="back-inst-btn">
+                    <img
+                      src={arrowLeft}
+                      alt=""
+                      className="back-inst"
+                      onClick={() => {
+                        setDisAccept(false);
+                        setDisPending(true);
+                        setDisReject(false);
+                      }}
+                    />
+                  </button>
+                  <h3 className="title-inst-accpt">Rejected Institute List</h3>
+                </div>
+                <div
+                  style={{
+                    padding: "1%",
+                    height: "80vh",
+                    overflowY: "auto",
+                  }}
+                >
+                  {rejects ? (
+                    rejects.map((val) => <PendingInst inst={val} />)
+                  ) : (
+                    <>No rejected list</>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </>

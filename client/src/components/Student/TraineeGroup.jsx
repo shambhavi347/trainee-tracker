@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../CSS/Trainee/TraineeGroup.css";
-// import { getStudent } from "../../service/api";
+// import { StudentData } from "../../service/api";
 const TraineeGroup = () => {
   const [mentor, setMentor] = useState({ name: "Sunil Kumar" });
-  // const [tra, setTra] = useState([]);
+  const [Tra, setTra] = useState([]);
   const [trainee, setTrainee] = useState([
     {
       name: "Aakriti Saxena",
@@ -34,13 +34,14 @@ const TraineeGroup = () => {
     },
   ]);
 
+  // call user Profile
   // useEffect(() => {
   //   const fetchPeople = async () => {
-  //     const response = await getStudent();
+  //     const response = await StudentData();
   //     setTra(response);
   //   };
   //   fetchPeople();
-  // }, [tra]);
+  // }, [Tra]);
 
   return (
     <>
@@ -51,7 +52,7 @@ const TraineeGroup = () => {
           <div className="mentor"> {mentor.name}</div>
           <div className="trainee">
             <h3 className="trainee-title">Trainee</h3>
-            <h3 className="strength-title">{trainee.length} trainees </h3>
+            <h3 className="strength-title">{trainee.length} Trainees </h3>
             <hr style={{ marginLeft: "25.2%", marginRight: "24.6%" }} />
             {trainee.map((val, key) => (
               <div className="people">

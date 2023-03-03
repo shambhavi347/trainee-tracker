@@ -134,8 +134,9 @@ router.post(
     // console.log("Success");
     try {
       //check password is correct
-      const traineee = await trainee.findOne({});
-      if (!traineee.password === old_pass)
+      const traineee = await trainee.findOne({ _id: req.rootUser.id });
+      const isMatch = await bcrypt.compare(new_pass, traineee.password);
+      if (!isMatch)
         return res.status(422).json({ error: "Password Incorrect" });
 
       //check password format
@@ -148,11 +149,11 @@ router.post(
             "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!",
         });
       }
-
+      const new_pass_hash = await bcrypt.hash(new_pass, 12);
       //if both key and value are same then you dont need to write name of both like name:name
       const update = await trainee.findOneAndUpdate(
         { _id: req.rootUser.id },
-        { password: new_pass }
+        { password: new_pass_hash }
       );
 
       if (update) {
@@ -166,22 +167,66 @@ router.post(
   }
 );
 
+// get student details
 router.get("/student-data", traineeAuthenticate, async (req, res) => {
   try {
     const ID = req.rootUser.id;
     const Trainee = await trainee.findOne({ _id: ID });
-
-    res.send(Trainee);
+    const stud = await student.findOne({ email: Trainee.email });
+    if (stud) res.send(stud);
+    // res.send(Trainee);
   } catch (error) {
     console.log(error);
   }
 });
 
-// router.get("/get-pending-student", Authenticate, async (req, res) => {
+// update user details
+
+router.post("/update", traineeAuthenticate, async (req, res) => {
+  try {
+    const { phone_no } = req.body;
+    const ID = req.rootUser.id;
+    const Trainee = await trainee.findOne({ _id: ID });
+    if (!phone_no) {
+      return res
+        .status(422)
+        .json({ error: "Your Phone no. is same as the previous one !!\n" });
+    }
+
+    const phoneRegex = /^[6-9]\d{9}$/gi;
+
+    const phoneValid = phoneRegex.test(phone_no);
+
+    if (!phoneValid) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Phone no. correctly !!\n" });
+    }
+
+    const userExist1 = await student.findOne({ phone_no: phone_no });
+    if (userExist1) {
+      return res.status(422).json({ error: "Phone no. already Exist" });
+    }
+
+    const stud = await student.findOneAndUpdate(
+      { email: Trainee.email },
+      { phone_no: phone_no }
+    );
+    if (stud) {
+      res.status(201).json({ message: "Phone no. Updated" });
+    } else {
+      res.status(500).json({ error: "Failed to update Phone no." });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// router.get("/get-trainee-list", traineeAuthenticate, async (req, res) => {
 //   try {
 //     const id = req.rootUser._id;
-//     const inst = await Trainee.findOne({ trainee_id: id });
-//     const class = await Trainee.find({coord_id : inst.coord_id});
+//     const inst = await trainee.findOne({ trainee_id: id });
+//     const class = await trainee.find({coord_id : inst.coord_id});
 //     res.send(class);
 //   } catch (error) {
 //     console.log(error);

@@ -58,7 +58,7 @@ const NavBar5 = () => {
       const reason = await res.json();
       console.log(reason);
 
-      if (res.status === 400) {
+      if (res.status === 422) {
         window.alert(reason.error);
       } else {
         window.alert("Password Change Successful");
