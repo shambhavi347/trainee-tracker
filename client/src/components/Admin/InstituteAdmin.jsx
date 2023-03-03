@@ -175,7 +175,9 @@ const InstituteAdmin = () => {
 
   const [text, setText] = useState("");
   const [acceptList, setAcceptList] = useState([]);
+  const [accepts, setAccepts] = useState([]);
   const [rejectList, setRejectList] = useState([]);
+  const [rejects, setRejects] = useState([]);
   const [disAccept, setDisAccept] = useState(false);
   const [disPending, setDisPending] = useState(true);
   const [disReject, setDisReject] = useState(false);
@@ -229,22 +231,11 @@ const InstituteAdmin = () => {
     fetchData();
   }, [insti]);
 
-  // useEffect(() => {
-  //   const assign = () => {
-  //     if (institute.length == 0) setInstitute(insti);
-  //   };
-  //   assign();
-  //   console.log("inst" + institute);
-  //   institute.map((val) => console.log(val));
-  // }, []);
-
-  // if (institute.length == 0) assign();
-  // console.log(insti);
-
   useEffect(() => {
     const handleAcceptList = async () => {
       const data = await getInstAccept();
       setAcceptList(data);
+      if (accepts.length == 0) setAccepts(acceptList);
     };
     handleAcceptList();
   }, []);
@@ -253,6 +244,7 @@ const InstituteAdmin = () => {
     const handleRejectList = async () => {
       const data = await getInstReject();
       setRejectList(data);
+      if (rejects.length == 0) setRejects(rejectList);
     };
     handleRejectList();
   }, []);
@@ -322,27 +314,16 @@ const InstituteAdmin = () => {
   }, [appliedfilter]);
 
   useEffect(() => {
-    // callInst();
     let strDescending = [];
-    // original = institute;
-    // setInstitute(strDescending);
-    // if (countSort == 1) original = institute;
-    // countSort += 1;
-    // console.log(original);
     if (sortvalue === "Highest to Lowest") {
       strDescending = [...institute].sort((a, b) => b.rvalue - a.rvalue);
       setInstitute(strDescending);
-      // console.log(institute);
-      //console.log(strDescending);
     } else if (sortvalue === "Lowest to Highest") {
       strDescending = [...institute].sort((a, b) => a.rvalue - b.rvalue);
       setInstitute(strDescending);
-      // console.log(institute);
     } else {
-      // setInstitute(original);
       setInstitute(insti);
     }
-    // setInstitute(strDescending);
   }, [sortdrop]);
 
   useEffect(() => {
@@ -360,6 +341,73 @@ const InstituteAdmin = () => {
       setInstitute(filteredData1);
     }
   }, [text]);
+
+  useEffect(() => {
+    // callInst();
+    let filteredData1 = "";
+    // if (countSrch == 1) org = institute;
+    // countSrch += 1;
+    // console.log("prev" + org);
+    if (text.length == 0) {
+      // setInstitute(insti);
+      setAccepts(acceptList);
+    } else {
+      filteredData1 = accepts.filter((user) =>
+        user.name.toLowerCase().includes(text.toLowerCase())
+      );
+      setAccepts(filteredData1);
+    }
+  }, [text]);
+
+  useEffect(() => {
+    // callInst();
+    let filteredData1 = "";
+    // if (countSrch == 1) org = institute;
+    // countSrch += 1;
+    // console.log("prev" + org);
+    if (text.length == 0) {
+      // setInstitute(insti);
+      // setAccepts(acceptList);
+      setRejects(rejectList);
+    } else {
+      filteredData1 = rejects.filter((user) =>
+        user.name.toLowerCase().includes(text.toLowerCase())
+      );
+      // setAccepts(filteredData1);
+      setRejects(filteredData1);
+    }
+  }, [text]);
+
+  useEffect(() => {
+    let strDescending = [];
+    if (sortvalue === "Highest to Lowest") {
+      strDescending = [...institute].sort((a, b) => b.rvalue - a.rvalue);
+
+      setAccepts(strDescending);
+    } else if (sortvalue === "Lowest to Highest") {
+      strDescending = [...institute].sort((a, b) => a.rvalue - b.rvalue);
+
+      setAccepts(strDescending);
+    } else {
+      setAccepts(acceptList);
+    }
+  }, [sortdrop]);
+
+  useEffect(() => {
+    let strDescending = [];
+    if (sortvalue === "Highest to Lowest") {
+      strDescending = [...institute].sort((a, b) => b.rvalue - a.rvalue);
+      // setInstitute(strDescending);
+      setRejects(strDescending);
+    } else if (sortvalue === "Lowest to Highest") {
+      strDescending = [...institute].sort((a, b) => a.rvalue - b.rvalue);
+      // setInstitute(strDescending);
+      setRejects(strDescending);
+    } else {
+      // setInstitute(insti);
+      setRejects(rejectList);
+    }
+  }, [sortdrop]);
 
   // const handleAccept = async () => {
   //   try {
@@ -399,204 +447,202 @@ const InstituteAdmin = () => {
             </button>
           </div>
 
-          {disPending ? (
-            <>
-              <div className="search-bar">
-                <input
-                  className="search-text"
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Search by name..."
-                  onChange={(e) => setText(e.target.value)}
-                />
-              </div>
-              <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
-              <div className="sort-div">
-                {sortvalue}
-                <button
-                  className="down-btn"
+          <div className="search-bar">
+            <input
+              className="search-text"
+              type="text"
+              name=""
+              id=""
+              placeholder="Search by name..."
+              onChange={(e) => setText(e.target.value)}
+            />
+          </div>
+          <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
+          <div className="sort-div">
+            {sortvalue}
+            <button
+              className="down-btn"
+              onClick={() => {
+                sortdrop ? setSortdrop(false) : setSortdrop(true);
+              }}
+            >
+              <img className="downarrow-img " src={arrowDown} alt="" />
+            </button>
+            {sortdrop ? (
+              <>
+                <ul
+                  className="sort-menu-list"
                   onClick={() => {
-                    sortdrop ? setSortdrop(false) : setSortdrop(true);
+                    setSortvalue("Highest to Lowest");
+                    setSortdrop(false);
                   }}
                 >
-                  <img className="downarrow-img " src={arrowDown} alt="" />
-                </button>
-                {sortdrop ? (
-                  <>
-                    <ul
-                      className="sort-menu-list"
-                      onClick={() => {
-                        setSortvalue("Highest to Lowest");
-                        setSortdrop(false);
-                      }}
-                    >
-                      Highest to Loweset
-                    </ul>
-                    <ul
-                      className="sort-menu-list"
-                      onClick={() => {
-                        setSortvalue("Lowest to Highest");
-                        setSortdrop(false);
-                      }}
-                    >
-                      Lowset to Highest
-                    </ul>
-                    <ul
-                      className="sort-menu-list"
-                      onClick={() => {
-                        setSortvalue("Sort by NAAC Ratings");
-                        setSortdrop(false);
-                      }}
-                    >
-                      None
-                    </ul>
-                  </>
-                ) : null}
-              </div>
-              <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
-              <div className="filter-div">
-                <div className="filter-name">
-                  Institute Type
-                  <button
-                    className="down-btn"
-                    onClick={() => {
-                      filterdrop["Institute Type"]
-                        ? setFilterdrop({ "Institute Type": false })
-                        : setFilterdrop({ "Institute Type": true });
-                    }}
-                  >
-                    <img className="downarrow-img " src={arrowDown} alt="" />
-                  </button>
-                  {filterdrop["Institute Type"] ? (
+                  Highest to Loweset
+                </ul>
+                <ul
+                  className="sort-menu-list"
+                  onClick={() => {
+                    setSortvalue("Lowest to Highest");
+                    setSortdrop(false);
+                  }}
+                >
+                  Lowset to Highest
+                </ul>
+                <ul
+                  className="sort-menu-list"
+                  onClick={() => {
+                    setSortvalue("Sort by NAAC Ratings");
+                    setSortdrop(false);
+                  }}
+                >
+                  None
+                </ul>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+          <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
+          <div className="filter-div">
+            <div className="filter-name">
+              Institute Type
+              <button
+                className="down-btn"
+                onClick={() => {
+                  filterdrop["Institute Type"]
+                    ? setFilterdrop({ "Institute Type": false })
+                    : setFilterdrop({ "Institute Type": true });
+                }}
+              >
+                <img className="downarrow-img " src={arrowDown} alt="" />
+              </button>
+              {filterdrop["Institute Type"] ? (
+                <>
+                  {itype.map((val, key) => (
                     <>
-                      {itype.map((val, key) => (
-                        <>
-                          <br />
-                          <label className="container">
-                            {val}
-                            <input
-                              type="radio"
-                              name="type"
-                              id=""
-                              value={val}
-                              // checked={() => setChecked(!checked)}
-                              onChange={handleChange}
-                            />
+                      <br />
+                      <label className="container">
+                        {val}
+                        <input
+                          type="radio"
+                          name="type"
+                          id=""
+                          value={val}
+                          // checked={() => setChecked(!checked)}
+                          onChange={handleChange}
+                        />
 
-                            <span className="checkmark"></span>
-                          </label>
-                        </>
-                      ))}
+                        <span className="checkmark"></span>
+                      </label>
                     </>
-                  ) : null}
-                </div>
-                <div className="filter-name">
-                  Insternship Start Month
-                  <button
-                    className="down-btn"
-                    onClick={() => {
-                      filterdrop["Insternship Start Month"]
-                        ? setFilterdrop({ "Insternship Start Month": false })
-                        : setFilterdrop({ "Insternship Start Month": true });
-                    }}
-                  >
-                    <img className="downarrow-img " src={arrowDown} alt="" />
-                  </button>
-                  {filterdrop["Insternship Start Month"] ? (
+                  ))}
+                </>
+              ) : null}
+            </div>
+            <div className="filter-name">
+              Insternship Start Month
+              <button
+                className="down-btn"
+                onClick={() => {
+                  filterdrop["Insternship Start Month"]
+                    ? setFilterdrop({ "Insternship Start Month": false })
+                    : setFilterdrop({ "Insternship Start Month": true });
+                }}
+              >
+                <img className="downarrow-img " src={arrowDown} alt="" />
+              </button>
+              {filterdrop["Insternship Start Month"] ? (
+                <>
+                  {imonth.map((val, key) => (
                     <>
-                      {imonth.map((val, key) => (
-                        <>
-                          <br />
-                          <label className="container">
-                            {val}
-                            <input
-                              type="radio"
-                              name="month"
-                              id=""
-                              value={val}
-                              onChange={handleChange}
-                            />
+                      <br />
+                      <label className="container">
+                        {val}
+                        <input
+                          type="radio"
+                          name="month"
+                          id=""
+                          value={val}
+                          onChange={handleChange}
+                        />
 
-                            <span className="checkmark"></span>
-                          </label>
-                        </>
-                      ))}
+                        <span className="checkmark"></span>
+                      </label>
                     </>
-                  ) : null}
-                </div>
-                <div className="filter-name">
-                  Insternship Duration
-                  <button
-                    className="down-btn"
-                    onClick={() => {
-                      filterdrop["Insternship Duration"]
-                        ? setFilterdrop({ "Insternship Duration": false })
-                        : setFilterdrop({ "Insternship Duration": true });
-                    }}
-                  >
-                    <img className="downarrow-img " src={arrowDown} alt="" />
-                  </button>
-                  {filterdrop["Insternship Duration"] ? (
+                  ))}
+                </>
+              ) : null}
+            </div>
+            <div className="filter-name">
+              Insternship Duration
+              <button
+                className="down-btn"
+                onClick={() => {
+                  filterdrop["Insternship Duration"]
+                    ? setFilterdrop({ "Insternship Duration": false })
+                    : setFilterdrop({ "Insternship Duration": true });
+                }}
+              >
+                <img className="downarrow-img " src={arrowDown} alt="" />
+              </button>
+              {filterdrop["Insternship Duration"] ? (
+                <>
+                  {iduration.map((val) => (
                     <>
-                      {iduration.map((val) => (
-                        <>
-                          <br />
-                          <label className="container">
-                            {val}
-                            <input
-                              type="radio"
-                              name="duartion"
-                              id=""
-                              value={val}
-                              // checked={() => setChecked(!checked)}
-                              onChange={handleChange}
-                            />
+                      <br />
+                      <label className="container">
+                        {val}
+                        <input
+                          type="radio"
+                          name="duartion"
+                          id=""
+                          value={val}
+                          // checked={() => setChecked(!checked)}
+                          onChange={handleChange}
+                        />
 
-                            <span className="checkmark"></span>
-                          </label>
-                        </>
-                      ))}
+                        <span className="checkmark"></span>
+                      </label>
                     </>
-                  ) : null}
-                </div>
-                <div className="filter-name">
-                  Institute Rating
-                  <button
-                    className="down-btn"
-                    onClick={() => {
-                      filterdrop["Institute Rating"]
-                        ? setFilterdrop({ "Institute Rating": false })
-                        : setFilterdrop({ "Institute Rating": true });
-                    }}
-                  >
-                    <img className="downarrow-img " src={arrowDown} alt="" />
-                  </button>
-                  {filterdrop["Institute Rating"] ? (
+                  ))}
+                </>
+              ) : null}
+            </div>
+            <div className="filter-name">
+              Institute Rating
+              <button
+                className="down-btn"
+                onClick={() => {
+                  filterdrop["Institute Rating"]
+                    ? setFilterdrop({ "Institute Rating": false })
+                    : setFilterdrop({ "Institute Rating": true });
+                }}
+              >
+                <img className="downarrow-img " src={arrowDown} alt="" />
+              </button>
+              {filterdrop["Institute Rating"] ? (
+                <>
+                  {naac.map((val, key) => (
                     <>
-                      {naac.map((val, key) => (
-                        <>
-                          <br />
-                          <label className="container">
-                            {val}
-                            <input
-                              type="radio"
-                              name="rating"
-                              id=""
-                              value={val}
-                              onChange={handleChange}
-                            />
+                      <br />
+                      <label className="container">
+                        {val}
+                        <input
+                          type="radio"
+                          name="rating"
+                          id=""
+                          value={val}
+                          onChange={handleChange}
+                        />
 
-                            <span className="checkmark"></span>
-                          </label>
-                        </>
-                      ))}
+                        <span className="checkmark"></span>
+                      </label>
                     </>
-                  ) : null}
-                </div>
-              </div>
-            </>
-          ) : null}
+                  ))}
+                </>
+              ) : null}
+            </div>
+          </div>
 
           <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
 
@@ -652,8 +698,8 @@ const InstituteAdmin = () => {
                     overflowY: "auto",
                   }}
                 >
-                  {acceptList ? (
-                    acceptList.map((val) => <PendingInst inst={val} />)
+                  {accepts ? (
+                    accepts.map((val) => <PendingInst inst={val} />)
                   ) : (
                     <>No accepted list</>
                   )}
@@ -695,8 +741,8 @@ const InstituteAdmin = () => {
                     overflowY: "auto",
                   }}
                 >
-                  {rejectList ? (
-                    rejectList.map((val) => <PendingInst inst={val} />)
+                  {rejects ? (
+                    rejects.map((val) => <PendingInst inst={val} />)
                   ) : (
                     <>No rejected list</>
                   )}
