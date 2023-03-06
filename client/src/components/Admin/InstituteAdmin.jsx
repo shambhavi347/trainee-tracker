@@ -62,7 +62,6 @@ const InstituteAdmin = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getInstitutes();
-
       setInsti(data);
       if (institute.length === 0) setInstitute(insti);
     };
@@ -76,7 +75,7 @@ const InstituteAdmin = () => {
       if (accepts.length === 0) setAccepts(acceptList);
     };
     handleAcceptList();
-  }, []);
+  }, [acceptList]);
 
   useEffect(() => {
     const handleRejectList = async () => {
@@ -85,7 +84,7 @@ const InstituteAdmin = () => {
       if (rejects.length === 0) setRejects(rejectList);
     };
     handleRejectList();
-  }, []);
+  }, [rejectList]);
 
   const handleChange = (e) => {
     let value = e.target.value;

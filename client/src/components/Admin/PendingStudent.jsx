@@ -43,6 +43,7 @@ const PendingStudent = ({ stud }) => {
           <div>{stud.course}</div>
           <div>{stud.stream}</div>
           <div>{stud.semester}</div>
+          <div>{stud.cgpa}</div>
           <div>{stud.passout_year}</div>
         </div>
         <div>
