@@ -64,7 +64,35 @@ const TraineeAdmin = () => {
   const [sortdrop, setSortdrop] = useState(false);
   const [sortvalue, setSortvalue] = useState("Sort By CGPA");
   const [appliedfilter, setAppliedfilter] = useState([]);
+  //fetch pending students
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getStudent();
+      setStudent(data);
+      if (studs.length === 0) setStuds(student);
+    };
+    fetchData();
+  }, [student]);
 
+  //fetch accepted students
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getAcceptStudent();
+      setAcceptedStudents(data);
+      if (acceptStud.length === 0) setAcceptStud(acceptedStudents);
+    };
+    fetchData();
+  }, [acceptedStudents]);
+
+  //fetch rejected students
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getRejectStudent();
+      setRejectedStudents(data);
+      if (rejectStud.length === 0) setRejectStud(rejectedStudents);
+    };
+    fetchData();
+  }, [rejectedStudents]);
   //get Institute Name Category
   useEffect(() => {
     const fetchData = async () => {
@@ -192,36 +220,6 @@ const TraineeAdmin = () => {
     fetchData();
   }, [passRejCat]);
 
-  //fetch pending students
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getStudent();
-      setStudent(data);
-      if (studs.length === 0) setStuds(student);
-    };
-    fetchData();
-  }, [student]);
-
-  //fetch accepted students
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getAcceptStudent();
-      setAcceptedStudents(data);
-      if (acceptStud.length === 0) setAcceptStud(acceptedStudents);
-    };
-    fetchData();
-  }, [acceptedStudents]);
-
-  //fetch rejected students
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getRejectStudent();
-      setRejectedStudents(data);
-      if (rejectStud.length === 0) setRejectStud(rejectedStudents);
-    };
-    fetchData();
-  }, [rejectedStudents]);
-
   const handleChange = (e) => {
     let value = e.target.value;
     if (e.target.checked) {
@@ -317,9 +315,6 @@ const TraineeAdmin = () => {
       setRejectStud(rejectedStudents);
     }
   }, [sortdrop]);
-
-  // console.log("NAme:" + instnamePenCat);
-  // instnamePenCat.map((val) => console.log("Name" + val.instname));
 
   return (
     <>
