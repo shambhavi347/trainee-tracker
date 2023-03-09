@@ -316,6 +316,116 @@ const TraineeAdmin = () => {
     }
   }, [sortdrop]);
 
+  //Filters
+
+  //pending students
+  useEffect(() => {
+    appliedfilter.length > 0
+      ? appliedfilter.map((val) => {
+          if (instnamePenCat.includes(val)) {
+            const newItem = studs.filter((newVal) => {
+              return newVal.instname === val;
+            });
+            setStuds(newItem);
+          } else if (coursePenCat.includes(val)) {
+            const newItem = studs.filter((newVal) => {
+              return newVal.course === val;
+            });
+            setStuds(newItem);
+          } else if (streamPenCat.includes(val)) {
+            const newItem = studs.filter((newVal) => {
+              return newVal.stream === val;
+            });
+
+            setStuds(newItem);
+          } else if (semPenCat.includes(val)) {
+            const newItem = studs.filter((newVal) => {
+              return newVal.semester === val;
+            });
+            setStuds(newItem);
+          } else {
+            const newItem = studs.filter((newVal) => {
+              console.log(newVal.passout_year + "  " + val);
+              if (newVal.passout_year == val) return newVal;
+            });
+            setStuds(newItem);
+          }
+        })
+      : setStuds(student);
+  }, [appliedfilter]);
+
+  //Accepted students
+  useEffect(() => {
+    appliedfilter.length > 0
+      ? appliedfilter.map((val) => {
+          if (instnameAccCat.includes(val)) {
+            const newItem = acceptStud.filter((newVal) => {
+              return newVal.instname === val;
+            });
+            setAcceptStud(newItem);
+          } else if (courseAccCat.includes(val)) {
+            const newItem = acceptStud.filter((newVal) => {
+              return newVal.course === val;
+            });
+            setAcceptStud(newItem);
+          } else if (streamAccCat.includes(val)) {
+            const newItem = acceptStud.filter((newVal) => {
+              return newVal.stream === val;
+            });
+
+            setAcceptStud(newItem);
+          } else if (semAccCat.includes(val)) {
+            const newItem = acceptStud.filter((newVal) => {
+              return newVal.semester === val;
+            });
+            setAcceptStud(newItem);
+          } else {
+            const newItem = acceptStud.filter((newVal) => {
+              console.log(newVal.passout_year + "  " + val);
+              if (newVal.passout_year == val) return newVal;
+            });
+            setAcceptStud(newItem);
+          }
+        })
+      : setAcceptStud(acceptedStudents);
+  }, [appliedfilter]);
+
+  //Rejected Students
+  useEffect(() => {
+    appliedfilter.length > 0
+      ? appliedfilter.map((val) => {
+          if (instnameRejCat.includes(val)) {
+            const newItem = rejectStud.filter((newVal) => {
+              return newVal.instname === val;
+            });
+            setRejectStud(newItem);
+          } else if (courseRejCat.includes(val)) {
+            const newItem = rejectStud.filter((newVal) => {
+              return newVal.course === val;
+            });
+            setRejectStud(newItem);
+          } else if (streamRejCat.includes(val)) {
+            const newItem = rejectStud.filter((newVal) => {
+              return newVal.stream === val;
+            });
+
+            setRejectStud(newItem);
+          } else if (semRejCat.includes(val)) {
+            const newItem = rejectStud.filter((newVal) => {
+              return newVal.semester === val;
+            });
+            setRejectStud(newItem);
+          } else {
+            const newItem = rejectStud.filter((newVal) => {
+              console.log(newVal.passout_year + "  " + val);
+              if (newVal.passout_year == val) return newVal;
+            });
+            setRejectStud(newItem);
+          }
+        })
+      : setRejectStud(rejectedStudents);
+  }, [appliedfilter]);
+
   return (
     <>
       <div className="divBdy">

@@ -46,6 +46,7 @@ const PendingStudent = ({ stud }) => {
           <div>{stud.cgpa}</div>
           <div>{stud.passout_year}</div>
         </div>
+
         <div>
           Familiar Technology
           {stud.famtech.map((val) => (
