@@ -59,11 +59,14 @@ const InstituteAdmin = () => {
   const [disPending, setDisPending] = useState(true);
   const [disReject, setDisReject] = useState(false);
 
+  const [accBtn, setAccBtn] = useState("");
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await getInstitutes();
       setInsti(data);
-      if (institute.length === 0) setInstitute(insti);
+      console.log(insti);
+      if (institute.length === 0 || accBtn === "clicked") setInstitute(insti);
     };
     fetchData();
   }, [insti]);
@@ -71,17 +74,18 @@ const InstituteAdmin = () => {
   useEffect(() => {
     const handleAcceptList = async () => {
       const data = await getInstAccept();
+      // console.log(data);
       setAcceptList(data);
-      if (accepts.length === 0) setAccepts(acceptList);
+      if (accepts.length === 0 || accBtn === "clicked") setAccepts(acceptList);
     };
     handleAcceptList();
-  }, [acceptList]);
+  }, [acceptList, accepts]);
 
   useEffect(() => {
     const handleRejectList = async () => {
       const data = await getInstReject();
       setRejectList(data);
-      if (rejects.length === 0) setRejects(rejectList);
+      if (rejects.length === 0 || accBtn === "clicked") setRejects(rejectList);
     };
     handleRejectList();
   }, [rejectList]);
@@ -98,7 +102,14 @@ const InstituteAdmin = () => {
       });
     }
   };
-
+  //accept-reject button clicked
+  const btnClicked = (btn) => {
+    console.log("Button" + btn);
+    if (btn === "accept") {
+      console.log("btn clicked");
+      setAccBtn("clicked");
+    }
+  };
   useEffect(() => {
     appliedfilter.length > 0
       ? appliedfilter.map((val) => {
@@ -603,7 +614,9 @@ const InstituteAdmin = () => {
                   }}
                 >
                   {accepts ? (
-                    accepts.map((val) => <PendingInst inst={val} />)
+                    accepts.map((val) => (
+                      <PendingInst inst={val} btnClicked={btnClicked} />
+                    ))
                   ) : (
                     <>No accepted list</>
                   )}
@@ -614,7 +627,9 @@ const InstituteAdmin = () => {
 
           {disPending ? (
             institute ? (
-              institute.map((inst, key) => <PendingInst inst={inst} />)
+              institute.map((inst, key) => (
+                <PendingInst inst={inst} btnClicked={btnClicked} />
+              ))
             ) : (
               <>No application</>
             )
@@ -646,7 +661,9 @@ const InstituteAdmin = () => {
                   }}
                 >
                   {rejects ? (
-                    rejects.map((val) => <PendingInst inst={val} />)
+                    rejects.map((val) => (
+                      <PendingInst inst={val} btnClicked={btnClicked} />
+                    ))
                   ) : (
                     <>No rejected list</>
                   )}

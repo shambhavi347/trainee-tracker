@@ -132,3 +132,61 @@
   font-weight: bolder;
   cursor: pointer;
 }
+
+.forgot-bdy {
+  height: 100vh;
+  background-color: #ecf2ff;
+}
+
+.forgot-p {
+  color: #222831;
+}
+.pass-block {
+  width: 50%;
+  height: 60%;
+  background-color: #00adb5;
+  padding: 2%;
+  margin-top: 5%;
+  margin-left: 25%;
+  border-radius: 20px;
+  color: #eeeeee;
+  text-align: center;
+  background-image: url("../Images/forgotBack.gif");
+  background-attachment: fixed;
+  align-content: center;
+  background-size: cover;
+  box-shadow: 5px 5px 8px #888888;
+}
+
+.pass-title {
+  color: #222831;
+}
+
+.pass-input {
+  padding: 2%;
+  width: 70%;
+  color: #222831;
+  border-radius: 10px;
+}
+
+.pass-btn {
+  margin-top: 5%;
+  padding: 2%;
+  width: 60%;
+  background-color: #393e46;
+  border: 1px #00adb5 solid;
+  font-size: medium;
+  color: #eeeeee;
+  border-radius: 10px;
+}
+.pass-input:hover,
+.pass-input:focus {
+  border: 2px #00adb5 solid;
+}
+.pass-btn:hover {
+  width: 70%;
+  background-color: #00adb5;
+  color: #eeeeee;
+  font-weight: bold;
+  cursor: pointer;
+}

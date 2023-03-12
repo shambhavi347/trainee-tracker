@@ -2,12 +2,13 @@ import React from "react";
 import { acceptTrainee, rejectTrainee } from "../../service/api";
 import { expand } from "../../Images/Images";
 
-const PendingStudent = ({ stud }) => {
+const PendingStudent = ({ stud, btnClicked }) => {
   const date = new Date(stud.dob);
   const acceptStud = async () => {
     try {
       const res = await acceptTrainee({ email: stud.email });
       window.alert(res);
+      btnClicked("accept");
     } catch (error) {
       console.log(error);
     }
@@ -16,14 +17,17 @@ const PendingStudent = ({ stud }) => {
     try {
       const res = await rejectTrainee({ email: stud.email });
       window.alert(res);
+      btnClicked("accept");
     } catch (error) {
       console.log(error);
     }
   };
   return (
+    //add button on condition of accepte and rejected students
     <>
-      <div className="inst-bdy">
-        <div className="inst-expnd">
+      {/* className="inst-bdy" */}
+      <div>
+        <div>
           <button className="btn-expnd">
             <img src={expand} alt="" className="img-expnd" />
           </button>

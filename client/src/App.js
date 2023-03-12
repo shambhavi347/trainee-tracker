@@ -16,7 +16,8 @@ import TraineeProfile from "./components/Student/TraineeProfile";
 import CoordPeople from "./components/Coordinator/CoordPeople";
 import CoordProject from "./components/Coordinator/CoordProject";
 import CoordDiscussion from "./components/Coordinator/CoordDiscussion";
-
+import ForgotPass from "./components/ForgotPass";
+import CreatePass from "./components/CreatePass";
 const App = () => {
   return (
     <>
@@ -38,6 +39,8 @@ const App = () => {
           <Route path="/coordinator-people" element={<CoordPeople />} />
           <Route path="/coodinator-project" element={<CoordProject />} />
           <Route path="/coordinator-discussion" element={<CoordDiscussion />} />
+          <Route path="/forgot-password" element={<ForgotPass />} />
+          <Route path="/create-pass" element={<CreatePass />} />
         </Routes>
       </Router>
     </>

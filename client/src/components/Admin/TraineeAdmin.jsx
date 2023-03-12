@@ -32,6 +32,7 @@ const TraineeAdmin = () => {
     "Passout Year": false,
   });
   const [text, setText] = useState("");
+  const [accBtn, setAccBtn] = useState("");
   const [instnamePenCat, setInstnamePenCat] = useState([]);
   const [instnameAccCat, setInstnameAccCat] = useState([]);
   const [instnameRejCat, setInstnameRejCat] = useState([]);
@@ -65,13 +66,16 @@ const TraineeAdmin = () => {
   const [sortvalue, setSortvalue] = useState("Sort By CGPA");
   const [appliedfilter, setAppliedfilter] = useState([]);
   //fetch pending students
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await getStudent();
+      // console.log(data);
       setStudent(data);
-      if (studs.length === 0) setStuds(student);
+      // console.log("Students: " + student);
     };
     fetchData();
+    if (studs.length === 0 || accBtn === "clicked") setStuds(student);
   }, [student]);
 
   //fetch accepted students
@@ -79,7 +83,9 @@ const TraineeAdmin = () => {
     const fetchData = async () => {
       const data = await getAcceptStudent();
       setAcceptedStudents(data);
-      if (acceptStud.length === 0) setAcceptStud(acceptedStudents);
+      console.log(acceptedStudents);
+      if (acceptStud.length === 0 || accBtn === "clicked")
+        setAcceptStud(acceptedStudents);
     };
     fetchData();
   }, [acceptedStudents]);
@@ -89,7 +95,8 @@ const TraineeAdmin = () => {
     const fetchData = async () => {
       const data = await getRejectStudent();
       setRejectedStudents(data);
-      if (rejectStud.length === 0) setRejectStud(rejectedStudents);
+      if (rejectStud.length === 0 || accBtn === "clicked")
+        setRejectStud(rejectedStudents);
     };
     fetchData();
   }, [rejectedStudents]);
@@ -126,7 +133,6 @@ const TraineeAdmin = () => {
     };
     fetchData();
   }, [streamPenCat]);
-  // console.log(streamPenCat);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -220,6 +226,12 @@ const TraineeAdmin = () => {
     fetchData();
   }, [passRejCat]);
 
+  //accept-reject button clicked
+  const btnClicked = (btn) => {
+    if (btn === "accept") {
+      setAccBtn("clicked");
+    }
+  };
   const handleChange = (e) => {
     let value = e.target.value;
     if (e.target.checked) {
@@ -508,6 +520,7 @@ const TraineeAdmin = () => {
               <></>
             )}
           </div>
+
           <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
           {/* filters */}
           {disPend ? (
@@ -1098,7 +1111,9 @@ const TraineeAdmin = () => {
                   }}
                 >
                   {acceptStud ? (
-                    acceptStud.map((val) => <PendingStudent stud={val} />)
+                    acceptStud.map((val) => (
+                      <PendingStudent stud={val} btnClicked={btnClicked} />
+                    ))
                   ) : (
                     <>No accepted list</>
                   )}
@@ -1108,7 +1123,9 @@ const TraineeAdmin = () => {
           ) : null}
 
           {disPend
-            ? studs.map((val, key) => <PendingStudent stud={val} />)
+            ? studs.map((val, key) => (
+                <PendingStudent stud={val} btnClicked={btnClicked} />
+              ))
             : null}
 
           {disRej ? (
@@ -1137,7 +1154,9 @@ const TraineeAdmin = () => {
                   }}
                 >
                   {rejectStud ? (
-                    rejectStud.map((val) => <PendingStudent stud={val} />)
+                    rejectStud.map((val) => (
+                      <PendingStudent stud={val} btnClicked={btnClicked} />
+                    ))
                   ) : (
                     <>No rejected list</>
                   )}
