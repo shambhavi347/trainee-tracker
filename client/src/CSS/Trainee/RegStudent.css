@@ -331,34 +331,31 @@ input[type="file"]::file-selector-button:hover {
 }
 
 .choose-file {
-  /* border: 2px #00adb5 solid;
-  padding: 2%;
-  background-color: #222831;
-  width: 30%;
-  margin: 2%;
-  margin-top: 5%;
-  margin-left: 35%;
-  border-radius: 20px;
-  color: #00adb5;
-  font-size: x-large; */
+  /* border: 2px #00adb5 solid; */
+  /* padding: 2%; */
+  /* background-color: #ccc; */
+  /* width: 30%; */
+  /* margin: 2%; */
+  /* margin-top: 5%; */
+  /* margin-left: 35%; */
+  /* border-radius: 20px; */
+  /* color: #00adb5; */
+  /* font-size: x-large;  */
+  border: 1px #00adb5 solid;
+  
   text-align: center;
   padding: 1%;
   border-radius: 22px;
   border: 0;
-  height: 55px;
-  /* height: 50%; */
-  /* width: 259px; */
+  height: 3%;
   width: 20.1%;
-  /* margin: 10px 15px; */
-  /* margin-bottom: 15px; */
   margin-bottom: 2%;
   margin: 2%;
-  /* margin-top: 20px; */
   margin-top: 1.5%;
   margin-left: 40%;
   font-size: x-large;
   background-color: #222831;
-  border: 2px #00adb5 solid;
+  /* border: 2px #00adb5 solid; */
   color: #00adb5;
 }
 

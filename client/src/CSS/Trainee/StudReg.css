@@ -1,0 +1,407 @@
+* {
+    box-sizing: border-box;
+  }
+  .DivUpper1 {
+    background: #222831;
+    background: -webkit-linear-gradient(to top, #222831, #393e46);
+    background: linear-gradient(to bottom, #393e46, #00adb5);
+    /* background-color: #222831; */
+    height: 100vh;
+    margin: 0px;
+    /* overflow-y: scroll; */
+  }
+  
+  /* .divLower {
+    background-color: #393e46;
+    height: 70%;
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    margin-top: 4%;
+    position: relative;
+  } */
+  .btn-form1 {
+    text-align: center;
+    border-radius: 20px;
+    border: 0;
+    height: 60px;
+    width: 250px;
+    margin: 10px 15px;
+    margin-bottom: 15px;
+    font-size: x-large;
+    background-color: #222831;
+    border: 2px #00adb5 solid;
+    color: #00adb5;
+  }
+  
+  .btn-form1:hover {
+    background-color: #222831;
+    color: #eeeeee;
+    font-weight: bolder;
+    font-style: italic;
+  }
+  /* .body {
+    /* padding-top: 0vh; */
+  /* margin: 0;
+    height: 100%;
+    color: azure;
+    overflow-y: scroll; */
+  /* } */
+  /* #main {
+    height: 98vh;
+  } */
+  
+  .main1 {
+    width: 100%;
+    height: 100%;
+    padding: 160px;
+    padding-top: 50px;
+    align-content: center;
+    background-size: cover;
+    color: azure;
+    overflow-y: scroll;
+  }
+  
+  .regHead1 {
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 5px;
+    font-size: 30px;
+  }
+
+  .drop-down-sal {
+    width: 119px;
+    padding: 20px;
+    color: black;
+    background-color: #f2f4f4;
+    border-radius: 20px;
+    border: 1px solid rgba(52, 73, 94, 0.1);
+    font-size: medium;
+    clear: right;
+  }
+
+  .salutation {
+    padding: 1%;
+    margin: 1%;
+    margin-right: 70%;
+  }
+
+  .first-name {
+    padding: 1%;
+    margin: 1%;
+  }
+  
+  .form-text1,
+  .form-date1,
+  .form-email1,
+  .form-password1 {
+    width: 250px;
+    padding: 20px;
+    color: black;
+    background-color: #f2f4f4;
+    border-radius: 20px;
+    border: 1px solid rgba(52, 73, 94, 0.1);
+  }
+  input {
+    border: 0;
+    outline: 0;
+    font-size: medium;
+  }
+  input[file] {
+    border: 0 !important;
+    color: white;
+  }
+  input:focus {
+    outline: none !important;
+  }
+  .radioGroup1 {
+    font-size: large;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    padding: 10px;
+    color: white;
+  }
+  input[type="file"]::file-selector-button {
+    font-family: "Itim", cursive;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #aeb6bf;
+    margin-left: 60px;
+    margin-right: 10px;
+  }
+  .btn-form1:hover,
+  input[type="file"]::file-selector-button:hover {
+    opacity: 0.8;
+  }
+  .regForm1 {
+    display: table-cell;
+    vertical-align: middle;
+    /* overflow-y: scroll; */
+  }
+  .regBox1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: table;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    border-radius: 15px;
+    /* overflow-y: scroll; */
+  }
+  .form-element1 {
+    justify-content: left;
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+  }
+  
+  .loginWelcome1 {
+    opacity: 0.7;
+    text-align: center;
+    color: #f2f4f4;
+  }
+  .regHead1 {
+    color: white;
+  }
+  .signupImg1 {
+    max-width: 100%;
+    flex-basis: 40%;
+    padding: 0;
+    margin-top: auto;
+  }
+  .Img1 {
+    width: 500px;
+    height: 400px;
+    flex-basis: 40%;
+    padding: 0;
+    margin-top: auto;
+  }
+  .img1,
+  .Img1 {
+    border-left: 1px solid rgba(52, 73, 94, 0.1);
+  }
+  .img1,
+  .Img1,
+  .regForm1 {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .drop-down0 {
+    width: 250px;
+    padding: 20px;
+    color: black;
+    background-color: #f2f4f4;
+    border-radius: 20px;
+    border: 1px solid rgba(52, 73, 94, 0.1);
+    font-size: medium;
+    clear: right;
+  }
+  .drop-down11 {
+    width: 250px;
+    margin-top: 20px;
+    padding: 20px;
+    color: black;
+    background-color: #f2f4f4;
+    border-radius: 20px;
+    border: 1px solid rgba(52, 73, 94, 0.1);
+    font-size: medium;
+  }
+  
+  .fam-tech1,
+  .int-drop1 {
+    border: 2px #00adb5 solid;
+    width: 40%;
+    margin-left: 30%;
+    border-radius: 15px;
+    padding: 15px;
+    background-color: #222831;
+    margin-bottom: 5%;
+    margin-top: 2%;
+  }
+  
+  .drop-first1 {
+    margin: 5px;
+  }
+  
+  .container-form1 {
+    display: block;
+    position: relative;
+    /* padding-left: 25px; */
+    /* margin: 3%; */
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 3px;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container-form1 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark-form1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+  
+    border: 1px #00adb5 solid;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container-form1:hover input ~ .checkmark-form1 {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container-form1 input:checked ~ .checkmark-form1 {
+    background-color: #00adb5;
+  }
+  
+  .option1 {
+    height: 100px;
+    overflow-y: scroll;
+  }
+  
+  .tech-box-outer1 {
+    /* width: 60%; */
+    height: 90px;
+    /* background-color: #222831; */
+    /* border-radius: 10px; */
+    /* border: 1px #00adb5 solid; */
+  
+    /* margin: 5% 0; */
+    margin-bottom: 2%;
+    /* margin-left: 20%; */
+    /* color: #ccc; */
+    /* padding: 1%; */
+  
+    border: 2px #00adb5 solid;
+    width: 40%;
+    margin-left: 30%;
+    border-radius: 15px;
+    /* padding: 1px; */
+    background-color: #222831;
+    /* margin-bottom: 5%;
+    margin-top: 2%; */
+  }
+  .tech-box1 {
+    height: 100%;
+    padding: 5%;
+    padding-top: 15px;
+    overflow-y: scroll;
+  }
+  
+  .tech1 {
+    width: auto;
+    height: auto;
+    padding: 1.5%;
+    margin: 2% 0;
+    margin-right: 5%;
+    background-color: #393e46;
+    border: 1px #00adb5 solid;
+    float: left;
+    border-radius: 10px;
+    padding-bottom: -12%;
+  }
+  
+  .cancel-text-tech1 {
+    float: left;
+    /* margin-right: -20px; */
+    /* margin-top: 1%; */
+  }
+  
+  .cancel-btn-tech1 {
+    /* height: 20%;
+    width: ; */
+    width: 5%;
+    height: 2%;
+    margin: 0;
+    padding: 0;
+    /* margin-top: -5%; */
+    background-color: transparent;
+    border: none;
+    float: right;
+    margin-left: 5px;
+    /* margin-right: -20px; */
+    /* margin-top: 6px; */
+    /* margin-top: -5%; */
+    /* margin-left: 15px; */
+    /* margin-left: 10px;
+    margin-top: 4%; */
+    /* margin: 0 10%; */
+  }
+  
+  .cancel-img-tech1 {
+    width: 100%;
+    height: 10%;
+    margin: 0;
+  }
+  
+  .choose-file1 {
+    /* border: 2px #00adb5 solid; */
+    /* padding: 2%; */
+    /* background-color: #ccc; */
+    /* width: 30%; */
+    /* margin: 2%; */
+    /* margin-top: 5%; */
+    /* margin-left: 35%; */
+    /* border-radius: 20px; */
+    /* color: #00adb5; */
+    /* font-size: x-large;  */
+    border: 1px #00adb5 solid;
+    
+    text-align: center;
+    padding: 1%;
+    border-radius: 22px;
+    border: 0;
+    height: 3%;
+    width: 20.1%;
+    margin-bottom: 2%;
+    margin: 2%;
+    margin-top: 1.5%;
+    margin-left: 40%;
+    font-size: x-large;
+    background-color: #222831;
+    border: 2px #00adb5 solid;
+    color: #00adb5;
+  }
+  
+  .choose-file1:hover {
+    background-color: #222831;
+    color: #eeeeee;
+    font-weight: bolder;
+    font-style: italic;
+  }
+
+  .form-body-reg-up {
+    background-color: #222831;
+    width: 80%;
+    position: absolute;
+    top: 20%;
+    /* left: 25%; */
+    border-radius: 18px;
+    padding: 1%;
+    height: 72%;
+    right: 10%;
+    overflow-y: scroll;
+  }
+  
+  .form-body-reg-up::-webkit-scrollbar {
+    display: none;
+  }
+  
