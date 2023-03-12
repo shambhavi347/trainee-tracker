@@ -22,22 +22,122 @@
   color: #eeeeee;
 }
 
+.modal-body {
+  width: 28%;
+  height: 50%;
+  background-color: #393e46;
+  margin: 2%;
+  float: left;
+  padding: 2%;
+  border-radius: 15px;
+  border: 1px #00adb5 solid;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+.modal-expnd {
+  margin-top: 6%;
+  margin-right: 6%;
+  margin-bottom: 5%;
+}
+
+.btn-expnd {
+  /* padding: -1%; */
+  float: right;
+  height: 24px;
+  width: 30px;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  padding: 0;
+  background-color: #222831;
+  border: none;
+  cursor: pointer;
+}
+
+.img-expnd {
+  height: 10%;
+  width: 2%;
+  margin-left: 98%;
+  background-color: transparent;
+}
+
+.info {
+  width: 98%;
+  margin-top: -4%;
+  padding-bottom: 3%;
+}
+
 .btn-inst-home {
   background-color: #393e46;
   border: 2px #00adb5 solid;
   color: #00adb5;
+  height: 50%;
   font-size: large;
   font-weight: bold;
-  margin-left: 35%;
+  margin-left: 40%;
+  margin-top: 2%;
+  padding-bottom: 1%;
+  padding-top: 1%;
+  border-radius: 18px;
+  padding-left: 3%;
+  padding-right: 3%;
 }
+
+.expanded-div {
+  height: 50%;
+  width: 50%;
+  margin: 0;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  background-color: #eeeeee48;
+  /* opacity: 0.4; */
+  position: absolute;
+  padding: 2%;
+}
+
+.expnd-cancel {
+  float: right;
+  background-color: #222831;
+  width: 4%;
+  height: 10%;
+  border: 1px #00adb5 solid;
+  margin-bottom: 2%;
+  cursor: pointer;
+}
+
+.expnd-img {
+  /* width: fit-content; */
+  width: 100%;
+  height: 100%;
+  /* cursor: pointer; */
+}
+
+.info-outer {
+  background-color: #222831;
+  width: 70%;
+  height: 100%;
+  overflow: hidden;
+  margin-left: 10%;
+  padding: 2%;
+  border-radius: 25px;
+  border: 2px #00adb5 solid;
+}
+
+/* .info {
+  height: 100%;
+  overflow-y: auto;
+} */
 
 .trans-btn {
   background: linear-gradient(to bottom, #393e46, #00adb5);
   border: 2px #393e46 solid;
   font-size: large;
   font-weight: bold;
-  margin-left: 49%;
+  margin-left: 42%;
   margin-top: -70px;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .message-inst-home {
@@ -56,6 +156,19 @@
   margin-bottom: 10%;
   margin-right: 25%;
   overflow-y: scroll;
+  mask-image: linear-gradient(to top, transparent, black),
+    linear-gradient(to left, transparent 17px, black 17px);
+  mask-size: 100% 20000px;
+  mask-position: left bottom;
+  -webkit-mask-image: linear-gradient(to top, transparent, black),
+    linear-gradient(to left, transparent 17px, black 17px);
+  -webkit-mask-size: 100% 20000px;
+  -webkit-mask-position: left bottom;
+  transition: mask-position 0.3s, -webkit-mask-position 0.3s;
+}
+
+.info-inst-home:hover {
+  -webkit-mask-position: left top;
 }
 
 .content {

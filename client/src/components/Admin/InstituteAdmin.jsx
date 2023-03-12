@@ -33,11 +33,6 @@ const InstituteAdmin = () => {
 
   const naac = ["A++", "A+", "A", "B++", "B+", "B", "C", "D"];
 
-  let countSort = 0;
-  let original = [];
-  let countSrch = 0;
-  let org = [];
-
   const [sortdrop, setSortdrop] = useState(false);
 
   const [sortvalue, setSortvalue] = useState("Sort By NAAC Ratings");
@@ -51,124 +46,6 @@ const InstituteAdmin = () => {
 
   const [appliedfilter, setAppliedfilter] = useState([]);
 
-  const [instInfo, setInstInfo] = useState([
-    {
-      name: " IIT Delhi",
-      month: "September",
-      duration: "3 Months",
-      rating: "A++",
-      rvalue: 8,
-      type: "Central University",
-      email: "iitdelhi@gmail.com",
-      street: "",
-      city: "Delhi",
-      state: "Delhi",
-      country: "India",
-      zipCode: "201012",
-      phone: "987654321",
-
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-    {
-      name: " IIM Ahemdabad",
-      month: "December",
-      duration: "6 Months",
-      rating: "A",
-      rvalue: 6,
-      type: "Central University",
-      email: "iitAhemdabad@gmail.com",
-      street: "",
-      city: "Ahemdabad",
-      state: "Gujrat",
-      country: "India",
-      zipCode: "201012",
-      phone: "987654321",
-
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-    {
-      name: " GGSIPU",
-      month: "July",
-      duration: "6 Months",
-      rating: "A+",
-      rvalue: 7,
-      type: "Private Institution",
-      email: "iitdelhi@gmail.com",
-      street: "",
-      city: "Delhi",
-      state: "Delhi",
-      country: "India",
-      zipCode: "201012",
-      phone: "987654321",
-
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-    {
-      name: " Bansathli Vidyapith",
-      month: "January",
-      duration: "6 Months",
-      rating: "A++",
-      rvalue: 8,
-      type: "Deemed University",
-      email: "iitdelhi@gmail.com",
-      street: "",
-      city: "Newai, Tonk",
-      state: "Rajasthan",
-      country: "India",
-      zipCode: "304022",
-      phone: "987654321",
-
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-    {
-      name: " Amity University",
-      month: "May",
-      duration: "3 Months",
-      rating: "C",
-      rvalue: 2,
-      type: "Private Institution",
-      email: "iitdelhi@gmail.com",
-      street: "Amity Road",
-      city: "Delhi",
-      state: "Delhi",
-      country: "India",
-      zipCode: "201012",
-      phone: "987654321",
-
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-    {
-      name: "JNU",
-      month: "July",
-      duration: "3 Months",
-      rating: "B+",
-      rvalue: 4,
-      type: "Central University",
-      email: "iitdelhi@gmail.com",
-      street: "JNU Road",
-      city: "Delhi",
-      state: "Delhi",
-      country: "India",
-      zipCode: "201012",
-      phone: "987654321",
-
-      coordName: "Mr. Vas dsds ",
-      coordEmail: "iitdelhicoord@gmail.com",
-      coordPhone: "987654333",
-    },
-  ]);
-
-  // const [instInfo, setInstInfo] = useState([{}]);
   const [insti, setInsti] = useState([]);
 
   const [institute, setInstitute] = useState([]);
@@ -182,51 +59,11 @@ const InstituteAdmin = () => {
   const [disPending, setDisPending] = useState(true);
   const [disReject, setDisReject] = useState(false);
 
-  // const [expnd, setExpnd] = useState("none");
-
-  const [inst, setInst] = useState([]);
-
-  const [sendEmail, setSendEmail] = useState("");
-
-  // const callInst = async () => {
-  //   try {
-  //     const res = await fetch("/get-pending-institute", {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Accept: "application/json",
-  //       },
-  //       Credential: "include ",
-  //     });
-  //     const data = await res.json();
-  //     setInstitute(data);
-  //     console.log(data);
-  //     if (!res.status === 200) {
-  //       const error = new Error(res.error);
-  //       throw error;
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //     // navigate("/");
-  //   }
-  // };
-
-  // instInfo.map((val, key) => {
-  //   console.log(val);
-  // });
-  // console.log(institute);
-  // useEffect(() => {
-  //   callInst();
-  // }, []);
-  let data1 = [];
   useEffect(() => {
     const fetchData = async () => {
       const data = await getInstitutes();
-      // console.log("dta " + data);
-      // setInstitute(data);
       setInsti(data);
-      if (institute.length == 0) setInstitute(insti);
-      // console.log(inst);
+      if (institute.length === 0) setInstitute(insti);
     };
     fetchData();
   }, [insti]);
@@ -235,24 +72,22 @@ const InstituteAdmin = () => {
     const handleAcceptList = async () => {
       const data = await getInstAccept();
       setAcceptList(data);
-      if (accepts.length == 0) setAccepts(acceptList);
+      if (accepts.length === 0) setAccepts(acceptList);
     };
     handleAcceptList();
-  }, []);
+  }, [acceptList]);
 
   useEffect(() => {
     const handleRejectList = async () => {
       const data = await getInstReject();
       setRejectList(data);
-      if (rejects.length == 0) setRejects(rejectList);
+      if (rejects.length === 0) setRejects(rejectList);
     };
     handleRejectList();
-  }, []);
+  }, [rejectList]);
 
   const handleChange = (e) => {
-    // callInst();
     let value = e.target.value;
-    // let name = e.target.name;
     if (e.target.checked) {
       //so duplicate values are not added
       if (appliedfilter.includes(value) === false)
@@ -265,7 +100,6 @@ const InstituteAdmin = () => {
   };
 
   useEffect(() => {
-    // callInst();
     appliedfilter.length > 0
       ? appliedfilter.map((val) => {
           if (itype.includes(val)) {
@@ -327,11 +161,7 @@ const InstituteAdmin = () => {
   }, [sortdrop]);
 
   useEffect(() => {
-    // callInst();
     let filteredData1 = "";
-    // if (countSrch == 1) org = institute;
-    // countSrch += 1;
-    // console.log("prev" + org);
     if (text.length == 0) {
       setInstitute(insti);
     } else {
@@ -343,13 +173,8 @@ const InstituteAdmin = () => {
   }, [text]);
 
   useEffect(() => {
-    // callInst();
     let filteredData1 = "";
-    // if (countSrch == 1) org = institute;
-    // countSrch += 1;
-    // console.log("prev" + org);
     if (text.length == 0) {
-      // setInstitute(insti);
       setAccepts(acceptList);
     } else {
       filteredData1 = accepts.filter((user) =>
@@ -360,20 +185,13 @@ const InstituteAdmin = () => {
   }, [text]);
 
   useEffect(() => {
-    // callInst();
     let filteredData1 = "";
-    // if (countSrch == 1) org = institute;
-    // countSrch += 1;
-    // console.log("prev" + org);
-    if (text.length == 0) {
-      // setInstitute(insti);
-      // setAccepts(acceptList);
+    if (text.length === 0) {
       setRejects(rejectList);
     } else {
       filteredData1 = rejects.filter((user) =>
         user.name.toLowerCase().includes(text.toLowerCase())
       );
-      // setAccepts(filteredData1);
       setRejects(filteredData1);
     }
   }, [text]);
@@ -381,11 +199,11 @@ const InstituteAdmin = () => {
   useEffect(() => {
     let strDescending = [];
     if (sortvalue === "Highest to Lowest") {
-      strDescending = [...institute].sort((a, b) => b.rvalue - a.rvalue);
+      strDescending = [...accepts].sort((a, b) => b.rvalue - a.rvalue);
 
       setAccepts(strDescending);
     } else if (sortvalue === "Lowest to Highest") {
-      strDescending = [...institute].sort((a, b) => a.rvalue - b.rvalue);
+      strDescending = [...accepts].sort((a, b) => a.rvalue - b.rvalue);
 
       setAccepts(strDescending);
     } else {
@@ -396,27 +214,17 @@ const InstituteAdmin = () => {
   useEffect(() => {
     let strDescending = [];
     if (sortvalue === "Highest to Lowest") {
-      strDescending = [...institute].sort((a, b) => b.rvalue - a.rvalue);
-      // setInstitute(strDescending);
+      strDescending = [...rejects].sort((a, b) => b.rvalue - a.rvalue);
+
       setRejects(strDescending);
     } else if (sortvalue === "Lowest to Highest") {
-      strDescending = [...institute].sort((a, b) => a.rvalue - b.rvalue);
-      // setInstitute(strDescending);
+      strDescending = [...rejects].sort((a, b) => a.rvalue - b.rvalue);
+
       setRejects(strDescending);
     } else {
-      // setInstitute(insti);
       setRejects(rejectList);
     }
   }, [sortdrop]);
-
-  // const handleAccept = async () => {
-  //   try {
-  //     // console.log(email);
-  //     await getInstAccept({ email: sendEmail });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   useEffect(() => {
     // callInst();
@@ -626,7 +434,6 @@ const InstituteAdmin = () => {
                           name="type"
                           id=""
                           value={val}
-                          // checked={() => setChecked(!checked)}
                           onChange={handleChange}
                         />
 
@@ -695,7 +502,6 @@ const InstituteAdmin = () => {
                           name="duartion"
                           id=""
                           value={val}
-                          // checked={() => setChecked(!checked)}
                           onChange={handleChange}
                         />
 

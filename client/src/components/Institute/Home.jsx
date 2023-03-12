@@ -3,6 +3,7 @@ import NavBar3 from "../NavBar3";
 import "../../CSS/Institute/Home.css";
 import "../Institute/RegInstitute";
 import { getAppstatus, getSelectedStudents } from "../../service/api";
+import { expand, cancel } from "../../Images/Images";
 
 const Home = () => {
   const [status, setStatus] = useState("");
@@ -25,6 +26,8 @@ const Home = () => {
     getStudent();
   }, [stud]);
 
+  const [expnd, setExpnd] = useState("none");
+
   return (
     <>
       <NavBar3 />
@@ -39,27 +42,60 @@ const Home = () => {
           </h3>
         </div>
 
-        <div className="container-inst-home">
-          <button className="btn-inst-home">Application Status</button>
-          <button className="trans-btn">{status}</button>
-        </div>
-        <div>
-          {status === "accept" ? (
-            <div className="message-inst-home">
-              Congratulations for grabbing this wonderful opportunity. Kindly
-              forward this mail to all the selected students for further
-              registration on our portal. Registration Link:
-              <a href="http://localhost:3000/reg-stud">
-                http://localhost:3000/reg-stud
-              </a>
+        {/* <div className="container-inst-home"> */}
+        {/* <button className="btn-inst-home">Application Status</button> */}
+
+        <div className="modal-bdy">
+          <div className="modal-expnd">
+            <button
+              className="btn-expnd"
+              onClick={() => {
+                setExpnd("block");
+              }}
+            >
+              <img src={expand} alt="" className="img-expnd" />
+            </button>
+          </div>
+
+          <div className="info">
+            {/* <img src={expand} alt="" className="img-expnd" /> */}
+            <button className="btn-inst-home">Application Status</button>
+          </div>
+
+          <div className="expanded-div" style={{ display: expnd }}>
+            <button onClick={() => setExpnd("none")} className="expnd-cancel">
+              <img className="expnd-img" src={cancel} alt="" />
+            </button>
+            <div className="info-outer">
+              {/* <div className="info"> */}
+              <div>
+                <button className="trans-btn">{status}</button>
+              </div>
+              <div>
+                {status === "accept" ? (
+                  <div className="message-inst-home">
+                    Congratulations for grabbing this wonderful opportunity.
+                    Kindly forward this mail to all the selected students for
+                    further registration on our portal. Registration Link:
+                    <a href="http://localhost:3000/reg-stud">
+                      http://localhost:3000/reg-stud
+                    </a>
+                  </div>
+                ) : status === "reject" ? (
+                  <div className="message-inst-home">
+                    We are sorry to inform you that your Institute could not fit
+                    our criteria of selection. Better luck next time!
+                  </div>
+                ) : null}
+                {/* </div>
+                </div> */}
+              </div>
             </div>
-          ) : status === "reject" ? (
-            <div className="message-inst-home">
-              We are sorry to inform you that your Institute could not fit our
-              criteria of selection. Better luck next time!
-            </div>
-          ) : null}
+          </div>
+
+          {/* <button className="trans-btn">{status}</button> */}
         </div>
+
         <div className="info-inst-home">
           <h3 className="content">List of selected Students</h3>
 

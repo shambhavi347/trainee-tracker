@@ -37,6 +37,157 @@ export const getStudent = async () => {
     console.log(error);
   }
 };
+export const getAcceptStudent = async () => {
+  try {
+    let respone = await axios.get("/get-accept-student");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getRejectStudent = async () => {
+  try {
+    let respone = await axios.get("/get-reject-student");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getInstNamePenCat = async () => {
+  try {
+    let respone = await axios.get("/get-instname-pending-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getInstNameAccCat = async () => {
+  try {
+    let respone = await axios.get("/get-instname-accept-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getInstNameRejCat = async () => {
+  try {
+    let respone = await axios.get("/get-instname-reject-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getStreamPenCat = async () => {
+  try {
+    let respone = await axios.get("/get-stream-pending-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getStreamAccCat = async () => {
+  try {
+    let respone = await axios.get("/get-stream-accept-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getStreamRejCat = async () => {
+  try {
+    let respone = await axios.get("/get-stream-reject-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCoursePenCat = async () => {
+  try {
+    let respone = await axios.get("/get-course-pending-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCourseAccCat = async () => {
+  try {
+    let respone = await axios.get("/get-course-accept-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCourseRejCat = async () => {
+  try {
+    let respone = await axios.get("/get-course-reject-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSemesterPenCat = async () => {
+  try {
+    let respone = await axios.get("/get-semester-pending-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSemesterAccCat = async () => {
+  try {
+    let respone = await axios.get("/get-semester-accept-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSemesterRejCat = async () => {
+  try {
+    let respone = await axios.get("/get-semester-reject-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPassYearPenCat = async () => {
+  try {
+    let respone = await axios.get("/get-passout-year-pending-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPassYearAccCat = async () => {
+  try {
+    let respone = await axios.get("/get-passout-year-accept-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPassYearRejCat = async () => {
+  try {
+    let respone = await axios.get("/get-passout-year-reject-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const acceptInsitute = async (data) => {
   try {

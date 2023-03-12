@@ -117,6 +117,219 @@ router.get("/get-pending-student", adminAuthenticate, async (req, res) => {
   }
 });
 
+router.get("/get-accept-student", adminAuthenticate, async (req, res) => {
+  try {
+    const inst = await Student.find({ status: "accept" });
+    res.send(inst);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-reject-student", adminAuthenticate, async (req, res) => {
+  try {
+    const inst = await Student.find({ status: "reject" });
+    res.send(inst);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get(
+  "/get-instname-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("instname", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-instname-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("instname", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-instname-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("instname", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-stream-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("stream", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-stream-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("stream", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-stream-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("stream", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-course-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("course", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-course-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("course", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-course-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("course", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-semester-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("semester", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-semester-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("semester", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-semester-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("semester", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-passout-year-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("passout_year", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-passout-year-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("passout_year", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-passout-year-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("passout_year", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 router.post("/accept-inst", adminAuthenticate, async (req, res) => {
   try {
     const { email } = req.body;
