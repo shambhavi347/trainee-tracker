@@ -115,6 +115,12 @@ const NavBar1 = () => {
                   autoComplete="off"
                   onChange={handleChange}
                 />
+                <p
+                  className="forgot-pass-link"
+                  onClick={() => navigate("/forgot-password")}
+                >
+                  Forgot Password?
+                </p>
                 <button
                   onClick={PostData}
                   className="login-component login-btn"

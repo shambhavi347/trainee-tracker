@@ -190,3 +190,15 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.forgot-pass-link {
+  margin-top: -1%;
+  margin-left: 2%;
+  color: #00adb5;
+  text-decoration: none;
+}
+.forgot-pass-link:hover {
+  color: #222831;
+  font-weight: bold;
+  cursor: pointer;
+}

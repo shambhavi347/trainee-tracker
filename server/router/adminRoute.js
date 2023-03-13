@@ -750,7 +750,7 @@ router.post("/forgot-pass", async (req, res) => {
   }
 });
 
-router.post("/create-password?a=", async (req, res) => {
+router.post("/create-password", async (req, res) => {
   try {
     let paramString = urlString.split("?")[1];
     let queryString = new URLSearchParams(paramString);
