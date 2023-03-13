@@ -19,19 +19,20 @@
 
 .form-body-inst-up {
   background-color: #222831;
-  width: 50%;
+  width: 76%;
   position: absolute;
   top: 30%;
-  left: 25%;
+  left: 12%;
   border-radius: 18px;
   padding: 1%;
   height: 68%;
 }
 
 .form-body-inst {
-  padding: 2% 5%;
+  padding: 2% 2%;
   overflow-y: scroll;
   height: 100%;
+  margin-left: 6%;
   mask-image: linear-gradient(to top, transparent, black),
     linear-gradient(to left, transparent 17px, black 17px);
   mask-size: 100% 20000px;
@@ -43,19 +44,74 @@
   transition: mask-position 0.3s, -webkit-mask-position 0.3s;
 }
 
+/* .form-body-inst::-webkit-scrollbar {
+  display: none;
+} */
+
 .form-body-inst:hover {
   -webkit-mask-position: left top;
+}
+
+.required::before {
+  content: " *";
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 2px;
 }
 
 .form-text-inst,
 .drop-down-inst,
 .btn-inst {
-  margin: 2% 0;
+  margin: 1% 0;
   /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
-  width: 70%;
-  margin-left: 15%;
-  padding: 3%;
+  width: 36%;
+  margin-left: 3.5%;
+  padding: 1.5%;
   border-radius: 15px;
+  /* background: transparent; */
+}
+
+.form-text-inst2 {
+  margin: 1% 0;
+  /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
+  width: 36%;
+  margin-left: 3.2%;
+  padding: 1.5%;
+  border-radius: 15px;
+}
+
+.field1 {
+  width: 84%;
+}
+
+.field2 {
+  width: 40%;
+}
+
+.field3 {
+  width: 18.5%;
+}
+
+.field4 {
+  width: 10%;
+}
+
+.field5 {
+  width: 22%;
+}
+
+.field6 {
+  width: 41%;
+}
+
+.field7 {
+  width: 41%;
+  margin-left: 25%;
+}
+
+.btn-inst {
+  margin-left: 28%;
 }
 
 .btn-inst {

@@ -15,7 +15,8 @@ router.post("/institute-reg", async (req, res) => {
     rating,
     rvalue,
     type,
-    street,
+    addressline1,
+    addressline2,
     city,
     state,
     country,
@@ -23,7 +24,9 @@ router.post("/institute-reg", async (req, res) => {
     phoneno,
     status,
     salutation,
-    coordName,
+    coordfirstName,
+    coordmiddleName,
+    coordlastName,
     coordEmail,
     coordPhone,
     password,
@@ -39,7 +42,8 @@ router.post("/institute-reg", async (req, res) => {
     !rating ||
     !rvalue ||
     !type ||
-    !street ||
+    !addressline1 ||
+    !addressline2 ||
     !city ||
     !state ||
     !country ||
@@ -47,7 +51,9 @@ router.post("/institute-reg", async (req, res) => {
     !phoneno ||
     !status ||
     !salutation ||
-    !coordName ||
+    !coordfirstName ||
+    !coordmiddleName ||
+    !coordlastName ||
     !coordEmail ||
     !coordPhone ||
     !password
@@ -162,7 +168,8 @@ router.post("/institute-reg", async (req, res) => {
       rating,
       rvalue,
       type,
-      street,
+      addressline1,
+      addressline2,
       city,
       state,
       country,
@@ -170,7 +177,9 @@ router.post("/institute-reg", async (req, res) => {
       phoneno,
       status,
       salutation,
-      coordName,
+      coordfirstName,
+      coordmiddleName,
+      coordlastName,
       coordEmail,
       coordPhone,
       password,

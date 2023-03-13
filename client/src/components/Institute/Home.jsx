@@ -48,16 +48,16 @@ const Home = () => {
         <div className="modal-bdy">
           <div className="modal-expnd">
             <button
-              className="btn-expnd"
+              className="btn-expnd-inst-home"
               onClick={() => {
                 setExpnd("block");
               }}
             >
-              <img src={expand} alt="" className="img-expnd" />
+              <img src={expand} alt="" className="img-expnd-inst-home" />
             </button>
           </div>
 
-          <div className="info">
+          <div className="info-home">
             {/* <img src={expand} alt="" className="img-expnd" /> */}
             <button className="btn-inst-home">Application Status</button>
           </div>
@@ -66,7 +66,7 @@ const Home = () => {
             <button onClick={() => setExpnd("none")} className="expnd-cancel">
               <img className="expnd-img" src={cancel} alt="" />
             </button>
-            <div className="info-outer">
+            <div className="info-outer-inst-home">
               {/* <div className="info"> */}
               <div>
                 <button className="trans-btn">{status}</button>

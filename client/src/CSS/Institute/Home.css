@@ -41,7 +41,7 @@
   margin-bottom: 5%;
 }
 
-.btn-expnd {
+.btn-expnd-inst-home {
   /* padding: -1%; */
   float: right;
   height: 24px;
@@ -54,14 +54,14 @@
   cursor: pointer;
 }
 
-.img-expnd {
+.img-expnd-inst-home {
   height: 10%;
   width: 2%;
   margin-left: 98%;
   background-color: transparent;
 }
 
-.info {
+.info-home {
   width: 98%;
   margin-top: -4%;
   padding-bottom: 3%;
@@ -83,7 +83,7 @@
   padding-right: 3%;
 }
 
-.expanded-div {
+.expanded-div-inst-home {
   height: 50%;
   width: 50%;
   margin: 0;
@@ -96,7 +96,7 @@
   padding: 2%;
 }
 
-.expnd-cancel {
+.expnd-cancel-inst-home {
   float: right;
   background-color: #222831;
   width: 4%;
@@ -106,14 +106,14 @@
   cursor: pointer;
 }
 
-.expnd-img {
+.expnd-img-inst-home {
   /* width: fit-content; */
   width: 100%;
   height: 100%;
   /* cursor: pointer; */
 }
 
-.info-outer {
+.info-outer-inst-home {
   background-color: #222831;
   width: 70%;
   height: 100%;
