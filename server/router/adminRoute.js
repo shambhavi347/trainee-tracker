@@ -19,7 +19,7 @@ router.post("/admin-login", async (req, res) => {
   try {
     let token;
     const { email, password } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
     //first validation - fileds not empty
     if (!email || !password) {
@@ -84,6 +84,7 @@ router.post("/admin-login", async (req, res) => {
 router.get("/get-pending-institute", adminAuthenticate, async (req, res) => {
   try {
     const inst = await Institute.find({ status: "pending" });
+
     res.send(inst);
   } catch (error) {
     console.log(error);
@@ -93,6 +94,8 @@ router.get("/get-pending-institute", adminAuthenticate, async (req, res) => {
 router.get("/get-accepted-institute", adminAuthenticate, async (req, res) => {
   try {
     const inst = await Institute.find({ status: "accept" });
+    // console.log("hi");
+    // console.log(inst);
     res.send(inst);
   } catch (error) {
     console.log(error);
@@ -117,6 +120,219 @@ router.get("/get-pending-student", adminAuthenticate, async (req, res) => {
   }
 });
 
+router.get("/get-accept-student", adminAuthenticate, async (req, res) => {
+  try {
+    const inst = await Student.find({ status: "accept" });
+    res.send(inst);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-reject-student", adminAuthenticate, async (req, res) => {
+  try {
+    const inst = await Student.find({ status: "reject" });
+    res.send(inst);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get(
+  "/get-instname-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("instname", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-instname-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("instname", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-instname-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("instname", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-stream-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("stream", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-stream-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("stream", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-stream-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("stream", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-course-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("course", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-course-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("course", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-course-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("course", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-semester-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("semester", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-semester-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("semester", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-semester-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("semester", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-passout-year-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("passout_year", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-passout-year-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("passout_year", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-passout-year-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Student.distinct("passout_year", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 router.post("/accept-inst", adminAuthenticate, async (req, res) => {
   try {
     const { email } = req.body;
@@ -124,6 +340,7 @@ router.post("/accept-inst", adminAuthenticate, async (req, res) => {
       { email: email },
       { $set: { status: "accept" } }
     );
+    res.send("Insititue Accepted");
   } catch (error) {
     console.log(error);
   }
@@ -136,6 +353,7 @@ router.post("/reject-inst", adminAuthenticate, async (req, res) => {
       { email: email },
       { $set: { status: "reject" } }
     );
+    res.send("Insititue Rejected");
   } catch (error) {
     console.log(error);
   }
@@ -445,4 +663,104 @@ router.post("/change-password", adminAuthenticate, async (req, res) => {
   }
 });
 
+//forgot password mail
+router.post("/forgot-pass", async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email)
+      return res.status(422).json({ error: "Email ID field is empty\n" });
+    var emailRegex =
+      /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+
+    if (email.length > 254) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Email ID correctly !!\n" });
+    }
+
+    var emailValid = emailRegex.test(email);
+    if (!emailValid) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Email ID correctly !!\n" });
+    }
+
+    // Further checking of some things regex can't handle
+    var parts = email.split("@");
+    if (parts[0].length > 64) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Email ID correctly !!\n" });
+    }
+
+    var domainParts = parts[1].split(".");
+    if (
+      domainParts.some(function (part) {
+        return part.length > 63;
+      })
+    ) {
+      return res
+        .status(422)
+        .json({ error: "Fill the Email ID correctly !!\n" });
+    }
+    const stud = await Student.findOne({ email: email });
+    const inst = await Institute.findOne({ email: email });
+    const admin = await Admin.findOne({ email: email });
+    const train = await Trainee.findOne({ email: email });
+    let id;
+    if (stud || inst || admin || train) {
+      if (stud) id = stud._id;
+      else if (inst) id = inst._id;
+      else if (admin) id = admin._id;
+      else id = train._id;
+      console.log("ID" + id);
+      let testAccount = await nodemailer.createTestAccount();
+      let link = "http://localhost:3000/create-pass?a=${id}";
+      // create reusable transporter object using the default SMTP transport
+      let transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: "randy67@ethereal.email", // generated ethereal user
+          pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+        },
+      });
+
+      // send mail with defined transport object
+      let info = await transporter.sendMail({
+        from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+        to: email, // list of receivers
+        subject: "Reset your password on Trainee Tracker", // Subject line
+        text: "We got your request. You can now reset your password Link: http://localhost:3000/create-pass?a=${id} You can ignore this email.Keep your account extra safe", // plain text body
+        html: " <b>We got your request.</b> You can now reset your password Link: ${link}  Didn’t ask for a new password? You can ignore this email.<b>Keep your account extra safe</b>", // html body
+      });
+      if (info.messageId) {
+        console.log("mail sent");
+        return res.status(200).json({ message: "Mail is sent  !!\n" });
+      } else {
+        return res.status(422).json({ error: "Mail is not sent  !!\n" });
+      }
+    } else
+      return res
+        .status(422)
+        .json({ error: "This email id is not registered  !!\n" });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/create-password?a=", async (req, res) => {
+  try {
+    let paramString = urlString.split("?")[1];
+    let queryString = new URLSearchParams(paramString);
+    console.log("Hello" + paramString);
+    for (let pair of queryString.entries()) {
+      console.log("Key is: " + pair[0]);
+      console.log("Value is: " + pair[1]);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;

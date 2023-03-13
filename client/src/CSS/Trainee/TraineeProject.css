@@ -19,19 +19,27 @@
     padding: 2%;
     margin-top: 0%;
     border-radius: 15px;
-    /* border: 1px #00adb5 solid; */
+    border: 1px #00adb5 solid;
     padding-left: 1%;
     padding-right: 1%;
   }
   .circle1 {
-    width: 13%;
+    /* width: 13%;
     height: 140%;
     margin-top: -2%;
-    margin-left: 15%;
+    margin-left: 15%; */
+    /* background: #00adb5; */
+    /* background: #a1f4f7d0;
+    border: 1px solid #000;
+    border-radius: 50%; */
+    width: 121px;
+    height: 121px;
+    margin-top: -18px;
+    margin-left: 70px;
     /* background: #00adb5; */
     background: #a1f4f7d0;
     border: 1px solid #000;
-    border-radius: 50%;
+    border-radius: 100px;
   }
 
   .circle1 .fadedbox1 {
@@ -40,24 +48,26 @@
     /* color: #fff; */
     color: #00adb5;
     opacity: 0;
-    width: 15%;
-    height: 10%;
-    padding: 3.74% 4%;
-    margin-left: -3.9%;
-    border-radius: 5%;
-    margin-top: -6.04%;
+    /* width: 15%;
+    height: 10%; */
+    width: 230px;
+    height: 119px;
+    padding: 60px 60px;
+    margin-left: -55px;
+    border-radius: 10px;
+    margin-top: -98px;
   }
   .circle1:hover .fadedbox1 {
     opacity: 0.95;
   }
   .circle1 .title1 {
-    width: 180%;
+    width: 180px;
     font-size:larger;
     text-transform: uppercase;
     opacity: 0;
-    padding: 12%;
-    margin-left: -27%;
-    margin-top: -21%;
+    padding: 10px;
+    margin-left: -30.5px;
+    margin-top: -20px;
     font-style: italic;
     font-weight: bolder;
     /* border-radius: 1%;
@@ -69,25 +79,25 @@
   }
 
   .text1 {
-    padding: 2%;
-    padding-left: 10%;
-    width: 80%;
-    margin-left: 16%;
-    margin-top: 36%;
-    font-size: 168%;
+    padding: 3px;
+    padding-left: 15px;
+    width: 85px;
+    margin-left: 15px;
+    margin-top: 42px;
+    font-size: 28px;
     /* background: #6eeeee;
     border: 1px solid #000; */
   }
 
   .circle2 {
-    width: 13%;
-    height: 140%;
-    margin-top: -8.1%;
-    margin-left: 45%;
+    width: 121px;
+    height: 121px;
+    margin-top: -100px;
+    margin-left: 300px;
     /* background: #00adb5; */
     background: #a1f4f7d0;
     border: 1px solid #000;
-    border-radius: 50%;
+    border-radius: 100px;
   }
 
   .circle2 .fadedbox2 {
@@ -96,12 +106,18 @@
     /* color: #fff; */
     color: #00adb5;
     opacity: 0;
-    width: 15%;
+    /* width: 15%;
     height: 10%;
     padding: 3.74% 4%;
     margin-left: -3.9%;
     border-radius: 5%;
-    margin-top: -6.04%;
+    margin-top: -6.04%; */
+    width: 230px;
+    height: 119px;
+    padding: 60px 60px;
+    margin-left: -55px;
+    border-radius: 10px;
+    margin-top: -97.3px;
   }
   .circle2:hover .fadedbox2 {
     opacity: 0.95;
@@ -136,14 +152,14 @@
   }
 
   .circle3 {
-    width: 13%;
-    height: 140%;
-    margin-top: -8.4%;
-    margin-left: 75%;
+    width: 121px;
+    height: 121px;
+    margin-top: -50px;
+    margin-left: 600px;
     /* background: #00adb5; */
     background: #a1f4f7d0;
     border: 1px solid #000;
-    border-radius: 50%;
+    border-radius: 100px;
   }
 
   .circle3 .fadedbox3 {
@@ -152,12 +168,18 @@
     /* color: #fff; */
     color: #00adb5;
     opacity: 0;
-    width: 15%;
+    /* width: 15%;
     height: 10%;
     padding: 3.74% 4%;
     margin-left: -3.9%;
     border-radius: 5%;
-    margin-top: -6.76%;
+    margin-top: -6.04%; */
+    width: 230px;
+    height: 119px;
+    padding: 60px 60px;
+    margin-left: -55px;
+    border-radius: 10px;
+    margin-top: -97.3px;
   }
   .circle3:hover .fadedbox3 {
     opacity: 0.95;
@@ -247,6 +269,19 @@
   
 
   .document {
+    /* width: 72.6%;
+    height: 61.1%;
+    background-color: #393e46;
+    margin: 2%;
+    margin-right: 0.1%;
+    padding: 2%;
+    margin-top: -30.8%;
+    float: right;
+    border-radius: 8px;
+    border: 1px #00adb5 solid;
+    padding-left: 1%;
+    padding-right: 1%;
+    overflow-y: scroll; */
     width: 72.6%;
     height: 61.1%;
     background-color: #393e46;
@@ -256,7 +291,7 @@
     margin-top: -30.8%;
     float: right;
     border-radius: 8px;
-    /* border: 1px #00adb5 solid; */
+    border: 1px #00adb5 solid;
     padding-left: 1%;
     padding-right: 1%;
     overflow-y: scroll;

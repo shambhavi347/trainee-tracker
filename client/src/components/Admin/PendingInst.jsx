@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { expand, cancel } from "../../Images/Images";
 import { acceptInsitute, rejectInsitute } from "../../service/api";
 
-const PendingInst = ({ inst }) => {
+const PendingInst = ({ inst, btnClicked }) => {
   const handleAccept = async () => {
     try {
       // console.log(email);
-      await acceptInsitute({ email: inst.email });
+      const res = await acceptInsitute({ email: inst.email });
+      // window.alert(res);
+      console.log("accept btn");
+      btnClicked("accept");
     } catch (error) {
       console.log(error);
     }
@@ -16,6 +19,8 @@ const PendingInst = ({ inst }) => {
     try {
       // console.log(email);
       await rejectInsitute({ email: inst.email });
+      console.log("reject btn");
+      btnClicked("accept");
     } catch (error) {
       console.log(error);
     }
@@ -63,9 +68,9 @@ const PendingInst = ({ inst }) => {
                   Accept
                 </button>
               </div>
-              <div className="inst-reject">
+              {/* <div className="inst-reject">
                 <button className="btn-reject">Delete</button>
-              </div>
+              </div> */}
             </>
           )}
         </div>

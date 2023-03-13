@@ -11,6 +11,7 @@ import expand from "../Images/expand.png";
 import arrowLeft from "../Images/left-arrow.png";
 import arrowRight from "../Images/right-arrow.png";
 import caveman from "../Images/caveman.gif";
+import forgotBack from "../Images/forgotBack.gif";
 export {
   cdacLogo,
   instagram,
@@ -25,4 +26,5 @@ export {
   arrowLeft,
   arrowRight,
   caveman,
+  forgotBack,
 };
