@@ -20,9 +20,10 @@
 .content-inst-home {
   text-align: center;
   color: #eeeeee;
+  background-color: cyan;
 }
 
-.modal-body {
+.modal-body-inst-home {
   width: 28%;
   height: 50%;
   background-color: #393e46;
@@ -35,10 +36,11 @@
   padding-right: 1%;
 }
 
-.modal-expnd {
-  margin-top: 6%;
+.modal-expnd-inst-home {
+  margin-top: 2%;
   margin-right: 6%;
-  margin-bottom: 5%;
+  /* margin-bottom: 5%; */
+  background-color: plum;
 }
 
 .btn-expnd-inst-home {
@@ -58,7 +60,7 @@
   height: 10%;
   width: 2%;
   margin-left: 98%;
-  background-color: transparent;
+  background-color: #00adb5;
 }
 
 .info-home {
@@ -75,7 +77,7 @@
   font-size: large;
   font-weight: bold;
   margin-left: 40%;
-  margin-top: 2%;
+  margin-top: 0%;
   padding-bottom: 1%;
   padding-top: 1%;
   border-radius: 18px;

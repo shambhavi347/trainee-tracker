@@ -195,18 +195,20 @@ const RegInstitute = () => {
     console.log(data);
 
     //email and password validation
-    if (!validEmail.test(email)) {
-      window.alert("Invalid Institute Email ID☹");
-      console.log("Invalid Email ID");
-    } else if (!validEmail.test(coordEmail)) {
-      window.alert("Invalid Coordinator Email ID☹");
-      console.log("Invalid Email ID");
-    } else if (!validPassword.test(password)) {
-      window.alert(
-        "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
-      );
-      //console.log("Make the Password Strong !!");
-    } else if (data.status === 422 || data.error) {
+    // if (!validEmail.test(email)) {
+    //   window.alert("Invalid Institute Email ID☹");
+    //   console.log("Invalid Email ID");
+
+    // } else if (!validEmail.test(coordEmail)) {
+    //   window.alert("Invalid Coordinator Email ID☹");
+    //   console.log("Invalid Email ID");
+    // } else if (!validPassword.test(password)) {
+    //   window.alert(
+    //     "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
+    //   );
+    //console.log("Make the Password Strong !!");
+    // } else
+    if (data.status === 422 || data.error) {
       window.alert("Invalid Registration!❌" + data.error);
       console.log("Invalid Registration!❌");
     } else {
@@ -295,7 +297,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="country"
                   id="country"
-                  placeholder="Country"
+                  placeholder="Country*"
                 />
 
                 <input

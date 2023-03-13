@@ -43,7 +43,6 @@ router.post("/institute-reg", async (req, res) => {
     !rvalue ||
     !type ||
     !addressline1 ||
-    !addressline2 ||
     !city ||
     !state ||
     !country ||
@@ -52,7 +51,6 @@ router.post("/institute-reg", async (req, res) => {
     !status ||
     !salutation ||
     !coordfirstName ||
-    !coordmiddleName ||
     !coordlastName ||
     !coordEmail ||
     !coordPhone ||

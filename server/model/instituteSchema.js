@@ -55,7 +55,7 @@ const instituteSchema = new mongoose.Schema({
     enum: [
       "Central University",
       "State University",
-      "Private Institution",
+      "Private Institute",
       "Deemed University",
       "Autonomous College",
       "Affiliated College",
@@ -108,7 +108,6 @@ const instituteSchema = new mongoose.Schema({
   },
   coordmiddleName: {
     type: String,
-    required: true,
   },
   coordlastName: {
     type: String,
