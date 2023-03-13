@@ -45,28 +45,31 @@ const Home = () => {
         {/* <div className="container-inst-home"> */}
         {/* <button className="btn-inst-home">Application Status</button> */}
 
-        <div className="modal-bdy">
-          <div className="modal-expnd">
+        <div className="modal-bdy-inst-home">
+          <div className="modal-expnd-inst-home">
             <button
-              className="btn-expnd"
+              className="btn-expnd-inst-home"
               onClick={() => {
                 setExpnd("block");
               }}
             >
-              <img src={expand} alt="" className="img-expnd" />
+              <img src={expand} alt="" className="img-expnd-inst-home" />
             </button>
           </div>
 
-          <div className="info">
+          <div className="info-home">
             {/* <img src={expand} alt="" className="img-expnd" /> */}
             <button className="btn-inst-home">Application Status</button>
           </div>
 
-          <div className="expanded-div" style={{ display: expnd }}>
-            <button onClick={() => setExpnd("none")} className="expnd-cancel">
-              <img className="expnd-img" src={cancel} alt="" />
+          <div className="expanded-div-inst-home" style={{ display: expnd }}>
+            <button
+              onClick={() => setExpnd("none")}
+              className="expnd-cancel-inst-home"
+            >
+              <img className="expnd-img-inst-home" src={cancel} alt="" />
             </button>
-            <div className="info-outer">
+            <div className="info-outer-inst-home">
               {/* <div className="info"> */}
               <div>
                 <button className="trans-btn">{status}</button>
@@ -75,8 +78,8 @@ const Home = () => {
                 {status === "accept" ? (
                   <div className="message-inst-home">
                     Congratulations for grabbing this wonderful opportunity.
-                    Kindly forward this mail to all the selected students for
-                    further registration on our portal. Registration Link:
+                    Kindly register all the selected students on our portal.
+                    Registration Link:
                     <a href="http://localhost:3000/reg-stud">
                       http://localhost:3000/reg-stud
                     </a>

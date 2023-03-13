@@ -55,14 +55,18 @@ const instituteSchema = new mongoose.Schema({
     enum: [
       "Central University",
       "State University",
-      "Private Institution",
+      "Private Institute",
       "Deemed University",
       "Autonomous College",
       "Affiliated College",
     ],
     required: true,
   },
-  street: { type: String },
+  addressline1: {
+    type: String,
+    required: true,
+  },
+  addressline2: { type: String },
   password: {
     type: String,
     required: true,
@@ -98,7 +102,14 @@ const instituteSchema = new mongoose.Schema({
     enum: ["Mr", "Mrs", "Ms", "Dr"],
     required: true,
   },
-  coordName: {
+  coordfirstName: {
+    type: String,
+    required: true,
+  },
+  coordmiddleName: {
+    type: String,
+  },
+  coordlastName: {
     type: String,
     required: true,
   },

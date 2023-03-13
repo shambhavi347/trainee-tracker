@@ -9,7 +9,15 @@ const coordinatorSchema = new mongoose.Schema({
     enum: ["Mr", "Mrs", "Ms", "Dr"],
     required: true,
   },
-  name: {
+  firstname: {
+    type: String,
+    required: true,
+  },
+  middlename: {
+    type: String,
+    required: false,
+  },
+  lastname: {
     type: String,
     required: true,
   },
