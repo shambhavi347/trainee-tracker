@@ -139,6 +139,146 @@ router.get("/get-reject-student", adminAuthenticate, async (req, res) => {
 });
 
 router.get(
+  "/get-type-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Institute.distinct("type", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get("/get-type-accept-category", adminAuthenticate, async (req, res) => {
+  try {
+    const cat = await Institute.distinct("type", { status: "accept" });
+    res.send(cat);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-type-reject-category", adminAuthenticate, async (req, res) => {
+  try {
+    const cat = await Institute.distinct("type", { status: "reject" });
+    res.send(cat);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get(
+  "/get-duration-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Institute.distinct("duration", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-duration-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Institute.distinct("duration", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-duration-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Institute.distinct("duration", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-naac-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Institute.distinct("rating", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get("/get-naac-accept-category", adminAuthenticate, async (req, res) => {
+  try {
+    const cat = await Institute.distinct("rating", { status: "accept" });
+    res.send(cat);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-naac-reject-category", adminAuthenticate, async (req, res) => {
+  try {
+    const cat = await Institute.distinct("rating", { status: "reject" });
+    res.send(cat);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get(
+  "/get-month-pending-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Institute.distinct("month", { status: "pending" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-month-accept-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Institute.distinct("month", { status: "accept" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
+  "/get-month-reject-category",
+  adminAuthenticate,
+  async (req, res) => {
+    try {
+      const cat = await Institute.distinct("month", { status: "reject" });
+      res.send(cat);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+router.get(
   "/get-instname-pending-category",
   adminAuthenticate,
   async (req, res) => {
