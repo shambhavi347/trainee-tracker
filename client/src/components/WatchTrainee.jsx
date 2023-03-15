@@ -3,7 +3,7 @@ import { getTraineeEmail } from "../service/api";
 
 const WatchTrainee = () => {
   //javascript
-  const [name, setName] = useState(["Shambhavi", "Aakriti", "Ritu"]);
+  const [name, setName] = useState(["Shankar", "Aakriti", "Ritu"]);
   const [email, setEmail] = useState([]);
   const handleClick = () => {
     if (name === "Shambhavi") setName("Divya");
