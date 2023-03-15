@@ -396,3 +396,11 @@ export const StudentData = async () => {
     console.log(error);
   }
 };
+
+export const getTraineeEmail = async () => {
+  try {
+    const respone = await axios.get("/trainee-email");
+  } catch (error) {
+    console.log(error);
+  }
+};

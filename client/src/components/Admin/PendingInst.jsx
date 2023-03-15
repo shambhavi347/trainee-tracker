@@ -62,15 +62,11 @@ const PendingInst = ({ inst, btnClicked }) => {
             </>
           ) : inst.status === "accept" ? null : (
             <>
-              {" "}
               <div className="inst-accpt">
                 <button className="btn-accpt" onClick={handleAccept}>
                   Accept
                 </button>
               </div>
-              {/* <div className="inst-reject">
-                <button className="btn-reject">Delete</button>
-              </div> */}
             </>
           )}
         </div>

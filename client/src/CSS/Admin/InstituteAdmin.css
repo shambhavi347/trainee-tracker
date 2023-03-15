@@ -456,6 +456,9 @@
   margin-left: 6%;
   margin-top: -4%;
 }
+.title-inst-pend {
+  margin-left: 2%;
+}
 
 .accepted-btn,
 .rejected-btn {
@@ -471,4 +474,10 @@
 .accepted-btn:hover,
 .rejected-btn:hover {
   background-color: #393e46;
+}
+
+.count-inst {
+  float: right;
+  margin-top: -4%;
+  margin-right: 2%;
 }

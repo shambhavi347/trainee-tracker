@@ -971,7 +971,10 @@ const InstituteAdmin = () => {
                       }}
                     />
                   </button>
-                  <h3 className="title-inst-accpt"> Accepted Institute List</h3>
+                  <h3 className="title-inst-accpt">
+                    Accepted Institute Application
+                  </h3>
+                  <p className="count-inst">Count: {accepts.length}</p>
                 </div>
                 <div
                   style={{
@@ -994,11 +997,29 @@ const InstituteAdmin = () => {
 
           {disPending ? (
             institute ? (
-              institute.map((inst, key) => (
-                <PendingInst inst={inst} btnClicked={btnClicked} />
-              ))
+              <>
+                <div className="accept-bdy">
+                  <div className="head-inst">
+                    <h3 className="title-inst-pend">
+                      Pending Institute Application
+                    </h3>
+                    <p className="count-inst">Count: {institute.length}</p>
+                  </div>
+                  <div
+                    style={{
+                      padding: "1%",
+                      height: "80vh",
+                      overflowY: "auto",
+                    }}
+                  >
+                    {institute.map((inst, key) => (
+                      <PendingInst inst={inst} btnClicked={btnClicked} />
+                    ))}
+                  </div>
+                </div>
+              </>
             ) : (
-              <>No application</>
+              <>Loading..</>
             )
           ) : null}
 
@@ -1018,7 +1039,10 @@ const InstituteAdmin = () => {
                       }}
                     />
                   </button>
-                  <h3 className="title-inst-accpt">Rejected Institute List</h3>
+                  <h3 className="title-inst-accpt">
+                    Rejected Institute Application
+                  </h3>
+                  <p className="count-inst">Count: {rejects.length}</p>
                 </div>
                 <div
                   style={{

@@ -903,4 +903,16 @@ router.post("/create-password", async (req, res) => {
     console.log(error);
   }
 });
+
+router.get("/trainee-email", async (req, res) => {
+  try {
+    const traine = await Trainee.find({}, { _id: 0, email: 1 });
+    console.log(traine);
+    // res.send(traine.email);
+    traine.map((val) => res.send(val.email));
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;
