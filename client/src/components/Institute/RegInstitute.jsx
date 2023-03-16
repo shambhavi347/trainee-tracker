@@ -7,32 +7,8 @@ import { validEmail } from "../../components/Regex";
 import { validPassword } from "../../components/Regex";
 // import country from "../../service/country.json";
 import axios from "axios";
-
-// export const getInstitutes = async () => {
-//   try {
-//     let respone = await axios.get("/get-pending-institute");
-//     // console.log("Ins " + respone.data);
-//     return respone.data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const acceptInsitute = async (data) => {
-//   try {
-//     await axios.post("/accept-inst", data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const rejectInsitute = async (data) => {
-//   try {
-//     await axios.post("/reject-inst", data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 export const getInstitutes = async () => {
   try {
@@ -84,7 +60,6 @@ const RegInstitute = () => {
     state: "",
     country: "",
     zipcode: "",
-    countrycode: "",
     landline: "",
     extension: "",
     phoneno: "",
@@ -96,6 +71,7 @@ const RegInstitute = () => {
     coordEmail: "",
     coordPhone: "",
     password: "",
+    password2: "",
   });
 
   // country.map((val) => console.log("country" + val.name));
@@ -181,7 +157,6 @@ const RegInstitute = () => {
       state,
       country,
       zipcode,
-      countrycode,
       landline,
       extension,
       phoneno,
@@ -193,6 +168,7 @@ const RegInstitute = () => {
       coordEmail,
       coordPhone,
       password,
+      password2,
     } = userRegistration;
 
     const res = await fetch("/institute-reg", {
@@ -215,7 +191,6 @@ const RegInstitute = () => {
         country,
         zipcode,
         phoneno,
-        countrycode,
         landline,
         extension,
         status,
@@ -226,6 +201,7 @@ const RegInstitute = () => {
         coordEmail,
         coordPhone,
         password,
+        password2,
       }),
     });
 
@@ -256,6 +232,8 @@ const RegInstitute = () => {
     }
   };
 
+  const [value, setValue] = useState();
+
   return (
     <>
       <NavBar2 />
@@ -265,6 +243,7 @@ const RegInstitute = () => {
           <form action="" method="POST" className="form-body-inst">
             {inst ? (
               <>
+                <h4 className="head-inst-home-2">Institute Details</h4>
                 <input
                   className="form-text-inst field1 required"
                   type="text"
@@ -432,10 +411,10 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="phoneno"
                   id="phoneno"
-                  placeholder="Institute Phone No.*"
+                  placeholder="Institute Phone No."
                 />
 
-                <select
+                {/* <select
                   name="duration"
                   className="drop-down-inst field7 required"
                   value={userRegistration.countrycode}
@@ -444,9 +423,16 @@ const RegInstitute = () => {
                   <option value="Select">Country Code</option>
                   <option value="+91 IND">+91 IND</option>
                   <option value="+1 US">+1 US</option>
-                </select>
+                </select> */}
 
-                <input
+                <PhoneInput
+                  className="field 7"
+                  placeholder="Landline number *"
+                  value={userRegistration.landline}
+                  onChange={setValue}
+                />
+
+                {/* <input
                   className="form-text-inst field8 required"
                   type="text"
                   autoComplete="off"
@@ -455,7 +441,7 @@ const RegInstitute = () => {
                   name="phoneno"
                   id="phoneno"
                   placeholder="Landline No.*"
-                />
+                /> */}
 
                 <input
                   className="form-text-inst field8 required"
@@ -463,9 +449,9 @@ const RegInstitute = () => {
                   autoComplete="off"
                   value={userRegistration.extension}
                   onChange={handlechange}
-                  name="phoneno"
-                  id="phoneno"
-                  placeholder="ext*"
+                  name="extension"
+                  id="extension"
+                  placeholder="ext "
                 />
 
                 <h4 className="head-inst-home">Internship Details</h4>
@@ -611,7 +597,18 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="password"
                   id="password"
-                  placeholder="Set Password*"
+                  placeholder="Set Password *"
+                />
+
+                <input
+                  className="form-text-inst2 field6 required"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.password2}
+                  onChange={handlechange}
+                  name="Confirm password"
+                  id="Confirm password"
+                  placeholder="Confirm Password *"
                 />
 
                 <div className="footer-inst">

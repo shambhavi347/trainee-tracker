@@ -124,7 +124,12 @@
 }
 
 .field7 {
-  width: 15%;
+  width: 12%;
+  padding: 6%;
+  border-radius: 6px;
+  background-color: #eeeeee;
+  margin-left: 20%;
+  color: #eeeeee;
 }
 
 .field8 {
