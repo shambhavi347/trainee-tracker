@@ -25,9 +25,10 @@ router.post("/reg-stud", async (req, res) => {
       semester,
       cgpa,
       passout_year,
+      invite,
+      status,
       famtech,
       inttech,
-      status,
     } = req.body;
 
     console.log(req.body);
@@ -162,20 +163,14 @@ router.post("/reg-stud", async (req, res) => {
       semester,
       cgpa,
       passout_year,
+      invite,
+      status,
       famtech,
       inttech,
-      status,
     });
 
     await user.save();
     res.status(201).json({ message: "user registered successfully !!" });
-
-    // const userRegister = await user.save();
-    // if (userRegister) {
-    //   res.status(201).json({ message: "user registered successfully !!" });
-    // } else {
-    //   res.status(422).json({ error: "failed to registered !!" });
-    // }
   } catch (err) {
     console.log(err);
   }
