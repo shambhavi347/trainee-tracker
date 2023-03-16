@@ -137,10 +137,16 @@
 }
 
 .btn-inst {
+  margin-left: 4%;
+}
+
+.btn-inst0 {
   margin-left: 27%;
 }
 
-.btn-inst {
+.btn-inst,
+.btn-inst0,
+.btn-inst1 {
   background-color: #393e46;
   border: 2px #00adb5 solid;
   color: #00adb5;
@@ -148,8 +154,27 @@
   font-weight: bold;
 }
 
-.btn-inst:hover {
+.btn-inst:hover,
+.btn-inst0:hover,
+.btn-inst1:hover {
   background-color: #00adb5;
   color: #eeeeee;
   font-size: larger;
+}
+
+.btn-inst1 {
+  margin-left: 10%;
+  padding: 1%;
+  width: 32%;
+  border-radius: 6px;
+}
+
+.btn-inst0 {
+  padding: 1%;
+  width: 32%;
+  border-radius: 6px;
+}
+
+.btn-inst {
+  width: 32%;
 }

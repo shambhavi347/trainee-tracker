@@ -49,7 +49,8 @@ const RegInstitute = () => {
   const [userRegistration, setUserRegistration] = useState({
     name: "",
     email: "",
-    month: "",
+    smonth: "",
+    emonth: "",
     duration: "",
     rating: "",
     rvalue: "",
@@ -146,7 +147,8 @@ const RegInstitute = () => {
     const {
       name,
       email,
-      month,
+      smonth,
+      emonth,
       duration,
       rating,
       rvalue,
@@ -179,7 +181,8 @@ const RegInstitute = () => {
       body: JSON.stringify({
         name,
         email,
-        month,
+        smonth,
+        emonth,
         duration,
         rating,
         rvalue,
@@ -455,10 +458,26 @@ const RegInstitute = () => {
                 />
 
                 <h4 className="head-inst-home">Internship Details</h4>
+
                 <select
-                  name="month"
+                  name="duration"
                   className="drop-down-inst field3 required"
-                  value={userRegistration.month}
+                  value={userRegistration.duration}
+                  onChange={handlechange}
+                >
+                  <option value="Select">Internship Duration</option>
+                  <option value="1 Month">1 Month</option>
+                  <option value="2 Months">2 Months</option>
+                  <option value="3 Months">3 Months</option>
+                  <option value="4 Months">4 Months</option>
+                  <option value="5 Months">5 Months</option>
+                  <option value="6 Months">6 Months</option>
+                </select>
+
+                <select
+                  name="smonth"
+                  className="drop-down-inst field3 required"
+                  value={userRegistration.smonth}
                   onChange={handlechange}
                 >
                   <option value="Select">Start Month</option>
@@ -475,19 +494,26 @@ const RegInstitute = () => {
                   <option value="November">November</option>
                   <option value="December">December</option>
                 </select>
+
                 <select
-                  name="duration"
+                  name="emonth"
                   className="drop-down-inst field3 required"
-                  value={userRegistration.duration}
+                  value={userRegistration.emonth}
                   onChange={handlechange}
                 >
-                  <option value="Select">Internship Duration</option>
-                  <option value="1 Month">1 Month</option>
-                  <option value="2 Months">2 Months</option>
-                  <option value="3 Months">3 Months</option>
-                  <option value="4 Months">4 Months</option>
-                  <option value="5 Months">5 Months</option>
-                  <option value="6 Months">6 Months</option>
+                  <option value="Select">End Month</option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
                 </select>
 
                 {/* <select
@@ -506,7 +532,7 @@ const RegInstitute = () => {
                 <div className="footer-inst">
                   <button
                     type="submit"
-                    className="btn-inst"
+                    className="btn-inst0"
                     onClick={() => {
                       setInst(false);
                       setDisplay(true);
@@ -614,7 +640,7 @@ const RegInstitute = () => {
                 <div className="footer-inst">
                   <button
                     type="submit"
-                    className="btn-inst"
+                    className="btn-inst1"
                     onClick={() => {
                       setDisplay(false);
                       setInst(true);

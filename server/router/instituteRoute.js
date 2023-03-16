@@ -10,7 +10,8 @@ router.post("/institute-reg", async (req, res) => {
   const {
     name,
     email,
-    month,
+    smonth,
+    emonth,
     duration,
     rating,
     rvalue,
@@ -39,7 +40,8 @@ router.post("/institute-reg", async (req, res) => {
   if (
     !name ||
     !email ||
-    !month ||
+    !smonth ||
+    !emonth ||
     !duration ||
     !rating ||
     !rvalue ||
@@ -51,7 +53,6 @@ router.post("/institute-reg", async (req, res) => {
     !zipcode ||
     !landline ||
     !extension ||
-    !phoneno ||
     !status ||
     !salutation ||
     !coordfirstName ||
@@ -166,7 +167,8 @@ router.post("/institute-reg", async (req, res) => {
     const institute = new Institute({
       name,
       email,
-      month,
+      smonth,
+      emonth,
       duration,
       rating,
       rvalue,
