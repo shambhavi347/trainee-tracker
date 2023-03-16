@@ -72,10 +72,12 @@ const TraineeAdmin = () => {
       const data = await getStudent();
       // console.log(data);
       setStudent(data);
+      if (studs.length === 0 || accBtn === "clicked") setStuds(student);
       // console.log("Students: " + student);
     };
     fetchData();
-    if (studs.length === 0 || accBtn === "clicked") setStuds(student);
+
+    console.log("Studs " + studs);
   }, [student]);
 
   //fetch accepted students
