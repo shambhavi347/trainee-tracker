@@ -507,6 +507,7 @@ router.post("/accept-student", adminAuthenticate, async (req, res) => {
       { email: email },
       { $set: { status: "accept", invite: "pending" } }
     );
+    res.send("Student Accepted");
   } catch (error) {
     console.log(error);
   }
@@ -561,6 +562,7 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
       { email: email },
       { $set: { status: "reject" } }
     );
+    res.send("Student Rejected");
   } catch (error) {
     console.log(error);
   }
