@@ -129,6 +129,61 @@ const Demo = () => {
 
   console.log(famtech);
 
+  const validateData = async (e) => {
+    e.preventDefault();
+    const {
+      prefix,
+      first_name,
+      middle_name,
+      last_name,
+      email,
+      dob,
+      gender,
+      instname,
+      course,
+      stream,
+      phone_no,
+      semester,
+      cgpa,
+      passout_year,
+    } = user;
+
+    const res = await fetch("/reg-stud1", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prefix,
+        first_name,
+        middle_name,
+        last_name,
+        email,
+        dob,
+        gender,
+        instname,
+        course,
+        stream,
+        phone_no,
+        semester,
+        cgpa,
+        passout_year,
+      }),
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if (data.error) {
+      window.alert(data.error);
+      console.log("Invalid Regestration");
+    }
+    else {
+        setPage2(true);
+        setPage0(false);
+    }
+  };
+
   const postData = async (e) => {
     e.preventDefault();
     const {
@@ -276,15 +331,15 @@ const Demo = () => {
                   />
                   <br />
                   <select
-                    name="Gender"
+                    name="gender"
                     className="drop-down"
                     value={user.gender}
                     onChange={handleChange}
                   >
                     <option value="null">Enter Gender</option>
-                    <option value="Mr">Male</option>
-                    <option value="Mrs">Female</option>
-                    <option value="Miss">Binary</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Binary">Binary</option>
                   </select>
                   <br />
 
@@ -412,10 +467,7 @@ const Demo = () => {
                   </div>
                   <button
                     className="btn-form"
-                    onClick={() => {
-                      setPage2(true);
-                      setPage0(false);
-                    }}
+                    onClick={validateData}
                   >
                     NEXT
                   </button>

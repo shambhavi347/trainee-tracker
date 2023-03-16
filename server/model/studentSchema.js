@@ -13,9 +13,11 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  middle_name: {
+    type: String,
+  },
   last_name: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -38,7 +40,7 @@ const studentSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ["male", "female", "transgender"],
+    enum: ["Male", "Female", "Binary"],
     required: true,
   },
   instname: {
