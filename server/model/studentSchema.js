@@ -84,6 +84,16 @@ const studentSchema = new mongoose.Schema({
     max: 3000,
     required: true,
   },
+  invite: {
+    type: String,
+    enum: ["pending", "sent", "na"],
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["pending", "accept", "reject"],
+    required: true,
+  },
   famtech: [
     {
       type: String,
@@ -96,11 +106,6 @@ const studentSchema = new mongoose.Schema({
       required: true,
     },
   ],
-  status: {
-    type: String,
-    enum: ["pending", "accept", "reject"],
-    required: true,
-  },
   tokens: [
     {
       token: {

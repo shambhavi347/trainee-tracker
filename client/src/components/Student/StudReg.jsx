@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import NavBar2 from "../NavBar2";
-import "../../CSS/Trainee/RegStudent.css";
+import "../../CSS/Trainee/StudReg.css";
 import { arrowDown, cancel } from "../../Images/Images";
 import { validEmail } from "../../components/Regex";
+import Multiselect from "multiselect-react-dropdown";
 
 const Demo = () => {
+    
   const [page0, setPage0] = useState(true);
   const [page2, setPage2] = useState(false);
 
@@ -52,6 +54,7 @@ const Demo = () => {
     resume: null,
     pdfname: "",
     status: "pending",
+    invite: "pending",
   });
 
   const fileType = ["application/pdf"];
@@ -177,10 +180,9 @@ const Demo = () => {
     if (data.error) {
       window.alert(data.error);
       console.log("Invalid Regestration");
-    }
-    else {
-        setPage2(true);
-        setPage0(false);
+    } else {
+      setPage2(true);
+      setPage0(false);
     }
   };
 
@@ -202,6 +204,7 @@ const Demo = () => {
       cgpa,
       passout_year,
       status,
+      invite,
     } = user;
 
     const res = await fetch("/reg-stud", {
@@ -212,6 +215,7 @@ const Demo = () => {
       body: JSON.stringify({
         prefix,
         first_name,
+        middle_name,
         last_name,
         email,
         dob,
@@ -226,6 +230,7 @@ const Demo = () => {
         famtech,
         inttech,
         status,
+        invite,
       }),
     });
 
@@ -465,10 +470,7 @@ const Demo = () => {
                       )}
                     </label>
                   </div>
-                  <button
-                    className="btn-form"
-                    onClick={validateData}
-                  >
+                  <button className="btn-form" onClick={validateData}>
                     NEXT
                   </button>
                 </>
@@ -642,6 +644,11 @@ const Demo = () => {
                       </div>
                     </>
                   )}
+
+                  {/* demo */}
+
+                  
+
                   <button
                     className="btn-form"
                     onClick={() => {

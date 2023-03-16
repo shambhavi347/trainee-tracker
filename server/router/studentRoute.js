@@ -67,8 +67,7 @@ router.post("/reg-stud1", async (req, res) => {
       return res.status(422).json({ error: "Enter your Institute Name!!\n" });
     }
 
-    var emailRegex =
-      /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    var emailRegex = /.+@..+\..[A-Za-z]+$/;
 
     if (email.length > 254) {
       return res
@@ -179,9 +178,10 @@ router.post("/reg-stud", async (req, res) => {
       semester,
       cgpa,
       passout_year,
+      invite,
+      status,
       famtech,
       inttech,
-      status,
     } = req.body;
 
     console.log(req.body);
@@ -235,9 +235,8 @@ router.post("/reg-stud", async (req, res) => {
       return res.status(422).json({ error: "Enter your Institute Name!!\n" });
     }
 
-    var emailRegex =
-      /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-
+    var emailRegex = /.+@..+\..[A-Za-z]+$/;
+    
     if (email.length > 254) {
       return res
         .status(422)
@@ -314,20 +313,14 @@ router.post("/reg-stud", async (req, res) => {
       semester,
       cgpa,
       passout_year,
+      invite,
+      status,
       famtech,
       inttech,
-      status,
     });
 
     await user.save();
     res.status(201).json({ message: "user registered successfully !!" });
-
-    // const userRegister = await user.save();
-    // if (userRegister) {
-    //   res.status(201).json({ message: "user registered successfully !!" });
-    // } else {
-    //   res.status(422).json({ error: "failed to registered !!" });
-    // }
   } catch (err) {
     console.log(err);
   }
