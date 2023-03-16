@@ -52,6 +52,7 @@ const Demo = () => {
     resume: null,
     pdfname: "",
     status: "pending",
+    invite: "pending",
   });
 
   const fileType = ["application/pdf"];
@@ -177,10 +178,9 @@ const Demo = () => {
     if (data.error) {
       window.alert(data.error);
       console.log("Invalid Regestration");
-    }
-    else {
-        setPage2(true);
-        setPage0(false);
+    } else {
+      setPage2(true);
+      setPage0(false);
     }
   };
 
@@ -202,6 +202,7 @@ const Demo = () => {
       cgpa,
       passout_year,
       status,
+      invite,
     } = user;
 
     const res = await fetch("/reg-stud", {
@@ -212,6 +213,7 @@ const Demo = () => {
       body: JSON.stringify({
         prefix,
         first_name,
+        middle_name,
         last_name,
         email,
         dob,
@@ -226,6 +228,7 @@ const Demo = () => {
         famtech,
         inttech,
         status,
+        invite,
       }),
     });
 
@@ -465,10 +468,7 @@ const Demo = () => {
                       )}
                     </label>
                   </div>
-                  <button
-                    className="btn-form"
-                    onClick={validateData}
-                  >
+                  <button className="btn-form" onClick={validateData}>
                     NEXT
                   </button>
                 </>
