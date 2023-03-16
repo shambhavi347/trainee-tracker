@@ -87,10 +87,17 @@ const instituteSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  phoneno: {
+  landline: {
     type: Number,
     unique: true,
     required: true,
+  },
+  extension: {
+    type: Number,
+  },
+  phoneno: {
+    type: Number,
+    unique: true,
   },
   status: {
     type: String,
@@ -129,6 +136,10 @@ const instituteSchema = new mongoose.Schema({
     required: true,
   },
   password: {
+    type: String,
+    required: true,
+  },
+  password2: {
     type: String,
     required: true,
   },

@@ -67,8 +67,7 @@ router.post("/reg-stud1", async (req, res) => {
       return res.status(422).json({ error: "Enter your Institute Name!!\n" });
     }
 
-    var emailRegex =
-      /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    var emailRegex = /.+@..+\..[A-Za-z]+$/;
 
     if (email.length > 254) {
       return res
@@ -236,9 +235,8 @@ router.post("/reg-stud", async (req, res) => {
       return res.status(422).json({ error: "Enter your Institute Name!!\n" });
     }
 
-    var emailRegex =
-      /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-
+    var emailRegex = /.+@..+\..[A-Za-z]+$/;
+    
     if (email.length > 254) {
       return res
         .status(422)

@@ -21,6 +21,8 @@ router.post("/institute-reg", async (req, res) => {
     state,
     country,
     zipcode,
+    landline,
+    extension,
     phoneno,
     status,
     salutation,
@@ -47,6 +49,8 @@ router.post("/institute-reg", async (req, res) => {
     !state ||
     !country ||
     !zipcode ||
+    !landline ||
+    !extension ||
     !phoneno ||
     !status ||
     !salutation ||
@@ -54,7 +58,8 @@ router.post("/institute-reg", async (req, res) => {
     !coordlastName ||
     !coordEmail ||
     !coordPhone ||
-    !password
+    !password ||
+    !password2
   ) {
     return res
       .status(422)
@@ -172,6 +177,8 @@ router.post("/institute-reg", async (req, res) => {
       state,
       country,
       zipcode,
+      landline,
+      extension,
       phoneno,
       status,
       salutation,
@@ -181,6 +188,7 @@ router.post("/institute-reg", async (req, res) => {
       coordEmail,
       coordPhone,
       password,
+      password2,
     });
     const instituteReg = await institute.save();
     if (instituteReg) {

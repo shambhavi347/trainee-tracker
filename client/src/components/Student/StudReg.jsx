@@ -3,11 +3,10 @@ import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/StudReg.css";
 import { arrowDown, cancel } from "../../Images/Images";
 import { validEmail } from "../../components/Regex";
-import Multiselect from 'multiselect-react-dropdown';
-
+import Multiselect from "multiselect-react-dropdown";
 
 const Demo = () => {
-
+    
   const [page0, setPage0] = useState(true);
   const [page2, setPage2] = useState(false);
 
@@ -647,6 +646,8 @@ const Demo = () => {
                   )}
 
                   {/* demo */}
+
+                  
 
                   <button
                     className="btn-form"
