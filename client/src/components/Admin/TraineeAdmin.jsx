@@ -73,10 +73,8 @@ const TraineeAdmin = () => {
       // console.log(data);
       setStudent(data);
       if (studs.length === 0 || accBtn === "clicked") setStuds(student);
-      // console.log("Students: " + student);
     };
     fetchData();
-
     console.log("Studs " + studs);
   }, [student]);
 
@@ -85,7 +83,7 @@ const TraineeAdmin = () => {
     const fetchData = async () => {
       const data = await getAcceptStudent();
       setAcceptedStudents(data);
-      console.log(acceptedStudents);
+      // console.log(acceptedStudents);
       if (acceptStud.length === 0 || accBtn === "clicked")
         setAcceptStud(acceptedStudents);
     };

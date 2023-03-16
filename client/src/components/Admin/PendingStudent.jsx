@@ -7,7 +7,8 @@ const PendingStudent = ({ stud, btnClicked }) => {
   const acceptStud = async () => {
     try {
       const res = await acceptTrainee({ email: stud.email });
-      window.alert(res);
+      // window.alert(res);
+      console.log("accept btn");
       btnClicked("accept");
     } catch (error) {
       console.log(error);
@@ -16,7 +17,8 @@ const PendingStudent = ({ stud, btnClicked }) => {
   const rejectStud = async () => {
     try {
       const res = await rejectTrainee({ email: stud.email });
-      window.alert(res);
+      // window.alert(res);
+      console.log("reject btn");
       btnClicked("accept");
     } catch (error) {
       console.log(error);
