@@ -29,6 +29,114 @@ export const getInstReject = async () => {
   }
 };
 
+export const getTypePenCat = async () => {
+  try {
+    let respone = await axios.get("/get-type-pending-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTypeAccCat = async () => {
+  try {
+    let respone = await axios.get("/get-type-accept-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTypeRejCat = async () => {
+  try {
+    let respone = await axios.get("/get-type-reject-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getDurationPenCat = async () => {
+  try {
+    let respone = await axios.get("/get-duration-pending-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getDurationAccCat = async () => {
+  try {
+    let respone = await axios.get("/get-duration-accept-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getDurationRejCat = async () => {
+  try {
+    let respone = await axios.get("/get-duration-reject-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMonthPenCat = async () => {
+  try {
+    let respone = await axios.get("/get-month-pending-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMonthAccCat = async () => {
+  try {
+    let respone = await axios.get("/get-month-accept-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMonthRejCat = async () => {
+  try {
+    let respone = await axios.get("/get-month-reject-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getNaacPenCat = async () => {
+  try {
+    let respone = await axios.get("/get-naac-pending-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getNaacAccCat = async () => {
+  try {
+    let respone = await axios.get("/get-naac-accept-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getNaacRejCat = async () => {
+  try {
+    let respone = await axios.get("/get-naac-reject-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getStudent = async () => {
   try {
     let respone = await axios.get("/get-pending-student");
@@ -284,6 +392,14 @@ export const StudentData = async () => {
     const response = await axios.get("/student-data");
     return response.data;
     // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTraineeEmail = async () => {
+  try {
+    const respone = await axios.get("/trainee-email");
   } catch (error) {
     console.log(error);
   }

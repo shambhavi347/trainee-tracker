@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainPage from "./components/MainPage";
 import RegInstitute from "./components/Institute/RegInstitute";
 import AdminDash from "./components/Admin/AdminDash";
-import Demo from "./components/Student/Demo";
 import Home from "./components/Institute/Home";
 import RegCoordinator from "./components/Coordinator/RegCoordinator";
 import CoordinatorDash from "./components/Coordinator/CoordinatorDash";
@@ -19,6 +18,7 @@ import CoordDiscussion from "./components/Coordinator/CoordDiscussion";
 import ForgotPass from "./components/ForgotPass";
 import CreatePass from "./components/CreatePass";
 import StudReg from "./components/Student/StudReg";
+import WatchTrainee from "./components/WatchTrainee";
 
 const App = () => {
   return (
@@ -43,6 +43,7 @@ const App = () => {
           <Route path="/coordinator-discussion" element={<CoordDiscussion />} />
           <Route path="/forgot-password" element={<ForgotPass />} />
           <Route path="/create-pass" element={<CreatePass />} />
+          <Route path="/watch-trainee" element={<WatchTrainee />} />
         </Routes>
       </Router>
     </>

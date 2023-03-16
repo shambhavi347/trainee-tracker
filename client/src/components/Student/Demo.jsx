@@ -134,6 +134,7 @@ const Demo = () => {
     const {
       prefix,
       first_name,
+      middle_name,
       last_name,
       email,
       dob,
@@ -156,6 +157,7 @@ const Demo = () => {
       body: JSON.stringify({
         prefix,
         first_name,
+        middle_name,
         last_name,
         email,
         dob,

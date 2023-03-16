@@ -4,7 +4,6 @@
   height: 100vh;
   margin-top: -117px;
   padding: 2%;
-  overflow-y: auto;
 }
 
 .additon {
@@ -12,6 +11,9 @@
   padding: 1%;
   margin: 0;
   margin-bottom: 3%;
+  background-color: #f48484;
+  margin-bottom: 10%;
+  overflow-y: auto;
 }
 .coord-form-body {
   margin-left: 8%;
@@ -67,6 +69,11 @@
   width: 50%;
   margin-left: 26%;
 }
+.accepted-panel {
+  /* margin-bottom: 30vh; */
+  background-color: #eeeeee;
+}
+
 .invites {
   padding: 2% 3%;
   width: 95%;

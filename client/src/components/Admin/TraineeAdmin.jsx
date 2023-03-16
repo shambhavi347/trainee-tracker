@@ -429,7 +429,6 @@ const TraineeAdmin = () => {
             setRejectStud(newItem);
           } else {
             const newItem = rejectStud.filter((newVal) => {
-              console.log(newVal.passout_year + "  " + val);
               if (newVal.passout_year == val) return newVal;
             });
             setRejectStud(newItem);

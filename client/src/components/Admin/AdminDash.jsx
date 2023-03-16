@@ -46,6 +46,7 @@ const AdminDash = () => {
             Coordinator
           </button>
         </div>
+
         {inst ? (
           <InstituteAdmin />
         ) : Coord ? (
