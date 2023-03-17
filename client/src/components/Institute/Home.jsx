@@ -3,8 +3,7 @@ import NavBar3 from "../NavBar3";
 import "../../CSS/Institute/Home.css";
 import "../Institute/RegInstitute";
 import { getAppstatus, getSelectedStudents } from "../../service/api";
-import { expand, cancel } from "../../Images/Images";
-
+import { expand, cancel ,check,remove} from "../../Images/Images";
 const Home = () => {
   const [status, setStatus] = useState("");
   //made a function for calling api.js and then calling same function below
@@ -56,12 +55,10 @@ const Home = () => {
               <img src={expand} alt="" className="img-expnd-inst-home" />
             </button>
           </div>
-
           <div className="info-home">
             {/* <img src={expand} alt="" className="img-expnd" /> */}
             <button className="btn-inst-home">Application Status</button>
           </div>
-
           <div className="expanded-div-inst-home" style={{ display: expnd }}>
             <button
               onClick={() => setExpnd("none")}
@@ -102,10 +99,15 @@ const Home = () => {
         <div className="info-inst-home">
           <h3 className="content">List of selected Students</h3>
 
-          {stud.map((val) => (
+          {
+          stud.map((val) => (
             <div className="data-inst-home">
-              {val.first_name} {val.last_name}
-            </div>
+            {val.first_name} {val.last_name}
+            
+          <button className="Accept-btn"><img src="../Images/check.png" width ="20" heigth="2" /></button>
+          <button className="Reject-btn"><img src="../Images/remove.png" width ="20" heigth="2" /></button>
+          </div>
+          
           ))}
         </div>
       </div>

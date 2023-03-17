@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  
+ 
 }
 
 .body-inst-home {
@@ -8,13 +10,15 @@
   background: linear-gradient(to bottom, #393e46, #00adb5);
   height: 100vh;
   margin: 0;
+  
   width: auto;
   overflow-y: scroll;
 }
 
 .head-inst-home {
   text-align: center;
-  color: #eeeeee;
+ color: #eeeeee;
+ 
 }
 
 .content-inst-home {
@@ -32,6 +36,7 @@
   padding: 2%;
   border-radius: 15px;
   border: 1px #00adb5 solid;
+
   padding-left: 1%;
   padding-right: 1%;
 }
@@ -39,10 +44,9 @@
 .modal-expnd-inst-home {
   margin-top: 2%;
   margin-right: 6%;
-  /* margin-bottom: 5%; */
-  background-color: plum;
+  background-color: plum; 
+  
 }
-
 .btn-expnd-inst-home {
   /* padding: -1%; */
   float: right;
@@ -54,8 +58,8 @@
   background-color: #222831;
   border: none;
   cursor: pointer;
+  
 }
-
 .img-expnd-inst-home {
   height: 10%;
   width: 2%;
@@ -65,7 +69,9 @@
 
 .info-home {
   width: 98%;
-  margin-top: -4%;
+  /*change*/
+  margin-top: -5%;
+  /*end*/
   padding-bottom: 3%;
 }
 
@@ -78,26 +84,26 @@
   font-weight: bold;
   margin-left: 40%;
   margin-top: 0%;
-  padding-bottom: 1%;
+  padding-bottom:1%;
   padding-top: 1%;
   border-radius: 18px;
   padding-left: 3%;
   padding-right: 3%;
 }
-
 .expanded-div-inst-home {
-  height: 50%;
+  height: 54%;
   width: 50%;
-  margin: 0;
+ /* margin: 0;*/
+ margin-left: 30% ;
+ margin-top: 3%;
   top: 0;
   left: 0;
   z-index: 20;
-  background-color: #eeeeee48;
+ background-color: #eeeeee48;
   /* opacity: 0.4; */
-  position: absolute;
-  padding: 2%;
+ position: absolute;
+padding: 2%;
 }
-
 .expnd-cancel-inst-home {
   float: right;
   background-color: #222831;
@@ -145,10 +151,12 @@
 .message-inst-home {
   text-align: center;
   color: #eeeeee;
+  
 }
 
 .info-inst-home {
   background-color: #222831;
+ 
   padding-top: 2px;
   padding-left: 20px;
   margin-top: 2px;
@@ -182,9 +190,25 @@
   padding-bottom: 1%;
   border-bottom: #eeeeee solid;
   color: #eeeeee;
+  
 }
 
 .data-inst-home {
   padding-top: 1%;
   color: #eeeeee;
+ 
 }
+.Accept-btn
+{  
+margin-left: 50%;
+margin-right:3%;
+padding :0.5% 1%;
+background-color:transparent;
+}
+.Reject-btn
+{
+  padding :0.5% 1%;
+  background-color:transparent;
+}
+
+ 
