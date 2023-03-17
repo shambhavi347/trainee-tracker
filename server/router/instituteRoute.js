@@ -10,7 +10,8 @@ router.post("/institute-reg", async (req, res) => {
   const {
     name,
     email,
-    month,
+    smonth,
+    emonth,
     duration,
     rating,
     rvalue,
@@ -21,6 +22,8 @@ router.post("/institute-reg", async (req, res) => {
     state,
     country,
     zipcode,
+    landline,
+    extension,
     phoneno,
     status,
     salutation,
@@ -37,7 +40,8 @@ router.post("/institute-reg", async (req, res) => {
   if (
     !name ||
     !email ||
-    !month ||
+    !smonth ||
+    !emonth ||
     !duration ||
     !rating ||
     !rvalue ||
@@ -47,14 +51,16 @@ router.post("/institute-reg", async (req, res) => {
     !state ||
     !country ||
     !zipcode ||
-    !phoneno ||
+    !landline ||
+    !extension ||
     !status ||
     !salutation ||
     !coordfirstName ||
     !coordlastName ||
     !coordEmail ||
     !coordPhone ||
-    !password
+    !password ||
+    !password2
   ) {
     return res
       .status(422)
@@ -161,7 +167,8 @@ router.post("/institute-reg", async (req, res) => {
     const institute = new Institute({
       name,
       email,
-      month,
+      smonth,
+      emonth,
       duration,
       rating,
       rvalue,
@@ -172,6 +179,8 @@ router.post("/institute-reg", async (req, res) => {
       state,
       country,
       zipcode,
+      landline,
+      extension,
       phoneno,
       status,
       salutation,
@@ -181,6 +190,7 @@ router.post("/institute-reg", async (req, res) => {
       coordEmail,
       coordPhone,
       password,
+      password2,
     });
     const instituteReg = await institute.save();
     if (instituteReg) {

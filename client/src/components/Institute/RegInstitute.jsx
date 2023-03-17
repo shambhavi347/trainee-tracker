@@ -5,7 +5,10 @@ import "../../CSS/Institute/RegInstitute.css";
 import { useEffect } from "react";
 import { validEmail } from "../../components/Regex";
 import { validPassword } from "../../components/Regex";
+// import country from "../../service/country.json";
 import axios from "axios";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 export const getInstitutes = async () => {
   try {
@@ -46,7 +49,8 @@ const RegInstitute = () => {
   const [userRegistration, setUserRegistration] = useState({
     name: "",
     email: "",
-    month: "",
+    smonth: "",
+    emonth: "",
     duration: "",
     rating: "",
     rvalue: "",
@@ -57,6 +61,8 @@ const RegInstitute = () => {
     state: "",
     country: "",
     zipcode: "",
+    landline: "",
+    extension: "",
     phoneno: "",
     status: "pending",
     salutation: "",
@@ -66,7 +72,10 @@ const RegInstitute = () => {
     coordEmail: "",
     coordPhone: "",
     password: "",
+    password2: "",
   });
+
+  // country.map((val) => console.log("country" + val.name));
 
   useEffect(() => {
     if (userRegistration.rating === "A++") userRegistration.rvalue = 8;
@@ -119,18 +128,18 @@ const RegInstitute = () => {
   // };
 
   //method1
-  const [country, setCountry] = useState([]);
+  // const [country, setCountry] = useState([]);
 
-  useEffect(() => {
-    const getCountry = async () => {
-      const rescountry = await fetch(
-        "https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json"
-      );
-      const rescon = await rescountry.json();
-      setCountry(await rescon);
-    };
-    getCountry();
-  }, []);
+  // useEffect(() => {
+  //   const getCountry = async () => {
+  //     const rescountry = await fetch(
+  //       "https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json"
+  //     );
+  //     const rescon = await rescountry.json();
+  //     setCountry(await rescon);
+  //   };
+  //   getCountry();
+  // }, []);
 
   const PostData = async (e) => {
     e.preventDefault();
@@ -138,7 +147,8 @@ const RegInstitute = () => {
     const {
       name,
       email,
-      month,
+      smonth,
+      emonth,
       duration,
       rating,
       rvalue,
@@ -149,6 +159,8 @@ const RegInstitute = () => {
       state,
       country,
       zipcode,
+      landline,
+      extension,
       phoneno,
       status,
       salutation,
@@ -158,6 +170,7 @@ const RegInstitute = () => {
       coordEmail,
       coordPhone,
       password,
+      password2,
     } = userRegistration;
 
     const res = await fetch("/institute-reg", {
@@ -168,7 +181,8 @@ const RegInstitute = () => {
       body: JSON.stringify({
         name,
         email,
-        month,
+        smonth,
+        emonth,
         duration,
         rating,
         rvalue,
@@ -180,6 +194,8 @@ const RegInstitute = () => {
         country,
         zipcode,
         phoneno,
+        landline,
+        extension,
         status,
         salutation,
         coordfirstName,
@@ -188,6 +204,7 @@ const RegInstitute = () => {
         coordEmail,
         coordPhone,
         password,
+        password2,
       }),
     });
 
@@ -218,6 +235,8 @@ const RegInstitute = () => {
     }
   };
 
+  const [value, setValue] = useState();
+
   return (
     <>
       <NavBar2 />
@@ -227,6 +246,7 @@ const RegInstitute = () => {
           <form action="" method="POST" className="form-body-inst">
             {inst ? (
               <>
+                <h4 className="head-inst-home-2">Institute Details</h4>
                 <input
                   className="form-text-inst field1 required"
                   type="text"
@@ -238,6 +258,39 @@ const RegInstitute = () => {
                   placeholder="Institute Name *"
                 />
 
+                <select
+                  name="rating"
+                  className="drop-down-inst field3 required"
+                  value={userRegistration.rating}
+                  onChange={handlechange}
+                >
+                  <option value="Select">NAAC Rating</option>
+                  <option value="A++">A++</option>
+                  <option value="A+">A+</option>
+                  <option value="A">A</option>
+                  <option value="B++">B++</option>
+                  <option value="B+">B+</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                </select>
+                <select
+                  name="type"
+                  className="drop-down-inst field3 required"
+                  value={userRegistration.type}
+                  onChange={handlechange}
+                >
+                  <option value="Select">Institute Type</option>
+                  <option value="Central University">Central University</option>
+                  <option value="State University">State University</option>
+                  <option value="Deemed University">Deemed University</option>
+                  <option value="Private Institute">Private Institute</option>
+                  <option value="Affiliated College">Affiliated College</option>
+                  <option value="Autonomous College">Autonomous College</option>
+                </select>
+
+                <h4 className="head-inst-home">Institute Address</h4>
+
                 <input
                   className="form-text-inst field2 required"
                   type="text"
@@ -248,7 +301,6 @@ const RegInstitute = () => {
                   id="addressline1"
                   placeholder="Address Line 1*"
                 />
-
                 <input
                   className="form-text-inst field2"
                   type="text"
@@ -259,7 +311,6 @@ const RegInstitute = () => {
                   id="addressline2"
                   placeholder="Address Line 2"
                 />
-
                 {/* <select
                   name="country"
                   className="drop-down-inst field3 required"
@@ -273,7 +324,6 @@ const RegInstitute = () => {
                     </option>
                   ))}
                 </select> */}
-
                 {/*method2
                  <select
                   name="country"
@@ -287,6 +337,18 @@ const RegInstitute = () => {
                       {items}
                     </option>
                   ))}
+                </select> */}
+
+                {/* <select
+                  name="country"
+                  className="drop-down-inst field3 required"
+                  value={userRegistration.country}
+                  onChange={handlechange}
+                >
+                  <option value="select">Country</option>
+                  {country.map((val) => {
+                    <option value={val.name}>{val.name}</option>;
+                  })}
                 </select> */}
 
                 <input
@@ -310,7 +372,6 @@ const RegInstitute = () => {
                   id="state"
                   placeholder="State*"
                 />
-
                 <input
                   className="form-text-inst field3 required"
                   type="text"
@@ -321,17 +382,6 @@ const RegInstitute = () => {
                   id="city"
                   placeholder="City*"
                 />
-                {/* 
-                <input
-                  className="form-text-inst"
-                  type="text"
-                  autoComplete="off"
-                  value={userRegistration.street}
-                  onChange={handlechange}
-                  name="street"
-                  id="street"
-                  placeholder="Street"
-                /> */}
 
                 <input
                   className="form-text-inst field3 required"
@@ -344,6 +394,8 @@ const RegInstitute = () => {
                   placeholder="Zipcode*"
                 />
 
+                <h4 className="head-inst-home-2">Contact Details</h4>
+
                 <input
                   className="form-text-inst field2 required"
                   type="email"
@@ -354,7 +406,6 @@ const RegInstitute = () => {
                   id="email"
                   placeholder="Email*"
                 />
-
                 <input
                   className="form-text-inst field2 required"
                   type="text"
@@ -363,13 +414,70 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="phoneno"
                   id="phoneno"
-                  placeholder="Institute Phone No.*"
+                  placeholder="Institute Phone No."
                 />
 
+                {/* <select
+                  name="duration"
+                  className="drop-down-inst field7 required"
+                  value={userRegistration.countrycode}
+                  onChange={handlechange}
+                >
+                  <option value="Select">Country Code</option>
+                  <option value="+91 IND">+91 IND</option>
+                  <option value="+1 US">+1 US</option>
+                </select> */}
+
+                <PhoneInput
+                  className="field 7"
+                  placeholder="Landline number *"
+                  value={userRegistration.landline}
+                  onChange={setValue}
+                />
+
+                {/* <input
+                  className="form-text-inst field8 required"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.landline}
+                  onChange={handlechange}
+                  name="phoneno"
+                  id="phoneno"
+                  placeholder="Landline No.*"
+                /> */}
+
+                <input
+                  className="form-text-inst field8 required"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.extension}
+                  onChange={handlechange}
+                  name="extension"
+                  id="extension"
+                  placeholder="ext "
+                />
+
+                <h4 className="head-inst-home">Internship Details</h4>
+
                 <select
-                  name="month"
+                  name="duration"
                   className="drop-down-inst field3 required"
-                  value={userRegistration.month}
+                  value={userRegistration.duration}
+                  onChange={handlechange}
+                >
+                  <option value="Select">Internship Duration</option>
+                  <option value="1 Month">1 Month</option>
+                  <option value="2 Months">2 Months</option>
+                  <option value="3 Months">3 Months</option>
+                  <option value="4 Months">4 Months</option>
+                  <option value="5 Months">5 Months</option>
+                  <option value="6 Months">6 Months</option>
+                </select>
+
+                <select
+                  name="smonth"
+                  className="drop-down-inst field3 required"
+                  value={userRegistration.smonth}
                   onChange={handlechange}
                 >
                   <option value="Select">Start Month</option>
@@ -388,46 +496,24 @@ const RegInstitute = () => {
                 </select>
 
                 <select
-                  name="duration"
+                  name="emonth"
                   className="drop-down-inst field3 required"
-                  value={userRegistration.duration}
+                  value={userRegistration.emonth}
                   onChange={handlechange}
                 >
-                  <option value="Select">Internship Duration</option>
-                  <option value="3 Months">3 Months</option>
-                  <option value="6 Months">6 Months</option>
-                </select>
-
-                <select
-                  name="rating"
-                  className="drop-down-inst field3 required"
-                  value={userRegistration.rating}
-                  onChange={handlechange}
-                >
-                  <option value="Select">NAAC Rating</option>
-                  <option value="A++">A++</option>
-                  <option value="A+">A+</option>
-                  <option value="A">A</option>
-                  <option value="B++">B++</option>
-                  <option value="B+">B+</option>
-                  <option value="B">B</option>
-                  <option value="C">C</option>
-                  <option value="D">D</option>
-                </select>
-
-                <select
-                  name="type"
-                  className="drop-down-inst field3 required"
-                  value={userRegistration.type}
-                  onChange={handlechange}
-                >
-                  <option value="Select">Institute Type</option>
-                  <option value="Central University">Central University</option>
-                  <option value="State University">State University</option>
-                  <option value="Deemed University">Deemed University</option>
-                  <option value="Private Institute">Private Institute</option>
-                  <option value="Affiliated College">Affiliated College</option>
-                  <option value="Autonomous College">Autonomous College</option>
+                  <option value="Select">End Month</option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
                 </select>
 
                 {/* <select
@@ -443,11 +529,10 @@ const RegInstitute = () => {
                     </option>
                   ))}
                 </select> */}
-
                 <div className="footer-inst">
                   <button
                     type="submit"
-                    className="btn-inst"
+                    className="btn-inst0"
                     onClick={() => {
                       setInst(false);
                       setDisplay(true);
@@ -459,6 +544,7 @@ const RegInstitute = () => {
               </>
             ) : display ? (
               <>
+                <h4 className="head-inst-home">Coordinator Details</h4>
                 <select
                   name="salutation"
                   className="drop-down-inst field4 required"
@@ -505,6 +591,7 @@ const RegInstitute = () => {
                   placeholder="Last Name*"
                 />
 
+                <h4 className="head-inst-home-2">Contact Details</h4>
                 <input
                   className="form-text-inst2 field6 required"
                   type="email"
@@ -527,21 +614,33 @@ const RegInstitute = () => {
                   placeholder="Coordinator's Phone No.*"
                 />
 
+                <h4 className="head-inst-home-2">Credentials</h4>
                 <input
-                  className="form-text-inst2 field7 required"
+                  className="form-text-inst2 field6 required"
                   type="text"
                   autoComplete="off"
                   value={userRegistration.password}
                   onChange={handlechange}
                   name="password"
                   id="password"
-                  placeholder="Set Password*"
+                  placeholder="Set Password *"
+                />
+
+                <input
+                  className="form-text-inst2 field6 required"
+                  type="text"
+                  autoComplete="off"
+                  value={userRegistration.password2}
+                  onChange={handlechange}
+                  name="Confirm password"
+                  id="Confirm password"
+                  placeholder="Confirm Password *"
                 />
 
                 <div className="footer-inst">
                   <button
                     type="submit"
-                    className="btn-inst"
+                    className="btn-inst1"
                     onClick={() => {
                       setDisplay(false);
                       setInst(true);

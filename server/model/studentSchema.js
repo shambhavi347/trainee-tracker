@@ -13,9 +13,11 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  middle_name: {
+    type: String,
+  },
   last_name: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -38,7 +40,7 @@ const studentSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ["male", "female", "transgender"],
+    enum: ["Male", "Female", "Binary"],
     required: true,
   },
   instname: {
@@ -82,6 +84,16 @@ const studentSchema = new mongoose.Schema({
     max: 3000,
     required: true,
   },
+  invite: {
+    type: String,
+    enum: ["pending", "sent", "na"],
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["pending", "accept", "reject"],
+    required: true,
+  },
   famtech: [
     {
       type: String,
@@ -94,11 +106,6 @@ const studentSchema = new mongoose.Schema({
       required: true,
     },
   ],
-  status: {
-    type: String,
-    enum: ["pending", "accept", "reject"],
-    required: true,
-  },
   tokens: [
     {
       token: {

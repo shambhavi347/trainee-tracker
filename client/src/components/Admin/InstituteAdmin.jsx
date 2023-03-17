@@ -146,7 +146,6 @@ const InstituteAdmin = () => {
     };
     fetchData();
   }, [imonthPen]);
-  console.log("Month: " + imonthPen);
 
   useEffect(() => {
     const fetchData = async () => {

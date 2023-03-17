@@ -26,8 +26,8 @@ router.post("/trainee-reg", async (req, res) => {
 
     // second -- format checking
 
-    var emailRegex =
-      /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    var emailRegex = /.+@..+\..[A-Za-z]+$/;
+      // /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
     if (email.length > 254) {
       return res.status(422).json({ error: "Fill the Email ID correctly !!" });

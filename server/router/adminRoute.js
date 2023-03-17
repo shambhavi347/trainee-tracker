@@ -500,87 +500,112 @@ router.post("/reject-inst", adminAuthenticate, async (req, res) => {
 });
 
 //send mail to accept student
-router.post("/send-student-mail", adminAuthenticate, async (req, res) => {
+router.post("/accept-student", adminAuthenticate, async (req, res) => {
   try {
     const { email } = req.body;
-    URL = "http://localhost:3000/trainee-reg";
-
-    console.log(email);
-    let testAccount = await nodemailer.createTestAccount();
-
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: "randy67@ethereal.email", // generated ethereal user
-        pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
-      },
-    });
-
-    // send mail with defined transport object
-    let info = await transporter.sendMail({
-      from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
-      to: email, // list of receivers
-      subject: "CDAC Student Application Result", // Subject line
-      text: "Hello from trainee tracker!! The interested student must register on the below link copy paste it in your browser  Link: http://localhost:3000/trainee-reg", // plain text body
-      html: " <b>Hello from trainee tracker</b> <a href= ${URl} > Register </a> <br/> Copy Paste the below URL :- http://localhost:3000/trainee-reg", // html body
-    });
-    if (info.messageId) {
-      await Student.findOneAndUpdate(
-        { email: email },
-        { $set: { status: "accept" } }
-      );
-      res.send("Mail Sent");
-    } else {
-      res.send("Mail Not Sent");
-    }
+    await Student.findOneAndUpdate(
+      { email: email },
+      { $set: { status: "accept", invite: "pending" } }
+    );
+    res.send("Student Accepted");
   } catch (error) {
     console.log(error);
   }
 });
+
+// router.post("/send-student-mail", adminAuthenticate, async (req, res) => {
+//   try {
+//     const { email } = req.body;
+//     URL = "http://localhost:3000/trainee-reg";
+
+//     console.log(email);
+//     let testAccount = await nodemailer.createTestAccount();
+
+//     // create reusable transporter object using the default SMTP transport
+//     let transporter = nodemailer.createTransport({
+//       host: "smtp.ethereal.email",
+//       port: 587,
+//       secure: false, // true for 465, false for other ports
+//       auth: {
+//         user: "randy67@ethereal.email", // generated ethereal user
+//         pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+//       },
+//     });
+
+//     // send mail with defined transport object
+//     let info = await transporter.sendMail({
+//       from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+//       to: email, // list of receivers
+//       subject: "CDAC Student Application Result", // Subject line
+//       text: "Hello from trainee tracker!! The interested student must register on the below link copy paste it in your browser  Link: http://localhost:3000/trainee-reg", // plain text body
+//       html: " <b>Hello from trainee tracker</b> <a href= ${URl} > Register </a> <br/> Copy Paste the below URL :- http://localhost:3000/trainee-reg", // html body
+//     });
+//     if (info.messageId) {
+//       await Student.findOneAndUpdate(
+//         { email: email },
+//         { $set: { status: "accept" } }
+//       );
+//       res.send("Mail Sent");
+//     } else {
+//       res.send("Mail Not Sent");
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 //reject Student
 router.post("/reject-student", adminAuthenticate, async (req, res) => {
   try {
     const { email } = req.body;
-
-    console.log(email);
-    let testAccount = await nodemailer.createTestAccount();
-
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: "randy67@ethereal.email", // generated ethereal user
-        pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
-      },
-    });
-
-    // send mail with defined transport object
-    let info = await transporter.sendMail({
-      from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
-      to: email, // list of receivers
-      subject: "CDAC Student Application Result", // Subject line
-      text: "Hello from trainee tracker!! Thank You for applying but we are not moving forward with your application", // plain text body
-      html: " <b>Hello from trainee tracker!! Thank You for applying but we are not moving forward with your application </b>", // html body
-    });
-    if (info.messageId) {
-      await Student.findOneAndUpdate(
-        { email: email },
-        { $set: { status: "reject" } }
-      );
-      res.send("Mail Sent");
-    } else {
-      res.send("Mail Not Sent");
-    }
+    await Student.findOneAndUpdate(
+      { email: email },
+      { $set: { status: "reject" } }
+    );
+    res.send("Student Rejected");
   } catch (error) {
     console.log(error);
   }
 });
+// router.post("/reject-student", adminAuthenticate, async (req, res) => {
+//   try {
+//     const { email } = req.body;
+
+//     console.log(email);
+//     let testAccount = await nodemailer.createTestAccount();
+
+//     // create reusable transporter object using the default SMTP transport
+//     let transporter = nodemailer.createTransport({
+//       host: "smtp.ethereal.email",
+//       port: 587,
+//       secure: false, // true for 465, false for other ports
+//       auth: {
+//         user: "randy67@ethereal.email", // generated ethereal user
+//         pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+//       },
+//     });
+
+//     // send mail with defined transport object
+//     let info = await transporter.sendMail({
+//       from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+//       to: email, // list of receivers
+//       subject: "CDAC Student Application Result", // Subject line
+//       text: "Hello from trainee tracker!! Thank You for applying but we are not moving forward with your application", // plain text body
+//       html: " <b>Hello from trainee tracker!! Thank You for applying but we are not moving forward with your application </b>", // html body
+//     });
+//     if (info.messageId) {
+//       await Student.findOneAndUpdate(
+//         { email: email },
+//         { $set: { status: "reject" } }
+//       );
+//       res.send("Mail Sent");
+//     } else {
+//       res.send("Mail Not Sent");
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 //coord Invitation
 router.post("/reg-coord", adminAuthenticate, async (req, res) => {

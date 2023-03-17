@@ -326,7 +326,7 @@ export const getAppstatus = async () => {
 
 export const acceptTrainee = async (data) => {
   try {
-    const response = await axios.post("/send-student-mail", data);
+    const response = await axios.post("/accept-student", data);
     return response.data;
     // console.log(data);
   } catch (error) {
