@@ -33,6 +33,7 @@ router.post("/institute-reg", async (req, res) => {
     coordEmail,
     coordPhone,
     password,
+    password2,
   } = req.body;
   console.log(req.body);
 
@@ -159,7 +160,7 @@ router.post("/institute-reg", async (req, res) => {
     if (!passwordValid) {
       return res.status(422).json({
         error:
-          "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!",
+          "Password must be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!",
       });
     }
 
