@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Institute/RegInstitute.css";
 import { useEffect } from "react";
-import { validEmail } from "../../components/Regex";
-import { validPassword } from "../../components/Regex";
-// import country from "../../service/country.json";
+import cities from "../../service/cities.json";
 import axios from "axios";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
@@ -75,8 +73,6 @@ const RegInstitute = () => {
     password2: "",
   });
 
-  // country.map((val) => console.log("country" + val.name));
-
   useEffect(() => {
     if (userRegistration.rating === "A++") userRegistration.rvalue = 8;
     else if (userRegistration.rating === "A+") userRegistration.rvalue = 7;
@@ -107,39 +103,6 @@ const RegInstitute = () => {
 
     setUserRegistration({ ...userRegistration, [name]: value });
   };
-
-  //method2
-  // const [data, setData] = useState([]);
-  // const [getCountry, setCountry] = useState();
-  // useEffect(() => {
-  //   axios.get(
-  //     "https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json"
-  //       .then((res) => setData(res.data))
-  //       .catch((err) => console.log(err))
-  //   );
-  // }, []);
-
-  // const country = [...new Set(data.map((item) => item.country))];
-  // country.sort();
-  // console.log(country);
-  // const handleCountry = () => {
-  //   let states = data.filter((state) => state.country === e.target.value);
-  //   const state = [...new Set(states.map((item) => item.subcountry))];
-  // };
-
-  //method1
-  // const [country, setCountry] = useState([]);
-
-  // useEffect(() => {
-  //   const getCountry = async () => {
-  //     const rescountry = await fetch(
-  //       "https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json"
-  //     );
-  //     const rescon = await rescountry.json();
-  //     setCountry(await rescon);
-  //   };
-  //   getCountry();
-  // }, []);
 
   const PostData = async (e) => {
     e.preventDefault();
@@ -311,77 +274,48 @@ const RegInstitute = () => {
                   id="addressline2"
                   placeholder="Address Line 2"
                 />
-                {/* <select
-                  name="country"
-                  className="drop-down-inst field3 required"
-                  value={userRegistration.country}
-                  onChange={handlechange}
-                >
-                  <option value="select">Country</option>
-                  {country.map((getcon, index) => (
-                    <option key={index} value={getcon.country_id}>
-                      {getcon.country_name}
-                    </option>
-                  ))}
-                </select> */}
-                {/*method2
-                 <select
-                  name="country"
-                  className="drop-down-inst field3 required"
-                  value={userRegistration.country}
-                  onChange={(e) => handleCountry(e)}
-                >
-                  <option value="select">Country</option>
-                  {country.map((items) => (
-                    <option key={items} value={getCountry}>
-                      {items}
-                    </option>
-                  ))}
-                </select> */}
 
-                {/* <select
+                <select
                   name="country"
                   className="drop-down-inst field3 required"
                   value={userRegistration.country}
                   onChange={handlechange}
                 >
                   <option value="select">Country</option>
-                  {country.map((val) => {
-                    <option value={val.name}>{val.name}</option>;
+
+                  {cities.map((Con) => {
+                    cities.sort();
+                    return (
+                      <option key={Con.country_id}>{Con.country_name}</option>
+                    );
                   })}
-                </select> */}
+                </select>
 
-                <input
-                  className="form-text-inst field3 required"
-                  type="text"
-                  autoComplete="off"
-                  value={userRegistration.country}
-                  onChange={handlechange}
-                  name="country"
-                  id="country"
-                  placeholder="Country*"
-                />
-
-                <input
-                  className="form-text-inst field3 required"
-                  type="text"
-                  autoComplete="off"
+                <select
+                  name="state"
+                  className="drop-down-inst field3 required"
                   value={userRegistration.state}
                   onChange={handlechange}
-                  name="state"
-                  id="state"
-                  placeholder="State*"
-                />
-                <input
-                  className="form-text-inst field3 required"
-                  type="text"
-                  autoComplete="off"
+                >
+                  <option value="select">State</option>
+
+                  {cities.map((Con) => {
+                    return <option key={Con.state_id}>{Con.state_name}</option>;
+                  })}
+                </select>
+
+                <select
+                  name="city"
+                  className="drop-down-inst field3 required"
                   value={userRegistration.city}
                   onChange={handlechange}
-                  name="city"
-                  id="city"
-                  placeholder="City*"
-                />
+                >
+                  <option value="select">City</option>
+
+                  {cities.map((Con) => {
+                    return <option key={Con.id}>{Con.name}</option>;
+                  })}
+                </select>
 
                 <input
                   className="form-text-inst field3 required"
@@ -416,46 +350,27 @@ const RegInstitute = () => {
                   id="phoneno"
                   placeholder="Institute Phone No."
                 />
+                <div className="contact">
+                  <div className="phone">
+                    <PhoneInput
+                      className="field 7"
+                      placeholder="Landline number *"
+                      value={userRegistration.landline}
+                      onChange={setValue}
+                    />
+                  </div>
 
-                {/* <select
-                  name="duration"
-                  className="drop-down-inst field7 required"
-                  value={userRegistration.countrycode}
-                  onChange={handlechange}
-                >
-                  <option value="Select">Country Code</option>
-                  <option value="+91 IND">+91 IND</option>
-                  <option value="+1 US">+1 US</option>
-                </select> */}
-
-                <PhoneInput
-                  className="field 7"
-                  placeholder="Landline number *"
-                  value={userRegistration.landline}
-                  onChange={setValue}
-                />
-
-                {/* <input
-                  className="form-text-inst field8 required"
-                  type="text"
-                  autoComplete="off"
-                  value={userRegistration.landline}
-                  onChange={handlechange}
-                  name="phoneno"
-                  id="phoneno"
-                  placeholder="Landline No.*"
-                /> */}
-
-                <input
-                  className="form-text-inst field8 required"
-                  type="text"
-                  autoComplete="off"
-                  value={userRegistration.extension}
-                  onChange={handlechange}
-                  name="extension"
-                  id="extension"
-                  placeholder="ext "
-                />
+                  <input
+                    className="form-text-inst field8 required"
+                    type="text"
+                    autoComplete="off"
+                    value={userRegistration.extension}
+                    onChange={handlechange}
+                    name="extension"
+                    id="extension"
+                    placeholder="ext "
+                  />
+                </div>
 
                 <h4 className="head-inst-home">Internship Details</h4>
 
@@ -516,19 +431,6 @@ const RegInstitute = () => {
                   <option value="December">December</option>
                 </select>
 
-                {/* <select
-                  name="country"
-                  className="drop-down-inst"
-                  value={userRegistration.country}
-                  onChange={handlechange}
-                >
-                  <option value="Select">Select Country</option>
-                  {Country.map((getCountry) => (
-                    <option key={getCountry.id}>
-                      {getCountry.country_name}
-                    </option>
-                  ))}
-                </select> */}
                 <div className="footer-inst">
                   <button
                     type="submit"
@@ -615,27 +517,35 @@ const RegInstitute = () => {
                 />
 
                 <h4 className="head-inst-home-2">Credentials</h4>
-                <input
-                  className="form-text-inst2 field6 required"
-                  type="text"
-                  autoComplete="off"
-                  value={userRegistration.password}
-                  onChange={handlechange}
-                  name="password"
-                  id="password"
-                  placeholder="Set Password *"
-                />
+                <div className="box">
+                  <input
+                    className="form-text-inst2 field6 required"
+                    type="text"
+                    autoComplete="off"
+                    value={userRegistration.password}
+                    onChange={handlechange}
+                    name="password"
+                    id="password"
+                    placeholder="Set Password *"
+                  />
 
-                <input
-                  className="form-text-inst2 field6 required"
-                  type="text"
-                  autoComplete="off"
-                  value={userRegistration.password2}
-                  onChange={handlechange}
-                  name="Confirm password"
-                  id="Confirm password"
-                  placeholder="Confirm Password *"
-                />
+                  <input
+                    className="form-text-inst2 field6 required"
+                    type="text"
+                    autoComplete="off"
+                    value={userRegistration.password2}
+                    onChange={handlechange}
+                    name="Confirm password"
+                    id="Confirm password"
+                    placeholder="Confirm Password *"
+                  />
+                </div>
+
+                <div className="guidelines">
+                  (Password must be of minimum 8 characters and must contain a
+                  digit, an uppercase alphabet,a lowercase alphabet and a
+                  special symbol)
+                </div>
 
                 <div className="footer-inst">
                   <button

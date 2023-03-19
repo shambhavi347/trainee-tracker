@@ -121,6 +121,7 @@
 
 .field6 {
   width: 41%;
+  /* float: right; */
 }
 
 .field7 {
@@ -133,8 +134,20 @@
 }
 
 .field8 {
-  width: 30%;
+  width: 41.5%;
+  height: 28px;
+  float: right;
+  margin-top: -3.1%;
+  margin-right: 13%;
 }
+
+/* .field9 {
+  width: 41%;
+  margin-top: 3.1%;
+  margin-left: -10%;
+  /* float: right; */
+/* background-color: #00adb5;
+ } */
 
 .btn-inst {
   margin-left: 4%;
@@ -177,4 +190,37 @@
 
 .btn-inst {
   width: 32%;
+}
+
+.guidelines {
+  color: #eeeeee;
+  font-size: x-small;
+  font-style: oblique;
+  width: 40%;
+  margin-left: 2.8%;
+  margin-top: -2%;
+  margin-bottom: 2%;
+  /* background-color: #00adb5; */
+}
+
+.box {
+  /* float: right; */
+  width: 100%;
+  height: 18%;
+  margin-bottom: 2%;
+}
+
+.phone {
+  width: 41%;
+  border-radius: 6px;
+  height: 28px;
+  background-color: #eeeeee;
+  margin-left: 2.3%;
+  padding: 0;
+}
+
+.contact {
+  height: 40px;
+  /* background-color: #00adb5; */
+  width: 99%;
 }
