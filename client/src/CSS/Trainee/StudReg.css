@@ -1,16 +1,15 @@
 * {
   box-sizing: border-box;
 }
-.DivUpper {
+.DivUpper1 {
   background: #222831;
   background: -webkit-linear-gradient(to top, #222831, #393e46);
   background: linear-gradient(to bottom, #393e46, #00adb5);
   /* background-color: #222831; */
   height: 100vh;
-  margin: 0px;
+  margin: 0px; 
   /* overflow-y: scroll; */
 }
-
 /* .divLower {
   background-color: #393e46;
   height: 70%;
@@ -20,21 +19,50 @@
   margin-top: 4%;
   position: relative;
 } */
-.btn-form {
-  text-align: center;
+
+.btn-form1 {
+  
+  text-align:center;
   border-radius: 20px;
   border: 0;
   height: 60px;
   width: 250px;
   margin: 10px 15px;
+  /* change*/
   margin-bottom: 15px;
   font-size: x-large;
   background-color: #222831;
   border: 2px #00adb5 solid;
   color: #00adb5;
+  margin-left:25%;
 }
 
-.btn-form:hover {
+.btn-form1:hover 
+{
+  background-color: #222831;
+  color: #eeeeee;
+  font-weight: bolder;
+  font-style: italic;
+}
+.btn-form2 {
+  
+  text-align:center;
+  border-radius: 20px;
+  border: 0;
+  height: 60px;
+  width: 250px;
+  margin: 10px 15px;
+  /* change*/
+  margin-bottom: 15px;
+  font-size: x-large;
+  background-color: #222831;
+  border: 2px #00adb5 solid;
+  color: #00adb5;
+  margin-left:2%;
+}
+
+.btn-form1:hover 
+{
   background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
@@ -51,7 +79,7 @@
   height: 98vh;
 } */
 
-.main {
+.main1 {
   width: 100%;
   height: 100%;
   padding: 160px;
@@ -62,7 +90,7 @@
   overflow-y: scroll;
 }
 
-.regHead {
+.regHead1 {
   align-content: center;
   justify-content: center;
   display: flex;
@@ -70,22 +98,29 @@
   font-size: 30px;
 }
 
-.form-text,
-.form-date,
-.form-email,
-.form-password {
-  width: 250px;
-  padding: 20px;
+.form-text1,
+.form-date1,
+.form-email1,
+.form-password1 {
+  
+ /* width: 250px;
+  padding: 20px;*/
+ 
   color: black;
-  background-color: #f2f4f4;
+
   border-radius: 20px;
   border: 1px solid rgba(52, 73, 94, 0.1);
 }
+
 input {
+  
+
   border: 0;
   outline: 0;
   font-size: medium;
+ 
 }
+
 input[file] {
   border: 0 !important;
   color: white;
@@ -100,7 +135,7 @@ input:focus {
   padding: 10px;
   color: white;
 }
-input[type="file"]::file-selector-button {
+input[type="file"]::file-selector-button1 {
   font-family: "Itim", cursive;
   width: 100px;
   height: 30px;
@@ -110,33 +145,49 @@ input[type="file"]::file-selector-button {
   margin-left: 60px;
   margin-right: 10px;
 }
-.btn-form:hover,
-input[type="file"]::file-selector-button:hover {
+.btn-form1:hover,
+input[type="file"]::file-selector-button1:hover {
   opacity: 0.8;
 }
-.regForm {
+.regForm1 {
   display: table-cell;
   vertical-align: middle;
   /* overflow-y: scroll; */
 }
-.regBox {
-  display: flex;
+.regBox1 {
+  
+  /*display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   display: table;
-  background-color: transparent;
+  background-color: #222831;
   width: 100%;
   height: 100%;
   margin: auto;
   border-radius: 15px;
   /* overflow-y: scroll; */
+  background-color: #222831;
+  width: 80%;
+  position: absolute;
+  top: 30%;
+  left: 9%;
+  border-radius: 18px;
+  padding: 1%;
+  height: 68%; 
 }
-.form-element {
-  justify-content: left;
+.form-element11{
+/*change*/
+/*justify-content: left;
   display: flex;
-  margin: auto;
-  margin-top: 20px;
+  /*margin: auto;
+  margin-top: 20px;*/ 
+  margin: 1% 0;
+  /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
+ /* width: 36%;*/
+  margin-left: 2%;
+  padding: 1%;
+  border-radius: 6px;
 }
 
 .loginWelcome {
@@ -144,7 +195,7 @@ input[type="file"]::file-selector-button:hover {
   text-align: center;
   color: #f2f4f4;
 }
-.regHead {
+.regHead{
   color: white;
 }
 .signupImg {
@@ -166,11 +217,11 @@ input[type="file"]::file-selector-button:hover {
 }
 .img,
 .Img,
-.regForm {
+.regForm1 {
   display: table-cell;
   vertical-align: middle;
 }
-.drop-down {
+/*.drop-down {
   width: 250px;
   padding: 20px;
   color: black;
@@ -179,23 +230,44 @@ input[type="file"]::file-selector-button:hover {
   border: 1px solid rgba(52, 73, 94, 0.1);
   font-size: medium;
   clear: right;
-}
-.drop-down1 {
-  width: 250px;
-  margin-top: 20px;
-  padding: 20px;
+
+}*/
+.drop-down11{
+  
+  /*padding: 20px;*/
   color: black;
   background-color: #f2f4f4;
-  border-radius: 20px;
+  /*border-radius: 20px;*/
   border: 1px solid rgba(52, 73, 94, 0.1);
   font-size: medium;
+  margin: 1% 0;
+  /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
+  padding: 1%;
+  border-radius: 6px;
 }
-
+.drop-down22 {
+  /*width: 250px;
+  margin-top: 20px;
+  padding: 20px;*/
+  color: black;
+  background-color: #f2f4f4;
+  /*border-radius: 20px;*/
+  border: 1px solid rgba(52, 73, 94, 0.1);
+  font-size: medium;
+  margin: 1% 0;
+  /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
+  
+  
+  padding: 1%;
+  border-radius: 6px;
+}
+/*outer box */
 .fam-tech,
-.int-drop {
+.int-drop{
   border: 2px #00adb5 solid;
   width: 40%;
-  margin-left: 30%;
+ 
+   margin-left: 30%;
   border-radius: 15px;
   padding: 15px;
   background-color: #222831;
@@ -330,7 +402,7 @@ input[type="file"]::file-selector-button:hover {
   margin: 0;
 }
 
-.choose-file {
+.choose-file1 {
   /* border: 2px #00adb5 solid; */
   /* padding: 2%; */
   /* background-color: #ccc; */
@@ -359,7 +431,7 @@ input[type="file"]::file-selector-button:hover {
   color: #00adb5;
 }
 
-.choose-file:hover {
+.choose-file1:hover {
   background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
@@ -370,7 +442,115 @@ input[type="file"]::file-selector-button:hover {
   display: none;
 } */
 
-.App {
+.App1 {
   margin: 20px;
   max-width: 300px;
+}
+.form-body-stu {
+  padding: 2% 2%;
+  
+  overflow-y: scroll;
+  height: 100%;
+ 
+  margin-left: 6%;
+  
+  mask-image: linear-gradient(to top, transparent, black),
+    linear-gradient(to left, transparent 17px, black 17px);
+  mask-size: 100% 20000px;
+
+  mask-position: left bottom;
+  -webkit-mask-image: linear-gradient(to top, transparent, black),
+    linear-gradient(to left, transparent 17px, black 17px);
+  -webkit-mask-size: 100% 20000px;
+  -webkit-mask-position: left bottom;
+  transition: mask-position 0.3s, -webkit-mask-position 0.3s;  
+}
+
+.form-body-stu:hover {
+  -webkit-mask-position: left top;
+}
+.field1{
+ 
+  /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
+  width: 12%; 
+  margin-left: 2%;
+  padding:1%;
+}
+.field2{
+  margin-left:2%;
+  width: 22.5%;
+  
+}
+.field3{
+  margin-left:2%;
+  width:22.5%;
+ 
+}
+.field4{
+  margin-left:2%;
+  width:22.5%;
+}
+.field5{
+  width:22.5%;
+  
+}
+.field6{
+  width:22.5%;
+ 
+}
+
+.field7{
+  width:22.5%;
+ 
+}
+.field8
+{
+width: 12%; 
+margin-left: 2%;
+padding:1%;
+}
+
+.field9{
+  width:22.5%;
+  margin-left: 15%;
+}
+.field10{
+  width: 22%; 
+  margin-left: 2%;
+  padding:1%;
+}
+.field11{
+  width: 22%; 
+  margin-left: 2%;
+  padding:1%;
+}
+.field12{
+  width: 22%; 
+  margin-left: 15%;
+  padding:1%;
+}
+.field13{
+  width: 22%; 
+  margin-left: 2%;
+  padding:1%;
+}
+.field14{
+  width: 22%; 
+  margin-left: 2%;
+  padding:1%;
+}
+.tb1{
+  text-align:center;
+  border-radius: 20px;
+  border: 0;
+  height: 60px;
+  width: 250px;
+  margin: 10px 15px;
+  /* change*/
+  margin-bottom: 15px;
+  font-size: x-large;
+  background-color: #222831;
+  border: 2px #00adb5 solid;
+  color: #00adb5;
+  margin-left:38%;
 }

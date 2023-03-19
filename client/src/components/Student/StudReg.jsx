@@ -254,12 +254,15 @@ const Demo = () => {
     <>
       <NavBar2 />
       {/* write your page 1 code here*/}
-      <div className="DivUpper">
-        <div className="main">
-          <h1 className="regHead">Register Yourself</h1>
+      <div className="DivUpper1">
+      
+         
+        <div className="main1">
+          <h1 className="regHead1">Register Yourself</h1>
           <br />
-          <div className="regBox">
-            <form
+          <div className="regBox1">
+          
+            <form   className="form-body-stu"
               onSubmit={(e) => {
                 e.preventDefault();
               }}
@@ -268,19 +271,18 @@ const Demo = () => {
                 <>
                   <select
                     name="prefix"
-                    className="drop-down"
+                    className="drop-down11 field1"
                     value={user.prefix}
                     onChange={handleChange}
                   >
-                    <option value="null">Enter Salutation</option>
+                    <option value="null">Salutation</option>
                     <option value="Mr">Mr</option>
                     <option value="Mrs">Mrs</option>
                     <option value="Miss">Miss</option>
                     <option value="Dr">Dr</option>
                   </select>
-                  <br />
                   <input
-                    className="form-element form-text"
+                    className="form-element11 form-text1 field2 "
                     type="text"
                     placeholder="First Name"
                     name="first_name"
@@ -289,7 +291,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element form-text"
+                    className="form-element11 form-text1 field3"
                     type="text"
                     placeholder="Middle Name"
                     name="middle_name"
@@ -298,7 +300,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element form-text"
+                    className="form-element11 form-text1 field4"
                     type="text"
                     placeholder="Last Name"
                     name="last_name"
@@ -308,7 +310,7 @@ const Demo = () => {
                   />
 
                   <input
-                    className="form-element form-email"
+                    className="form-element11 form-email1 field5"
                     type="email"
                     name="email"
                     placeholder="Email Address"
@@ -317,7 +319,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element form-text"
+                    className="form-element11 form-text1 field6"
                     type="text"
                     name="phone_no"
                     value={user.phone_no}
@@ -326,7 +328,7 @@ const Demo = () => {
                     onChange={handleChange}
                   />
                   <input
-                    className="form-element form-date"
+                    className="form-element11 form-date1 field7"
                     type="date"
                     name="dob"
                     value={user.dob}
@@ -334,28 +336,28 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
-                  <br />
+                  
                   <select
                     name="gender"
-                    className="drop-down"
+                    className="drop-down11 field8"
                     value={user.gender}
                     onChange={handleChange}
                   >
-                    <option value="null">Enter Gender</option>
+                    <option value="null">Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Binary">Binary</option>
                   </select>
-                  <br />
+                 
 
                   {/* write your page 1 code here */}
-                  <h1 className="regHead">
+                  <h1 className="regHead1">
                     Hey {user.prefix} {user.first_name}, fill your Academic
                     details
                   </h1>
-                  <br />
+                 
                   <input
-                    className="form-element form-text"
+                    className="form-element11 form-text1 field9"
                     type="text"
                     placeholder="Institute Name"
                     name="instname"
@@ -363,10 +365,10 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
-                  <br />
+               
                   <select
                     name="course"
-                    className="drop-down"
+                    className="drop-down11 field10"
                     value={user.course}
                     onChange={handleChange}
                   >
@@ -376,10 +378,10 @@ const Demo = () => {
                     <option value="BTech">BTech</option>
                     <option value="MTech">MTech</option>
                   </select>
-                  <br />
+                
                   <select
                     name="stream"
-                    className="drop-down1"
+                    className="drop-down22 field11"
                     value={user.stream}
                     onChange={handleChange}
                   >
@@ -408,10 +410,10 @@ const Demo = () => {
                       Computer Science and Engineering
                     </option>
                   </select>
-                  <br />
+                <br/>
                   <select
                     name="semester"
-                    className="drop-down1"
+                    className="drop-down22 field12"
                     value={user.semester}
                     onChange={handleChange}
                   >
@@ -425,9 +427,9 @@ const Demo = () => {
                     <option value="7">7</option>
                     <option value="8">8</option>
                   </select>
-                  <br />
+                
                   <input
-                    className="drop-down1"
+                    className="drop-down22 field13"
                     type="number"
                     step="0.1"
                     min="0"
@@ -438,9 +440,9 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
-                  <br />
+                  
                   <input
-                    className="drop-down1"
+                    className="drop-down22 field14"
                     type="number"
                     step="1"
                     min="1887"
@@ -455,7 +457,7 @@ const Demo = () => {
                   <div>
                     <input
                       style={{ border: 0, display: "none" }}
-                      className="form-control"
+                      className="form-control1 field15"
                       type="file"
                       accept="application/pdf"
                       name="resume"
@@ -464,20 +466,20 @@ const Demo = () => {
                     />
                     <label htmlFor="files" onChange={handleChange}>
                       {user.pdfname ? (
-                        <div className="choose-file">{user.pdfname}</div>
+                        <div className="choose-file1">{user.pdfname}</div>
                       ) : (
-                        <div className="choose-file">Choose File</div>
+                        <div className="choose-file1">Choose File</div>
                       )}
                     </label>
                   </div>
-                  <button className="btn-form" onClick={validateData}>
+                  <button className="tb1 " onClick={validateData}>
                     NEXT
                   </button>
                 </>
               ) : page2 ? (
                 <>
                   {/* write your page 2 code here */}
-                  <h1 className="regHead">
+                  <h1 className="regHead1">
                     {" "}
                     {user.prefix} {user.first_name}, choose Technologies
                   </h1>
@@ -491,7 +493,7 @@ const Demo = () => {
                         }}
                       >
                         <img
-                          className="downarrow-img "
+                          className="downarrow-img"
                           src={arrowDown}
                           alt=""
                         />
@@ -650,7 +652,7 @@ const Demo = () => {
                   
 
                   <button
-                    className="btn-form"
+                    className="btn-form1"
                     onClick={() => {
                       setPage0(true);
                       setPage2(false);
@@ -658,12 +660,13 @@ const Demo = () => {
                   >
                     PREVIOUS
                   </button>
-                  <button className="btn-form" onClick={postData}>
+                  <button className="btn-form2" onClick={postData}>
                     SUBMIT
                   </button>
                 </>
               ) : null}
             </form>
+            
           </div>
         </div>
       </div>
