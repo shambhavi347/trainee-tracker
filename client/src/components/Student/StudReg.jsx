@@ -359,7 +359,7 @@ const Demo = () => {
                   </h1>*/}
 
                   <h4 className="head-stud">Academic Details</h4>
-                 
+
                   <input
                     className="form-element11 form-text1 field9"
                     type="text"
@@ -484,10 +484,11 @@ const Demo = () => {
                       )}
                     </label>
                   </div>
-                  <button className="tb1 " /*onClick={validateData}*/ 
+                  <button
+                    className="tb1 " /*onClick={validateData}*/
                     onClick={() => {
-                        setPage2(true);
-                        setPage0(false);
+                      setPage2(true);
+                      setPage0(false);
                     }}
                   >
                     NEXT
@@ -522,7 +523,7 @@ const Demo = () => {
                         <div className="option">
                           {tech.map((val, key) => (
                             <>
-                              <label className="container-form">
+                              <label className="container">
                                 {val}
                                 <input
                                   type="checkbox"
@@ -532,7 +533,7 @@ const Demo = () => {
                                   onClick={handlefamTech}
                                 />
 
-                                <span className="checkmark-form"></span>
+                                <span className="checkmark"></span>
                               </label>
                               <hr
                                 style={{
@@ -567,7 +568,7 @@ const Demo = () => {
                         <div className="option">
                           {tech.map((val, key) => (
                             <>
-                              <label className="container-form">
+                              <label className="container">
                                 {val}
                                 <input
                                   type="checkbox"
@@ -577,7 +578,7 @@ const Demo = () => {
                                   onChange={handleintTech}
                                 />
 
-                                <span className="checkmark-form"></span>
+                                <span className="checkmark"></span>
                               </label>
                               <hr
                                 style={{
@@ -594,7 +595,9 @@ const Demo = () => {
 
                   {Object.keys(famtech).length === 0 ? null : (
                     <>
-                      <h4 style={{marginLeft:"42%"}} >Familiar Technologies</h4>
+                      <h4 style={{ marginLeft: "42%" }}>
+                        Familiar Technologies
+                      </h4>
                       <div className="tech-box-outer">
                         <div className="tech-box">
                           {famtech.map((key) => (
@@ -630,7 +633,9 @@ const Demo = () => {
 
                   {Object.keys(inttech).length === 0 ? null : (
                     <>
-                      <h4 style={{marginLeft:"42%"}} >Interested Technologies</h4>
+                      <h4 style={{ marginLeft: "42%" }}>
+                        Interested Technologies
+                      </h4>
                       <div className="tech-box-outer">
                         <div className="tech-box">
                           {inttech.map((key) => (
