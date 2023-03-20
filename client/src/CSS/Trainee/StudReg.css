@@ -271,14 +271,16 @@ input[type="file"]::file-selector-button1:hover {
 .container-form {
   display: block;
   position: relative;
-  /* padding-left: 25px; */
-  /* margin: 3%; */
+  /* padding-left: 10px; */
+  /* margin: 1%; */
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   padding: 3px;
+  /* border-radius: 8px;
+  background-color: aquamarine; */
 }
 
 /* Hide the browser's default checkbox */

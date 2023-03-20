@@ -26,6 +26,7 @@ router.post("/reg-stud1", async (req, res) => {
       semester,
       cgpa,
       passout_year,
+      status,
     } = req.body;
 
     console.log(req.body);
@@ -145,6 +146,7 @@ router.post("/reg-stud1", async (req, res) => {
       semester,
       cgpa,
       passout_year,
+      status,
     });
 
     res.status(201).json({ message: "user registered successfully !!" });
@@ -178,7 +180,6 @@ router.post("/reg-stud", async (req, res) => {
       semester,
       cgpa,
       passout_year,
-      invite,
       status,
       famtech,
       inttech,
@@ -236,7 +237,7 @@ router.post("/reg-stud", async (req, res) => {
     }
 
     var emailRegex = /.+@..+\..[A-Za-z]+$/;
-    
+
     if (email.length > 254) {
       return res
         .status(422)
@@ -313,7 +314,6 @@ router.post("/reg-stud", async (req, res) => {
       semester,
       cgpa,
       passout_year,
-      invite,
       status,
       famtech,
       inttech,

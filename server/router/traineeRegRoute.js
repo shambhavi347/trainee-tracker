@@ -8,6 +8,7 @@ router.use(express.static("../client/src/"));
 const student = require("../model/studentSchema");
 const trainee = require("../model/traineeSchema");
 const traineeAuthenticate = require("../middleware/traineeauth");
+const Student = require("../model/studentSchema");
 
 //trainee Regestration
 router.post("/trainee-reg", async (req, res) => {
@@ -27,21 +28,21 @@ router.post("/trainee-reg", async (req, res) => {
     // second -- format checking
 
     var emailRegex = /.+@..+\..[A-Za-z]+$/;
-      // /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    // /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
     if (email.length > 254) {
-      return res.status(422).json({ error: "Fill the Email ID correctly !!" });
+      return res.status(422).json({ error: "Fill the Email ID correctly1 !!" });
     }
 
     var emailValid = emailRegex.test(email);
     if (!emailValid) {
-      return res.status(422).json({ error: "Fill the Email ID correctly !!" });
+      return res.status(422).json({ error: "Fill the Email ID correctly 2!!" });
     }
 
     // Further checking of some things regex can't handle
     var parts = email.split("@");
     if (parts[0].length > 64) {
-      return res.status(422).json({ error: "Fill the Email ID correctly !!" });
+      return res.status(422).json({ error: "Fill the Email ID correctly 3!!" });
     }
 
     var domainParts = parts[1].split(".");
@@ -50,7 +51,7 @@ router.post("/trainee-reg", async (req, res) => {
         return part.length > 63;
       })
     ) {
-      return res.status(422).json({ error: "Fill the Email ID correctly !!" });
+      return res.status(422).json({ error: "Fill the Email ID correctly 4!!" });
     }
 
     //third -- email !exist in trainee db
@@ -95,6 +96,7 @@ router.post("/trainee-reg", async (req, res) => {
       password,
     });
     await user.save();
+    await Student.findOneAndUpdate({ status: "registered" });
     res.status(201).json({ message: "Trainee registered successfully !!" });
   } catch (err) {
     console.log(err);

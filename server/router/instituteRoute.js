@@ -234,7 +234,7 @@ router.get(
             instname: inst.name,
           },
           {
-            status: "accept",
+            status: "selection accept",
           },
         ],
         // instname: inst.name,
