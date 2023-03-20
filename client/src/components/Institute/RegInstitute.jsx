@@ -44,6 +44,9 @@ const RegInstitute = () => {
     let path = "/";
     navigate(path);
   };
+
+  const [value, setValue] = useState();
+  const [isError, setIsError] = useState("");
   const [userRegistration, setUserRegistration] = useState({
     name: "",
     email: "",
@@ -198,7 +201,13 @@ const RegInstitute = () => {
     }
   };
 
-  const [value, setValue] = useState();
+  const checkValidation = (e) => {
+    e.preventDefault();
+    userRegistration.password2 = e.target.value;
+    if (userRegistration.password != userRegistration.password2) {
+      setIsError("Confirm Password should be same as Password!");
+    }
+  };
 
   return (
     <>
@@ -534,7 +543,7 @@ const RegInstitute = () => {
                     type="text"
                     autoComplete="off"
                     value={userRegistration.password2}
-                    onChange={handlechange}
+                    onChange={checkValidation}
                     name="Confirm password"
                     id="Confirm password"
                     placeholder="Confirm Password *"
