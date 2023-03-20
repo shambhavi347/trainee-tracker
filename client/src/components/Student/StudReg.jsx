@@ -467,14 +467,19 @@ const Demo = () => {
                       )}
                     </label>
                   </div>
-                  <button className="tb1 " onClick={validateData}>
+                  <button className="tb1 " /*onClick={validateData}*/
+                    onClick={() => {
+                        setPage2(true);
+                        setPage0(false);
+                    }}
+                  >
                     NEXT
                   </button>
                 </>
               ) : page2 ? (
                 <>
                   {/* write your page 2 code here */}
-                  <h1 className="regHead1">
+                  <h1 className="regHead">
                     {" "}
                     {user.prefix} {user.first_name}, choose Technologies
                   </h1>
@@ -487,7 +492,11 @@ const Demo = () => {
                           famdrop ? setFamdrop(false) : setFamdrop(true);
                         }}
                       >
-                        <img className="downarrow-img" src={arrowDown} alt="" />
+                        <img
+                          className="downarrow-img "
+                          src={arrowDown}
+                          alt=""
+                        />
                       </button>
                     </div>
 
@@ -568,7 +577,7 @@ const Demo = () => {
 
                   {Object.keys(famtech).length === 0 ? null : (
                     <>
-                      <h4>Familiar Technologies</h4>
+                      <h4 style={{marginLeft:"42%"}} >Familiar Technologies</h4>
                       <div className="tech-box-outer">
                         <div className="tech-box">
                           {famtech.map((key) => (
@@ -604,7 +613,7 @@ const Demo = () => {
 
                   {Object.keys(inttech).length === 0 ? null : (
                     <>
-                      <h4>Interested Technologies</h4>
+                      <h4 style={{marginLeft:"42%"}} >Interested Technologies</h4>
                       <div className="tech-box-outer">
                         <div className="tech-box">
                           {inttech.map((key) => (
