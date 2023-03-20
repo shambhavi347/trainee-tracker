@@ -267,3 +267,66 @@
   box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
   /* Lowering the shadow */
 }
+
+.submit-btn {
+  background-color: #222831;
+  border-radius: 10px;
+  padding: 2%;
+  float: right;
+  border: 1px #00adb5 solid;
+  margin: 2%;
+  color: #00adb5;
+}
+.submit-btn:hover {
+  background-color: #eeeeee;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.applied-filter-coord-outer {
+  width: 96%;
+  height: auto;
+  background-color: #222831;
+  border-radius: 10px;
+  border: 1px #00adb5 solid;
+  padding: 0;
+  margin: 5% 0;
+  margin-bottom: 50%;
+  color: #ccc;
+}
+.applied-filter-coord {
+  height: auto;
+  padding: 5%;
+  padding-top: 15px;
+}
+.filter-coord {
+  width: auto;
+  height: 40%;
+  padding: 4% 3%;
+  margin: 2% 0;
+  margin-right: 5%;
+  background-color: #393e46;
+  border: 1px #00adb5 solid;
+  float: left;
+  border-radius: 10px;
+  padding-bottom: -12%;
+}
+
+.cancel-btn-coord {
+  height: 15px;
+  width: 15px;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  float: right;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.cancel-img-coord {
+  width: fit-content;
+  height: fit-content;
+  /* height: 100%; */
+  margin: 0;
+}

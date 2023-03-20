@@ -963,7 +963,6 @@ router.post("/create-password", async (req, res) => {
 router.get("/trainee-email", async (req, res) => {
   try {
     const traine = await Trainee.find({}, { _id: 0, email: 1 });
-    console.log(traine);
     // res.send(traine.email);
     traine.map((val) => res.send(val.email));
   } catch (error) {
@@ -1014,8 +1013,10 @@ router.post("/get-class-coordinator", (req, res) => {
 router.post("/remove-trainee-class", async (req, res) => {
   try {
     const { trainee_id } = req.body;
-    console.log("hello");
-    console.log("Trainee: " + trainee_id);
+    await Student.findOneAndUpdate(
+      { _id: trainee_id },
+      { $set: { status: "registered" } }
+    );
     await Class.findOneAndDelete({ traineeID: trainee_id });
     res.send("deleted");
   } catch (error) {
@@ -1052,12 +1053,74 @@ router.post("/create-class", (req, res) => {
     });
     classes
       .save()
-      .then((data) => console.log("saved"))
+      .then((data) => {
+        Student.findOneAndUpdate(
+          { _id: traineeID },
+          { $set: { status: "assigned" } }
+        )
+          .then((data) => console.log("saved"))
+          .catch((err) => console.log(err));
+      })
       .catch((error) => console.log(error));
   });
   // } catch (error) {
   //   console.log(error);
   // }
+});
+
+router.get("/get-sem-class", adminAuthenticate, async (req, res) => {
+  try {
+    const cat = await Student.distinct("semester", {
+      status: "assigned",
+    });
+    res.send(cat);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-inst-name-class", adminAuthenticate, async (req, res) => {
+  try {
+    const cat = await Student.distinct("instname", {
+      status: "assigned",
+    });
+    res.send(cat);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-course-class", adminAuthenticate, async (req, res) => {
+  try {
+    const cat = await Student.distinct("course", {
+      status: "assigned",
+    });
+    res.send(cat);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-stream-class", adminAuthenticate, async (req, res) => {
+  try {
+    const cat = await Student.distinct("stream", {
+      status: "assigned",
+    });
+    res.send(cat);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-passout-year-class", adminAuthenticate, async (req, res) => {
+  try {
+    const cat = await Student.distinct("passout_year", {
+      status: "assigned",
+    });
+    res.send(cat);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

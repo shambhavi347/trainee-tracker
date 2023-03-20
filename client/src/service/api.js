@@ -288,9 +288,9 @@ export const getPassYearAccCat = async () => {
   }
 };
 
-export const getPassYearRejCat = async () => {
+export const getInstName = async () => {
   try {
-    let respone = await axios.get("/get-passout-year-reject-category");
+    let respone = await axios.get("/get-inst-name-class");
     return respone.data;
   } catch (error) {
     console.log(error);
@@ -300,6 +300,15 @@ export const getPassYearRejCat = async () => {
 export const acceptInsitute = async (data) => {
   try {
     await axios.post("/accept-inst", data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPassYearRejCat = async () => {
+  try {
+    let respone = await axios.get("/get-passout-course-category");
+    return respone.data;
   } catch (error) {
     console.log(error);
   }
@@ -437,6 +446,42 @@ export const postClass = async (data) => {
   try {
     const response = await axios.post("/create-class", data);
     return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPassYear = async () => {
+  try {
+    let respone = await axios.get("/get-passout-year-class");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSem = async () => {
+  try {
+    let respone = await axios.get("/get-sem-class");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCourse = async () => {
+  try {
+    let respone = await axios.get("/get-course-class");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getStream = async () => {
+  try {
+    let respone = await axios.get("/get-stream-class");
+    return respone.data;
   } catch (error) {
     console.log(error);
   }

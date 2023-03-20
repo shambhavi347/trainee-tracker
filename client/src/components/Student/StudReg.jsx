@@ -492,7 +492,8 @@ const Demo = () => {
                     </label>
                   </div>
                   <button
-                    className="tb1 " /*onClick={validateData}*/
+                    className="tb1 " 
+                    // onClick={validateData}
                     onClick={() => {
                       setPage2(true);
                       setPage0(false);
