@@ -13,6 +13,7 @@ const Trainee = require("../model/traineeSchema");
 const Student = require("../model/studentSchema");
 const Invitation = require("../model/invitationSchema");
 const Coordinator = require("../model/coordinatorSchema");
+const Class = require("../model/classSchema");
 
 //adminlogin
 router.post("/admin-login", async (req, res) => {
@@ -113,7 +114,7 @@ router.get("/get-rejected-institute", adminAuthenticate, async (req, res) => {
 
 router.get("/get-pending-student", adminAuthenticate, async (req, res) => {
   try {
-    const inst = await Student.find({ status: "pending" });
+    const inst = await Student.find({ status: "selection pending" });
     res.send(inst);
   } catch (error) {
     console.log(error);
@@ -122,7 +123,7 @@ router.get("/get-pending-student", adminAuthenticate, async (req, res) => {
 
 router.get("/get-accept-student", adminAuthenticate, async (req, res) => {
   try {
-    const inst = await Student.find({ status: "accept" });
+    const inst = await Student.find({ status: "selection accept" });
     res.send(inst);
   } catch (error) {
     console.log(error);
@@ -131,7 +132,7 @@ router.get("/get-accept-student", adminAuthenticate, async (req, res) => {
 
 router.get("/get-reject-student", adminAuthenticate, async (req, res) => {
   try {
-    const inst = await Student.find({ status: "reject" });
+    const inst = await Student.find({ status: " selection reject" });
     res.send(inst);
   } catch (error) {
     console.log(error);
@@ -283,7 +284,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("instname", { status: "pending" });
+      const cat = await Student.distinct("instname", {
+        status: "selection pending",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -296,7 +299,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("instname", { status: "accept" });
+      const cat = await Student.distinct("instname", {
+        status: "selection accept",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -309,7 +314,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("instname", { status: "reject" });
+      const cat = await Student.distinct("instname", {
+        status: "selection reject",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -322,7 +329,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("stream", { status: "pending" });
+      const cat = await Student.distinct("stream", {
+        status: "selection pending",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -335,7 +344,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("stream", { status: "accept" });
+      const cat = await Student.distinct("stream", {
+        status: "selection accept",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -348,7 +359,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("stream", { status: "reject" });
+      const cat = await Student.distinct("stream", {
+        status: "selection reject",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -361,7 +374,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("course", { status: "pending" });
+      const cat = await Student.distinct("course", {
+        status: "selection pending",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -374,7 +389,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("course", { status: "accept" });
+      const cat = await Student.distinct("course", {
+        status: "selection accept",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -387,7 +404,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("course", { status: "reject" });
+      const cat = await Student.distinct("course", {
+        status: "selection reject",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -400,7 +419,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("semester", { status: "pending" });
+      const cat = await Student.distinct("semester", {
+        status: "selection pending",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -413,7 +434,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("semester", { status: "accept" });
+      const cat = await Student.distinct("semester", {
+        status: "selection accept",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -426,7 +449,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("semester", { status: "reject" });
+      const cat = await Student.distinct("semester", {
+        status: "selection reject",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -439,7 +464,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("passout_year", { status: "pending" });
+      const cat = await Student.distinct("passout_year", {
+        status: "selection pending",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -452,7 +479,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("passout_year", { status: "accept" });
+      const cat = await Student.distinct("passout_year", {
+        status: "selection accept",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -465,7 +494,9 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Student.distinct("passout_year", { status: "reject" });
+      const cat = await Student.distinct("passout_year", {
+        status: "selection reject",
+      });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -505,7 +536,7 @@ router.post("/accept-student", adminAuthenticate, async (req, res) => {
     const { email } = req.body;
     await Student.findOneAndUpdate(
       { email: email },
-      { $set: { status: "accept", invite: "pending" } }
+      { $set: { status: "mail sent" } }
     );
     res.send("Student Accepted");
   } catch (error) {
@@ -560,7 +591,7 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
     const { email } = req.body;
     await Student.findOneAndUpdate(
       { email: email },
-      { $set: { status: "reject" } }
+      { $set: { status: "mail not sent" } }
     );
     res.send("Student Rejected");
   } catch (error) {
@@ -938,6 +969,95 @@ router.get("/trainee-email", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+router.get("/get-trainee", async (req, res) => {
+  try {
+    const class_trainee = [];
+    const class_stud = await Class.find({});
+    const trainees = await Student.find({ status: "registered" });
+    class_stud.map((val) => class_trainee.push(val.traineeID));
+    var filteredArray = trainees.filter(function (array_el) {
+      return (
+        class_trainee.filter(function (anotherOne_el) {
+          return anotherOne_el == array_el._id;
+        }).length == 0
+      );
+    });
+    res.send(filteredArray);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/get-class-coordinator", (req, res) => {
+  const { coordId } = req.body;
+  let trainee_id = [];
+  Class.find({ coordinatorID: coordId })
+    .then((data) => {
+      data.map((d, k) => {
+        trainee_id.push(d.traineeID);
+      });
+      Student.find({
+        _id: { $in: trainee_id },
+      })
+        .then((data) => res.send(data))
+        .catch((error) => {
+          console.log(error);
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+router.post("/remove-trainee-class", async (req, res) => {
+  try {
+    const { trainee_id } = req.body;
+    console.log("hello");
+    console.log("Trainee: " + trainee_id);
+    await Class.findOneAndDelete({ traineeID: trainee_id });
+    res.send("deleted");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// router.post("/create-class", (req, res) => {
+//   try {
+//     const { trainees, coord_id } = req.body;
+//     trainees.map((val) => {
+//       const classes = new Class({
+//         coord_id,
+//         val,
+//       });
+//       const clas = classes.save();
+//       if (clas) console.log("saved Successfully");
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+router.post("/create-class", (req, res) => {
+  // try {
+  const { trainees, coord_id } = req.body;
+  trainees.map((val) => {
+    let coordinatorID = coord_id;
+    let traineeID = val;
+    console.log("coord: " + coordinatorID + " Trainee: " + traineeID);
+    const classes = new Class({
+      coordinatorID,
+      traineeID,
+    });
+    classes
+      .save()
+      .then((data) => console.log("saved"))
+      .catch((error) => console.log(error));
+  });
+  // } catch (error) {
+  //   console.log(error);
+  // }
 });
 
 module.exports = router;

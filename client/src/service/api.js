@@ -399,7 +399,44 @@ export const StudentData = async () => {
 
 export const getTraineeEmail = async () => {
   try {
-    const respone = await axios.get("/trainee-email");
+    const response = await axios.get("/trainee-email");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTrainees = async () => {
+  try {
+    const response = await axios.get("/get-trainee");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCoordClass = async (data) => {
+  try {
+    const response = await axios.post("/get-class-coordinator", data);
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const removeTrainee = async (data) => {
+  try {
+    const response = await axios.post("/remove-trainee-class", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postClass = async (data) => {
+  try {
+    const response = await axios.post("/create-class", data);
+    return response.data;
   } catch (error) {
     console.log(error);
   }

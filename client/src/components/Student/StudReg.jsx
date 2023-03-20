@@ -6,7 +6,6 @@ import { validEmail } from "../../components/Regex";
 import Multiselect from "multiselect-react-dropdown";
 
 const Demo = () => {
-    
   const [page0, setPage0] = useState(true);
   const [page2, setPage2] = useState(false);
 
@@ -54,7 +53,6 @@ const Demo = () => {
     resume: null,
     pdfname: "",
     status: "pending",
-    invite: "pending",
   });
 
   const fileType = ["application/pdf"];
@@ -149,6 +147,7 @@ const Demo = () => {
       semester,
       cgpa,
       passout_year,
+      status,
     } = user;
 
     const res = await fetch("/reg-stud1", {
@@ -171,6 +170,7 @@ const Demo = () => {
         semester,
         cgpa,
         passout_year,
+        status,
       }),
     });
 
@@ -204,7 +204,6 @@ const Demo = () => {
       cgpa,
       passout_year,
       status,
-      invite,
     } = user;
 
     const res = await fetch("/reg-stud", {
@@ -230,7 +229,6 @@ const Demo = () => {
         famtech,
         inttech,
         status,
-        invite,
       }),
     });
 
@@ -255,14 +253,12 @@ const Demo = () => {
       <NavBar2 />
       {/* write your page 1 code here*/}
       <div className="DivUpper1">
-      
-         
         <div className="main1">
           <h1 className="regHead1">Register Yourself</h1>
           <br />
           <div className="regBox1">
-          
-            <form   className="form-body-stu"
+            <form
+              className="form-body-stu"
               onSubmit={(e) => {
                 e.preventDefault();
               }}
@@ -336,7 +332,7 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
-                  
+
                   <select
                     name="gender"
                     className="drop-down11 field8"
@@ -348,14 +344,13 @@ const Demo = () => {
                     <option value="Female">Female</option>
                     <option value="Binary">Binary</option>
                   </select>
-                 
 
                   {/* write your page 1 code here */}
                   <h1 className="regHead1">
                     Hey {user.prefix} {user.first_name}, fill your Academic
                     details
                   </h1>
-                 
+
                   <input
                     className="form-element11 form-text1 field9"
                     type="text"
@@ -365,7 +360,7 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
-               
+
                   <select
                     name="course"
                     className="drop-down11 field10"
@@ -378,7 +373,7 @@ const Demo = () => {
                     <option value="BTech">BTech</option>
                     <option value="MTech">MTech</option>
                   </select>
-                
+
                   <select
                     name="stream"
                     className="drop-down22 field11"
@@ -410,7 +405,7 @@ const Demo = () => {
                       Computer Science and Engineering
                     </option>
                   </select>
-                <br/>
+                  <br />
                   <select
                     name="semester"
                     className="drop-down22 field12"
@@ -427,7 +422,7 @@ const Demo = () => {
                     <option value="7">7</option>
                     <option value="8">8</option>
                   </select>
-                
+
                   <input
                     className="drop-down22 field13"
                     type="number"
@@ -440,7 +435,7 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
-                  
+
                   <input
                     className="drop-down22 field14"
                     type="number"
@@ -492,11 +487,7 @@ const Demo = () => {
                           famdrop ? setFamdrop(false) : setFamdrop(true);
                         }}
                       >
-                        <img
-                          className="downarrow-img"
-                          src={arrowDown}
-                          alt=""
-                        />
+                        <img className="downarrow-img" src={arrowDown} alt="" />
                       </button>
                     </div>
 
@@ -649,8 +640,6 @@ const Demo = () => {
 
                   {/* demo */}
 
-                  
-
                   <button
                     className="btn-form1"
                     onClick={() => {
@@ -666,7 +655,6 @@ const Demo = () => {
                 </>
               ) : null}
             </form>
-            
           </div>
         </div>
       </div>
