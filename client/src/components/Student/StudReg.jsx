@@ -254,7 +254,14 @@ const Demo = () => {
       {/* write your page 1 code here*/}
       <div className="DivUpper1">
         <div className="main1">
-          <h1 className="regHead1">Register Yourself</h1>
+          {!page2 ? (
+            <h1 className="regHead1">Register Yourself</h1>
+          ) : (
+            <h1 className="regHead">
+              {" "}
+              {user.prefix} {user.first_name}, choose Technologies
+            </h1>
+          )}
           <br />
           <div className="regBox1">
             <form
@@ -359,7 +366,7 @@ const Demo = () => {
                   </h1>*/}
 
                   <h4 className="head-stud">Academic Details</h4>
-                 
+
                   <input
                     className="form-element11 form-text1 field9"
                     type="text"
@@ -484,10 +491,12 @@ const Demo = () => {
                       )}
                     </label>
                   </div>
-                  <button className="tb1 " /*onClick={validateData}*/ 
+                  <button
+                    className="tb1 " 
+                    // onClick={validateData}
                     onClick={() => {
-                        setPage2(true);
-                        setPage0(false);
+                      setPage2(true);
+                      setPage0(false);
                     }}
                   >
                     NEXT
@@ -496,10 +505,7 @@ const Demo = () => {
               ) : page2 ? (
                 <>
                   {/* write your page 2 code here */}
-                  <h1 className="regHead">
-                    {" "}
-                    {user.prefix} {user.first_name}, choose Technologies
-                  </h1>
+
                   <div className="fam-tech">
                     <div className="drop-first">
                       Familiar Technologies
@@ -522,7 +528,7 @@ const Demo = () => {
                         <div className="option">
                           {tech.map((val, key) => (
                             <>
-                              <label className="container-form">
+                              <label className="container">
                                 {val}
                                 <input
                                   type="checkbox"
@@ -532,7 +538,7 @@ const Demo = () => {
                                   onClick={handlefamTech}
                                 />
 
-                                <span className="checkmark-form"></span>
+                                <span className="checkmark"></span>
                               </label>
                               <hr
                                 style={{
@@ -567,7 +573,7 @@ const Demo = () => {
                         <div className="option">
                           {tech.map((val, key) => (
                             <>
-                              <label className="container-form">
+                              <label className="container">
                                 {val}
                                 <input
                                   type="checkbox"
@@ -577,7 +583,7 @@ const Demo = () => {
                                   onChange={handleintTech}
                                 />
 
-                                <span className="checkmark-form"></span>
+                                <span className="checkmark"></span>
                               </label>
                               <hr
                                 style={{
@@ -594,7 +600,9 @@ const Demo = () => {
 
                   {Object.keys(famtech).length === 0 ? null : (
                     <>
-                      <h4 style={{marginLeft:"42%"}} >Familiar Technologies</h4>
+                      <h4 style={{ marginLeft: "42%" }}>
+                        Familiar Technologies
+                      </h4>
                       <div className="tech-box-outer">
                         <div className="tech-box">
                           {famtech.map((key) => (
@@ -630,7 +638,9 @@ const Demo = () => {
 
                   {Object.keys(inttech).length === 0 ? null : (
                     <>
-                      <h4 style={{marginLeft:"42%"}} >Interested Technologies</h4>
+                      <h4 style={{ marginLeft: "42%" }}>
+                        Interested Technologies
+                      </h4>
                       <div className="tech-box-outer">
                         <div className="tech-box">
                           {inttech.map((key) => (

@@ -93,6 +93,7 @@ const studentSchema = new mongoose.Schema({
       "mail sent",
       "mail not sent",
       "registered",
+      "assigned",
     ],
     required: true,
   },
