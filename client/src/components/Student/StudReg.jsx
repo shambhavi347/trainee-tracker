@@ -6,7 +6,6 @@ import { validEmail } from "../../components/Regex";
 import Multiselect from "multiselect-react-dropdown";
 
 const Demo = () => {
-    
   const [page0, setPage0] = useState(true);
   const [page2, setPage2] = useState(false);
 
@@ -255,27 +254,29 @@ const Demo = () => {
       <NavBar2 />
       {/* write your page 1 code here*/}
       <div className="DivUpper1">
-      
-         
         <div className="main1">
           <h1 className="regHead1">Register Yourself</h1>
           <br />
           <div className="regBox1">
-          
-            <form   className="form-body-stu"
+            <form
+              className="form-body-stu"
               onSubmit={(e) => {
                 e.preventDefault();
               }}
             >
               {page0 ? (
                 <>
+                  <div>
+                    <h4 className="head-stud">Basic Details</h4>
+                  </div>
+
                   <select
                     name="prefix"
                     className="drop-down11 field1"
                     value={user.prefix}
                     onChange={handleChange}
                   >
-                    <option value="null">Salutation</option>
+                    <option value="null">Title</option>
                     <option value="Mr">Mr</option>
                     <option value="Mrs">Mrs</option>
                     <option value="Miss">Miss</option>
@@ -310,24 +311,6 @@ const Demo = () => {
                   />
 
                   <input
-                    className="form-element11 form-email1 field5"
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    value={user.email}
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
-                  <input
-                    className="form-element11 form-text1 field6"
-                    type="text"
-                    name="phone_no"
-                    value={user.phone_no}
-                    placeholder="Contact Number"
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
-                  <input
                     className="form-element11 form-date1 field7"
                     type="date"
                     name="dob"
@@ -336,7 +319,7 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
-                  
+
                   <select
                     name="gender"
                     className="drop-down11 field8"
@@ -348,14 +331,36 @@ const Demo = () => {
                     <option value="Female">Female</option>
                     <option value="Binary">Binary</option>
                   </select>
-                 
+
+                  <h4 className="head-stud">Contact Details</h4>
+
+                  <input
+                    className="form-element11 form-email1 field5"
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={user.email}
+                    autoComplete="off"
+                    onChange={handleChange}
+                  />
+                  <input
+                    className="form-element11 form-text1 field5"
+                    type="text"
+                    name="phone_no"
+                    value={user.phone_no}
+                    placeholder="Contact Number"
+                    autoComplete="off"
+                    onChange={handleChange}
+                  />
 
                   {/* write your page 1 code here */}
-                  <h1 className="regHead1">
+                  {/* <h1 className="regHead1">
                     Hey {user.prefix} {user.first_name}, fill your Academic
                     details
-                  </h1>
-                 
+                  </h1> */}
+
+                  <h4 className="head-stud">Academic Details</h4>
+
                   <input
                     className="form-element11 form-text1 field9"
                     type="text"
@@ -365,96 +370,104 @@ const Demo = () => {
                     autoComplete="off"
                     onChange={handleChange}
                   />
-               
-                  <select
-                    name="course"
-                    className="drop-down11 field10"
-                    value={user.course}
-                    onChange={handleChange}
-                  >
-                    <option value="null">Enter your Course</option>
-                    <option value="BCA">BCA</option>
-                    <option value="MCA">MCA</option>
-                    <option value="BTech">BTech</option>
-                    <option value="MTech">MTech</option>
-                  </select>
-                
-                  <select
-                    name="stream"
-                    className="drop-down22 field11"
-                    value={user.stream}
-                    onChange={handleChange}
-                  >
-                    <option value="null">Enter your Stream</option>
-                    <option value="Aeronautical Engineering">
-                      Aeronautical Engineering
-                    </option>
-                    <option value="Automobile Engineering">
-                      Automobile Engineering
-                    </option>
-                    <option value="Biotechnology">Biotechnology</option>
-                    <option value="Civil Engineering">Civil Engineering</option>
-                    <option value="Computer Application">
-                      Computer Application
-                    </option>
-                    <option value="Electronics & Communication">
-                      Electronics & Communication
-                    </option>
-                    <option value="Mechanical Engineering">
-                      Mechanical Engineering
-                    </option>
-                    <option value="Electrical and Electronics Engineering">
-                      Electrical and Electronics Engineering
-                    </option>
-                    <option value="Computer Science and Engineering">
-                      Computer Science and Engineering
-                    </option>
-                  </select>
-                <br/>
-                  <select
-                    name="semester"
-                    className="drop-down22 field12"
-                    value={user.semester}
-                    onChange={handleChange}
-                  >
-                    <option value="null">Enter your Semester</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                  </select>
-                
-                  <input
-                    className="drop-down22 field13"
-                    type="number"
-                    step="0.1"
-                    min="0"
-                    max="10"
-                    name="cgpa"
-                    placeholder="CGPA"
-                    value={user.cgpa}
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
-                  
-                  <input
-                    className="drop-down22 field14"
-                    type="number"
-                    step="1"
-                    min="1887"
-                    max="3000"
-                    name="passout_year"
-                    placeholder="Passout Year"
-                    value={user.passout_year}
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
+                  <div className="course">
+                    <select
+                      name="course"
+                      className="drop-down11 field10"
+                      value={user.course}
+                      onChange={handleChange}
+                    >
+                      <option value="null">Enter your Course</option>
+                      <option value="BCA">BCA</option>
+                      <option value="MCA">MCA</option>
+                      <option value="BTech">BTech</option>
+                      <option value="MTech">MTech</option>
+                    </select>
 
-                  <div>
+                    <select
+                      name="stream"
+                      className="drop-down22 field10"
+                      value={user.stream}
+                      onChange={handleChange}
+                    >
+                      <option value="null">Enter your Stream</option>
+                      <option value="Aeronautical Engineering">
+                        Aeronautical Engineering
+                      </option>
+                      <option value="Automobile Engineering">
+                        Automobile Engineering
+                      </option>
+                      <option value="Biotechnology">Biotechnology</option>
+                      <option value="Civil Engineering">
+                        Civil Engineering
+                      </option>
+                      <option value="Computer Application">
+                        Computer Application
+                      </option>
+                      <option value="Electronics & Communication">
+                        Electronics & Communication
+                      </option>
+                      <option value="Mechanical Engineering">
+                        Mechanical Engineering
+                      </option>
+                      <option value="Electrical and Electronics Engineering">
+                        Electrical and Electronics Engineering
+                      </option>
+                      <option value="Computer Science and Engineering">
+                        Computer Science and Engineering
+                      </option>
+                    </select>
+                    <br />
+                    <div className="Sem">
+                      <select
+                        name="semester"
+                        className="drop-down22 field11"
+                        value={user.semester}
+                        onChange={handleChange}
+                      >
+                        <option value="null">Enter your Semester</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="Academic">
+                    <input
+                      className="drop-down22 field13"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      name="cgpa"
+                      placeholder="CGPA"
+                      value={user.cgpa}
+                      autoComplete="off"
+                      onChange={handleChange}
+                    />
+
+                    <input
+                      className="drop-down22 field13"
+                      type="number"
+                      step="1"
+                      min="1887"
+                      max="3000"
+                      name="passout_year"
+                      placeholder="Passout Year"
+                      value={user.passout_year}
+                      autoComplete="off"
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <h4 className="head-stud">Resume</h4>
+                  <div className="resume">
                     <input
                       style={{ border: 0, display: "none" }}
                       className="form-control1 field15"
@@ -492,11 +505,7 @@ const Demo = () => {
                           famdrop ? setFamdrop(false) : setFamdrop(true);
                         }}
                       >
-                        <img
-                          className="downarrow-img"
-                          src={arrowDown}
-                          alt=""
-                        />
+                        <img className="downarrow-img" src={arrowDown} alt="" />
                       </button>
                     </div>
 
@@ -649,8 +658,6 @@ const Demo = () => {
 
                   {/* demo */}
 
-                  
-
                   <button
                     className="btn-form1"
                     onClick={() => {
@@ -666,7 +673,6 @@ const Demo = () => {
                 </>
               ) : null}
             </form>
-            
           </div>
         </div>
       </div>
