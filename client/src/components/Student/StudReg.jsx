@@ -356,7 +356,9 @@ const Demo = () => {
                   {/* <h1 className="regHead1">
                     Hey {user.prefix} {user.first_name}, fill your Academic
                     details
-                  </h1>
+                  </h1>*/}
+
+                  <h4 className="head-stud">Academic Details</h4>
                  
                   <input
                     className="form-element11 form-text1 field9"
@@ -482,7 +484,7 @@ const Demo = () => {
                       )}
                     </label>
                   </div>
-                  <button className="tb1 " /*onClick={validateData}*/
+                  <button className="tb1 " /*onClick={validateData}*/ 
                     onClick={() => {
                         setPage2(true);
                         setPage0(false);
