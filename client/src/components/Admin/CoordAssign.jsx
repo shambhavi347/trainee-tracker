@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../CSS/Admin/CoordinatorAdmin.css";
-import { arrowDown, cancel } from "../../Images/Images";
+import { arrowDown, cancel, expand } from "../../Images/Images";
 import {
   getTrainees,
   getCoordClass,
@@ -14,6 +14,7 @@ import {
 } from "../../service/api";
 
 const CoordAssign = ({ coord }) => {
+  var date, dob;
   const [filterdrop, setFilterdrop] = useState({
     "Institute Name": false,
     Stream: false,
@@ -31,6 +32,8 @@ const CoordAssign = ({ coord }) => {
   const [studList, setStudList] = useState([]);
   const [group, setGroup] = useState([]);
   const [classGroup, setClassGroup] = useState([]);
+  const [expnd, setExpnd] = useState(false);
+  const [trainee, setTrainee] = useState([]);
   let trainee_id = [];
 
   useEffect(() => {
@@ -157,7 +160,6 @@ const CoordAssign = ({ coord }) => {
       });
     }
   };
-  console.log(appliedfilter);
   const handleTrainee = (val) => {
     setStudentList(studentList.filter((item) => item._id !== val._id));
     setGroup([...group, val]);
@@ -174,7 +176,18 @@ const CoordAssign = ({ coord }) => {
       console.log(error);
     }
   };
-
+  const handleExpand = (val) => {
+    setExpnd(true);
+    setTrainee(val);
+    date = new Date(val.dob);
+    dob = date.toLocaleDateString("en-US");
+    console.log(expnd + "Val: " + trainee + dob);
+  };
+  if (trainee) {
+    date = new Date(trainee.dob);
+    dob = date.toLocaleDateString("en-US");
+    console.log(dob);
+  }
   const handleSubmit = async () => {
     try {
       group.map((val) => {
@@ -418,8 +431,8 @@ const CoordAssign = ({ coord }) => {
             </div>
           </div>
           <div className="studentList-outer">
-            <div className="studentList">
-              List of Student
+            <div className="studentList" style={{ color: "#eee" }}>
+              List of Students
               {studentList.map((val) => (
                 <div className="name-title">
                   <div className="check-div" onClick={() => handleTrainee(val)}>
@@ -429,8 +442,12 @@ const CoordAssign = ({ coord }) => {
                       className="check-img"
                     />
                   </div>
-                  <div className="down-btn" id="arrowDown-btn">
-                    <img src={arrowDown} alt="" className="downarrow-img" />
+                  <div
+                    className="down-btn"
+                    id="arrowDown-btn"
+                    onClick={() => handleExpand(val)}
+                  >
+                    <img src={expand} alt="" className="downarrow-img" />
                   </div>
                   {val.prefix} {val.first_name} {val.middle_name}{" "}
                   {val.last_name}
@@ -439,8 +456,8 @@ const CoordAssign = ({ coord }) => {
             </div>
           </div>
           <div className="classPannel-outer">
-            <div className="classPannel">
-              Class Pannel
+            <div className="classPannel" style={{ color: "#eee" }}>
+              Class Assigned
               {classGroup ? (
                 <>
                   {classGroup.map((val) => (
@@ -453,8 +470,12 @@ const CoordAssign = ({ coord }) => {
                           onClick={() => traineeRemove(val)}
                         />
                       </div>
-                      <div className="down-btn" id="arrowDown-btn">
-                        <img src={arrowDown} alt="" className="downarrow-img" />
+                      <div
+                        className="down-btn"
+                        id="arrowDown-btn"
+                        onClick={() => handleExpand(val)}
+                      >
+                        <img src={expand} alt="" className="downarrow-img" />
                       </div>
                       {val.prefix} {val.first_name} {val.middle_name}{" "}
                       {val.last_name}
@@ -475,7 +496,12 @@ const CoordAssign = ({ coord }) => {
                         />
                       </div>
                       <div className="down-btn" id="arrowDown-btn">
-                        <img src={arrowDown} alt="" className="downarrow-img" />
+                        <img
+                          src={expand}
+                          alt=""
+                          className="downarrow-img"
+                          onClick={() => handleExpand(val)}
+                        />
                       </div>
                       {val.prefix} {val.first_name} {val.middle_name}{" "}
                       {val.last_name}
@@ -492,6 +518,59 @@ const CoordAssign = ({ coord }) => {
             </div>
           </div>
         </div>
+        {expnd ? (
+          <div className="expanded-div">
+            <button onClick={() => setExpnd(false)} className="expnd-cancel">
+              <img className="expnd-img" src={cancel} alt="" />
+            </button>
+            <div className="info-outer">
+              <div className="info-first">
+                {trainee.prefix} {trainee.first_name} {trainee.middle_name}{" "}
+                {trainee.last_name}
+              </div>
+              <div className="info-second">
+                <div className="info-type">Gender : {trainee.gender}</div>
+                <div className="info-rating">
+                  {" "}
+                  DOB: {dob}
+                  {console.log("date: " + date)}
+                </div>
+              </div>
+              <div className="info-third">
+                <div>Institue Name: {trainee.instname} </div>
+                <div>Course: {trainee.course}</div>
+                <div>Stream:{trainee.stream}</div>
+                <div>Semester: {trainee.semester}</div>
+                <div>CGPA:{trainee.cgpa}</div>
+              </div>
+              <div className="info-fourth">
+                <div className="info-email">Email : {trainee.email}</div>
+                <div className="info-phone">Phone No : {trainee.phone_no}</div>
+              </div>
+              <div className="info-fifth">
+                <div className="info-month">
+                  Internship Start Month: {trainee.month}
+                </div>
+                <div className="info-duration">
+                  traineeernship Duration : {trainee.duration}
+                </div>
+              </div>
+              <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
+              <div className="info-coord-title">
+                traineeitute Coordinator's Details
+              </div>
+              <div className="info-sixth">Name : {trainee.coordName}</div>
+              <div className="info-seventh">
+                <div className="info-coor-email">
+                  Email: {trainee.coordEmail}
+                </div>
+                <div className="info-coor-phone">
+                  Phone: {trainee.coordPhone}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
     </>
   );
