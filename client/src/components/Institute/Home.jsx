@@ -104,8 +104,8 @@ const Home = () => {
             <div className="data-inst-home">
             {val.first_name} {val.last_name}
             
-          <button className="Accept-btn"><img src="../Images/check.png" width ="20" heigth="2" /></button>
-          <button className="Reject-btn"><img src="../Images/remove.png" width ="20" heigth="2" /></button>
+          <button className="Accept-btn"><img src="../Images/check.png"  alt="accept" width ="20" heigth="2" /></button>
+          <button className="Reject-btn"><img src="../Images/remove.png" alt="reject" width ="20" heigth="2" /></button>
           </div>
           
           ))}
