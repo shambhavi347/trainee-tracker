@@ -254,7 +254,14 @@ const Demo = () => {
       {/* write your page 1 code here*/}
       <div className="DivUpper1">
         <div className="main1">
-          <h1 className="regHead1">Register Yourself</h1>
+          {!page2 ? (
+            <h1 className="regHead1">Register Yourself</h1>
+          ) : (
+            <h1 className="regHead">
+              {" "}
+              {user.prefix} {user.first_name}, choose Technologies
+            </h1>
+          )}
           <br />
           <div className="regBox1">
             <form
@@ -497,10 +504,7 @@ const Demo = () => {
               ) : page2 ? (
                 <>
                   {/* write your page 2 code here */}
-                  <h1 className="regHead">
-                    {" "}
-                    {user.prefix} {user.first_name}, choose Technologies
-                  </h1>
+
                   <div className="fam-tech">
                     <div className="drop-first">
                       Familiar Technologies

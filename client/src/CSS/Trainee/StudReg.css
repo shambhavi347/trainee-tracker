@@ -41,6 +41,7 @@
   color: #eeeeee;
   font-weight: bolder;
   font-style: italic;
+  cursor: pointer;
 }
 .btn-form2 {
   text-align: center;
@@ -58,11 +59,12 @@
   margin-left: 2%;
 }
 
-.btn-form1:hover {
+.btn-form2:hover {
   background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
   font-style: italic;
+  cursor: pointer;
 }
 /* .body {
   /* padding-top: 0vh; */
@@ -79,7 +81,7 @@
   width: 100%;
   height: 100%;
   padding: 160px;
-  padding-top: 50px;
+  padding-top: 0px;
   align-content: center;
   background-size: cover;
   color: azure;
@@ -166,6 +168,7 @@ input[type="file"]::file-selector-button1:hover {
   border-radius: 18px;
   padding: 1%;
   height: 68%;
+  margin-top: -3%;
 }
 .form-element11 {
   /*change*/
@@ -410,7 +413,7 @@ input[type="file"]::file-selector-button1:hover {
   padding: 0.5%;
   /* border-radius: 22px; */
   border: 0;
-  height: 2%;
+  height: 3%;
   /* width: 20%; */
   margin-bottom: 2%;
   margin: 2%;
@@ -432,6 +435,8 @@ input[type="file"]::file-selector-button1:hover {
   color: #eeeeee;
   font-weight: bolder;
   font-style: italic;
+  cursor: pointer;
+  border: 1px #eeeeee solid;
 }
 
 /* .option::-webkit-scrollbar {
@@ -444,10 +449,13 @@ input[type="file"]::file-selector-button1:hover {
 }
 .form-body-stu {
   padding: 2% 2%;
-  margin-bottom: 5%;
+  /* margin-bottom: 5%; */
+  /* margin-bottom: 0px;
+  background-color: #aeb6bf;
+  padding-bottom: -10%; */
 
   overflow-y: scroll;
-  height: 90%;
+  height: 100%;
 
   margin-left: 6%;
 
@@ -515,10 +523,10 @@ input[type="file"]::file-selector-button1:hover {
 .field11 {
   width: 90%;
   margin-left: -10%;
-  margin-top: -10%;
+  margin-top: -2%;
   padding: 1%;
   margin-bottom: 20%;
-  height: 44.5px;
+  height: 37px;
   padding-bottom: 0%;
   padding-top: 0%;
 }
@@ -565,6 +573,15 @@ input[type="file"]::file-selector-button1:hover {
   margin-top: 0.5%;
 }
 
+.tb1:hover {
+  cursor: pointer;
+  background-color: #222831;
+  color: #eeeeee;
+  font-weight: bolder;
+  font-style: italic;
+  cursor: pointer;
+}
+
 .head-stud {
   color: #eeeeee;
   text-align: left;
@@ -589,5 +606,6 @@ input[type="file"]::file-selector-button1:hover {
 
 .resume {
   margin-left: -80%;
+
   /* background-color: #00adb5; */
 }
