@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Trainee/TraineeProject.css";
+import ProgressBar from "./ProgressBar";
 
 const TraineeProject = () => {
-
   const [Projet, setProjet] = useState([
     {
       name: "Training Management System",
@@ -38,7 +38,16 @@ const TraineeProject = () => {
 
   return (
     <>
-    <div className="DivUPro">
+      <div className="project-divUp">
+        <ProgressBar />
+        <div className="proj-list-outer">
+          <div className="proj-list">Project Deatils</div>
+        </div>
+        <div className="proj-sub-outer">
+          <div className="proj-sub">Project Submission</div>
+        </div>
+      </div>
+      {/* <div className="DivUPro">
 
       <div className="progress">
         <div class="circle1">
@@ -87,9 +96,9 @@ const TraineeProject = () => {
       </div>
       <div className="document">
       </div>
-      </div>
+      </div> */}
     </>
-  )
-}
+  );
+};
 
-export default TraineeProject
+export default TraineeProject;
