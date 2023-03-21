@@ -293,7 +293,6 @@ const RegInstitute = () => {
                   <option value="select">Country</option>
 
                   {cities.map((Con) => {
-                    cities.sort();
                     return (
                       <option key={Con.country_id}>{Con.country_name}</option>
                     );
