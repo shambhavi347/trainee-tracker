@@ -38,6 +38,7 @@ const CoordAssign = ({ coord }) => {
 
   useEffect(() => {
     try {
+      //selected students but assigned to class
       const getTainee = async () => {
         const res = await getTrainees();
         setStudList(res);
