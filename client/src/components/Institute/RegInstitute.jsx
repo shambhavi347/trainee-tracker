@@ -3,39 +3,46 @@ import { useNavigate } from "react-router-dom";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Institute/RegInstitute.css";
 import { useEffect } from "react";
-import cities from "../../service/cities.json";
+// import cities from "../../service/cities.json";
 import axios from "axios";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { Country, State, City } from "country-state-city";
 
-export const getInstitutes = async () => {
-  try {
-    let respone = await axios.get("/get-pending-institute");
-    // console.log("Ins " + respone.data);
-    return respone.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+// export const getInstitutes = async () => {
+//   try {
+//     let respone = await axios.get("/get-pending-institute");
+//     // console.log("Ins " + respone.data);
+//     return respone.data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-export const acceptInsitute = async (data) => {
-  try {
-    await axios.post("/accept-inst", data);
-  } catch (error) {
-    console.log(error);
-  }
-};
+// export const acceptInsitute = async (data) => {
+//   try {
+//     await axios.post("/accept-inst", data);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-export const rejectInsitute = async (data) => {
-  try {
-    await axios.post("/reject-inst", data);
-  } catch (error) {
-    console.log(error);
-  }
-};
+// export const rejectInsitute = async (data) => {
+//   try {
+//     await axios.post("/reject-inst", data);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 //function RegInstitute() {
 const RegInstitute = () => {
+  const [country, setCountry] = useState([]);
+  const [countryCode, setCountryCode] = useState("");
+  const [countryName, setCountryName] = useState("");
+  const [states, setStates] = useState([]);
+  const [stateCode, setStateCode] = useState("");
+  const [cities, setCities] = useState([]);
   const [req, setReq] = useState(false);
   const [display, setDisplay] = useState(false); //will not show tpo to us until we make display true
   const [inst, setInst] = useState(true); //will show us institute foem and on clicking next it will become false
@@ -76,6 +83,29 @@ const RegInstitute = () => {
     password2: "",
   });
 
+  // console.log(Country.getAllCountries());
+  // console.log(State.getAllStates());
+
+  useEffect(() => {
+    setCountry(Country.getAllCountries());
+  }, []);
+
+  useEffect(() => {
+    setStates(State.getStatesOfCountry(countryCode));
+    country.map((val) => {
+      if (val.isoCode === countryCode) setCountryName(val.name);
+    });
+    console.log("States" + countryName);
+  }, [countryCode]);
+
+  useEffect(() => {
+    setCities(City.getCitiesOfState(countryCode, stateCode));
+    // console.log("Cities" + cities);
+  }, [stateCode]);
+
+  // states?.map((val) => console.log(val));
+  // console.log("Count: " + countryCode);
+
   useEffect(() => {
     if (userRegistration.rating === "A++") userRegistration.rvalue = 8;
     else if (userRegistration.rating === "A+") userRegistration.rvalue = 7;
@@ -103,8 +133,13 @@ const RegInstitute = () => {
     const name = e.target.name;
     const value = e.target.value;
     // console.log(name, value);
-
+    if (name === "country") {
+      setCountryCode(value);
+    }
     setUserRegistration({ ...userRegistration, [name]: value });
+
+    if (name === "state") setStateCode(value);
+    console.log(userRegistration);
   };
 
   const PostData = async (e) => {
@@ -289,14 +324,13 @@ const RegInstitute = () => {
                   className="drop-down-inst field3 required"
                   value={userRegistration.country}
                   onChange={handlechange}
+                  // onChange={(e) => {
+                  //   console.log(e.target.value);
+                  // }}
                 >
                   <option value="select">Country</option>
-
-                  {cities.map((Con) => {
-                    cities.sort();
-                    return (
-                      <option key={Con.country_id}>{Con.country_name}</option>
-                    );
+                  {country.map((key) => {
+                    return <option value={key.isoCode}> {key.name}</option>;
                   })}
                 </select>
 
@@ -307,9 +341,9 @@ const RegInstitute = () => {
                   onChange={handlechange}
                 >
                   <option value="select">State</option>
-
-                  {cities.map((Con) => {
-                    return <option key={Con.state_id}>{Con.state_name}</option>;
+                  {/* <option value="select">State 1</option> */}
+                  {states.map((Con) => {
+                    return <option value={Con.isoCode}>{Con.name}</option>;
                   })}
                 </select>
 
@@ -320,10 +354,13 @@ const RegInstitute = () => {
                   onChange={handlechange}
                 >
                   <option value="select">City</option>
-
+                  {/* <option value="select">City 1</option> */}
                   {cities.map((Con) => {
-                    return <option key={Con.id}>{Con.name}</option>;
+                    return <option value={Con.isoCode}>{Con.name}</option>;
                   })}
+                  {/* {cities.map((Con) => {
+                    return <option key={Con.id}>{Con.name}</option>;
+                  })} */}
                 </select>
 
                 <input
@@ -361,6 +398,13 @@ const RegInstitute = () => {
                 />
                 <div className="contact">
                   <div className="phone">
+                    {/* <PhoneInput
+                      className="field 7"
+                      placeholder="Landline number *"
+                      value={userRegistration.landline}
+                      onChange={setValue}
+                    /> */}
+
                     <PhoneInput
                       className="field 7"
                       placeholder="Landline number *"
