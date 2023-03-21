@@ -330,3 +330,13 @@
   /* height: 100%; */
   margin: 0;
 }
+
+.info-instname {
+  background-color: #393e46;
+  border: 1px #00adb5 solid;
+  text-align: center;
+  margin: 1%;
+  padding: 2%;
+  border-radius: 10px;
+  width: 98%;
+}

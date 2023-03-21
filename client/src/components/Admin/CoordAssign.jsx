@@ -524,48 +524,60 @@ const CoordAssign = ({ coord }) => {
               <img className="expnd-img" src={cancel} alt="" />
             </button>
             <div className="info-outer">
-              <div className="info-first">
-                {trainee.prefix} {trainee.first_name} {trainee.middle_name}{" "}
-                {trainee.last_name}
-              </div>
-              <div className="info-second">
-                <div className="info-type">Gender : {trainee.gender}</div>
-                <div className="info-rating">
-                  {" "}
-                  DOB: {dob}
-                  {console.log("date: " + date)}
+              <div className="info">
+                <div className="info-first">
+                  {trainee.prefix} {trainee.first_name} {trainee.middle_name}{" "}
+                  {trainee.last_name}
                 </div>
-              </div>
-              <div className="info-third">
-                <div>Institue Name: {trainee.instname} </div>
-                <div>Course: {trainee.course}</div>
-                <div>Stream:{trainee.stream}</div>
-                <div>Semester: {trainee.semester}</div>
-                <div>CGPA:{trainee.cgpa}</div>
-              </div>
-              <div className="info-fourth">
-                <div className="info-email">Email : {trainee.email}</div>
-                <div className="info-phone">Phone No : {trainee.phone_no}</div>
-              </div>
-              <div className="info-fifth">
-                <div className="info-month">
-                  Internship Start Month: {trainee.month}
+                <div className="info-second">
+                  <div className="info-type">Gender: {trainee.gender}</div>
+                  <div className="info-rating">
+                    {" "}
+                    DOB: {dob}
+                    {console.log("date: " + date)}
+                  </div>
                 </div>
-                <div className="info-duration">
-                  traineeernship Duration : {trainee.duration}
+                <div className="info-third">
+                  <div className="info-instname">
+                    Institue Name: {trainee.instname}{" "}
+                  </div>
+                  <div className="info-email">Course: {trainee.course}</div>
+                  <div className="info-email">Stream: {trainee.stream}</div>
+                  <div className="info-email">Semester: {trainee.semester}</div>
+                  <div className="info-email">CGPA: {trainee.cgpa}</div>
                 </div>
-              </div>
-              <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
-              <div className="info-coord-title">
-                traineeitute Coordinator's Details
-              </div>
-              <div className="info-sixth">Name : {trainee.coordName}</div>
-              <div className="info-seventh">
-                <div className="info-coor-email">
-                  Email: {trainee.coordEmail}
+                <div className="info-fourth">
+                  <div className="info-email">Email: {trainee.email}</div>
+                  <div className="info-phone">
+                    Phone No : {trainee.phone_no}
+                  </div>
                 </div>
-                <div className="info-coor-phone">
-                  Phone: {trainee.coordPhone}
+                <div className="info-fifth">
+                  <div className="info-month">
+                    Familiar Technologies <br />
+                    <br />
+                    {trainee.famtech.map((val) => (
+                      <>
+                        {val}
+                        <hr
+                          style={{ backgroundColor: "#393e46", opacity: "0.2" }}
+                        />
+                      </>
+                    ))}
+                  </div>
+                  <div className="info-duration">
+                    Interseted Technologies
+                    <br />
+                    <br />
+                    {trainee.inttech.map((val) => (
+                      <>
+                        {val}
+                        <hr
+                          style={{ backgroundColor: "#393e46", opacity: "0.2" }}
+                        />
+                      </>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
