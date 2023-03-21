@@ -82,8 +82,8 @@ router.post("/institute-reg", async (req, res) => {
     }
 
     //institute email format checking
-    var emailRegex =
-      /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    var emailRegex = /.+@..+\..[A-Za-z]+$/;
+    // /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
     if (email.length > 254) {
       return res.status(422).json({ error: "Invalid Email ID format!!" });
@@ -95,8 +95,8 @@ router.post("/institute-reg", async (req, res) => {
     }
 
     //coordinator email format checking
-    var emailRegex =
-      /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    var emailRegex = /.+@..+\..[A-Za-z]+$/;
+    // /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
     if (coordEmail.length > 254) {
       return res.status(422).json({ error: "Invalid Email ID format!!" });
