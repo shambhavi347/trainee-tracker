@@ -1071,7 +1071,7 @@ router.post("/create-class", (req, res) => {
 router.get("/get-sem-class", adminAuthenticate, async (req, res) => {
   try {
     const cat = await Student.distinct("semester", {
-      status: "assigned",
+      status: "registered",
     });
     res.send(cat);
   } catch (error) {
@@ -1082,7 +1082,7 @@ router.get("/get-sem-class", adminAuthenticate, async (req, res) => {
 router.get("/get-inst-name-class", adminAuthenticate, async (req, res) => {
   try {
     const cat = await Student.distinct("instname", {
-      status: "assigned",
+      status: "registered",
     });
     res.send(cat);
   } catch (error) {
@@ -1093,7 +1093,7 @@ router.get("/get-inst-name-class", adminAuthenticate, async (req, res) => {
 router.get("/get-course-class", adminAuthenticate, async (req, res) => {
   try {
     const cat = await Student.distinct("course", {
-      status: "assigned",
+      status: "registered",
     });
     res.send(cat);
   } catch (error) {
@@ -1104,7 +1104,7 @@ router.get("/get-course-class", adminAuthenticate, async (req, res) => {
 router.get("/get-stream-class", adminAuthenticate, async (req, res) => {
   try {
     const cat = await Student.distinct("stream", {
-      status: "assigned",
+      status: "registered",
     });
     res.send(cat);
   } catch (error) {
@@ -1115,7 +1115,7 @@ router.get("/get-stream-class", adminAuthenticate, async (req, res) => {
 router.get("/get-passout-year-class", adminAuthenticate, async (req, res) => {
   try {
     const cat = await Student.distinct("passout_year", {
-      status: "assigned",
+      status: "registered",
     });
     res.send(cat);
   } catch (error) {
