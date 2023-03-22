@@ -2,13 +2,48 @@ import React, { useState, useEffect } from "react";
 import "../../CSS/Trainee/TraineeProject.css";
 import ProgressBar from "./ProgressBar";
 
+// ProjectSchema.js
+// name: "Training Management System",
+// desc: "bkjbk",
+// coordinatorID: "cdfd",
+// groupID: "jb",
+
+// try {
+//   const coor_id = 0;
+//   // let group_memebers
+//   let projects = [
+//     {
+//       name: "",
+//       desc: "",
+//       group_memebers: "",
+//     },
+//   ];
+//   const id = rootUSer.id;
+//   const classes = await Class.findOne({ traineeID: id });
+//   coor_id = classes.coordinatorID;
+
+//   const Pro = await Project.find({ coordinatorID: coor_id });
+//   Pro.map((val) =>
+//     {projects.push(val);
+//     projects.group_memebers = await Group.findOne({ _id: val.groupID });}
+//   )
+//   res.send(projects)
+// } catch (error) {
+//   console.log(error);
+// }
+
 const TraineeProject = () => {
+  const [project, setProject] = useState([]);
   const [Projet, setProjet] = useState([
     {
       name: "Training Management System",
+      desc: "bkjbk",
+      group_members: ["Shambhavi", "Aakriti"],
     },
     {
       name: "Plagiarism Checker",
+      desc: "bkjbk",
+      group_members: ["Shambhavi", "Ritu"],
     },
     {
       name: "AI based search engine",
