@@ -42,7 +42,7 @@ const App = () => {
           <Route path="/coodinator-project" element={<CoordProject />} />
           <Route path="/coordinator-discussion" element={<CoordDiscussion />} />
           <Route path="/forgot-password" element={<ForgotPass />} />
-          <Route path="/create-pass" element={<CreatePass />} />
+          <Route path="/create-password/:userId" element={<CreatePass />} />
           <Route path="/watch-trainee" element={<WatchTrainee />} />
         </Routes>
       </Router>
