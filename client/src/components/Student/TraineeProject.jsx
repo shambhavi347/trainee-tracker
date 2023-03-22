@@ -76,7 +76,22 @@ const TraineeProject = () => {
       <div className="project-divUp">
         <ProgressBar />
         <div className="proj-list-outer">
-          <div className="proj-list">Project Deatils</div>
+          {/* <div className="proj-list">Project Deatils</div> */}
+          <h1 className="pro"> Project Details </h1>
+          <div className="form-body-pro">
+            {Projet.map((val, key) => (
+              <div className="proName">
+                {" "}
+                {val.name}{" "}
+                <hr
+                  style={{
+                    backgroundColor: "#393e46",
+                    opacity: "0.2",
+                  }}
+                />{" "}
+              </div>
+            ))}
+          </div>
         </div>
         <div className="proj-sub-outer">
           <div className="proj-sub">Project Submission</div>
