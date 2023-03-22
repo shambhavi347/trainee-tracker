@@ -42,7 +42,7 @@ const TraineeProject = () => {
     {
       name: "Training Management System",
       desc: "The objective and scope of my Project Trainee Management System are to record the details various activities of the user. It will simplify the task and reduce the paperwork. During implementation, every user will be given appropriate training to suit their specific needs. Specific support will also be provided at key points within the academic calendar. Training will be provided on a timely basis, and you will be trained as the new is Trainee Management System rolled out to your area of responsibility. At the moment we are in the very early stages, so it is difficult to put a specific time on the training, but we will keep people informed as plans are developed. The system is very user-friendly and it is anticipated that functions of the system will be easily accessed by administrators, academics. Hence the management system for the College management has been designed to remove all the deficiency from which the present system is suffering and to ensure.",
-      group_members: ["Shambhavi Shanker", "Aakriti Saxena", "Ritu Yadav", "Divya Jain", "Shambhavi Shanker", "Aakriti Saxena", "Ritu Yadav", "Divya Jain"],
+      group_members: ["Shambhavi Shanker", "Aakriti Saxena", "Ritu Yadav", "Divya Jain"],
     },
     {
       name: "Plagiarism Checker",
@@ -149,7 +149,6 @@ const TraineeProject = () => {
                 <div className="info3">
                   <div className="info-group">
                   <p style={{marginTop:"0%", fontWeight:"bolder", fontSize:"x-large"}}>Group Members:</p>
-                    {/* Group Members  */}
                     {projetList.group_members.map((val) => (
                       <>
                         {val}
