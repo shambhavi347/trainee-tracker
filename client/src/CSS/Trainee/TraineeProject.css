@@ -347,7 +347,9 @@
 
 .progres-name {
   float: left;
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
+  background-color: #222831;
+
   height: 100vh;
   width: 25%;
   padding: 1.5% 8%;
@@ -400,4 +402,121 @@
     margin-top: -6.5%;
     font-size: 2.5vw;
   }
+}
+
+/* modal */
+
+.expanded-div1 {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: #eeeeee48;
+  /* opacity: 0.4; */
+  position: absolute;
+  padding: 2%;
+}
+
+.expnd-remove {
+  float: right;
+  background-color: #222831;
+  width: 3%;
+  height: 5%;
+  border: 1px #00adb5 solid;
+  margin-top: 3%;
+  margin-right: 23%;
+  cursor: pointer;
+}
+
+.expnd-imagee {
+  /* width: fit-content; */
+  width: 100%;
+  height: 100%;
+  /* cursor: pointer; */
+}
+
+.info-box {
+  background-color: #222831;
+  width: 55%;
+  height: 76%;
+  overflow: hidden;
+  margin-left: 22.8%;
+  padding: 2%;
+  border-radius: 25px;
+  border: 2px #00adb5 solid;
+  margin-top: 5%;
+}
+.information {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.info1,
+.info2 {
+  background-color: #393e46;
+  border: 1px #00adb5 solid;
+  text-align: center;
+  margin: 1%;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.info1 {
+  background-color: #eeeeee;
+  color: #00adb5;
+  font-weight: bolder;
+  border: 2px #393e46 solid;
+  font-size: xx-large;
+}
+
+.info-group {
+  background-color: #393e46;
+  border: 1px #00adb5 solid;
+  text-align: center;
+  margin: 1%;
+  padding: 2%;
+  border-radius: 10px;
+  width: 48%;
+  margin-left: 24%;
+}
+
+.info-group {
+  float: left;
+}
+
+.info3,
+.info2 {
+  color: #eeeeee;
+}
+
+.info-desc {
+  background-color: #393e46;
+  /* border: 1px #00adb5 solid; */
+  text-align: center;
+  margin: 1%;
+  padding: 2%;
+  border-radius: 10px;
+  margin-top: -2%;
+  width: 98%;
+}
+
+#arrowDown-button {
+  background-color: transparent;
+}
+
+.down-button {
+  float: right;
+  height: 20px;
+  width: 20px;
+  background-color: #222831;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.downarrow-imagee {
+  width: 100%;
+  height: 100%;
 }
