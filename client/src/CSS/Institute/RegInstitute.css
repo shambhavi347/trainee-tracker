@@ -124,20 +124,23 @@
   /* float: right; */
 }
 
-/* .fieldd7 {
-  width: 41%;
+.fieldd7 {
+  width: 100%;
   padding: 1%;
+  margin: 0%;
+  margin-top: 1%;
   border-radius: 6px;
-  background-color: #eeeeee;
-  margin-left: 0.5%;
-  color: lightgrey;
-} */
+  margin-left: 1%;
+  /* background-color: #eeeeee; */
+  /* margin-left: 0.5%; */
+  /* color: lightgrey; */
+}
 
 .fieldd8 {
   width: 41.5%;
-  height: 28px;
+  height: 80%;
   float: right;
-  margin-top: -3.1%;
+  margin-top: -3.4%;
   margin-right: 13%;
 }
 
@@ -211,17 +214,18 @@
   margin-bottom: 2%;
 }
 
-/* .phone0 {
+.phone0 {
   width: 41%;
   border-radius: 6px;
-  height: 28px;
-  background-color: plum;
+  height: 80%;
+  background-color: #f0ebebfd;
   margin-left: 2.3%;
+  margin-top: 0.6%;
   padding: 0;
-} */
+}
 
 .contact0 {
-  height: 40px;
-  background-color: peru;
+  height: 47px;
+  /* background-color: peru; */
   width: 99%;
 }
