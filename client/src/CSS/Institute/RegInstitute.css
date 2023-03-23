@@ -70,13 +70,13 @@
   margin-bottom: 1%;
 }
 
-.required::before {
+/* .required::before {
   content: " *";
   color: red;
   font-size: 25px;
   font-weight: bold;
   margin-left: 2px;
-}
+} */
 
 .form-text-inst,
 .drop-down-inst,
@@ -99,41 +99,41 @@
   border-radius: 6px;
 }
 
-.field1 {
+.fieldd1 {
   width: 84%;
 }
 
-.field2 {
+.fieldd2 {
   width: 41%;
 }
 
-.field3 {
+.fieldd3 {
   width: 19.42%;
 }
 
-.field4 {
+.fieldd4 {
   width: 10%;
 }
 
-.field5 {
+.fieldd5 {
   width: 22.5%;
 }
 
-.field6 {
+.fieldd6 {
   width: 41%;
   /* float: right; */
 }
 
-.field7 {
-  width: 12%;
-  padding: 6%;
+/* .fieldd7 {
+  width: 41%;
+  padding: 1%;
   border-radius: 6px;
   background-color: #eeeeee;
-  margin-left: 20%;
-  color: #eeeeee;
-}
+  margin-left: 0.5%;
+  color: lightgrey;
+} */
 
-.field8 {
+.fieldd8 {
   width: 41.5%;
   height: 28px;
   float: right;
@@ -154,7 +154,8 @@
 }
 
 .btn-inst0 {
-  margin-left: 27%;
+  margin-left: 29%;
+  margin-top: 3%;
 }
 
 .btn-inst,
@@ -210,17 +211,17 @@
   margin-bottom: 2%;
 }
 
-.phone {
+/* .phone0 {
   width: 41%;
   border-radius: 6px;
   height: 28px;
-  background-color: #eeeeee;
+  background-color: plum;
   margin-left: 2.3%;
   padding: 0;
-}
+} */
 
-.contact {
+.contact0 {
   height: 40px;
-  /* background-color: #00adb5; */
+  background-color: peru;
   width: 99%;
 }
