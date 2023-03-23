@@ -1,0 +1,88 @@
+.btn-save {
+    text-align: center;
+    border-radius: 20px;
+    border: 0;
+    height: 55px;
+    width: 15%;
+    margin: 1%;
+    padding: 1%;
+    margin-left: 33.5%;
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: #222831;
+    border: 2px #00adb5 solid;
+    color: #00adb5;
+  }
+  .btn-save:hover {
+    background-color: #222831;
+    color: #eeeeee;
+    font-weight: bolder;
+    font-style: italic;
+  }
+
+  .btn-cncl {
+    text-align: center;
+    border-radius: 20px;
+    border: 0;
+    height: 55px;
+    width: 14.5%;
+    margin: 1%;
+    padding: 1%;
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: #222831;
+    border: 2px #00adb5 solid;
+    color: #00adb5;
+  }
+  .btn-cncl:hover {
+    background-color: #222831;
+    color: #eeeeee;
+    font-weight: bolder;
+    font-style: italic;
+  }
+
+  .btn-edit {
+    text-align: center;
+    border-radius: 20px;
+    border: 0;
+    height: 13%;
+    width: 18%;
+    margin: 2%;
+    padding: 0%;
+    margin-top: 0%;
+    margin-left: 42%;
+    font-size: large;
+    font-weight: bolder;
+    background-color: #222831;
+    border: 2px #00adb5 solid;
+    color: #00adb5;
+  }
+  .btn-edit:hover {
+    background-color: #222831;
+    color: #eeeeee;
+    font-weight: bolder;
+    font-style: italic;
+  }
+
+  .profileHead {
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 5px;
+    font-size: 30px;
+  }
+  .profileHead {
+    color: white;
+  }
+
+  .editPhone {
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    margin: 1%;
+    padding: 0%;
+    font-size: large;
+  }
+  .editPhone {
+    color: white;
+  }

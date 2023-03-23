@@ -369,3 +369,20 @@ input[type="file"]::file-selector-button:hover {
 /* .option::-webkit-scrollbar {
   display: none;
 } */
+
+.trainee-reg-pic {
+  width: 50%;
+  height: 60%;
+  background-color: #00adb5;
+  padding: 2%;
+  margin-top: 5%;
+  margin-left: 25%;
+  border-radius: 20px;
+  color: #eeeeee;
+  text-align: center;
+  background-image: url("../../Images/forgotBack.gif");
+  background-attachment: fixed;
+  align-content: center;
+  background-size: cover;
+  box-shadow: 5px 5px 8px #888888;
+}

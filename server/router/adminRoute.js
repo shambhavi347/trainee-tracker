@@ -911,7 +911,8 @@ router.post("/forgot-pass", async (req, res) => {
       else id = train._id;
       console.log("ID" + id);
       let testAccount = await nodemailer.createTestAccount();
-      let link = "http://localhost:3000/create-pass?a=${id}";
+      let link = "http://localhost:3000/create-password/" + id;
+      console.log(link);
       // create reusable transporter object using the default SMTP transport
       let transporter = nodemailer.createTransport({
         host: "smtp.ethereal.email",
@@ -928,8 +929,8 @@ router.post("/forgot-pass", async (req, res) => {
         from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
         to: email, // list of receivers
         subject: "Reset your password on Trainee Tracker", // Subject line
-        text: "We got your request. You can now reset your password Link: http://localhost:3000/create-pass?a=${id} You can ignore this email.Keep your account extra safe", // plain text body
-        html: " <b>We got your request.</b> You can now reset your password Link: ${link}  Didn’t ask for a new password? You can ignore this email.<b>Keep your account extra safe</b>", // html body
+        text: `We got your request. You can now reset your password Link: ${link} You can ignore this email.Keep your account extra safe`, // plain text body
+        html: `<b>We got your request.</b> You can now reset your password Link: ${link}  Didn’t ask for a new password? You can ignore this email.<b>Keep your account extra safe</b>`, // html body
       });
       if (info.messageId) {
         console.log("mail sent");
@@ -946,15 +947,10 @@ router.post("/forgot-pass", async (req, res) => {
   }
 });
 
-router.post("/create-password", async (req, res) => {
+router.post("/create-pass", async (req, res) => {
   try {
-    let paramString = urlString.split("?")[1];
-    let queryString = new URLSearchParams(paramString);
-    console.log("Hello" + paramString);
-    for (let pair of queryString.entries()) {
-      console.log("Key is: " + pair[0]);
-      console.log("Value is: " + pair[1]);
-    }
+    const { userId, password } = req.body;
+    console.log("hello change password" + userId + password);
   } catch (error) {
     console.log(error);
   }
@@ -1071,7 +1067,7 @@ router.post("/create-class", (req, res) => {
 router.get("/get-sem-class", adminAuthenticate, async (req, res) => {
   try {
     const cat = await Student.distinct("semester", {
-      status: "assigned",
+      status: "registered",
     });
     res.send(cat);
   } catch (error) {
@@ -1082,7 +1078,7 @@ router.get("/get-sem-class", adminAuthenticate, async (req, res) => {
 router.get("/get-inst-name-class", adminAuthenticate, async (req, res) => {
   try {
     const cat = await Student.distinct("instname", {
-      status: "assigned",
+      status: "registered",
     });
     res.send(cat);
   } catch (error) {
@@ -1093,7 +1089,7 @@ router.get("/get-inst-name-class", adminAuthenticate, async (req, res) => {
 router.get("/get-course-class", adminAuthenticate, async (req, res) => {
   try {
     const cat = await Student.distinct("course", {
-      status: "assigned",
+      status: "registered",
     });
     res.send(cat);
   } catch (error) {
@@ -1104,7 +1100,7 @@ router.get("/get-course-class", adminAuthenticate, async (req, res) => {
 router.get("/get-stream-class", adminAuthenticate, async (req, res) => {
   try {
     const cat = await Student.distinct("stream", {
-      status: "assigned",
+      status: "registered",
     });
     res.send(cat);
   } catch (error) {
@@ -1115,7 +1111,7 @@ router.get("/get-stream-class", adminAuthenticate, async (req, res) => {
 router.get("/get-passout-year-class", adminAuthenticate, async (req, res) => {
   try {
     const cat = await Student.distinct("passout_year", {
-      status: "assigned",
+      status: "registered",
     });
     res.send(cat);
   } catch (error) {

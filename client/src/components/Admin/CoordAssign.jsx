@@ -38,6 +38,7 @@ const CoordAssign = ({ coord }) => {
 
   useEffect(() => {
     try {
+      //selected students but assigned to class
       const getTainee = async () => {
         const res = await getTrainees();
         setStudList(res);
@@ -139,7 +140,7 @@ const CoordAssign = ({ coord }) => {
             setStudentList(newItem);
           } else {
             const newItem = studentList.filter((newVal) => {
-              console.log(newVal.passout_year + "  " + val);
+              // console.log(newVal.passout_year + "  " + val);
               if (newVal.passout_year == val) return newVal;
             });
             setStudentList(newItem);
@@ -181,12 +182,12 @@ const CoordAssign = ({ coord }) => {
     setTrainee(val);
     date = new Date(val.dob);
     dob = date.toLocaleDateString("en-US");
-    console.log(expnd + "Val: " + trainee + dob);
+    // console.log(expnd + "Val: " + trainee + dob);
   };
   if (trainee) {
     date = new Date(trainee.dob);
     dob = date.toLocaleDateString("en-US");
-    console.log(dob);
+    // console.log(dob);
   }
   const handleSubmit = async () => {
     try {
@@ -531,11 +532,7 @@ const CoordAssign = ({ coord }) => {
                 </div>
                 <div className="info-second">
                   <div className="info-type">Gender: {trainee.gender}</div>
-                  <div className="info-rating">
-                    {" "}
-                    DOB: {dob}
-                    {console.log("date: " + date)}
-                  </div>
+                  <div className="info-rating"> DOB: {dob}</div>
                 </div>
                 <div className="info-third">
                   <div className="info-instname">

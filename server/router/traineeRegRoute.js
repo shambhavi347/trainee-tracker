@@ -235,4 +235,12 @@ router.post("/update", traineeAuthenticate, async (req, res) => {
 //   }
 // });
 
+//
+// traineeAuthenticate => const id = req.rootUser._id; => your object id
+
+// const coord_id = await Class.find({traineeID: id})
+// const clases = await Class.find({coordinatorId: coord_id})
+
+// res.send(classes)
+
 module.exports = router;

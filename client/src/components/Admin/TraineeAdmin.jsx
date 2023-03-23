@@ -75,7 +75,7 @@ const TraineeAdmin = () => {
       if (studs.length === 0 || accBtn === "clicked") setStuds(student);
     };
     fetchData();
-    console.log("Studs " + studs);
+    // console.log("Studs " + studs);
   }, [student]);
 
   //fetch accepted students

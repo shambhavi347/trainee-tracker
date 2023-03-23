@@ -3,7 +3,6 @@ import axios from "axios";
 export const getInstitutes = async () => {
   try {
     let respone = await axios.get("/get-pending-institute");
-
     return respone.data;
   } catch (error) {
     console.log(error);
@@ -288,6 +287,15 @@ export const getPassYearAccCat = async () => {
   }
 };
 
+export const getPassYearRejCat = async () => {
+  try {
+    let respone = await axios.get("get-passout-year-reject-category");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getInstName = async () => {
   try {
     let respone = await axios.get("/get-inst-name-class");
@@ -300,15 +308,6 @@ export const getInstName = async () => {
 export const acceptInsitute = async (data) => {
   try {
     await axios.post("/accept-inst", data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getPassYearRejCat = async () => {
-  try {
-    let respone = await axios.get("/get-passout-course-category");
-    return respone.data;
   } catch (error) {
     console.log(error);
   }
