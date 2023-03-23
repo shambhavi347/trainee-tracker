@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Institute/RegInstitute.css";
 import { useEffect } from "react";
-// import cities from "../../service/cities.json";
 import axios from "axios";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
@@ -255,7 +254,7 @@ const RegInstitute = () => {
               <>
                 <h4 className="head-inst-home-2">Institute Details</h4>
                 <input
-                  className="form-text-inst field1 required"
+                  className="form-text-inst fieldd1 required"
                   type="text"
                   autoComplete="off"
                   value={userRegistration.name}
@@ -267,7 +266,7 @@ const RegInstitute = () => {
 
                 <select
                   name="rating"
-                  className="drop-down-inst field3 required"
+                  className="drop-down-inst fieldd3 required"
                   value={userRegistration.rating}
                   onChange={handlechange}
                 >
@@ -283,7 +282,7 @@ const RegInstitute = () => {
                 </select>
                 <select
                   name="type"
-                  className="drop-down-inst field3 required"
+                  className="drop-down-inst fieldd3 required"
                   value={userRegistration.type}
                   onChange={handlechange}
                 >
@@ -299,7 +298,7 @@ const RegInstitute = () => {
                 <h4 className="head-inst-home">Institute Address</h4>
 
                 <input
-                  className="form-text-inst field2 required"
+                  className="form-text-inst fieldd2 required"
                   type="text"
                   autoComplete="off"
                   value={userRegistration.addressline1}
@@ -309,7 +308,7 @@ const RegInstitute = () => {
                   placeholder="Address Line 1*"
                 />
                 <input
-                  className="form-text-inst field2"
+                  className="form-text-inst fieldd2"
                   type="text"
                   autoComplete="off"
                   value={userRegistration.addressline2}
@@ -319,65 +318,67 @@ const RegInstitute = () => {
                   placeholder="Address Line 2"
                 />
 
-                <select
-                  name="country"
-                  className="drop-down-inst field3 required"
-                  value={userRegistration.country}
-                  onChange={handlechange}
-                  // onChange={(e) => {
-                  //   console.log(e.target.value);
-                  // }}
-                >
-                  <option value="select">Country</option>
-                  {country.map((key) => {
-                    return <option value={key.isoCode}> {key.name}</option>;
-                  })}
-                </select>
+                <div className="region">
+                  <select
+                    name="country"
+                    className="drop-down-inst fieldd3 required"
+                    value={userRegistration.country}
+                    onChange={handlechange}
+                    // onChange={(e) => {
+                    //   console.log(e.target.value);
+                    // }}
+                  >
+                    <option value="select">Country</option>
+                    {country.map((key) => {
+                      return <option value={key.isoCode}> {key.name}</option>;
+                    })}
+                  </select>
 
-                <select
-                  name="state"
-                  className="drop-down-inst field3 required"
-                  value={userRegistration.state}
-                  onChange={handlechange}
-                >
-                  <option value="select">State</option>
-                  {/* <option value="select">State 1</option> */}
-                  {states.map((Con) => {
-                    return <option value={Con.isoCode}>{Con.name}</option>;
-                  })}
-                </select>
+                  <select
+                    name="state"
+                    className="drop-down-inst fieldd3 required"
+                    value={userRegistration.state}
+                    onChange={handlechange}
+                  >
+                    <option value="select">State</option>
+                    {/* <option value="select">State 1</option> */}
+                    {states.map((Con) => {
+                      return <option value={Con.isoCode}>{Con.name}</option>;
+                    })}
+                  </select>
 
-                <select
-                  name="city"
-                  className="drop-down-inst field3 required"
-                  value={userRegistration.city}
-                  onChange={handlechange}
-                >
-                  <option value="select">City</option>
-                  {/* <option value="select">City 1</option> */}
-                  {cities.map((Con) => {
-                    return <option value={Con.isoCode}>{Con.name}</option>;
-                  })}
-                  {/* {cities.map((Con) => {
+                  <select
+                    name="city"
+                    className="drop-down-inst fieldd3 required"
+                    value={userRegistration.city}
+                    onChange={handlechange}
+                  >
+                    <option value="select">City</option>
+                    {/* <option value="select">City 1</option> */}
+                    {cities.map((Con) => {
+                      return <option value={Con.isoCode}>{Con.name}</option>;
+                    })}
+                    {/* {cities.map((Con) => {
                     return <option key={Con.id}>{Con.name}</option>;
                   })} */}
-                </select>
+                  </select>
 
-                <input
-                  className="form-text-inst field3 required"
-                  type="text"
-                  autoComplete="off"
-                  value={userRegistration.zipcode}
-                  onChange={handlechange}
-                  name="zipcode"
-                  id="zipcode"
-                  placeholder="Zipcode*"
-                />
+                  <input
+                    className="form-text-inst fieldd3 required"
+                    type="text"
+                    autoComplete="off"
+                    value={userRegistration.zipcode}
+                    onChange={handlechange}
+                    name="zipcode"
+                    id="zipcode"
+                    placeholder="Zipcode*"
+                  />
+                </div>
 
                 <h4 className="head-inst-home-2">Contact Details</h4>
 
                 <input
-                  className="form-text-inst field2 required"
+                  className="form-text-inst fieldd2 required"
                   type="email"
                   autoComplete="off"
                   value={userRegistration.email}
@@ -387,7 +388,7 @@ const RegInstitute = () => {
                   placeholder="Email*"
                 />
                 <input
-                  className="form-text-inst field2 required"
+                  className="form-text-inst fieldd2 required"
                   type="text"
                   autoComplete="off"
                   value={userRegistration.phoneno}
@@ -396,8 +397,8 @@ const RegInstitute = () => {
                   id="phoneno"
                   placeholder="Institute Phone No."
                 />
-                <div className="contact">
-                  <div className="phone">
+                <div className="contact0">
+                  <div className="phone0">
                     {/* <PhoneInput
                       className="field 7"
                       placeholder="Landline number *"
@@ -406,7 +407,7 @@ const RegInstitute = () => {
                     /> */}
 
                     <PhoneInput
-                      className="field 7"
+                      className="fieldd7"
                       placeholder="Landline number *"
                       value={userRegistration.landline}
                       onChange={setValue}
@@ -414,14 +415,14 @@ const RegInstitute = () => {
                   </div>
 
                   <input
-                    className="form-text-inst field8 required"
+                    className="form-text-inst fieldd8 required"
                     type="text"
                     autoComplete="off"
                     value={userRegistration.extension}
                     onChange={handlechange}
                     name="extension"
                     id="extension"
-                    placeholder="ext "
+                    placeholder="ext"
                   />
                 </div>
 
@@ -429,7 +430,7 @@ const RegInstitute = () => {
 
                 <select
                   name="duration"
-                  className="drop-down-inst field3 required"
+                  className="drop-down-inst fieldd3 required"
                   value={userRegistration.duration}
                   onChange={handlechange}
                 >
@@ -444,7 +445,7 @@ const RegInstitute = () => {
 
                 <select
                   name="smonth"
-                  className="drop-down-inst field3 required"
+                  className="drop-down-inst fieldd3 required"
                   value={userRegistration.smonth}
                   onChange={handlechange}
                 >
@@ -465,7 +466,7 @@ const RegInstitute = () => {
 
                 <select
                   name="emonth"
-                  className="drop-down-inst field3 required"
+                  className="drop-down-inst fieldd3 required"
                   value={userRegistration.emonth}
                   onChange={handlechange}
                 >
@@ -502,7 +503,7 @@ const RegInstitute = () => {
                 <h4 className="head-inst-home">Coordinator Details</h4>
                 <select
                   name="salutation"
-                  className="drop-down-inst field4 required"
+                  className="drop-down-inst fieldd4 required"
                   value={userRegistration.salutation}
                   onChange={handlechange}
                 >
@@ -514,7 +515,7 @@ const RegInstitute = () => {
                 </select>
 
                 <input
-                  className="form-text-inst2 field5 required"
+                  className="form-text-inst2 fieldd5 required"
                   type="text"
                   autoComplete="off"
                   value={userRegistration.coordfirstName}
@@ -525,7 +526,7 @@ const RegInstitute = () => {
                 />
 
                 <input
-                  className="form-text-inst2 field5"
+                  className="form-text-inst2 fieldd5"
                   type="text"
                   autoComplete="off"
                   value={userRegistration.coordmiddleName}
@@ -536,7 +537,7 @@ const RegInstitute = () => {
                 />
 
                 <input
-                  className="form-text-inst2 field5 required"
+                  className="form-text-inst2 fieldd5 required"
                   type="text"
                   autoComplete="off"
                   value={userRegistration.coordlastName}
@@ -548,7 +549,7 @@ const RegInstitute = () => {
 
                 <h4 className="head-inst-home-2">Contact Details</h4>
                 <input
-                  className="form-text-inst2 field6 required"
+                  className="form-text-inst2 fieldd6 required"
                   type="email"
                   autoComplete="off"
                   value={userRegistration.coordEmail}
@@ -559,7 +560,7 @@ const RegInstitute = () => {
                 />
 
                 <input
-                  className="form-text-inst2 field6 required"
+                  className="form-text-inst2 fieldd6 required"
                   type="text"
                   autoComplete="off"
                   value={userRegistration.coordPhone}
@@ -572,7 +573,7 @@ const RegInstitute = () => {
                 <h4 className="head-inst-home-2">Credentials</h4>
                 <div className="box">
                   <input
-                    className="form-text-inst2 field6 required"
+                    className="form-text-inst2 fieldd6 required"
                     type="text"
                     autoComplete="off"
                     value={userRegistration.password}
@@ -583,7 +584,7 @@ const RegInstitute = () => {
                   />
 
                   <input
-                    className="form-text-inst2 field6 required"
+                    className="form-text-inst2 fieldd6 required"
                     type="text"
                     autoComplete="off"
                     value={userRegistration.password2}

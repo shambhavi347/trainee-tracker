@@ -55,7 +55,7 @@
 .head-inst-home {
   color: #eeeeee;
   text-align: left;
-  margin-left: -79%;
+  margin-left: -84%;
   text-decoration: underline;
   margin-top: 1%;
   margin-bottom: 1%;
@@ -64,19 +64,19 @@
 .head-inst-home-2 {
   color: #eeeeee;
   text-align: left;
-  margin-left: 2.5%;
+  margin-left: 2%;
   text-decoration: underline;
   margin-top: 1%;
   margin-bottom: 1%;
 }
 
-.required::before {
+/* .required::before {
   content: " *";
   color: red;
   font-size: 25px;
   font-weight: bold;
   margin-left: 2px;
-}
+} */
 
 .form-text-inst,
 .drop-down-inst,
@@ -99,45 +99,48 @@
   border-radius: 6px;
 }
 
-.field1 {
+.fieldd1 {
   width: 84%;
 }
 
-.field2 {
+.fieldd2 {
   width: 41%;
 }
 
-.field3 {
+.fieldd3 {
   width: 19.42%;
 }
 
-.field4 {
+.fieldd4 {
   width: 10%;
 }
 
-.field5 {
+.fieldd5 {
   width: 22.5%;
 }
 
-.field6 {
+.fieldd6 {
   width: 41%;
   /* float: right; */
 }
 
-.field7 {
-  width: 12%;
-  padding: 6%;
+.fieldd7 {
+  width: 100%;
+  padding: 1%;
+  margin: 0%;
+  margin-top: 1%;
   border-radius: 6px;
-  background-color: #eeeeee;
-  margin-left: 20%;
-  color: #eeeeee;
+  margin-left: 1%;
+  /* background-color: #eeeeee; */
+  /* margin-left: 0.5%; */
+  /* color: lightgrey; */
 }
 
-.field8 {
+.fieldd8 {
   width: 41.5%;
-  height: 28px;
+  height: 80%;
   float: right;
-  margin-top: -3.1%;
+  margin-top: -3.4%;
   margin-right: 13%;
 }
 
@@ -154,7 +157,8 @@
 }
 
 .btn-inst0 {
-  margin-left: 27%;
+  margin-left: 29%;
+  margin-top: 3%;
 }
 
 .btn-inst,
@@ -210,17 +214,18 @@
   margin-bottom: 2%;
 }
 
-.phone {
+.phone0 {
   width: 41%;
   border-radius: 6px;
-  height: 28px;
-  background-color: #eeeeee;
+  height: 80%;
+  background-color: #f0ebebfd;
   margin-left: 2.3%;
+  margin-top: 0.6%;
   padding: 0;
 }
 
-.contact {
-  height: 40px;
-  /* background-color: #00adb5; */
+.contact0 {
+  height: 47px;
+  /* background-color: peru; */
   width: 99%;
 }
