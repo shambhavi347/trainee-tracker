@@ -485,3 +485,19 @@ export const getStream = async () => {
     console.log(error);
   }
 };
+export const getTraineeData = async () => {
+  try {
+    let respone = await axios.get("/get-trainee-Data");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getCoordinatorData = async () => {
+  try {
+    let respone = await axios.get("/get-Coordinator-Data");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
