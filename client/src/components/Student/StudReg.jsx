@@ -54,7 +54,7 @@ const Demo = () => {
     fileID: fileId,
     // resume: null,
     pdfname: "",
-    status: "pending",
+    status: "selection pending",
   });
 
   const fileType = ["application/pdf"];
@@ -246,10 +246,7 @@ const Demo = () => {
     const data = await res.json();
     console.log(data);
 
-    if (!validEmail.test(email)) {
-      window.alert("Fill the correct Email Id ");
-      console.log("Invalid Email id");
-    } else if (data.error) {
+    if (data.error) {
       window.alert("Invalid Registration, " + data.error);
       console.log("Invalid Regestration");
     } else {
@@ -265,6 +262,7 @@ const Demo = () => {
       {/* write your page 1 code here*/}
       <div className="DivUpper1">
         <div className="main1">
+        <br /><br /><br />
           {!page2 ? (
             <h1 className="regHead1">Register Yourself</h1>
           ) : (
@@ -273,7 +271,6 @@ const Demo = () => {
               {user.prefix} {user.first_name}, choose Technologies
             </h1>
           )}
-          <br />
           <div className="regBox1">
             <form
               className="form-body-stu"

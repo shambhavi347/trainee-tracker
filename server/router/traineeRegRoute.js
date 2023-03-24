@@ -9,7 +9,9 @@ const student = require("../model/studentSchema");
 const trainee = require("../model/traineeSchema");
 const traineeAuthenticate = require("../middleware/traineeauth");
 const Student = require("../model/studentSchema");
-
+const Class = require("../model/classSchema");
+const Coordinator = require("../model/coordinatorSchema");
+const Trainee = require("../model/traineeSchema");
 //trainee Regestration
 router.post("/trainee-reg", async (req, res) => {
   try {
@@ -224,23 +226,41 @@ router.post("/update", traineeAuthenticate, async (req, res) => {
   }
 });
 
-// router.get("/get-trainee-list", traineeAuthenticate, async (req, res) => {
-//   try {
-//     const id = req.rootUser._id;
-//     const inst = await trainee.findOne({ trainee_id: id });
-//     const class = await trainee.find({coord_id : inst.coord_id});
-//     res.send(class);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
-//
 // traineeAuthenticate => const id = req.rootUser._id; => your object id
 
 // const coord_id = await Class.find({traineeID: id})
 // const clases = await Class.find({coordinatorId: coord_id})
 
 // res.send(classes)
+router.get("/get-trainee-Data", traineeAuthenticate, async (req, res) => {
+  try {
+    let Traineeid = [];
+
+    const id = req.rootUser._id;
+    const idofcoor = await Class.findOne({ traineeID: id });
+
+    const trada = await Class.find({ coordinatorId: idofcoor });
+    //console.log(trada);
+    trada.map((val) => Traineeid.push(val.traineeID));
+    //console.log(Traineeid);
+    const tname = await Student.find({ _id: { $in: Traineeid } });
+
+    res.send(tname);
+  } catch (error) {
+    console.log(error);
+  }
+});
+router.get("/get-Coordinator-Data", traineeAuthenticate, async (req, res) => {
+  try {
+    const Id1 = req.rootUser._id;
+    const Idofcoor1 = await Class.findOne({ traineeID: Id1 });
+console.log(Idofcoor1);
+    const C_data = await Coordinator.findOne({ _id: Idofcoor1.coordinatorId });
+    console.log(C_data);
+    res.send(C_data);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;

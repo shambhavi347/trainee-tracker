@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Trainee/TraineeGroup.css";
 // import { StudentData } from "../../service/api";
+import { getTraineeData, getCoordinatorData } from "../../service/api";
 const TraineeGroup = () => {
-  const [mentor, setMentor] = useState({ name: "Sunil Kumar" });
-  const [Tra, setTra] = useState([]);
-  const [trainee, setTrainee] = useState([
+  // const [mentor, setMentor] = useState({ name: "Sunil Kumar" });
+  {
+    /* const [Tra, setTra] = useState([]);
+   const [trainee, setTrainee] = useState([
     {
       name: "Aakriti Saxena",
     },
@@ -32,7 +34,8 @@ const TraineeGroup = () => {
     {
       name: "Prachee Singh",
     },
-  ]);
+   ]);*/
+  }
 
   // call user Profile
   // useEffect(() => {
@@ -42,6 +45,24 @@ const TraineeGroup = () => {
   //   };
   //   fetchPeople();
   // }, [Tra]);
+  const [mentor, setMentor] = useState([]);
+  useEffect(() => {
+    const M_data = async () => {
+      const response = await getCoordinatorData();
+      console.log(response);
+      setMentor(response);
+    };
+    M_data();
+  }, [mentor]);
+  const [Trainee, setTrainee] = useState([]);
+  useEffect(() => {
+    const T_data = async () => {
+      const response = await getTraineeData();
+      console.log(response);
+      setTrainee(response);
+    };
+    T_data();
+  }, [Trainee]);
 
   return (
     <>
@@ -52,12 +73,14 @@ const TraineeGroup = () => {
           <div className="mentor"> {mentor.name}</div>
           <div className="trainee">
             <h3 className="trainee-title">Trainee</h3>
-            <h3 className="strength-title">{trainee.length} Trainees </h3>
+            <h3 className="strength-title">{Trainee.length} </h3>
             <hr style={{ marginLeft: "25.2%", marginRight: "24.6%" }} />
-            {trainee.map((val, key) => (
+            {Trainee.map((val, key) => (
               <div className="people">
                 {" "}
-                {val.name}{" "}
+                {val.prefix} {val.first_name}{" "}
+                {val.middle_name ? val.middle_name : null}
+                {val.last_name}
                 <hr
                   style={{
                     backgroundColor: "#393e46",

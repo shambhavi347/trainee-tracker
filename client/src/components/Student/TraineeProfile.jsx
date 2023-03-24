@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavBar5 from "../NavBar5";
 import "../../CSS/Trainee/RegStudent.css";
+import "../../CSS/Trainee/TraineeProfile.css"
 import { StudentData } from "../../service/api";
 import { fontStyle, padding } from "@mui/system";
 
@@ -59,13 +60,13 @@ const TraineeProfile = () => {
       <NavBar5 />
       <div className="DivUpper">
         <div className="main">
-          <h1 className="regHead">Profile Page</h1>
           <div className="form-body-inst-up" style={{ marginTop:"-1.7%", overflow:"auto" }}>
+          <h1 className="profileHead">Profile Page</h1>
             {edit ? (
               <>
                 <form action="POST" onSubmit={updateUser}>
                   <p>
-                    <h3 style={{ marginLeft:"38.5%" }}>Edit Your Phone no.</h3>
+                    <h3 className="editPhone">Edit Your Phone no.</h3>
                     <input
                       className="form-element form-text"
                       name="phone_no"
@@ -76,8 +77,8 @@ const TraineeProfile = () => {
                       onChange={handleChange}
                     />
                   </p>
-                  <button style={{ marginLeft:"15%" }} className="btn-form">Save</button>
-                  <button className="btn-form" style={{ float:"right", marginRight:"15%" }} onClick={() => setEdit(false)}>
+                  <button className="btn-save">Save</button>
+                  <button className="btn-cncl" onClick={() => setEdit(false)}>
                     Cancel
                   </button>
                 </form>
@@ -124,7 +125,7 @@ const TraineeProfile = () => {
                   Passout Year : 
                   <span> {userData.passout_year}</span>
                 </p>
-                <button onClick={() => setEdit(true)} className="btn-form" style={{ marginLeft:"33%" }}>
+                <button onClick={() => setEdit(true)} className="btn-edit">
                   Edit Profile
                 </button>
               </>

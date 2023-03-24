@@ -55,7 +55,7 @@ const TraineeReg = () => {
   return (
     <>
       <NavBar2 />
-      <div className="DivUpper">
+      {/* <div className="DivUpper">
         <div className="main">
           <br />
           <br />
@@ -66,31 +66,33 @@ const TraineeReg = () => {
               onSubmit={(e) => {
                 e.preventDefault();
               }}
-            >
-              <input
-                className="form-element form-email"
-                type="email"
-                name="email"
-                placeholder="Registered Email"
-                value={user.email}
-                autoComplete="off"
-                onChange={handleChange}
-              />
-              <input
-                className="form-element form-password"
-                type="password"
-                name="password"
-                value={user.password}
-                placeholder="Set Password"
-                autoComplete="off"
-                onChange={handleChange}
-              />
-              <br />
-              <button className="btn-form" onClick={postData}>
-                SUBMIT
-              </button>
-            </form>
-          </div>
+            > */}
+      <div className="forgot-bdy">
+        <div className="trainee-reg-pic ">
+          <input style={{marginTop:"12%"}}
+            className="form-element form-email"
+            type="email"
+            name="email"
+            placeholder="Registered Email"
+            value={user.email}
+            autoComplete="off"
+            onChange={handleChange}
+          />
+          <input
+            className="form-element form-password"
+            type="password"
+            name="password"
+            value={user.password}
+            placeholder="Set Password"
+            autoComplete="off"
+            onChange={handleChange}
+          />
+          <br />
+          <button className="btn-form" onClick={postData}>
+            SUBMIT
+          </button>
+          {/* </form> */}
+          {/* </div> */}
         </div>
       </div>
     </>
