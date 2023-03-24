@@ -4,11 +4,12 @@ import "../../CSS/Trainee/StudReg.css";
 import { arrowDown, cancel } from "../../Images/Images";
 import { validEmail } from "../../components/Regex";
 import Multiselect from "multiselect-react-dropdown";
+import WatchTrainee from "../WatchTrainee";
 
 const Demo = () => {
   const [page0, setPage0] = useState(true);
   const [page2, setPage2] = useState(false);
-
+  const [fileId, setFileId] = useState("");
   const [famdrop, setFamdrop] = useState(false);
   const [intdrop, setIntdrop] = useState(false);
 
@@ -50,7 +51,8 @@ const Demo = () => {
     semester: "",
     cgpa: "",
     passout_year: "",
-    resume: null,
+    fileID: fileId,
+    // resume: null,
     pdfname: "",
     status: "pending",
   });
@@ -99,6 +101,15 @@ const Demo = () => {
   //     setViewPdf(null)
   //   }
   // }
+  const sendId = (btn) => {
+    // const { id } = btn;
+    // console.log(btn);
+    // if (btn) {
+    //   const { data } = btn;
+    setFileId(btn);
+    //   console.log(data);
+    // }
+  };
 
   const handlefamTech = (e) => {
     e.preventDefault();
@@ -473,7 +484,8 @@ const Demo = () => {
                   </div>
 
                   <h4 className="head-stud">Resume</h4>
-                  <div className="resume">
+                  <WatchTrainee sendId={sendId} />
+                  {/* <div className="resume">
                     <input
                       style={{ border: 0, display: "none" }}
                       className="form-control1 field15"
@@ -490,7 +502,7 @@ const Demo = () => {
                         <div className="choose-file1">Choose File</div>
                       )}
                     </label>
-                  </div>
+                  </div> */}
                   <button
                     className="tb1 "
                     onClick={validateData}

@@ -19,6 +19,8 @@ import ForgotPass from "./components/ForgotPass";
 import CreatePass from "./components/CreatePass";
 import StudReg from "./components/Student/StudReg";
 import WatchTrainee from "./components/WatchTrainee";
+import ViewDoc from "./components/ViewDoc";
+import PdfViewer from "./components/PdfViewer";
 
 const App = () => {
   return (
@@ -43,7 +45,9 @@ const App = () => {
           <Route path="/coordinator-discussion" element={<CoordDiscussion />} />
           <Route path="/forgot-password" element={<ForgotPass />} />
           <Route path="/create-password/:userId" element={<CreatePass />} />
-          <Route path="/watch-trainee" element={<WatchTrainee />} />
+          {/* <Route path="/watch-trainee" element={<WatchTrainee />} /> */}
+          <Route path="/view/image/:userId" element={<ViewDoc />} />
+          <Route path="/view/pdf/:userId" element={<PdfViewer />} />
         </Routes>
       </Router>
     </>
