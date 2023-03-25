@@ -238,11 +238,8 @@ router.get("/get-trainee-Data", traineeAuthenticate, async (req, res) => {
 
     const id = req.rootUser._id;
     const idofcoor = await Class.findOne({ traineeID: id });
-
     const trada = await Class.find({ coordinatorId: idofcoor });
-    //console.log(trada);
     trada.map((val) => Traineeid.push(val.traineeID));
-    //console.log(Traineeid);
     const tname = await Student.find({ _id: { $in: Traineeid } });
 
     res.send(tname);
@@ -252,12 +249,12 @@ router.get("/get-trainee-Data", traineeAuthenticate, async (req, res) => {
 });
 router.get("/get-Coordinator-Data", traineeAuthenticate, async (req, res) => {
   try {
-    const Id1 = req.rootUser._id;
-    const Idofcoor1 = await Class.findOne({ traineeID: Id1 });
-console.log(Idofcoor1);
-    const C_data = await Coordinator.findOne({ _id: Idofcoor1.coordinatorId });
-    console.log(C_data);
-    res.send(C_data);
+    const id = req.rootUser._id;
+    const stud_id = await Trainee.findOne({ _id: id });
+    const studentDeets = await Student.findOne({ email: stud_id.email });
+    const classes = await Class.findOne({ traineeID: studentDeets._id });
+    const coord = await Coordinator.findOne({ _id: classes.coordinatorID });
+    res.send(coord);
   } catch (error) {
     console.log(error);
   }

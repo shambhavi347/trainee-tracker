@@ -53,8 +53,9 @@ const TraineeGroup = () => {
       setMentor(response);
     };
     M_data();
+    console.log(mentor);
   }, [mentor]);
-  const [Trainee, setTrainee] = useState([]);
+  const [trainee, setTrainee] = useState([]);
   useEffect(() => {
     const T_data = async () => {
       const response = await getTraineeData();
@@ -62,7 +63,7 @@ const TraineeGroup = () => {
       setTrainee(response);
     };
     T_data();
-  }, [Trainee]);
+  }, [trainee]);
 
   return (
     <>
@@ -70,12 +71,14 @@ const TraineeGroup = () => {
         <div className="scroll">
           <h3 className="coord-title">Coordinator Name</h3>
           <hr style={{ marginLeft: "26.2%", marginRight: "25.6%" }} />
-          <div className="mentor"> {mentor.name}</div>
+          <div className="mentor">
+            {mentor.salutation} {mentor.name}
+          </div>
           <div className="trainee">
             <h3 className="trainee-title">Trainee</h3>
-            <h3 className="strength-title">{Trainee.length} </h3>
+            <h3 className="strength-title">{trainee.length} </h3>
             <hr style={{ marginLeft: "25.2%", marginRight: "24.6%" }} />
-            {Trainee.map((val, key) => (
+            {trainee.map((val, key) => (
               <div className="people">
                 {" "}
                 {val.prefix} {val.first_name}{" "}

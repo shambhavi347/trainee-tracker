@@ -80,7 +80,7 @@ const uploadMiddleware = (req, res, next) => {
       return res.status(400).send("File too large");
     } else if (err) {
       // check if our filetype error occurred
-      if (err === "filetype") return res.status(400).send("Image files only");
+      if (err === "filetype") return res.status(400).send("PDF files only");
       // An unknown error occurred when uploading.
       return res.sendStatus(500);
     }
@@ -113,6 +113,7 @@ const deleteImage = (id) => {
   });
 };
 
+//download file
 router.get("/api/files/:id", ({ params: { id } }, res) => {
   // const file_id = "641b69f8ba87a128c7588d52";
   const downloadStream = gfs.openDownloadStream(ObjectId(id));

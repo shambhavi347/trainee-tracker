@@ -73,7 +73,7 @@ const CreatePass = () => {
     if (res.status === 400) {
       window.alert(reason.error);
     } else {
-      console.log("Password Changed");
+      setChangePass(true);
     }
   };
   return (
@@ -83,8 +83,12 @@ const CreatePass = () => {
         <div className="pass-block">
           {changePass ? (
             <>
-              <h2>Password changed Successfully!!</h2>{" "}
-              <p>Login now and continue </p>
+              <div style={{ marginTop: "15%" }}>
+                <h2 style={{ color: "#222831" }}>
+                  Password changed Successfully!!
+                </h2>{" "}
+                <p style={{ color: "#393e46" }}>Login now and continue </p>
+              </div>
             </>
           ) : (
             <>
