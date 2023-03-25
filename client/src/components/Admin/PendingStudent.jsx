@@ -1,8 +1,10 @@
 import React from "react";
 import { acceptTrainee, rejectTrainee } from "../../service/api";
 import { expand } from "../../Images/Images";
-
+import { useNavigate } from "react-router-dom";
 const PendingStudent = ({ stud, btnClicked }) => {
+  console.log(stud);
+  let navigate = useNavigate();
   const date = new Date(stud.dob);
   const acceptStud = async () => {
     try {
@@ -20,6 +22,42 @@ const PendingStudent = ({ stud, btnClicked }) => {
       // window.alert(res);
       console.log("reject btn");
       btnClicked("accept");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const downloadPdf = async () => {
+    try {
+      const response = await fetch(`/api/files/${stud.fileID}`);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "download.pdf";
+      a.click();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const ViewPdf = async () => {
+    //   try {
+    try {
+      await fetch(`/api/files/view/${stud.fileID}`)
+        .then((res) => {
+          // convert the response to a blob
+          return res.blob();
+        })
+        .then((blob) => {
+          // create a URL for the blob
+          const url = URL.createObjectURL(blob);
+
+          // create a new window to display the PDF
+          const newWindow = window.open();
+          newWindow.document.write(
+            `<iframe src="${url}" width="100%" height="100%"></iframe>`
+          );
+        });
     } catch (error) {
       console.log(error);
     }
@@ -51,6 +89,12 @@ const PendingStudent = ({ stud, btnClicked }) => {
           <div>{stud.semester}</div>
           <div>{stud.cgpa}</div>
           <div>{stud.passout_year}</div>
+          {stud.fileID ? (
+            <>
+              <div onClick={downloadPdf}>Download</div>
+              <div onClick={ViewPdf}>View</div>
+            </>
+          ) : null}
         </div>
 
         <div>

@@ -14,6 +14,7 @@ import caveman from "../Images/caveman.gif";
 import forgotBack from "../Images/forgotBack.gif";
 import check from "../Images/check.png";
 import remove from "../Images/remove.png";
+import loading from "../Images/loading.gif";
 export {
   cdacLogo,
   instagram,
@@ -31,4 +32,5 @@ export {
   forgotBack,
   check,
   remove,
+  loading,
 };

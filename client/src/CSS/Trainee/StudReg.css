@@ -94,6 +94,7 @@
   display: flex;
   margin-bottom: 5px;
   font-size: 30px;
+  margin-top: -3%;
 }
 
 .form-text1,
@@ -115,7 +116,7 @@ input {
   font-size: medium;
 }
 
-input[file] {
+/* input[file] {
   border: 0 !important;
   color: white;
 }
@@ -142,7 +143,7 @@ input[type="file"]::file-selector-button1 {
 .btn-form1:hover,
 input[type="file"]::file-selector-button1:hover {
   opacity: 0.8;
-}
+} */
 .regForm1 {
   display: table-cell;
   vertical-align: middle;
@@ -191,6 +192,7 @@ input[type="file"]::file-selector-button1:hover {
 }
 .regHead {
   color: white;
+  margin-top: -3%;
 }
 .signupImg {
   max-width: 100%;
@@ -471,9 +473,9 @@ input[type="file"]::file-selector-button1:hover {
   transition: mask-position 0.3s, -webkit-mask-position 0.3s;
 }
 
-.form-body-stu:hover {
+/* .form-body-stu:hover {
   -webkit-mask-position: left top;
-}
+} */
 .field1 {
   /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
   width: 12%;

@@ -97,6 +97,10 @@ const studentSchema = new mongoose.Schema({
     ],
     required: true,
   },
+  fileID: {
+    type: String,
+    required: true,
+  },
   famtech: [
     {
       type: String,

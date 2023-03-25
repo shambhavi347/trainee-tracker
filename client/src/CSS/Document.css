@@ -1,0 +1,94 @@
+#upload-btn {
+  border: 1px #00adb5 solid;
+  padding: 1% 2%;
+  border-radius: 10px;
+  /* height: 45px; */
+
+  /* margin-top: 70px;
+  margin-bottom: -90px; */
+  /* float: right; */
+}
+
+#upload-btn:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.file-input {
+  /* border: 1px #00adb5 solid; */
+  width: 50%;
+  margin-right: 5%;
+  height: 100%;
+  font-size: 14px;
+  /* padding-left: -35px; */
+  /* background-color: beige; */
+  /* padding: 2% 0%; */
+  /* padding: 5%; */
+}
+
+.file-input:hover {
+  cursor: pointer;
+}
+.resume-upload {
+  /* background-color: #222; */
+  margin-top: 2%;
+  margin-bottom: 2%;
+  height: 20%;
+  padding: 1%;
+}
+.load-div {
+  margin-top: -10%;
+  background-color: transparent;
+  width: 200px;
+  height: 200px;
+}
+.loadingdots {
+  width: 100%;
+  height: fit-content;
+}
+
+.file-info {
+  /* background-color: black; */
+  width: 50%;
+  height: 90%;
+  padding: 1% 0%;
+}
+
+.file-info1 {
+  float: left;
+  color: #7feef4;
+  font-size: large;
+  font-weight: bold;
+}
+.file-info2 {
+  float: right;
+  padding: 1% 2%;
+  background-color: rgb(170, 239, 239);
+  color: black;
+}
+.file-info3 {
+  float: right;
+  padding: 1% 2%;
+  background-color: #f48484;
+  color: black;
+}
+.file-info2:hover {
+  background-color: rgb(88, 210, 210);
+}
+.file-info3:hover {
+  background-color: #ea6565;
+}
+
+.file-info2,
+.file-info3 {
+  border: 1px #00adb5 solid;
+  border-radius: 10px;
+  margin-right: 5%;
+  padding: 1% 3%;
+}
+
+.file-info2:hover,
+.file-info3:hover {
+  cursor: pointer;
+  font-weight: bolder;
+}

@@ -5,11 +5,16 @@ import { arrowDown, cancel } from "../../Images/Images";
 import { validEmail } from "../../components/Regex";
 import Multiselect from "multiselect-react-dropdown";
 import WatchTrainee from "../WatchTrainee";
+import axios from "axios";
+// import { cancel } from "././../Images/Images";
+import { useNavigate } from "react-router-dom";
 
 const Demo = () => {
+  let navigate = useNavigate();
   const [page0, setPage0] = useState(true);
   const [page2, setPage2] = useState(false);
-  const [fileId, setFileId] = useState("");
+  const [fileId, setFileId] = useState(null);
+  const [fileName, setFileName] = useState(null);
   const [famdrop, setFamdrop] = useState(false);
   const [intdrop, setIntdrop] = useState(false);
 
@@ -51,7 +56,7 @@ const Demo = () => {
     semester: "",
     cgpa: "",
     passout_year: "",
-    fileID: fileId,
+    fileID: null,
     // resume: null,
     pdfname: "",
     status: "selection pending",
@@ -91,24 +96,55 @@ const Demo = () => {
     // setUser({ ...user, resume: pdf });
   };
 
-  // console.log(pdf);
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   if(name === "resume" && value != null) {
-  //     setViewPdf(value)
-  //   }
-  //   else {
-  //     setViewPdf(null)
-  //   }
-  // }
   const sendId = (btn) => {
-    // const { id } = btn;
-    // console.log(btn);
-    // if (btn) {
-    //   const { data } = btn;
     setFileId(btn);
-    //   console.log(data);
-    // }
+    setUser({ ...user, fileID: btn });
+  };
+
+  const sendName = (name) => {
+    setFileName(name);
+  };
+
+  //view uploaded file
+  // const ViewPDf = () => {
+  //   let path = `/view/pdf/` + fileId;
+  //   navigate(path);
+  // };
+
+  const ViewPDf = () => {
+    //   try {
+    fetch(`/api/files/view/${fileId}`)
+      .then((res) => {
+        // convert the response to a blob
+        return res.blob();
+      })
+      .then((blob) => {
+        // create a URL for the blob
+        const url = URL.createObjectURL(blob);
+
+        // create a new window to display the PDF
+        const newWindow = window.open();
+        newWindow.document.write(
+          `<iframe src="${url}" width="100%" height="100%"></iframe>`
+        );
+      });
+  };
+
+  //delete uploaded file
+  const deletePdf = async () => {
+    try {
+      console.log(fileId);
+      const data = await axios.get("/file/delete/" + fileId);
+      // const res = data.json();
+      if (data.status === 500) window.alert("error while deleting file");
+      else {
+        setFileId(null);
+        setFileName(null);
+        setUser({ ...user, fileID: null });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handlefamTech = (e) => {
@@ -159,6 +195,7 @@ const Demo = () => {
       cgpa,
       passout_year,
       status,
+      fileID,
     } = user;
 
     const res = await fetch("/reg-stud1", {
@@ -182,6 +219,7 @@ const Demo = () => {
         cgpa,
         passout_year,
         status,
+        fileID,
       }),
     });
 
@@ -215,6 +253,7 @@ const Demo = () => {
       cgpa,
       passout_year,
       status,
+      fileID,
     } = user;
 
     const res = await fetch("/reg-stud", {
@@ -240,6 +279,7 @@ const Demo = () => {
         famtech,
         inttech,
         status,
+        fileID,
       }),
     });
 
@@ -262,7 +302,9 @@ const Demo = () => {
       {/* write your page 1 code here*/}
       <div className="DivUpper1">
         <div className="main1">
-        <br /><br /><br />
+          <br />
+          <br />
+          <br />
           {!page2 ? (
             <h1 className="regHead1">Register Yourself</h1>
           ) : (
@@ -481,32 +523,31 @@ const Demo = () => {
                   </div>
 
                   <h4 className="head-stud">Resume</h4>
-                  <WatchTrainee sendId={sendId} />
-                  {/* <div className="resume">
-                    <input
-                      style={{ border: 0, display: "none" }}
-                      className="form-control1 field15"
-                      type="file"
-                      accept="application/pdf"
-                      name="resume"
-                      id="files"
-                      onChange={handleChange}
-                    />
-                    <label htmlFor="files" onChange={handleChange}>
-                      {user.pdfname ? (
-                        <div className="choose-file1">{user.pdfname}</div>
-                      ) : (
-                        <div className="choose-file1">Choose File</div>
-                      )}
-                    </label>
-                  </div> */}
+                  <div className="resume-upload">
+                    {fileId ? (
+                      <>
+                        <div className="file-info">
+                          <div className="file-info1">{fileName}</div>
+
+                          <div className="file-info3" onClick={deletePdf}>
+                            Delete
+                          </div>
+                          <div className="file-info2" onClick={ViewPDf}>
+                            View
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <WatchTrainee sendId={sendId} sendName={sendName} />
+                    )}
+                  </div>
                   <button
                     className="tb1 "
-                    onClick={validateData}
-                    // onClick={() => {
-                    //   setPage2(true);
-                    //   setPage0(false);
-                    // }}
+                    // onClick={validateData}
+                    onClick={() => {
+                      setPage2(true);
+                      setPage0(false);
+                    }}
                   >
                     NEXT
                   </button>

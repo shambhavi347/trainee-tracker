@@ -8,10 +8,6 @@ const path = require("path");
 require("dotenv").config();
 var ObjectId = require("mongodb").ObjectID;
 
-// const app = express();
-
-// // serve static files
-// app.use(express.static("public"));
 router.use(express.static("../client/src/"));
 const mongoURI = process.env.DATABASE;
 const conn = mongoose.createConnection(mongoURI, {
@@ -106,9 +102,7 @@ router.post("/api/image/upload", uploadMiddleware, async (req, res) => {
     return res.status(400).send("file may not exceed 5mb");
   }
   console.log("uploaded file: ", file);
-  console.log("object ID: ", file.id);
-  console.log("filename: " + filename);
-  return res.send(file.id);
+  return res.send(file);
 });
 
 const deleteImage = (id) => {
@@ -131,65 +125,6 @@ router.get("/api/files/:id", ({ params: { id } }, res) => {
   downloadStream.pipe(res);
 });
 
-// router.get("/api/files/view/:id", async (req, res) => {
-//   const id = req.params.id.trim();
-//   const file = await gfs.openDownloadStream(ObjectId(id));
-//   const pdfData = [];
-
-//   file.on("data", (chunk) => {
-//     pdfData.push(chunk);
-//   });
-
-//   file.on("end", () => {
-//     const pdfBuffer = Buffer.concat(pdfData);
-//     const pdfDataUri = `contentType:application/pdf;base64,${pdfBuffer.toString(
-//       "base64"
-//     )}`;
-
-//     // Use the PDF data URI here...
-//     res.send(pdfDataUri);
-//   });
-// });
-// const fs = require("fs");
-
-// const fileId = new ObjectId("641b69f8ba87a128c7588d52"); // replace with your file id
-// const downloadStream = gfs.openDownloadStream(fileId);
-
-// // pipe the file stream to a local file (optional)
-// const writeStream = fs.createWriteStream("file.pdf");
-// downloadStream.pipe(writeStream);
-
-// router.get("/api/files/view/:id", async (req, res) => {
-//   const fileId = new ObjectId("641b69f8ba87a128c7588d52");
-//   const downloadStream = gfs.openDownloadStream(fileId);
-//   downloadStream.pipe(res);
-// });
-
-// router.get("/api/files/view/:id", (req, res) => {
-//   gfs.files.findOne({ _id: new mongo.ObjectID(req.params.id) }, (err, file) => {
-//     if (!file || file.length === 0) {
-//       return res.status(404).json({
-//         err: "No files exist",
-//       });
-//     }
-
-//     const readstream = gfs.createReadStream(file.filename);
-//     readstream.pipe(res);
-//   });
-// });
-
-// const mongoURI = process.env.DATABASE;
-// const conn = mongoose.createConnection(mongoURI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// let gfs, filename;
-// conn.once("open", () => {
-//   gfs = new mongoose.mongo.GridFSBucket(conn.db, {
-//     bucketName: "images",
-//   });
-// });
 const Grid = require("gridfs-stream");
 let gfs1;
 mongoose.connection.once("open", () => {
@@ -198,20 +133,7 @@ mongoose.connection.once("open", () => {
 
 router.get("/api/files/view/:id", (req, res) => {
   const fileId = req.params.id;
-  console.log("Files: " + req.params.id);
-  // gfs1.files.findOne({ _id: fileId }, (err, file) => {
-  //   if (!file || file.length === 0) {
-  //     return res.status(404).json({
-  //       err: "No files exist",
-  //     });
-  //   }
-  // const readstream = gfs1.createReadStream(
-  //   `7217c83dafb3f884f53df9a14896866a.pdf`
-  // );
-  // res.set("Content-Type", file.contentType);
-  // return readstream.pipe(res);
-
-  // });
+  // console.log("Files: " + req.params.id);
 
   const downloadStream = gfs.openDownloadStream(new ObjectId(fileId));
   downloadStream.on("error", () => {
@@ -223,9 +145,20 @@ router.get("/api/files/view/:id", (req, res) => {
   downloadStream.pipe(res);
 });
 
-// In the updated code:
-
-// We use gfs.files.findOne instead of gfs.files.find to retrieve the file with the given ID. This returns a
+router.get("/file/delete/:id", (req, res) => {
+  const fileId = req.params.id;
+  // const { imageId } = req.body;
+  console.log("File id: " + fileId);
+  const _id = new mongoose.Types.ObjectId(fileId);
+  gfs.delete(_id, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error deleting file");
+    } else {
+      console.log("File deleted successfully");
+      res.status(200).send("File deleted successfully");
+    }
+  });
+});
 
 module.exports = router;
-// filename= "27431f4c4421b3a61fe30853540f0644.pdf"
