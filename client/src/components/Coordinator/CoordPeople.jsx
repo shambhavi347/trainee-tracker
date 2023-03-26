@@ -18,7 +18,7 @@ var trainee_tile = {
   color: "#eeeeee",
 };
 var trainee_tile_div1 = {
-  padding: "1% 1%",
+  padding: "2%",
   width: "49%",
   backgroundColor: "#222831",
   float: "left",
@@ -37,7 +37,7 @@ var trainee_tile1 = {
 };
 
 var group_tile_div1 = {
-  padding: "2% 2%",
+  padding: "2%",
   width: "49%",
 
   backgroundColor: "#222831",
@@ -58,6 +58,7 @@ var group_tile1 = {
 const CoordPeople = () => {
   var date, dob1;
   const [mentor, setMentor] = useState([]);
+  const [traineeList, setTraineeList] = useState([]);
   const [trainee, setTrainee] = useState([]);
   const [traineeEx, setTraineeEx] = useState(false);
   const [traineeVal, setTraineeVal] = useState([]);
@@ -83,13 +84,20 @@ const CoordPeople = () => {
     const fetchCoordName = async () => {
       try {
         const data = await getTraineeDeets();
-        if (data) setTrainee(data);
+        if (data) {
+          setTraineeList(data);
+          if (trainee.length === 0 && groupList.length === 0)
+            setTrainee(traineeList);
+          console.log(traineeList.length + " " + groupList.length);
+        }
       } catch (error) {
         console.log(error);
       }
     };
     fetchCoordName();
-  }, [trainee]);
+  }, [traineeList]);
+
+  //expand button function
 
   const handleExpandTrainee = (val) => {
     setTraineeEx(true);
@@ -102,10 +110,15 @@ const CoordPeople = () => {
     dob1 = date.toLocaleDateString("en-US");
   }
 
+  // useEffect(() => {}, [groupList]);
+
+  //add trainee to group list on click of button
   const addGroup = (val) => {
     // setGroupTileDiv(group_tile_div1);
     setTraineeTileDiv(trainee_tile_div1);
     setTraineeTile(trainee_tile1);
+    setTrainee(trainee.filter((item) => item._id !== val._id));
+    setGroupList([...groupList, val]);
     // groupList.map((value) => {
     //   console.log(value.email + " " + val.email);
     //   if (value.email !== val.email) console.log("false");
@@ -115,6 +128,21 @@ const CoordPeople = () => {
     //   setGroupList([...groupList, val]);
     // }
   };
+
+  //remove trainee from group list and add it back to trainee
+  const removeGroup = (val) => {
+    setGroupList(groupList.filter((item) => item._id !== val._id));
+    setTrainee([...trainee, val]);
+  };
+
+  //change css back file groupList is empty
+  useEffect(() => {
+    if (groupList.length === 0) {
+      setTraineeTileDiv(trainee_tile_div);
+      setTraineeTile(trainee_tile);
+    }
+  }, [groupList]);
+
   // console.log(groupList);
   return (
     <>
@@ -172,10 +200,33 @@ const CoordPeople = () => {
           </div>
           {groupList.length ? (
             <>
+              {/* style={group_tile1} */}
               <div style={group_tile_div1}>
-                {groupList.map((Val) => (
+                {groupList.map((val) => (
                   <>
-                    <div style={group_tile1}>{Val.first_name}</div>
+                    {/* <div >{Val.first_name}</div> */}
+                    <div style={group_tile1}>
+                      {val.prefix} {val.first_name} {val.middle_name}{" "}
+                      {val.last_name}
+                      <div
+                        className="check-div-coord"
+                        onClick={() => removeGroup(val)}
+                      >
+                        <img
+                          src="./Images/remove.png"
+                          alt=""
+                          className="check-img"
+                        />
+                      </div>
+                      <div className="expnd-img-coord">
+                        <img
+                          src={expand}
+                          alt=""
+                          className="downarrow-img "
+                          onClick={() => handleExpandTrainee(val)}
+                        />
+                      </div>
+                    </div>
                   </>
                 ))}
               </div>
