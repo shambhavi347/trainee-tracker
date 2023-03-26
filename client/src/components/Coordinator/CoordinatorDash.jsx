@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavBar3 from "../NavBar3";
+import NavBarCoord from "../NavBarCoord";
 import CoordPeople from "../Coordinator/CoordPeople";
 import CoordProject from "../Coordinator/CoordProject";
 import CoordDiscussion from "../Coordinator/CoordDiscussion";
@@ -12,7 +12,7 @@ const CoordinatorDash = () => {
 
   return (
     <>
-      <NavBar3 />
+      <NavBarCoord />
       <div className="selector-coord-home">
         <div className="btn-select-coord-home">
           <button
