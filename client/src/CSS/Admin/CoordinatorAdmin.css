@@ -14,7 +14,7 @@
   overflow-y: auto;
 }
 .coord-form-body {
-  margin-left: 8%;
+  margin-left: 3%;
 }
 .coord-panel {
   color: #00adb5;
@@ -23,7 +23,7 @@
 .coord-form-name {
   margin: 1%;
   padding: 1%;
-  width: 30%;
+  width: 20%;
   border-radius: 10px;
   background-color: #393e46;
   border: 1px #00adb5 solid;
@@ -47,7 +47,7 @@
   border: 1px #eeeeee solid;
   color: #eeeeee;
   font-weight: bold;
-  margin-left: 3%;
+  margin-left: 1%;
 }
 .coord-btn:hover {
   background-color: #eeeeee;

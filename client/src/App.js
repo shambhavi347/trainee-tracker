@@ -4,7 +4,8 @@ import MainPage from "./components/MainPage";
 import RegInstitute from "./components/Institute/RegInstitute";
 import AdminDash from "./components/Admin/AdminDash";
 import Home from "./components/Institute/Home";
-import RegCoordinator from "./components/Coordinator/RegCoordinator";
+// import RegCoordinator from "./components/Coordinator/RegCoordinator";
+import CoordReg from "./components/Coordinator/CoordReg";
 import CoordinatorDash from "./components/Coordinator/CoordinatorDash";
 import StudDash from "./components/Student/StudDash";
 import TraineeReg from "./components/Student/TraineeReg";
@@ -32,7 +33,9 @@ const App = () => {
           <Route path="/admin-dashboard" element={<AdminDash />} />
           <Route path="/reg-stud" element={<StudReg />} />
           <Route path="/institute-home" element={<Home />} />
-          <Route path="/reg-coordinator" element={<RegCoordinator />} />
+          {/* <Route path="/reg-coordinator" element={<RegCoordinator />} /> */}
+          <Route path="/reg-coord" element={<CoordReg />} />
+
           <Route path="/coordinator-home" element={<CoordinatorDash />} />
           <Route path="/trainee-dashboard" element={<StudDash />} />
           <Route path="/trainee-reg" element={<TraineeReg />} />

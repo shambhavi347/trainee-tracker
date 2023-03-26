@@ -501,3 +501,23 @@ export const getCoordinatorData = async () => {
     console.log(error);
   }
 };
+
+export const getCoordName = async () => {
+  try {
+    let respone = await axios.get("/get-coord-name");
+    // console.log("Res: " + respone);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTraineeDeets = async () => {
+  try {
+    let respone = await axios.get("/get-trainee-details");
+    // console.log("Res: " + respone);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

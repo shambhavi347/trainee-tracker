@@ -4,13 +4,32 @@ require("../db/database");
 router.use(express.static("../client/src/"));
 const Coordinator = require("../model/coordinatorSchema");
 const Invitation = require("../model/invitationSchema");
+const coordAuthenticate = require("../middleware/coordAuth");
+const Class = require("../model/classSchema");
+const Student = require("../model/studentSchema");
 
 router.post("/coordinator-reg", async (req, res) => {
   try {
-    const { salutation, name, email, phone, password } = req.body;
+    const {
+      salutation,
+      first_name,
+      middle_name,
+      last_name,
+      email,
+      phone,
+      password,
+    } = req.body;
     console.log(req.body);
     //checks if all the fields are filled or not
-    if (!salutation || !name || !email || !phone || !password) {
+    if (
+      !salutation ||
+      !first_name ||
+      !middle_name ||
+      !last_name ||
+      !email ||
+      !phone ||
+      !password
+    ) {
       return res
         .status(422)
         .json({ error: "Please fill all the fields properly" });
@@ -72,7 +91,9 @@ router.post("/coordinator-reg", async (req, res) => {
     //if both key and value are same then you dont need to write name of both like name:name
     const coordinator = new Coordinator({
       salutation,
-      name,
+      first_name,
+      middle_name,
+      last_name,
       email,
       phone,
       password,
@@ -80,15 +101,47 @@ router.post("/coordinator-reg", async (req, res) => {
     const coordinatorReg = await coordinator.save();
     if (coordinatorReg) {
       {
-        await Invitation.findOneAndDelete({ email: email });
+        // await Invitation.findOneAndDelete({ email: email });
         res.status(201).json({ message: "You are successfully registered!✌" });
       }
     } else {
-      res.status(500).json({ error: "Failed to register☹" });
+      res.status(422).json({ error: "Failed to register☹" });
     }
   } catch (err) {
     console.log(err);
   }
+});
+
+router.get("/get-coord-name", coordAuthenticate, async (req, res) => {
+  try {
+    const id = req.rootUser._id;
+    // console.log(id);
+    const coor = await Coordinator.findOne({ _id: id });
+    // console.log(coor);
+    res.send(coor);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-trainee-details", coordAuthenticate, async (req, res) => {
+  let trainee_id = [];
+  Class.find({ coordinatorID: req.rootUser._id })
+    .then((data) => {
+      data.map((d, k) => {
+        trainee_id.push(d.traineeID);
+      });
+      Student.find({
+        _id: { $in: trainee_id },
+      })
+        .then((data) => res.send(data))
+        .catch((error) => {
+          console.log(error);
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 module.exports = router;

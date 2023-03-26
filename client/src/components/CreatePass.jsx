@@ -70,7 +70,7 @@ const CreatePass = () => {
     const reason = await res.json();
     console.log(reason);
 
-    if (res.status === 400) {
+    if (res.status === 422) {
       window.alert(reason.error);
     } else {
       setChangePass(true);

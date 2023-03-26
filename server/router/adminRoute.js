@@ -33,6 +33,7 @@ router.post("/admin-login", async (req, res) => {
     const adminLogin = await Admin.findOne({ email: email });
     const instLogin = await Institute.findOne({ email: email });
     const traineeLogin = await Trainee.findOne({ email: email });
+    const coordLogin = await Coordinator.findOne({ email: email });
 
     if (adminLogin) {
       token = await adminLogin.generateAuthToken();
@@ -73,6 +74,21 @@ router.post("/admin-login", async (req, res) => {
         res.status(400).json({ error: "Incorrect Password" });
       } else {
         res.status(200).json({ message: "Trainee" });
+      }
+    } else if (coordLogin) {
+      token = await coordLogin.generateAuthToken();
+      res.cookie("jwtoken", token, {
+        expires: new Date(Date.now() + 25892000000),
+        httpOnly: true,
+      });
+      console.log(password);
+      //third validation - password matching
+      const isMatch = await bcrypt.compare(password, coordLogin.password);
+      console.log(isMatch);
+      if (!isMatch) {
+        res.status(400).json({ error: "Incorrect Password" });
+      } else {
+        res.status(200).json({ message: "Coordinator" });
       }
     } else {
       res.status(400).json({ error: "Invalid Credientials" });
@@ -612,7 +628,7 @@ router.post("/accept-student", adminAuthenticate, async (req, res) => {
 //     if (info.messageId) {
 //       await Student.findOneAndUpdate(
 //         { email: email },
-//         { $set: { status: "accept" } }
+//         { $set: { status: "mail sent" } }
 //       );
 //       res.send("Mail Sent");
 //     } else {
@@ -665,7 +681,7 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
 //     if (info.messageId) {
 //       await Student.findOneAndUpdate(
 //         { email: email },
-//         { $set: { status: "reject" } }
+//         { $set: { status: "mail not sent" } }
 //       );
 //       res.send("Mail Sent");
 //     } else {
@@ -679,7 +695,8 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
 //coord Invitation
 router.post("/reg-coord", adminAuthenticate, async (req, res) => {
   try {
-    const { salutation, first_name, last_name, email, date } = req.body;
+    const { salutation, first_name, middle_name, last_name, email, date } =
+      req.body;
     console.log(req.body);
     if (!salutation) {
       return res.status(422).json({ error: "Fill the salutation field !!\n" });
@@ -687,6 +704,9 @@ router.post("/reg-coord", adminAuthenticate, async (req, res) => {
     if (!first_name) {
       return res.status(422).json({ error: "Fill the First Name !!\n" });
     }
+    // if (!middle_name) {
+    //   return res.status(422).json({ error: "Fill the Middle Name !!\n" });
+    // }
     if (!last_name) {
       return res.status(422).json({ error: "Fill the Last Name !!\n" });
     }
@@ -759,14 +779,15 @@ router.post("/reg-coord", adminAuthenticate, async (req, res) => {
       from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
       to: email, // list of receivers
       subject: "CDAC Coordinator Registration", // Subject line
-      text: "Hello ${salutation} ${first_name} !! You have been selected as coordinator in our internship program. Kindly Register yourself Link : http://localhost:3000/reg-coordinator", // plain text body
-      html: " <b>Hello ${salutation} ${first_name}  !! You have been selected as coordinator in our internship program. Kindly Register yourself Link : http://localhost:3000/reg-coordinator</b>", // html body
+      text: `Hello ${salutation} ${first_name} !! You have been selected as coordinator in our internship program. Kindly Register yourself Link : http://localhost:3000/reg-coord`, // plain text body
+      html: ` <b>Hello ${salutation} ${first_name}  !! You have been selected as coord in our internship program. Kindly Register yourself Link : http://localhost:3000/reg-coord</b>`, // html body
     });
     if (info.messageId) {
       const user = new Invitation({
         salutation,
         first_name,
         last_name,
+        middle_name,
         email,
         date,
       });
@@ -999,7 +1020,7 @@ router.post("/create-pass", async (req, res) => {
           .json({ error: "Do not use Old Password! Create a new one" });
       const new_pass_hash = await bcrypt.hash(password, 12);
       const update = await Admin.findOneAndUpdate(
-        { _id: req.userId },
+        { _id: userId },
         { password: new_pass_hash }
       );
       if (update) {
@@ -1017,7 +1038,7 @@ router.post("/create-pass", async (req, res) => {
             .json({ error: "Do not use Old Password! Create a new one" });
         const new_pass_hash = await bcrypt.hash(password, 12);
         const update = await Trainee.findOneAndUpdate(
-          { _id: req.userId },
+          { _id: userId },
           { password: new_pass_hash }
         );
         if (update) {
@@ -1026,16 +1047,19 @@ router.post("/create-pass", async (req, res) => {
           res.status(422).json({ error: "Failed to update" });
         }
       } else {
+        console.log("coordinator");
         const coord = await Coordinator.findOne({ _id: userId });
         if (coord) {
           const isMatch = await bcrypt.compare(password, coord.password);
-          if (isMatch)
+          console.log(isMatch);
+          if (isMatch) {
             return res
               .status(422)
               .json({ error: "Do not use Old Password! Create a new one" });
+          }
           const new_pass_hash = await bcrypt.hash(password, 12);
           const update = await Coordinator.findOneAndUpdate(
-            { _id: req.userId },
+            { _id: userId },
             { password: new_pass_hash }
           );
           if (update) {
@@ -1053,7 +1077,7 @@ router.post("/create-pass", async (req, res) => {
                 .json({ error: "Do not use Old Password! Create a new one" });
             const new_pass_hash = await bcrypt.hash(password, 12);
             const update = await Institute.findOneAndUpdate(
-              { _id: req.userId },
+              { _id: userId },
               { password: new_pass_hash }
             );
             if (update) {

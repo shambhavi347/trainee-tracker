@@ -71,7 +71,7 @@ const RegInstitute = () => {
     landline: "",
     extension: "",
     phoneno: "",
-    status: "pending",
+    status: "",
     salutation: "",
     coordfirstName: "",
     coordmiddleName: "",
@@ -170,7 +170,6 @@ const RegInstitute = () => {
       coordEmail,
       coordPhone,
       password,
-      password2,
     } = userRegistration;
 
     const res = await fetch("/institute-reg", {
@@ -204,7 +203,6 @@ const RegInstitute = () => {
         coordEmail,
         coordPhone,
         password,
-        password2,
       }),
     });
 
@@ -411,6 +409,7 @@ const RegInstitute = () => {
                       placeholder="Landline number *"
                       value={userRegistration.landline}
                       onChange={setValue}
+                      name="landline"
                     />
                   </div>
 
@@ -589,7 +588,7 @@ const RegInstitute = () => {
                     autoComplete="off"
                     value={userRegistration.password2}
                     onChange={checkValidation}
-                    name="Confirm password"
+                    name="password2"
                     id="Confirm password"
                     placeholder="Confirm Password *"
                   />
