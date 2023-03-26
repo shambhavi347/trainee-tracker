@@ -253,5 +253,68 @@ router.get(
     }
   }
 );
+//logout page
+router.get("/logout", instituteAuthenticate, async (req, res) => {
+  try {
+    req.rootUser.tokens = req.rootUser.tokens.filter((currtoken) => {
+      return currtoken.token != req.token;
+    });
+    res.clearCookie("jwtoken");
+    console.log("log out successfully");
+    await req.rootUser.save();
+    res.render("/");
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
+//change password
+router.post(
+  "/change-password-inst",
+  instituteAuthenticate,
+  async (req, res) => {
+    const { old_pass, new_pass } = req.body;
+    // console.log(req.body);
+
+    //checks if all the fields are filled or not
+    if (!old_pass || !new_pass) {
+      return res
+        .status(422)
+        .json({ error: "Please fill all the fields properly" });
+    }
+    // console.log("Success");
+    try {
+      //check password is correct
+      const inst1 = await Institute.findOne({});
+      const isMatch = await bcrypt.compare(new_pass, inst1.password);
+      if (!isMatch)
+        return res.status(422).json({ error: "Password Incorrect" });
+
+      //check password format
+      const passwordRegex =
+        /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+      const passwordValid = passwordRegex.test(new_pass);
+      if (!passwordValid) {
+        return res.status(422).json({
+          error:
+            "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!",
+        });
+      }
+      const new_pass_hash = await bcrypt.hash(new_pass, 12);
+      //if both key and value are same then you dont need to write name of both like name:name
+      const update = await Institute.findOneAndUpdate(
+        { _id: req.rootUser.id },
+        { password: new_pass_hash }
+      );
+
+      if (update) {
+        res.status(201).json({ message: "Password Updated" });
+      } else {
+        res.status(422).json({ error: "Failed to update" });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
 module.exports = router;
