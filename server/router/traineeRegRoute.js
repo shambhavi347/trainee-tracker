@@ -140,9 +140,10 @@ router.post(
       //check password is correct
       const traineee = await trainee.findOne({ _id: req.rootUser.id });
       const isMatch = await bcrypt.compare(new_pass, traineee.password);
-      if (!isMatch)
-        return res.status(422).json({ error: "Password Incorrect" });
-
+      {
+        if (!isMatch)
+    return res.status(422).json({ error: "Password Incorrect" });
+      }
       //check password format
       const passwordRegex =
         /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
