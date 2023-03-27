@@ -1,9 +1,9 @@
 import React from 'react'
 
-const TraineeDiscuss = () => {
+function TraineeDiscuss() {
   return (
     <div>
-      discuss page !!!
+      Discuss Something
     </div>
   )
 }

@@ -14,6 +14,7 @@ const Student = require("../model/studentSchema");
 const Invitation = require("../model/invitationSchema");
 const Coordinator = require("../model/coordinatorSchema");
 const Class = require("../model/classSchema");
+const MessageSent = require("../model/MessageSentSchema");
 
 //adminlogin
 router.post("/admin-login", async (req, res) => {
@@ -1276,5 +1277,36 @@ router.get("/get-passout-year-class", adminAuthenticate, async (req, res) => {
     console.log(error);
   }
 });
+
+router.post("/send_message", adminAuthenticate, async (req, res) => {
+  try {
+    const { message } = req.body;
+    if (!message) {
+      return res.status(422).json({ error: "Write Something to Post" });
+    }
+    const trainee_list = [];
+    const ID = req.rootUser.id;
+    const Coord = await Class.findOne({ _id: ID });
+    const trainees = await Class.find({ coordinatorID : Coord });
+    trainees.map((val) => trainee_list.push(val.traineeID));
+    const user = new MessageSent({
+      message,
+      Coord,
+      trainee_list
+    });
+    console.log("trainee list")
+    console.log(trainee_list)
+    console.log("coord id")
+    console.log(Coord)
+    console.log("message")
+    console.log(message)
+    await user.save();
+    res.status(201).json({ message: "Message sent !!" });
+    // res.send("Message sent");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 
 module.exports = router;
