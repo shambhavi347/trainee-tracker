@@ -18,7 +18,25 @@ const instituteSchema = new mongoose.Schema({
       }
     },
   },
-  month: {
+  smonth: {
+    type: String,
+    enum: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+    required: true,
+  },
+  emonth: {
     type: String,
     enum: [
       "January",
@@ -141,7 +159,6 @@ const instituteSchema = new mongoose.Schema({
   },
   confirmPassword: {
     type: String,
-    required: true,
   },
   tokens: [
     {

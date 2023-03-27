@@ -33,39 +33,142 @@ router.post("/institute-reg", async (req, res) => {
     coordEmail,
     coordPhone,
     password,
-    confirmPassword,
   } = req.body;
   console.log(req.body);
 
   //checks if all the fields are filled or not
-  if (
-    !name ||
-    !email ||
-    !smonth ||
-    !emonth ||
-    !duration ||
-    !rating ||
-    !rvalue ||
-    !type ||
-    !addressline1 ||
-    !city ||
-    !state ||
-    !country ||
-    !zipcode ||
-    !landline ||
-    !extension ||
-    !status ||
-    !salutation ||
-    !coordfirstName ||
-    !coordlastName ||
-    !coordEmail ||
-    !coordPhone ||
-    !password ||
-    !confirmPassword
-  ) {
+  // if (
+  //   !name ||
+  //   !email ||
+  //   !smonth ||
+  //   !emonth ||
+  //   !duration ||
+  //   !rating ||
+  //   !rvalue ||
+  //   !type ||
+  //   !addressline1 ||
+  //   !city ||
+  //   !state ||
+  //   !country ||
+  //   !zipcode ||
+  //   !landline ||
+  //   !status ||
+  //   !salutation ||
+  //   !coordfirstName ||
+  //   !coordlastName ||
+  //   !coordEmail ||
+  //   !coordPhone ||
+  //   !password ||
+  //   !confirmPassword
+  // ) {
+  //   return res
+  //     .status(422)
+  //     .json({ error: "Please fill all the fields properly" });
+  // }
+  if (!name) {
     return res
       .status(422)
-      .json({ error: "Please fill all the fields properly" });
+      .json({ error: "Please fill the Name" });
+  }
+  if (!email) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Email Id" });
+  }
+  if (!smonth) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Start Month" });
+  }
+  if (!emonth) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the End Month" });
+  }
+  if (!duration) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Duration" });
+  }
+  if (!rating) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Institute Rating" });
+  }
+  if (!rvalue) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Rated Value of your Institute" });
+  }
+  if (!type) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Institute Type" });
+  }
+  if (!addressline1) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Address" });
+  }
+  if (!city) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the City" });
+  }
+  if (!state) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the State" });
+  }
+  if (!country) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Country" });
+  }
+  if (!zipcode) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Zipcode" });
+  }
+  if (!landline) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Landline no" });
+  }
+  if (!status) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Status of Application" });
+  }
+  if (!salutation) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Salutation" });
+  }
+  if (!coordfirstName) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Coordinator's First Name" });
+  }
+  if (!coordlastName) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Coordinator's Last Name" });
+  }
+  if (!coordEmail) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Coordinator's Email Id" });
+  }
+  if (!coordPhone) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Coordinator's phone no" });
+  }
+  if (!password) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Password" });
   }
   // console.log("Success");
   try {
@@ -138,12 +241,12 @@ router.post("/institute-reg", async (req, res) => {
     }
 
     //check institute phone format
-    const phoneRegex = /^[6-9]\d{9}$/gi;
-    const phoneValid = phoneRegex.test(phoneno);
+    // const phoneRegex = /^\d{5,8}$/gi;
+    // const phoneValid = phoneRegex.test(phoneno);
 
-    if (!phoneValid) {
-      return res.status(422).json({ error: "Invalid Phone no.!!\n" });
-    }
+    // if (!phoneValid) {
+    //   return res.status(422).json({ error: "Invalid Landline no.!!\n" });
+    // }
 
     //check coordinator phone format
     const regexPhone = /^[6-9]\d{9}$/gi;
@@ -165,10 +268,10 @@ router.post("/institute-reg", async (req, res) => {
     }
 
     //confirmPassword
-    if (password !== confirmPassword) {
-      res.status(400).json({ error: "Passwords do not match" });
-      return;
-    }
+    // if (password !== confirmPassword) {
+    //   res.status(400).json({ error: "Passwords do not match" });
+    //   return;
+    // }
 
     //if both key and value are same then you dont need to write name of both like name:name
     const institute = new Institute({
@@ -197,7 +300,6 @@ router.post("/institute-reg", async (req, res) => {
       coordEmail,
       coordPhone,
       password,
-      confirmPassword,
     });
     const instituteReg = await institute.save();
     if (instituteReg) {
