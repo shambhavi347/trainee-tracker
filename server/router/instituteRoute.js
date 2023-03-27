@@ -285,8 +285,8 @@ router.post(
     // console.log("Success");
     try {
       //check password is correct
-      const inst1 = await Institute.findOne({});
-      const isMatch = await bcrypt.compare(new_pass, inst1.password);
+      const inst1 = await Institute.findOne({ _id: req.rootUser.id });
+      const isMatch = await bcrypt.compare(old_pass, inst1.password);
       if (!isMatch)
         return res.status(422).json({ error: "Password Incorrect" });
 

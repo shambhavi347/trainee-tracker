@@ -172,8 +172,8 @@ router.post("/change-password-coord", coordAuthenticate, async (req, res) => {
   // console.log("Success");
   try {
     //check password is correct
-    const coord1 = await Coordinator.findOne({});
-    const isMatch = await bcrypt.compare(new_pass, coord1.password);
+    const coord1 = await Coordinator.findOne({ _id: req.rootUser.id });
+    const isMatch = await bcrypt.compare(old_pass, coord1.password);
     if (!isMatch) return res.status(422).json({ error: "Password Incorrect" });
 
     //check password format

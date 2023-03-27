@@ -888,7 +888,7 @@ router.post("/change-password", adminAuthenticate, async (req, res) => {
   try {
     //check password is correct
     const admin = await Admin.findOne({});
-    const isMatch = await bcrypt.compare(new_pass, admin.password);
+    const isMatch = await bcrypt.compare(old_pass, admin.password);
     if (!isMatch) return res.status(422).json({ error: "Password Incorrect" });
 
     //check password format

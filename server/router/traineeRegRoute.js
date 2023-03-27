@@ -127,7 +127,7 @@ router.post(
   traineeAuthenticate,
   async (req, res) => {
     const { old_pass, new_pass } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
     //checks if all the fields are filled or not
     if (!old_pass || !new_pass) {
@@ -138,12 +138,12 @@ router.post(
     // console.log("Success");
     try {
       //check password is correct
-      const traineee = await trainee.findOne({ _id: req.rootUser.id });
-      const isMatch = await bcrypt.compare(new_pass, traineee.password);
-      {
-        if (!isMatch)
-    return res.status(422).json({ error: "Password Incorrect" });
-      }
+      const trainees = await Trainee.findOne({ _id: req.rootUser.id });
+      // console.log(trainees);
+      const isMatch = await bcrypt.compare(old_pass, trainees.password);
+      if (!isMatch)
+        return res.status(422).json({ error: "Password Incorrect" });
+
       //check password format
       const passwordRegex =
         /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -156,7 +156,7 @@ router.post(
       }
       const new_pass_hash = await bcrypt.hash(new_pass, 12);
       //if both key and value are same then you dont need to write name of both like name:name
-      const update = await trainee.findOneAndUpdate(
+      const update = await Trainee.findOneAndUpdate(
         { _id: req.rootUser.id },
         { password: new_pass_hash }
       );
@@ -164,7 +164,7 @@ router.post(
       if (update) {
         res.status(201).json({ message: "Password Updated" });
       } else {
-        res.status(500).json({ error: "Failed to update" });
+        res.status(422).json({ error: "Failed to update" });
       }
     } catch (err) {
       console.log(err);
