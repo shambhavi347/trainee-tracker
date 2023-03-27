@@ -65,6 +65,9 @@ const CoordPeople = () => {
   const [groupList, setGroupList] = useState([]);
   const [traineeTileDiv, setTraineeTileDiv] = useState(trainee_tile_div);
   const [traineeTile, setTraineeTile] = useState(trainee_tile);
+  const [count, setCount] = useState(1);
+  const [groups, setGroups] = useState([]);
+  // const [groupss, setGroupss] = useState([]);
   // const [groupTileDiv, setGroupTileDiv] = useState(group_tile_div1);
 
   //get coordinator details
@@ -88,7 +91,6 @@ const CoordPeople = () => {
           setTraineeList(data);
           if (trainee.length === 0 && groupList.length === 0)
             setTrainee(traineeList);
-          console.log(traineeList.length + " " + groupList.length);
         }
       } catch (error) {
         console.log(error);
@@ -119,14 +121,6 @@ const CoordPeople = () => {
     setTraineeTile(trainee_tile1);
     setTrainee(trainee.filter((item) => item._id !== val._id));
     setGroupList([...groupList, val]);
-    // groupList.map((value) => {
-    //   console.log(value.email + " " + val.email);
-    //   if (value.email !== val.email) console.log("false");
-    // });
-    // if (groupList.includes(val) === true) {
-    //   console.log("dup");
-    //   setGroupList([...groupList, val]);
-    // }
   };
 
   //remove trainee from group list and add it back to trainee
@@ -135,7 +129,7 @@ const CoordPeople = () => {
     setTrainee([...trainee, val]);
   };
 
-  //change css back file groupList is empty
+  //change css back when file groupList is empty
   useEffect(() => {
     if (groupList.length === 0) {
       setTraineeTileDiv(trainee_tile_div);
@@ -143,7 +137,26 @@ const CoordPeople = () => {
     }
   }, [groupList]);
 
-  // console.log(groupList);
+  let groupss = [{}];
+  const createGroup = () => {
+    let name1 = "group " + count;
+    const groupee = {
+      name: "",
+      members: "",
+    };
+    setCount((prev) => prev + 1);
+
+    groupee["name"] = name1;
+    groupee["members"] = groupList;
+    groupss.push(groupee);
+
+    // setSearches((searches) => [...searches, query]);
+    setGroups([...groups, [groupee]]);
+    groups.map((val) => console.log(val));
+    console.log(groups);
+    setGroupList([]);
+  };
+
   return (
     <>
       <div className="coord-people-divUp">
@@ -159,7 +172,9 @@ const CoordPeople = () => {
           <h2 className="traineeTitle">
             <div className="titleTrainee">Trainee </div>
             {groupList.length ? (
-              <button className="create-grp">Create Group</button>
+              <button className="create-grp" onClick={createGroup}>
+                Create Group
+              </button>
             ) : null}
             <div className="traineeStrength">{trainee.length}</div>
           </h2>
