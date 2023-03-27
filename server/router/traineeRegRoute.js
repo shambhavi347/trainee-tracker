@@ -9,7 +9,9 @@ const student = require("../model/studentSchema");
 const trainee = require("../model/traineeSchema");
 const traineeAuthenticate = require("../middleware/traineeauth");
 const Student = require("../model/studentSchema");
-
+const Class = require("../model/classSchema");
+const Coordinator = require("../model/coordinatorSchema");
+const Trainee = require("../model/traineeSchema");
 //trainee Regestration
 router.post("/trainee-reg", async (req, res) => {
   try {
@@ -125,7 +127,7 @@ router.post(
   traineeAuthenticate,
   async (req, res) => {
     const { old_pass, new_pass } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
     //checks if all the fields are filled or not
     if (!old_pass || !new_pass) {
@@ -136,8 +138,9 @@ router.post(
     // console.log("Success");
     try {
       //check password is correct
-      const traineee = await trainee.findOne({ _id: req.rootUser.id });
-      const isMatch = await bcrypt.compare(new_pass, traineee.password);
+      const trainees = await Trainee.findOne({ _id: req.rootUser.id });
+      // console.log(trainees);
+      const isMatch = await bcrypt.compare(old_pass, trainees.password);
       if (!isMatch)
         return res.status(422).json({ error: "Password Incorrect" });
 
@@ -153,7 +156,7 @@ router.post(
       }
       const new_pass_hash = await bcrypt.hash(new_pass, 12);
       //if both key and value are same then you dont need to write name of both like name:name
-      const update = await trainee.findOneAndUpdate(
+      const update = await Trainee.findOneAndUpdate(
         { _id: req.rootUser.id },
         { password: new_pass_hash }
       );
@@ -161,7 +164,7 @@ router.post(
       if (update) {
         res.status(201).json({ message: "Password Updated" });
       } else {
-        res.status(500).json({ error: "Failed to update" });
+        res.status(422).json({ error: "Failed to update" });
       }
     } catch (err) {
       console.log(err);
@@ -224,23 +227,38 @@ router.post("/update", traineeAuthenticate, async (req, res) => {
   }
 });
 
-// router.get("/get-trainee-list", traineeAuthenticate, async (req, res) => {
-//   try {
-//     const id = req.rootUser._id;
-//     const inst = await trainee.findOne({ trainee_id: id });
-//     const class = await trainee.find({coord_id : inst.coord_id});
-//     res.send(class);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
-//
 // traineeAuthenticate => const id = req.rootUser._id; => your object id
 
 // const coord_id = await Class.find({traineeID: id})
 // const clases = await Class.find({coordinatorId: coord_id})
 
 // res.send(classes)
+router.get("/get-trainee-Data", traineeAuthenticate, async (req, res) => {
+  try {
+    let Traineeid = [];
+
+    const id = req.rootUser._id;
+    const idofcoor = await Class.findOne({ traineeID: id });
+    const trada = await Class.find({ coordinatorId: idofcoor });
+    trada.map((val) => Traineeid.push(val.traineeID));
+    const tname = await Student.find({ _id: { $in: Traineeid } });
+
+    res.send(tname);
+  } catch (error) {
+    console.log(error);
+  }
+});
+router.get("/get-Coordinator-Data", traineeAuthenticate, async (req, res) => {
+  try {
+    const id = req.rootUser._id;
+    const stud_id = await Trainee.findOne({ _id: id });
+    const studentDeets = await Student.findOne({ email: stud_id.email });
+    const classes = await Class.findOne({ traineeID: studentDeets._id });
+    const coord = await Coordinator.findOne({ _id: classes.coordinatorID });
+    res.send(coord);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;

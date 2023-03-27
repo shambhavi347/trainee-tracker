@@ -33,6 +33,7 @@ router.post("/admin-login", async (req, res) => {
     const adminLogin = await Admin.findOne({ email: email });
     const instLogin = await Institute.findOne({ email: email });
     const traineeLogin = await Trainee.findOne({ email: email });
+    const coordLogin = await Coordinator.findOne({ email: email });
 
     if (adminLogin) {
       token = await adminLogin.generateAuthToken();
@@ -73,6 +74,21 @@ router.post("/admin-login", async (req, res) => {
         res.status(400).json({ error: "Incorrect Password" });
       } else {
         res.status(200).json({ message: "Trainee" });
+      }
+    } else if (coordLogin) {
+      token = await coordLogin.generateAuthToken();
+      res.cookie("jwtoken", token, {
+        expires: new Date(Date.now() + 25892000000),
+        httpOnly: true,
+      });
+      console.log(password);
+      //third validation - password matching
+      const isMatch = await bcrypt.compare(password, coordLogin.password);
+      console.log(isMatch);
+      if (!isMatch) {
+        res.status(400).json({ error: "Incorrect Password" });
+      } else {
+        res.status(200).json({ message: "Coordinator" });
       }
     } else {
       res.status(400).json({ error: "Invalid Credientials" });
@@ -123,7 +139,15 @@ router.get("/get-pending-student", adminAuthenticate, async (req, res) => {
 
 router.get("/get-accept-student", adminAuthenticate, async (req, res) => {
   try {
-    const inst = await Student.find({ status: "selection accept" });
+    const inst = await Student.find({
+      $or: [
+        { status: "selection accept" },
+        { status: "mail sent" },
+        { status: "mail not sent" },
+        { status: "registered" },
+        { status: "assigned" },
+      ],
+    });
     res.send(inst);
   } catch (error) {
     console.log(error);
@@ -132,7 +156,7 @@ router.get("/get-accept-student", adminAuthenticate, async (req, res) => {
 
 router.get("/get-reject-student", adminAuthenticate, async (req, res) => {
   try {
-    const inst = await Student.find({ status: " selection reject" });
+    const inst = await Student.find({ status: "selection reject" });
     res.send(inst);
   } catch (error) {
     console.log(error);
@@ -300,7 +324,13 @@ router.get(
   async (req, res) => {
     try {
       const cat = await Student.distinct("instname", {
-        status: "selection accept",
+        $or: [
+          { status: "selection accept" },
+          { status: "mail sent" },
+          { status: "mail not sent" },
+          { status: "registered" },
+          { status: "assigned" },
+        ],
       });
       res.send(cat);
     } catch (error) {
@@ -345,7 +375,13 @@ router.get(
   async (req, res) => {
     try {
       const cat = await Student.distinct("stream", {
-        status: "selection accept",
+        $or: [
+          { status: "selection accept" },
+          { status: "mail sent" },
+          { status: "mail not sent" },
+          { status: "registered" },
+          { status: "assigned" },
+        ],
       });
       res.send(cat);
     } catch (error) {
@@ -390,7 +426,13 @@ router.get(
   async (req, res) => {
     try {
       const cat = await Student.distinct("course", {
-        status: "selection accept",
+        $or: [
+          { status: "selection accept" },
+          { status: "mail sent" },
+          { status: "mail not sent" },
+          { status: "registered" },
+          { status: "assigned" },
+        ],
       });
       res.send(cat);
     } catch (error) {
@@ -435,7 +477,13 @@ router.get(
   async (req, res) => {
     try {
       const cat = await Student.distinct("semester", {
-        status: "selection accept",
+        $or: [
+          { status: "selection accept" },
+          { status: "mail sent" },
+          { status: "mail not sent" },
+          { status: "registered" },
+          { status: "assigned" },
+        ],
       });
       res.send(cat);
     } catch (error) {
@@ -480,7 +528,13 @@ router.get(
   async (req, res) => {
     try {
       const cat = await Student.distinct("passout_year", {
-        status: "selection accept",
+        $or: [
+          { status: "selection accept" },
+          { status: "mail sent" },
+          { status: "mail not sent" },
+          { status: "registered" },
+          { status: "assigned" },
+        ],
       });
       res.send(cat);
     } catch (error) {
@@ -574,7 +628,7 @@ router.post("/accept-student", adminAuthenticate, async (req, res) => {
 //     if (info.messageId) {
 //       await Student.findOneAndUpdate(
 //         { email: email },
-//         { $set: { status: "accept" } }
+//         { $set: { status: "mail sent" } }
 //       );
 //       res.send("Mail Sent");
 //     } else {
@@ -591,7 +645,7 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
     const { email } = req.body;
     await Student.findOneAndUpdate(
       { email: email },
-      { $set: { status: "mail not sent" } }
+      { $set: { status: "selection reject" } }
     );
     res.send("Student Rejected");
   } catch (error) {
@@ -627,7 +681,7 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
 //     if (info.messageId) {
 //       await Student.findOneAndUpdate(
 //         { email: email },
-//         { $set: { status: "reject" } }
+//         { $set: { status: "mail not sent" } }
 //       );
 //       res.send("Mail Sent");
 //     } else {
@@ -641,7 +695,8 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
 //coord Invitation
 router.post("/reg-coord", adminAuthenticate, async (req, res) => {
   try {
-    const { salutation, first_name, last_name, email, date } = req.body;
+    const { salutation, first_name, middle_name, last_name, email, date } =
+      req.body;
     console.log(req.body);
     if (!salutation) {
       return res.status(422).json({ error: "Fill the salutation field !!\n" });
@@ -649,6 +704,9 @@ router.post("/reg-coord", adminAuthenticate, async (req, res) => {
     if (!first_name) {
       return res.status(422).json({ error: "Fill the First Name !!\n" });
     }
+    // if (!middle_name) {
+    //   return res.status(422).json({ error: "Fill the Middle Name !!\n" });
+    // }
     if (!last_name) {
       return res.status(422).json({ error: "Fill the Last Name !!\n" });
     }
@@ -721,14 +779,15 @@ router.post("/reg-coord", adminAuthenticate, async (req, res) => {
       from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
       to: email, // list of receivers
       subject: "CDAC Coordinator Registration", // Subject line
-      text: "Hello ${salutation} ${first_name} !! You have been selected as coordinator in our internship program. Kindly Register yourself Link : http://localhost:3000/reg-coordinator", // plain text body
-      html: " <b>Hello ${salutation} ${first_name}  !! You have been selected as coordinator in our internship program. Kindly Register yourself Link : http://localhost:3000/reg-coordinator</b>", // html body
+      text: `Hello ${salutation} ${first_name} !! You have been selected as coordinator in our internship program. Kindly Register yourself Link : http://localhost:3000/reg-coord`, // plain text body
+      html: ` <b>Hello ${salutation} ${first_name}  !! You have been selected as coord in our internship program. Kindly Register yourself Link : http://localhost:3000/reg-coord</b>`, // html body
     });
     if (info.messageId) {
       const user = new Invitation({
         salutation,
         first_name,
         last_name,
+        middle_name,
         email,
         date,
       });
@@ -829,7 +888,7 @@ router.post("/change-password", adminAuthenticate, async (req, res) => {
   try {
     //check password is correct
     const admin = await Admin.findOne({});
-    const isMatch = await bcrypt.compare(new_pass, admin.password);
+    const isMatch = await bcrypt.compare(old_pass, admin.password);
     if (!isMatch) return res.status(422).json({ error: "Password Incorrect" });
 
     //check password format
@@ -899,20 +958,21 @@ router.post("/forgot-pass", async (req, res) => {
         .status(422)
         .json({ error: "Fill the Email ID correctly !!\n" });
     }
-    const stud = await Student.findOne({ email: email });
+    const coord = await Coordinator.findOne({ email: email });
     const inst = await Institute.findOne({ email: email });
     const admin = await Admin.findOne({ email: email });
     const train = await Trainee.findOne({ email: email });
     let id;
-    if (stud || inst || admin || train) {
-      if (stud) id = stud._id;
+    if (coord || inst || admin || train) {
+      if (coord) id = coord._id;
       else if (inst) id = inst._id;
-      else if (admin) id = admin._id;
-      else id = train._id;
-      console.log("ID" + id);
+      else if (train) id = train._id;
+      // else if (admin) id = admin._id;
+      else id = admin._id;
+      // console.log("ID" + id);
       let testAccount = await nodemailer.createTestAccount();
       let link = "http://localhost:3000/create-password/" + id;
-      console.log(link);
+      // console.log(link);
       // create reusable transporter object using the default SMTP transport
       let transporter = nodemailer.createTransport({
         host: "smtp.ethereal.email",
@@ -950,7 +1010,105 @@ router.post("/forgot-pass", async (req, res) => {
 router.post("/create-pass", async (req, res) => {
   try {
     const { userId, password } = req.body;
-    console.log("hello change password" + userId + password);
+    console.log(userId);
+    const admin = await Admin.findOne({ _id: userId });
+    if (admin) {
+      const isMatch = await bcrypt.compare(password, admin.password);
+      if (isMatch)
+        return res
+          .status(422)
+          .json({ error: "Do not use Old Password! Create a new one" });
+      const new_pass_hash = await bcrypt.hash(password, 12);
+      const update = await Admin.findOneAndUpdate(
+        { _id: userId },
+        { password: new_pass_hash }
+      );
+      if (update) {
+        res.status(201).json({ message: "Password Updated" });
+      } else {
+        res.status(422).json({ error: "Failed to update" });
+      }
+    } else {
+      const trainee = await Trainee.findOne({ _id: userId });
+      if (trainee) {
+        const isMatch = await bcrypt.compare(password, trainee.password);
+        if (isMatch)
+          return res
+            .status(422)
+            .json({ error: "Do not use Old Password! Create a new one" });
+        const new_pass_hash = await bcrypt.hash(password, 12);
+        const update = await Trainee.findOneAndUpdate(
+          { _id: userId },
+          { password: new_pass_hash }
+        );
+        if (update) {
+          res.status(201).json({ message: "Password Updated" });
+        } else {
+          res.status(422).json({ error: "Failed to update" });
+        }
+      } else {
+        console.log("coordinator");
+        const coord = await Coordinator.findOne({ _id: userId });
+        if (coord) {
+          const isMatch = await bcrypt.compare(password, coord.password);
+          console.log(isMatch);
+          if (isMatch) {
+            return res
+              .status(422)
+              .json({ error: "Do not use Old Password! Create a new one" });
+          }
+          const new_pass_hash = await bcrypt.hash(password, 12);
+          const update = await Coordinator.findOneAndUpdate(
+            { _id: userId },
+            { password: new_pass_hash }
+          );
+          if (update) {
+            res.status(201).json({ message: "Password Updated" });
+          } else {
+            res.status(422).json({ error: "Failed to update" });
+          }
+        } else {
+          const Inst = await Institute.findOne({ _id: userId });
+          if (Inst) {
+            const isMatch = await bcrypt.compare(password, Inst.password);
+            if (isMatch)
+              return res
+                .status(422)
+                .json({ error: "Do not use Old Password! Create a new one" });
+            const new_pass_hash = await bcrypt.hash(password, 12);
+            const update = await Institute.findOneAndUpdate(
+              { _id: userId },
+              { password: new_pass_hash }
+            );
+            if (update) {
+              res.status(201).json({ message: "Password Updated" });
+            } else {
+              res.status(422).json({ error: "Failed to update" });
+            }
+          } else {
+            res.status(422).json({ error: "Unauthorised Access" });
+          }
+        }
+      }
+    }
+
+    // const isMatch = await bcrypt.compare(new_pass, admin.password);
+    // if (!isMatch) return res.status(422).json({ error: "Password Incorrect" });
+
+    // const new_pass_hash = await bcrypt.hash(new_pass, 12);
+    //if both key and value are same then you dont need to write name of both like name:name
+    // const update = await Admin.findOneAndUpdate(
+    //   { _id: req.rootUser.id },
+    //   { password: new_pass_hash }
+    // );
+
+    // if (update) {
+    //   res.status(201).json({ message: "Password Updated" });
+    // } else {
+    //   res.status(422).json({ error: "Failed to update" });
+    // }
+
+    // console.log("hello change password" + userId + password);
   } catch (error) {
     console.log(error);
   }

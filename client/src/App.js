@@ -4,7 +4,8 @@ import MainPage from "./components/MainPage";
 import RegInstitute from "./components/Institute/RegInstitute";
 import AdminDash from "./components/Admin/AdminDash";
 import Home from "./components/Institute/Home";
-import RegCoordinator from "./components/Coordinator/RegCoordinator";
+// import RegCoordinator from "./components/Coordinator/RegCoordinator";
+import CoordReg from "./components/Coordinator/CoordReg";
 import CoordinatorDash from "./components/Coordinator/CoordinatorDash";
 import StudDash from "./components/Student/StudDash";
 import TraineeReg from "./components/Student/TraineeReg";
@@ -19,6 +20,8 @@ import ForgotPass from "./components/ForgotPass";
 import CreatePass from "./components/CreatePass";
 import StudReg from "./components/Student/StudReg";
 import WatchTrainee from "./components/WatchTrainee";
+import ViewDoc from "./components/ViewDoc";
+import PdfViewer from "./components/PdfViewer";
 
 const App = () => {
   return (
@@ -30,7 +33,9 @@ const App = () => {
           <Route path="/admin-dashboard" element={<AdminDash />} />
           <Route path="/reg-stud" element={<StudReg />} />
           <Route path="/institute-home" element={<Home />} />
-          <Route path="/reg-coordinator" element={<RegCoordinator />} />
+          {/* <Route path="/reg-coordinator" element={<RegCoordinator />} /> */}
+          <Route path="/reg-coord" element={<CoordReg />} />
+
           <Route path="/coordinator-dashboard" element={<CoordinatorDash />} />
           <Route path="/trainee-dashboard" element={<StudDash />} />
           <Route path="/trainee-reg" element={<TraineeReg />} />
@@ -40,7 +45,9 @@ const App = () => {
           <Route path="/trainee-logout" element={<LogoutTrainee />} />
           <Route path="/forgot-password" element={<ForgotPass />} />
           <Route path="/create-password/:userId" element={<CreatePass />} />
-          <Route path="/watch-trainee" element={<WatchTrainee />} />
+          {/* <Route path="/watch-trainee" element={<WatchTrainee />} /> */}
+          <Route path="/view/image/:userId" element={<ViewDoc />} />
+          <Route path="/view/pdf/:userId" element={<PdfViewer />} />
         </Routes>
       </Router>
     </>

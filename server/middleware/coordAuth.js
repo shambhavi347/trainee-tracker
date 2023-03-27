@@ -1,21 +1,20 @@
 const jwt = require("jsonwebtoken");
-const Institute = require("../dbmodel/instituteSchema");
+const Coordinator = require("../model/coordinatorSchema");
 
-const Authenticate = async (req, res, next) => {
+const coordAuthenticate = async (req, res, next) => {
   try {
     const token = req.cookies.jwtoken;
     const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
 
-    const rootInstitute = await Institute.findOne({
+    const rootUser = await Coordinator.findOne({
       _id: verifyToken._id,
       "tokens.token": token,
     });
-    if (!rootInstitute) {
-      throw new Error("Institute not found");
+    if (!rootUser) {
+      throw new Error("User not found");
     }
     req.token = token;
-    req.rootInstitute = rootInstitute;
-    // req.InstituteID = rootInstitute._id;
+    req.rootUser = rootUser;
 
     next();
   } catch (err) {
@@ -23,4 +22,4 @@ const Authenticate = async (req, res, next) => {
     console.log(err);
   }
 };
-module.exports = Authenticate;
+module.exports = coordAuthenticate;

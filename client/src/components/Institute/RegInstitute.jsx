@@ -74,7 +74,7 @@ const RegInstitute = () => {
     landline: "",
     extension: "",
     phoneno: "",
-    status: "pending",
+    status: "",
     salutation: "",
     coordfirstName: "",
     coordmiddleName: "",
@@ -415,6 +415,7 @@ const RegInstitute = () => {
                       placeholder="Landline number *"
                       value={userRegistration.landline}
                       onChange={setValue}
+                      name="landline"
                     />
                   </div>
 

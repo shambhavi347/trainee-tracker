@@ -27,6 +27,7 @@ router.post("/reg-stud1", async (req, res) => {
       cgpa,
       passout_year,
       status,
+      fileID,
     } = req.body;
 
     console.log(req.body);
@@ -147,6 +148,7 @@ router.post("/reg-stud1", async (req, res) => {
       cgpa,
       passout_year,
       status,
+      fileID,
     });
 
     res.status(201).json({ message: "user registered successfully !!" });
@@ -183,6 +185,7 @@ router.post("/reg-stud", async (req, res) => {
       status,
       famtech,
       inttech,
+      fileID,
     } = req.body;
 
     console.log(req.body);
@@ -317,6 +320,7 @@ router.post("/reg-stud", async (req, res) => {
       status,
       famtech,
       inttech,
+      fileID,
     });
 
     await user.save();

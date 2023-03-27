@@ -87,14 +87,18 @@ const studentSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: [
-      "selection pending",
-      "selection accept",
-      "selection reject",
-      "mail sent",
-      "mail not sent",
-      "registered",
-      "assigned",
+      "selection pending", //student apply but admin ki side
+      "selection accept", //student application accepted by admin
+      "selection reject", //student application rejected by admin
+      "mail sent", //accepted by student
+      "mail not sent", //reject by student
+      "registered", //student resgistration as a trainee
+      "assigned", //coordinator assigned by admin
     ],
+    required: true,
+  },
+  fileID: {
+    type: String,
     required: true,
   },
   famtech: [
