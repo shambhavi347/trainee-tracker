@@ -132,6 +132,11 @@ const RegInstitute = () => {
 
   const [record, setRecord] = useState([]);
 
+  useEffect(() => {
+    setUserRegistration({ ...userRegistration, landline: value });
+  }, [value]);
+
+  // console.log(userRegistration);
   const handlechange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -236,8 +241,7 @@ const RegInstitute = () => {
         routeChange();
         //console.log("Registration Successful!✔");
       }
-    }
-    else {
+    } else {
       window.alert("Confirm Password does not match");
       console.log("Confirm Password does not match");
     }
