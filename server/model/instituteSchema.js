@@ -115,7 +115,7 @@ const instituteSchema = new mongoose.Schema({
   },
   phoneno: {
     type: Number,
-    unique: true,
+    // unique: true,
   },
   status: {
     type: String,
@@ -150,6 +150,7 @@ const instituteSchema = new mongoose.Schema({
   },
   coordPhone: {
     type: Number,
+    sparse: true,
     unique: true,
     required: true,
   },

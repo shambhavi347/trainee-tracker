@@ -6,6 +6,163 @@ const Institute = require("../model/instituteSchema");
 const instituteAuthenticate = require("../middleware/instituteauth");
 const Student = require("../model/studentSchema");
 
+// Check validation on current page
+
+router.post("/institute-reg0", async (req, res) => {
+  const {
+    name,
+    email,
+    smonth,
+    emonth,
+    duration,
+    rating,
+    rvalue,
+    type,
+    addressline1,
+    addressline2,
+    city,
+    state,
+    country,
+    zipcode,
+    landline,
+    extension,
+    phoneno,
+  } = req.body;
+  console.log(req.body);
+
+  //checks if all the fields are filled or not
+  if (!name) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Name" });
+  }
+  if (!email) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Email Id" });
+  }
+  if (!smonth) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Start Month" });
+  }
+  if (!emonth) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the End Month" });
+  }
+  if (!duration) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Duration" });
+  }
+  if (!rating) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Institute Rating" });
+  }
+  if (!rvalue) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Rated Value of your Institute" });
+  }
+  if (!type) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Institute Type" });
+  }
+  if (!addressline1) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Address" });
+  }
+  if (!city) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the City" });
+  }
+  if (!state) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the State" });
+  }
+  if (!country) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Country" });
+  }
+  if (!zipcode) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Zipcode" });
+  }
+  if (!landline) {
+    return res
+      .status(422)
+      .json({ error: "Please fill the Landline no" });
+  }
+  // console.log("Success");
+  try {
+    //checks if its a new institute registration or not(email exist)
+    const instituteExist = await Institute.findOne({ email: email });
+    if (instituteExist) {
+      return res.status(422).json({ error: "Institute Email Id already Exists" });
+    }
+
+    //institute email format checking
+    var emailRegex = /.+@..+\..[A-Za-z]+$/;
+    // /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+
+    if (email.length > 254) {
+      return res.status(422).json({ error: "Invalid Email ID format!!" });
+    }
+
+    var emailValid = emailRegex.test(email);
+    if (!emailValid) {
+      return res.status(422).json({ error: "Invalid Email ID format!!" });
+    }
+
+    // check Landline no format
+    const regexLandline = /^[+][1-9]{2}[1-9]{3}[1-9]{3}[0-9]{4}$/
+    const ValidLandline = regexLandline.test(landline);
+    if (!ValidLandline) {
+      return res.status(422).json({ error: "Invalid Landline no.!!\n" });
+    }
+
+    // check extension format
+    if(extension) {
+      const regexExtension = /^\d{1,4}$/
+      const ValidExt = regexExtension.test(extension);
+      if (!ValidExt) {
+        return res.status(422).json({ error: "Invalid Extension Format!!\n" });
+      }
+    }
+
+    // check Ext length
+
+    if(extension.length === 4 || extension.length === 0) {
+
+    }
+    else {
+      return res.status(422).json({ error: "Invalid Extension!!\n" });
+    }
+    
+    //check institute phone format
+    if(phoneno) {
+      const regexPhone = /^[6-9]\d{9}$/gi;
+      const validPhone = regexPhone.test(phoneno);
+
+      if (!validPhone) {
+        return res.status(422).json({ error: "Invalid Phone no.!!\n" });
+      }
+    }
+
+  res.status(201).json({ message: "user registered successfully !!" });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 router.post("/institute-reg", async (req, res) => {
   const {
     name,
@@ -37,34 +194,6 @@ router.post("/institute-reg", async (req, res) => {
   console.log(req.body);
 
   //checks if all the fields are filled or not
-  // if (
-  //   !name ||
-  //   !email ||
-  //   !smonth ||
-  //   !emonth ||
-  //   !duration ||
-  //   !rating ||
-  //   !rvalue ||
-  //   !type ||
-  //   !addressline1 ||
-  //   !city ||
-  //   !state ||
-  //   !country ||
-  //   !zipcode ||
-  //   !landline ||
-  //   !status ||
-  //   !salutation ||
-  //   !coordfirstName ||
-  //   !coordlastName ||
-  //   !coordEmail ||
-  //   !coordPhone ||
-  //   !password ||
-  //   !confirmPassword
-  // ) {
-  //   return res
-  //     .status(422)
-  //     .json({ error: "Please fill all the fields properly" });
-  // }
   if (!name) {
     return res
       .status(422)
@@ -172,6 +301,14 @@ router.post("/institute-reg", async (req, res) => {
   }
   // console.log("Success");
   try {
+
+    // check landline no.
+    // const regexLandline = /^[+][1-9]{2}[1-9]{3}[1-9]{3}[0-9]{4}$/
+    // const ValidLandline = regexLandline.test(landline);
+    // if (!ValidLandline) {
+    //   return res.status(422).json({ error: "Invalid Landline no.!!\n" });
+    // }
+
     //checks if its a new institute registration or not(email exist)
     const instituteExist = await Institute.findOne({ email: email });
     if (instituteExist) {

@@ -150,6 +150,67 @@ const RegInstitute = () => {
     console.log(userRegistration);
   };
 
+  const ValidateData = async (e) => {
+    e.preventDefault();
+    const {
+      name,
+      email,
+      smonth,
+      emonth,
+      duration,
+      rating,
+      rvalue,
+      type,
+      addressline1,
+      addressline2,
+      city,
+      state,
+      country,
+      zipcode,
+      landline,
+      extension,
+      phoneno,
+    } = userRegistration;
+
+    const res = await fetch("/institute-reg0", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        smonth,
+        emonth,
+        duration,
+        rating,
+        rvalue,
+        type,
+        addressline1,
+        addressline2,
+        city,
+        state,
+        country,
+        zipcode,
+        phoneno,
+        landline,
+        extension,
+      }),
+    });
+
+    const data = await res.json();
+    // console.log(data);
+
+    if (data.error) {
+      window.alert(data.error);
+      console.log("Invalid Regestration");
+    } else {
+      setInst(false);
+      setDisplay(true);
+      //console.log("Registration Successful!✔");
+    }
+  };
+
   const PostData = async (e) => {
     e.preventDefault();
     console.log(userRegistration);
@@ -244,14 +305,6 @@ const RegInstitute = () => {
     } else {
       window.alert("Confirm Password does not match");
       console.log("Confirm Password does not match");
-    }
-  };
-
-  const checkValidation = (e) => {
-    e.preventDefault();
-    // userRegistration.confirmPassword = e.target.value;
-    if (userRegistration.password != userRegistration.confirmPassword) {
-      setIsError("Confirm Password should be same as Password!");
     }
   };
 
@@ -420,7 +473,7 @@ const RegInstitute = () => {
 
                     <PhoneInput
                       className="fieldd7"
-                      placeholder="Landline number *"
+                      placeholder="Landline number(xxx-xxx-xxxx) *"
                       value={userRegistration.landline}
                       onChange={setValue}
                       name="landline"
@@ -502,10 +555,11 @@ const RegInstitute = () => {
                   <button
                     type="submit"
                     className="btn-inst0"
-                    onClick={() => {
-                      setInst(false);
-                      setDisplay(true);
-                    }}
+                    onClick={ValidateData}
+                    // onClick={() => {
+                      // setInst(false);
+                      // setDisplay(true);
+                    // }}
                   >
                     Next
                   </button>
