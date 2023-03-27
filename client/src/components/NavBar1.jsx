@@ -21,7 +21,7 @@ const NavBar1 = () => {
   };
 
   const routeChangeCoord = () => {
-    let path = "/coordinator-home";
+    let path = "/coordinator-dashboard";
     navigate(path);
   };
 

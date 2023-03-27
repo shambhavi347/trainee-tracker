@@ -151,11 +151,12 @@ const CoordPeople = () => {
     groupss.push(groupee);
 
     // setSearches((searches) => [...searches, query]);
-    setGroups([...groups, [groupee]]);
-    groups.map((val) => console.log(val));
-    console.log(groups);
+    setGroups([...groups, groupee]);
+
     setGroupList([]);
   };
+  // groups.map((val) => console.log(val));
+  // console.log(groups);
 
   return (
     <>
@@ -248,6 +249,54 @@ const CoordPeople = () => {
             </>
           ) : null}
         </div>
+        {groups.length === 0 ? null : (
+          <>
+            {" "}
+            <h2 className="traineeTitle">
+              <div className="titleTrainee">Groups </div>
+              {/* {groupList.length ? ( */}
+              <button className="create-grp" onClick={createGroup}>
+                Submit
+              </button>
+              {/* // ) : null} */}
+              <div className="traineeStrength">{groups.length}</div>
+            </h2>
+            <hr style={{ backgroundColor: "#393e46", opacity: "0.4" }} />{" "}
+            {groups.map((val) => (
+              <div>
+                {/* {console.log(val)} */}
+                {val.name}
+                {/* {val.members.map((value) => console.log(value))} */}
+                {val.members.map((value) => (
+                  <div>
+                    {/* {console.log(value)} */}
+                    {value.salutation} {value.first_name} {value.middle_name}{" "}
+                    {value.last_name}
+                    <div
+                      className="check-div-coord"
+                      // onClick={() => addGroup(val)}
+                    >
+                      <img
+                        src="./Images/check.png"
+                        alt=""
+                        className="check-img"
+                      />
+                    </div>
+                    {/* <div className="expnd-img-coord">
+                      <img
+                        src={expand}
+                        alt=""
+                        className="downarrow-img "
+                        // onClick={() => handleExpandTrainee(val)}
+                      />
+                    </div> */}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </>
+        )}
+        {/* <div className="groups-div">Groups</div> */}
         {traineeEx ? (
           <div className="expanded-div">
             <button
