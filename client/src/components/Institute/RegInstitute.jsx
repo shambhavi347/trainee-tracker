@@ -74,7 +74,7 @@ const RegInstitute = () => {
     landline: "",
     extension: "",
     phoneno: "",
-    status: "",
+    status: "pending",
     salutation: "",
     coordfirstName: "",
     coordmiddleName: "",
@@ -148,41 +148,8 @@ const RegInstitute = () => {
   const PostData = async (e) => {
     e.preventDefault();
     console.log(userRegistration);
-    const {
-      name,
-      email,
-      smonth,
-      emonth,
-      duration,
-      rating,
-      rvalue,
-      type,
-      addressline1,
-      addressline2,
-      city,
-      state,
-      country,
-      zipcode,
-      landline,
-      extension,
-      phoneno,
-      status,
-      salutation,
-      coordfirstName,
-      coordmiddleName,
-      coordlastName,
-      coordEmail,
-      coordPhone,
-      password,
-      confirmPassword,
-    } = userRegistration;
-
-    const res = await fetch("/institute-reg", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    if (userRegistration.password === userRegistration.confirmPassword) {
+      const {
         name,
         email,
         smonth,
@@ -197,9 +164,9 @@ const RegInstitute = () => {
         state,
         country,
         zipcode,
-        phoneno,
         landline,
         extension,
+        phoneno,
         status,
         salutation,
         coordfirstName,
@@ -208,34 +175,71 @@ const RegInstitute = () => {
         coordEmail,
         coordPhone,
         password,
-        confirmPassword,
-      }),
-    });
+      } = userRegistration;
 
-    const data = await res.json();
-    console.log(data);
+      const res = await fetch("/institute-reg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          smonth,
+          emonth,
+          duration,
+          rating,
+          rvalue,
+          type,
+          addressline1,
+          addressline2,
+          city,
+          state,
+          country,
+          zipcode,
+          phoneno,
+          landline,
+          extension,
+          status,
+          salutation,
+          coordfirstName,
+          coordmiddleName,
+          coordlastName,
+          coordEmail,
+          coordPhone,
+          password,
+        }),
+      });
 
-    //email and password validation
-    // if (!validEmail.test(email)) {
-    //   window.alert("Invalid Institute Email ID☹");
-    //   console.log("Invalid Email ID");
+      const data = await res.json();
+      console.log(data);
 
-    // } else if (!validEmail.test(coordEmail)) {
-    //   window.alert("Invalid Coordinator Email ID☹");
-    //   console.log("Invalid Email ID");
-    // } else if (!validPassword.test(password)) {
-    //   window.alert(
-    //     "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
-    //   );
-    //console.log("Make the Password Strong !!");
-    // } else
-    if (data.status === 422 || data.error) {
-      window.alert("Invalid Registration!❌" + data.error);
-      console.log("Invalid Registration!❌");
-    } else {
-      window.alert("Registration Successful!✔");
-      routeChange();
-      //console.log("Registration Successful!✔");
+      //email and password validation
+      // if (!validEmail.test(email)) {
+      //   window.alert("Invalid Institute Email ID☹");
+      //   console.log("Invalid Email ID");
+
+      // } else if (!validEmail.test(coordEmail)) {
+      //   window.alert("Invalid Coordinator Email ID☹");
+      //   console.log("Invalid Email ID");
+      // } else if (!validPassword.test(password)) {
+      //   window.alert(
+      //     "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
+      //   );
+      //console.log("Make the Password Strong !!");
+      // } else
+      if (data.status === 422 || data.error) {
+        window.alert("Invalid Registration!❌" + data.error);
+        console.log("Invalid Registration!❌");
+      } else {
+        window.alert("Registration Successful!✔");
+        routeChange();
+        //console.log("Registration Successful!✔");
+      }
+    }
+    else {
+      window.alert("Confirm Password does not match");
+      console.log("Confirm Password does not match");
     }
   };
 
@@ -593,13 +597,17 @@ const RegInstitute = () => {
                     type="password"
                     autoComplete="off"
                     value={userRegistration.confirmPassword}
-                    onChange={(e) => {
-                      handlechange();
-                      checkValidation();
-                    }}
                     name="confirmPassword"
-                    id="Confirm password"
+                    id="confirmPassword"
                     placeholder="Confirm Password *"
+                    // onChange={() => {
+                    //   handlechange();
+                    //   checkValidation();
+                    // }}
+                    onChange={handlechange}
+                    // name="confirmPassword"
+                    // id="Confirm password"
+                    // placeholder="Confirm Password *"
                   />
                 </div>
 
