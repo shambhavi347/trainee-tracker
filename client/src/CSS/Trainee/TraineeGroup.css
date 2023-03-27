@@ -78,4 +78,36 @@
   margin-bottom: -1.5%;
   font-size: 68%;
   margin-left: 26.3%;
+  /* background-color: aliceblue; */
+  width: 70%;
+}
+
+.mentor-info {
+  margin-top: 1%;
+  /* background-color: aliceblue; */
+  font-size: medium;
+  width: 70%;
+}
+
+.mentor-email,
+.mentor-phone {
+  border: 1px #eeeeee solid;
+  padding: 1%;
+  border-radius: 10px;
+  background-color: #393e46;
+  color: #eeeeee;
+}
+
+.mentor-email {
+  float: left;
+}
+
+.mentor-phone {
+  float: right;
+}
+
+.expnd-img-trainee {
+  width: 3%;
+  float: right;
+  margin-left: 15%;
 }
