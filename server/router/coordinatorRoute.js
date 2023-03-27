@@ -91,4 +91,15 @@ router.post("/coordinator-reg", async (req, res) => {
   }
 });
 
+router.post("/project-title", async (req, res) => {
+  const title = req.body.title;
+  const project = new Project({ title });
+  const projectReg = await project.save();
+  if (projectReg) {
+    res.status(201).json({ message: "Project successfully added!✌" });
+  } else {
+    res.status(500).json({ error: "Failed to add Title☹" });
+  }
+});
+
 module.exports = router;

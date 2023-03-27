@@ -43,6 +43,9 @@ const RegInstitute = () => {
   const [stateCode, setStateCode] = useState("");
   const [cities, setCities] = useState([]);
   const [req, setReq] = useState(false);
+  // const [password, setPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
+  const [isError, setIsError] = useState("");
   const [display, setDisplay] = useState(false); //will not show tpo to us until we make display true
   const [inst, setInst] = useState(true); //will show us institute foem and on clicking next it will become false
   //for navigation to login page
@@ -52,7 +55,7 @@ const RegInstitute = () => {
   };
 
   const [value, setValue] = useState();
-  const [isError, setIsError] = useState("");
+
   const [userRegistration, setUserRegistration] = useState({
     name: "",
     email: "",
@@ -79,7 +82,7 @@ const RegInstitute = () => {
     coordEmail: "",
     coordPhone: "",
     password: "",
-    password2: "",
+    confirmPassword: "",
   });
 
   // console.log(Country.getAllCountries());
@@ -128,6 +131,7 @@ const RegInstitute = () => {
   }, [req, navigate]);
 
   const [record, setRecord] = useState([]);
+
   const handlechange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -170,7 +174,7 @@ const RegInstitute = () => {
       coordEmail,
       coordPhone,
       password,
-      password2,
+      confirmPassword,
     } = userRegistration;
 
     const res = await fetch("/institute-reg", {
@@ -204,7 +208,7 @@ const RegInstitute = () => {
         coordEmail,
         coordPhone,
         password,
-        password2,
+        confirmPassword,
       }),
     });
 
@@ -237,8 +241,8 @@ const RegInstitute = () => {
 
   const checkValidation = (e) => {
     e.preventDefault();
-    userRegistration.password2 = e.target.value;
-    if (userRegistration.password != userRegistration.password2) {
+    // userRegistration.confirmPassword = e.target.value;
+    if (userRegistration.password != userRegistration.confirmPassword) {
       setIsError("Confirm Password should be same as Password!");
     }
   };
@@ -574,7 +578,7 @@ const RegInstitute = () => {
                 <div className="box">
                   <input
                     className="form-text-inst2 fieldd6 required"
-                    type="text"
+                    type="password"
                     autoComplete="off"
                     value={userRegistration.password}
                     onChange={handlechange}
@@ -585,11 +589,14 @@ const RegInstitute = () => {
 
                   <input
                     className="form-text-inst2 fieldd6 required"
-                    type="text"
+                    type="password"
                     autoComplete="off"
-                    value={userRegistration.password2}
-                    onChange={checkValidation}
-                    name="Confirm password"
+                    value={userRegistration.confirmPassword}
+                    onChange={(e) => {
+                      handlechange();
+                      checkValidation();
+                    }}
+                    name="confirmPassword"
                     id="Confirm password"
                     placeholder="Confirm Password *"
                   />

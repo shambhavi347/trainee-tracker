@@ -31,16 +31,13 @@ const App = () => {
           <Route path="/reg-stud" element={<StudReg />} />
           <Route path="/institute-home" element={<Home />} />
           <Route path="/reg-coordinator" element={<RegCoordinator />} />
-          <Route path="/coordinator-home" element={<CoordinatorDash />} />
+          <Route path="/coordinator-dashboard" element={<CoordinatorDash />} />
           <Route path="/trainee-dashboard" element={<StudDash />} />
           <Route path="/trainee-reg" element={<TraineeReg />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<Error />} />
           <Route path="/trainee-profile" element={<TraineeProfile />} />
           <Route path="/trainee-logout" element={<LogoutTrainee />} />
-          <Route path="/coordinator-people" element={<CoordPeople />} />
-          <Route path="/coodinator-project" element={<CoordProject />} />
-          <Route path="/coordinator-discussion" element={<CoordDiscussion />} />
           <Route path="/forgot-password" element={<ForgotPass />} />
           <Route path="/create-password/:userId" element={<CreatePass />} />
           <Route path="/watch-trainee" element={<WatchTrainee />} />

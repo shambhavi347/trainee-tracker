@@ -139,7 +139,7 @@ const instituteSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  password2: {
+  confirmPassword: {
     type: String,
     required: true,
   },

@@ -33,7 +33,7 @@ router.post("/institute-reg", async (req, res) => {
     coordEmail,
     coordPhone,
     password,
-    password2,
+    confirmPassword,
   } = req.body;
   console.log(req.body);
 
@@ -61,7 +61,7 @@ router.post("/institute-reg", async (req, res) => {
     !coordEmail ||
     !coordPhone ||
     !password ||
-    !password2
+    !confirmPassword
   ) {
     return res
       .status(422)
@@ -164,6 +164,12 @@ router.post("/institute-reg", async (req, res) => {
       });
     }
 
+    //confirmPassword
+    if (password !== confirmPassword) {
+      res.status(400).json({ error: "Passwords do not match" });
+      return;
+    }
+
     //if both key and value are same then you dont need to write name of both like name:name
     const institute = new Institute({
       name,
@@ -191,7 +197,7 @@ router.post("/institute-reg", async (req, res) => {
       coordEmail,
       coordPhone,
       password,
-      password2,
+      confirmPassword,
     });
     const instituteReg = await institute.save();
     if (instituteReg) {

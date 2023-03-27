@@ -485,3 +485,12 @@ export const getStream = async () => {
     console.log(error);
   }
 };
+
+export const postProject = async (data) => {
+  try {
+    const response = await axios.post("/project-title", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
