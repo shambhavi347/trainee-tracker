@@ -197,7 +197,7 @@ router.post("/institute-reg", async (req, res) => {
   if (!name) {
     return res
       .status(422)
-      .json({ error: "Please fill the Name" });
+      .json({ error: "Please fill the Institute Name" });
   }
   if (!email) {
     return res
@@ -207,17 +207,17 @@ router.post("/institute-reg", async (req, res) => {
   if (!smonth) {
     return res
       .status(422)
-      .json({ error: "Please fill the Start Month" });
+      .json({ error: "Please fill the Internship Start Month" });
   }
   if (!emonth) {
     return res
       .status(422)
-      .json({ error: "Please fill the End Month" });
+      .json({ error: "Please fill the Internship End Month" });
   }
   if (!duration) {
     return res
       .status(422)
-      .json({ error: "Please fill the Duration" });
+      .json({ error: "Please fill the Internship Duration" });
   }
   if (!rating) {
     return res
@@ -237,32 +237,32 @@ router.post("/institute-reg", async (req, res) => {
   if (!addressline1) {
     return res
       .status(422)
-      .json({ error: "Please fill the Address" });
+      .json({ error: "Please fill the Institute Address" });
   }
   if (!city) {
     return res
       .status(422)
-      .json({ error: "Please fill the City" });
+      .json({ error: "Please fill the City of Institute" });
   }
   if (!state) {
     return res
       .status(422)
-      .json({ error: "Please fill the State" });
+      .json({ error: "Please fill the State of Institute" });
   }
   if (!country) {
     return res
       .status(422)
-      .json({ error: "Please fill the Country" });
+      .json({ error: "Please fill the Country of Institute" });
   }
   if (!zipcode) {
     return res
       .status(422)
-      .json({ error: "Please fill the Zipcode" });
+      .json({ error: "Please fill the Zipcode of Institute" });
   }
   if (!landline) {
     return res
       .status(422)
-      .json({ error: "Please fill the Landline no" });
+      .json({ error: "Please fill the Landline no of Institute" });
   }
   if (!status) {
     return res
