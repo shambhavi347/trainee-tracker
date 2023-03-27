@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar1 from "./NavBar1";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const CreatePass = () => {
   const { userId } = useParams();
@@ -70,10 +70,10 @@ const CreatePass = () => {
     const reason = await res.json();
     console.log(reason);
 
-    if (res.status === 400) {
+    if (res.status === 422) {
       window.alert(reason.error);
     } else {
-      console.log("Password Changed");
+      setChangePass(true);
     }
   };
   return (
@@ -83,8 +83,12 @@ const CreatePass = () => {
         <div className="pass-block">
           {changePass ? (
             <>
-              <h2>Password changed Successfully!!</h2>{" "}
-              <p>Login now and continue </p>
+              <div style={{ marginTop: "15%" }}>
+                <h2 style={{ color: "#222831" }}>
+                  Password changed Successfully!!
+                </h2>{" "}
+                <p style={{ color: "#393e46" }}>Login now and continue </p>
+              </div>
             </>
           ) : (
             <>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import NavBar3 from "../NavBar3";
+import NavBarInst from "../NavBarInst";
 import "../../CSS/Institute/Home.css";
 import "../Institute/RegInstitute";
 import { getAppstatus, getSelectedStudents } from "../../service/api";
-import { expand, cancel ,check,remove} from "../../Images/Images";
+import { expand, cancel, check, remove } from "../../Images/Images";
 const Home = () => {
   const [status, setStatus] = useState("");
   //made a function for calling api.js and then calling same function below
@@ -29,7 +29,7 @@ const Home = () => {
 
   return (
     <>
-      <NavBar3 />
+      <NavBarInst />
       <div className="body-inst-home">
         <div className="head-inst-home">
           <h1>Welcome to CDAC Trainee Tracker👩🏽‍💻</h1>
@@ -99,15 +99,26 @@ const Home = () => {
         <div className="info-inst-home">
           <h3 className="content">List of selected Students</h3>
 
-          {
-          stud.map((val) => (
+          {stud.map((val) => (
             <div className="data-inst-home">
-            {val.first_name} {val.last_name}
-            
-          <button className="Accept-btn"><img src="../Images/check.png"  alt="accept" width ="20" heigth="2" /></button>
-          <button className="Reject-btn"><img src="../Images/remove.png" alt="reject" width ="20" heigth="2" /></button>
-          </div>
-          
+              {val.first_name} {val.last_name}
+              <button className="Accept-btn">
+                <img
+                  src="../Images/check.png"
+                  alt="accept"
+                  width="20"
+                  heigth="2"
+                />
+              </button>
+              <button className="Reject-btn">
+                <img
+                  src="../Images/remove.png"
+                  alt="reject"
+                  width="20"
+                  heigth="2"
+                />
+              </button>
+            </div>
           ))}
         </div>
       </div>

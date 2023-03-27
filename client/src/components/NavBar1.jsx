@@ -20,6 +20,11 @@ const NavBar1 = () => {
     navigate(path);
   };
 
+  const routeChangeCoord = () => {
+    let path = "/coordinator-home";
+    navigate(path);
+  };
+
   const [admin, setAdmin] = useState({
     email: "",
     password: "",
@@ -58,14 +63,17 @@ const NavBar1 = () => {
       window.alert(reason.error);
     } else {
       if (reason.message === "Admin") {
-        console.log("Admin login");
+        // console.log("Admin login");
         routeChangeAdmin();
       } else if (reason.message === "Institute") {
-        console.log("Trainee Login");
+        // console.log("Trainee Login");
         routeChangeInst();
       } else if (reason.message === "Trainee") {
-        console.log("Trainee Login");
+        // console.log("Trainee Login");
         routeChangeTrainee();
+      } else if (reason.message === "Coordinator") {
+        // console.log("Trainee Login");
+        routeChangeCoord();
       } else console.log("Coord Login");
     }
   };

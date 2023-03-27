@@ -1,21 +1,84 @@
 * {
   box-sizing: border-box;
 }
-.info-coord-people {
-  /* background: #222831;
-  background: -webkit-linear-gradient(to top, #222831, #393e46); */
+.coord-people-divUp {
   background: linear-gradient(to bottom, #393e46, #00adb5);
   height: 100vh;
   width: 100%;
   margin: 0;
+  padding: 0% 15%;
+  overflow-y: auto;
 }
 
-.content-coord-people {
-  text-align: center;
+.coord-div,
+.trainees-div {
+  text-align: justify;
+  width: 100%;
+}
+.trainees-div {
+  margin-top: 5%;
+}
+
+.titleTrainee {
+  float: left;
+  width: 80%;
+}
+.create-grp {
+  float: right;
+  width: 15%;
+}
+.traineeStrength {
+  float: right;
+  width: 5%;
+}
+
+.coord-name {
+  font-size: large;
+}
+
+.create-grp {
+  background-color: #393e46;
+  border-radius: 10px;
+  border: 1px #eeeeee solid;
+  padding: 1%;
   color: #eeeeee;
-  border-top: #eeeeee solid;
-  border-bottom: #eeeeee solid;
-  padding-bottom: 1%;
-  padding-top: 1%;
-  margin-top: 0;
+}
+
+.create-grp:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.trainee-tile-div {
+  /* background-color: #eeeeee; */
+  padding: 2% 15%;
+}
+
+.trainee-tile {
+  width: 100%;
+  border: 1px #00adb5 solid;
+  margin: 1%;
+  padding: 2% 4%;
+  border-radius: 10px;
+  background-color: #393e46;
+  color: #eeeeee;
+}
+
+/* .trainee-tile:hover {
+  cursor: pointer;
+  background-color: #eeeeee;
+  color: #00adb5;
+  font-weight: bold;
+} */
+
+.check-div-coord,
+.expnd-img-coord {
+  width: 4%;
+  float: right;
+  margin-left: 5%;
+}
+
+.check-div-coord:hover,
+.expnd-img-coord:hover {
+  cursor: pointer;
 }

@@ -94,6 +94,7 @@ const TraineeAdmin = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getRejectStudent();
+      console.log(data);
       setRejectedStudents(data);
       if (rejectStud.length === 0 || accBtn === "clicked")
         setRejectStud(rejectedStudents);

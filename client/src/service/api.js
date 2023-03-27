@@ -485,3 +485,48 @@ export const getStream = async () => {
     console.log(error);
   }
 };
+
+export const postProject = async (data) => {
+  try {
+    const response = await axios.post("/project-title", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getTraineeData = async () => {
+  try {
+    let respone = await axios.get("/get-trainee-Data");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getCoordinatorData = async () => {
+  try {
+    let respone = await axios.get("/get-Coordinator-Data");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCoordName = async () => {
+  try {
+    let respone = await axios.get("/get-coord-name");
+    // console.log("Res: " + respone);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTraineeDeets = async () => {
+  try {
+    let respone = await axios.get("/get-trainee-details");
+    // console.log("Res: " + respone);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

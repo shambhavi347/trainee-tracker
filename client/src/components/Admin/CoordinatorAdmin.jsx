@@ -15,6 +15,7 @@ const CoordinatorAdmin = () => {
   const [coord, setCoord] = useState({
     salutation: "",
     first_name: "",
+    middle_name: "",
     last_name: "",
     email: "",
     date: "",
@@ -46,8 +47,10 @@ const CoordinatorAdmin = () => {
   // console.log(invit);
   const PostData = async (e) => {
     e.preventDefault();
+    console.log(new Date());
     setCoord({ ...coord, date: new Date() });
-    const { salutation, first_name, last_name, email, date } = coord;
+    const { salutation, first_name, middle_name, last_name, email, date } =
+      coord;
     console.log(coord);
     const res = await fetch("/reg-coord", {
       method: "POST",
@@ -57,6 +60,7 @@ const CoordinatorAdmin = () => {
       body: JSON.stringify({
         salutation,
         first_name,
+        middle_name,
         last_name,
         email,
         date,
@@ -66,10 +70,7 @@ const CoordinatorAdmin = () => {
     const data = await res.json();
     console.log(data);
 
-    if (!validEmail.test(email)) {
-      window.alert("Fill the correct Email Id ");
-      console.log("Invalid Email id");
-    } else if (data.error) {
+    if (data.error) {
       window.alert("Invalid Registration, " + data.error);
       console.log("Invalid Regestration");
     } else {
@@ -148,6 +149,14 @@ const CoordinatorAdmin = () => {
                   name="first_name"
                   className="coord-form-name"
                   placeholder="First Name"
+                  autoComplete="off"
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="middle_name"
+                  className="coord-form-name"
+                  placeholder="Middle Name"
                   autoComplete="off"
                   onChange={handleChange}
                 />
