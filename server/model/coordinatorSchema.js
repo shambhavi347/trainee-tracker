@@ -19,7 +19,7 @@ const coordinatorSchema = new mongoose.Schema({
   },
   last_name: {
     type: String,
-    required: true,
+    required: false,
   },
   email: {
     type: String,
@@ -39,6 +39,9 @@ const coordinatorSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  confirm_pass: {
+    type: String,
   },
   tokens: [
     {

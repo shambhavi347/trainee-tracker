@@ -136,7 +136,7 @@ const instituteSchema = new mongoose.Schema({
   },
   coordlastName: {
     type: String,
-    required: true,
+    required: false,
   },
   coordEmail: {
     type: String,

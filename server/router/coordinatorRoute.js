@@ -21,18 +21,35 @@ router.post("/coordinator-reg", async (req, res) => {
     } = req.body;
     console.log(req.body);
     //checks if all the fields are filled or not
-    if (
-      !salutation ||
-      !first_name ||
-      !middle_name ||
-      !last_name ||
-      !email ||
-      !phone ||
-      !password
-    ) {
+    if (!salutation) {
       return res
         .status(422)
-        .json({ error: "Please fill all the fields properly" });
+        .json({ error: "Please fill Salutation" });
+    }
+    if (!first_name) {
+      return res
+        .status(422)
+        .json({ error: "Please fill the First Name" });
+    }
+    // if (!last_name) {
+    //   return res
+    //     .status(422)
+    //     .json({ error: "Please fill the Last Name" });
+    // }
+    if (!email) {
+      return res
+        .status(422)
+        .json({ error: "Please fill the Email Id" });
+    }
+    if (!phone) {
+      return res
+        .status(422)
+        .json({ error: "Please fill the Phone No." });
+    }
+    if (!password) {
+      return res
+        .status(422)
+        .json({ error: "Please fill the Password" });
     }
     // console.log("Success");
     //checks if its a new coordinator registration or not(email exist)

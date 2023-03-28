@@ -279,11 +279,11 @@ router.post("/institute-reg", async (req, res) => {
       .status(422)
       .json({ error: "Please fill the Coordinator's First Name" });
   }
-  if (!coordlastName) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Coordinator's Last Name" });
-  }
+  // if (!coordlastName) {
+  //   return res
+  //     .status(422)
+  //     .json({ error: "Please fill the Coordinator's Last Name" });
+  // }
   if (!coordEmail) {
     return res
       .status(422)

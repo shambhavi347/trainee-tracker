@@ -335,7 +335,7 @@ const RegInstitute = () => {
                   value={userRegistration.rating}
                   onChange={handlechange}
                 >
-                  <option value="Select">NAAC Rating</option>
+                  <option value="Select">NAAC Rating *</option>
                   <option value="A++">A++</option>
                   <option value="A+">A+</option>
                   <option value="A">A</option>
@@ -351,7 +351,7 @@ const RegInstitute = () => {
                   value={userRegistration.type}
                   onChange={handlechange}
                 >
-                  <option value="Select">Institute Type</option>
+                  <option value="Select">Institute Type *</option>
                   <option value="Central University">Central University</option>
                   <option value="State University">State University</option>
                   <option value="Deemed University">Deemed University</option>
@@ -370,7 +370,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="addressline1"
                   id="addressline1"
-                  placeholder="Address Line 1*"
+                  placeholder="Address Line 1 *"
                 />
                 <input
                   className="form-text-inst fieldd2"
@@ -393,7 +393,7 @@ const RegInstitute = () => {
                     //   console.log(e.target.value);
                     // }}
                   >
-                    <option value="select">Country</option>
+                    <option value="select">Country *</option>
                     {country.map((key) => {
                       return <option value={key.isoCode}> {key.name}</option>;
                     })}
@@ -405,7 +405,7 @@ const RegInstitute = () => {
                     value={userRegistration.state}
                     onChange={handlechange}
                   >
-                    <option value="select">State</option>
+                    <option value="select">State *</option>
                     {/* <option value="select">State 1</option> */}
                     {states.map((Con) => {
                       return <option value={Con.isoCode}>{Con.name}</option>;
@@ -418,7 +418,7 @@ const RegInstitute = () => {
                     value={userRegistration.city}
                     onChange={handlechange}
                   >
-                    <option value="select">City</option>
+                    <option value="select">City *</option>
                     {/* <option value="select">City 1</option> */}
                     {cities.map((Con) => {
                       return <option value={Con.isoCode}>{Con.name}</option>;
@@ -436,7 +436,7 @@ const RegInstitute = () => {
                     onChange={handlechange}
                     name="zipcode"
                     id="zipcode"
-                    placeholder="Zipcode*"
+                    placeholder="Zipcode *"
                   />
                 </div>
 
@@ -450,7 +450,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="email"
                   id="email"
-                  placeholder="Email*"
+                  placeholder="Email *"
                 />
                 <input
                   className="form-text-inst fieldd2 required"
@@ -500,7 +500,7 @@ const RegInstitute = () => {
                   value={userRegistration.duration}
                   onChange={handlechange}
                 >
-                  <option value="Select">Internship Duration</option>
+                  <option value="Select">Internship Duration *</option>
                   <option value="1 Month">1 Month</option>
                   <option value="2 Months">2 Months</option>
                   <option value="3 Months">3 Months</option>
@@ -515,7 +515,7 @@ const RegInstitute = () => {
                   value={userRegistration.smonth}
                   onChange={handlechange}
                 >
-                  <option value="Select">Start Month</option>
+                  <option value="Select">Start Month *</option>
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -536,7 +536,7 @@ const RegInstitute = () => {
                   value={userRegistration.emonth}
                   onChange={handlechange}
                 >
-                  <option value="Select">End Month</option>
+                  <option value="Select">End Month *</option>
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -574,7 +574,7 @@ const RegInstitute = () => {
                   value={userRegistration.salutation}
                   onChange={handlechange}
                 >
-                  <option value="Select">Title</option>
+                  <option value="Select">Title *</option>
                   <option value="Mr">Mr</option>
                   <option value="Mrs">Mrs</option>
                   <option value="Ms">Ms</option>
@@ -589,7 +589,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="coordfirstName"
                   id="coordname"
-                  placeholder="First Name*"
+                  placeholder="First Name *"
                 />
 
                 <input
@@ -611,7 +611,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="coordlastName"
                   id="coordname"
-                  placeholder="Last Name*"
+                  placeholder="Last Name"
                 />
 
                 <h4 className="head-inst-home-2">Contact Details</h4>
@@ -623,7 +623,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="coordEmail"
                   id="coordemail"
-                  placeholder="Coordinator's Email*"
+                  placeholder="Coordinator's Email *"
                 />
 
                 <input
@@ -634,7 +634,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="coordPhone"
                   id="coordphone"
-                  placeholder="Coordinator's Phone No.*"
+                  placeholder="Coordinator's Phone No. *"
                 />
 
                 <h4 className="head-inst-home-2">Credentials</h4>
@@ -665,7 +665,7 @@ const RegInstitute = () => {
                     onChange={handlechange}
                     // name="confirmPassword"
                     // id="Confirm password"
-                    // placeholder="Confirm Password *"
+                    // placeholder="Confirm Password  *"
                   />
                 </div>
 
