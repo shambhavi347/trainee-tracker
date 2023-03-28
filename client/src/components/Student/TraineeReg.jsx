@@ -83,9 +83,11 @@ const TraineeReg = () => {
                 e.preventDefault();
               }}
             > */}
-      <div className="forgot-bdy">
+      {/* className="forgot-bdy" */}
+      <div>
         <div className="trainee-reg-pic ">
-          <input style={{marginTop:"12%"}}
+          <input
+            style={{ marginTop: "12%" }}
             className="form-element form-email"
             type="email"
             name="email"

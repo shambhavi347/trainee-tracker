@@ -60,6 +60,7 @@ const Demo = () => {
     // resume: null,
     pdfname: "",
     status: "selection pending",
+    group: null,
   });
 
   const fileType = ["application/pdf"];
@@ -196,6 +197,7 @@ const Demo = () => {
       passout_year,
       status,
       fileID,
+      group,
     } = user;
 
     const res = await fetch("/reg-stud1", {
@@ -220,6 +222,7 @@ const Demo = () => {
         passout_year,
         status,
         fileID,
+        group,
       }),
     });
 
@@ -254,6 +257,7 @@ const Demo = () => {
       passout_year,
       status,
       fileID,
+      group,
     } = user;
 
     const res = await fetch("/reg-stud", {
@@ -280,6 +284,7 @@ const Demo = () => {
         inttech,
         status,
         fileID,
+        group,
       }),
     });
 

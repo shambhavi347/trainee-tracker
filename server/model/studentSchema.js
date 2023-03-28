@@ -101,6 +101,9 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  group: {
+    type: String,
+  },
   famtech: [
     {
       type: String,

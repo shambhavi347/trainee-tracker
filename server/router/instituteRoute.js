@@ -32,34 +32,22 @@ router.post("/institute-reg0", async (req, res) => {
 
   //checks if all the fields are filled or not
   if (!name) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Name" });
+    return res.status(422).json({ error: "Please fill the Name" });
   }
   if (!email) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Email Id" });
+    return res.status(422).json({ error: "Please fill the Email Id" });
   }
   if (!smonth) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Start Month" });
+    return res.status(422).json({ error: "Please fill the Start Month" });
   }
   if (!emonth) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the End Month" });
+    return res.status(422).json({ error: "Please fill the End Month" });
   }
   if (!duration) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Duration" });
+    return res.status(422).json({ error: "Please fill the Duration" });
   }
   if (!rating) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Institute Rating" });
+    return res.status(422).json({ error: "Please fill the Institute Rating" });
   }
   if (!rvalue) {
     return res
@@ -67,46 +55,34 @@ router.post("/institute-reg0", async (req, res) => {
       .json({ error: "Please fill the Rated Value of your Institute" });
   }
   if (!type) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Institute Type" });
+    return res.status(422).json({ error: "Please fill the Institute Type" });
   }
   if (!addressline1) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Address" });
+    return res.status(422).json({ error: "Please fill the Address" });
   }
   if (!city) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the City" });
+    return res.status(422).json({ error: "Please fill the City" });
   }
   if (!state) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the State" });
+    return res.status(422).json({ error: "Please fill the State" });
   }
   if (!country) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Country" });
+    return res.status(422).json({ error: "Please fill the Country" });
   }
   if (!zipcode) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Zipcode" });
+    return res.status(422).json({ error: "Please fill the Zipcode" });
   }
   if (!landline) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Landline no" });
+    return res.status(422).json({ error: "Please fill the Landline no" });
   }
   // console.log("Success");
   try {
     //checks if its a new institute registration or not(email exist)
     const instituteExist = await Institute.findOne({ email: email });
     if (instituteExist) {
-      return res.status(422).json({ error: "Institute Email Id already Exists" });
+      return res
+        .status(422)
+        .json({ error: "Institute Email Id already Exists" });
     }
 
     //institute email format checking
@@ -123,15 +99,15 @@ router.post("/institute-reg0", async (req, res) => {
     }
 
     // check Landline no format
-    const regexLandline = /^[+][1-9]{2}[1-9]{3}[1-9]{3}[0-9]{4}$/
+    const regexLandline = /^[+][1-9]{2}[1-9]{3}[1-9]{3}[0-9]{4}$/;
     const ValidLandline = regexLandline.test(landline);
     if (!ValidLandline) {
       return res.status(422).json({ error: "Invalid Landline no.!!\n" });
     }
 
     // check extension format
-    if(extension) {
-      const regexExtension = /^\d{1,4}$/
+    if (extension) {
+      const regexExtension = /^\d{1,4}$/;
       const ValidExt = regexExtension.test(extension);
       if (!ValidExt) {
         return res.status(422).json({ error: "Invalid Extension Format!!\n" });
@@ -140,15 +116,13 @@ router.post("/institute-reg0", async (req, res) => {
 
     // check Ext length
 
-    if(extension.length === 4 || extension.length === 0) {
-
-    }
-    else {
+    if (extension.length === 4 || extension.length === 0) {
+    } else {
       return res.status(422).json({ error: "Invalid Extension!!\n" });
     }
-    
+
     //check institute phone format
-    if(phoneno) {
+    if (phoneno) {
       const regexPhone = /^[6-9]\d{9}$/gi;
       const validPhone = regexPhone.test(phoneno);
 
@@ -157,7 +131,7 @@ router.post("/institute-reg0", async (req, res) => {
       }
     }
 
-  res.status(201).json({ message: "user registered successfully !!" });
+    res.status(201).json({ message: "user registered successfully !!" });
   } catch (err) {
     console.log(err);
   }
@@ -195,14 +169,10 @@ router.post("/institute-reg", async (req, res) => {
 
   //checks if all the fields are filled or not
   if (!name) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Institute Name" });
+    return res.status(422).json({ error: "Please fill the Institute Name" });
   }
   if (!email) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Email Id" });
+    return res.status(422).json({ error: "Please fill the Email Id" });
   }
   if (!smonth) {
     return res
@@ -220,9 +190,7 @@ router.post("/institute-reg", async (req, res) => {
       .json({ error: "Please fill the Internship Duration" });
   }
   if (!rating) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Institute Rating" });
+    return res.status(422).json({ error: "Please fill the Institute Rating" });
   }
   if (!rvalue) {
     return res
@@ -230,19 +198,13 @@ router.post("/institute-reg", async (req, res) => {
       .json({ error: "Please fill the Rated Value of your Institute" });
   }
   if (!type) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Institute Type" });
+    return res.status(422).json({ error: "Please fill the Institute Type" });
   }
   if (!addressline1) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Institute Address" });
+    return res.status(422).json({ error: "Please fill the Institute Address" });
   }
   if (!city) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the City of Institute" });
+    return res.status(422).json({ error: "Please fill the City of Institute" });
   }
   if (!state) {
     return res
@@ -270,9 +232,7 @@ router.post("/institute-reg", async (req, res) => {
       .json({ error: "Please fill the Status of Application" });
   }
   if (!salutation) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Salutation" });
+    return res.status(422).json({ error: "Please fill the Salutation" });
   }
   if (!coordfirstName) {
     return res
@@ -295,13 +255,10 @@ router.post("/institute-reg", async (req, res) => {
       .json({ error: "Please fill the Coordinator's phone no" });
   }
   if (!password) {
-    return res
-      .status(422)
-      .json({ error: "Please fill the Password" });
+    return res.status(422).json({ error: "Please fill the Password" });
   }
   // console.log("Success");
   try {
-
     // check landline no.
     // const regexLandline = /^[+][1-9]{2}[1-9]{3}[1-9]{3}[0-9]{4}$/
     // const ValidLandline = regexLandline.test(landline);
@@ -472,7 +429,7 @@ router.get(
       //   name, //sending name of institute to further match it with student's institute name
       // } = req.body;
       const inst = await Institute.findOne({ _id: req.rootUser._id });
-      //console.log(inst.name);
+      // console.log(inst.name);
       const stud = await Student.find({
         $and: [
           {
@@ -484,6 +441,7 @@ router.get(
         ],
         // instname: inst.name,
       });
+      // console.log(stud);
       // console.log("student" + stud);
       // console.log("Name: " + stud[0].first_name + " " + stud[0].last_name);
       // console.log("DE NA OUTPUT");
