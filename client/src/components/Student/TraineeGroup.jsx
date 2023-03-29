@@ -62,7 +62,7 @@ const TraineeGroup = () => {
                   {" "}
                   {val.prefix} {val.first_name}{" "}
                   {val.middle_name ? val.middle_name : null}
-                  {val.last_name}
+                  {val.last_name ? val.last_name : null}
                   <div className="expnd-img-trainee">
                     <img
                       src={expand}

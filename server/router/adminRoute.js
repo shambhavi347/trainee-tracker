@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const adminAuthenticate = require("../middleware/adminauth");
+const coordAuthenticate = require("../middleware/coordAuth");
 const nodemailer = require("nodemailer");
 
 require("../db/database");
@@ -1278,7 +1279,9 @@ router.get("/get-passout-year-class", adminAuthenticate, async (req, res) => {
   }
 });
 
-router.post("/send_message", adminAuthenticate, async (req, res) => {
+// send coordinator message to database
+
+router.post("/send_message", coordAuthenticate, async (req, res) => {
   try {
     const { message } = req.body;
     if (!message) {
@@ -1286,23 +1289,42 @@ router.post("/send_message", adminAuthenticate, async (req, res) => {
     }
     const trainee_list = [];
     const ID = req.rootUser.id;
-    const Coord = await Class.findOne({ _id: ID });
-    const trainees = await Class.find({ coordinatorID : Coord });
-    trainees.map((val) => trainee_list.push(val.traineeID));
-    const user = new MessageSent({
-      message,
-      Coord,
-      trainee_list
-    });
+    const Coord = await Class.find({ coordinatorID: ID });
+    console.log(Coord[0].coordinatorID)
+    Coord.map((val) => trainee_list.push(val.traineeID));
     console.log("trainee list")
     console.log(trainee_list)
     console.log("coord id")
-    console.log(Coord)
+    console.log(Coord[0].coordinatorID)
     console.log("message")
     console.log(message)
-    await user.save();
-    res.status(201).json({ message: "Message sent !!" });
-    // res.send("Message sent");
+    const NewMsg = new MessageSent({
+      message,
+      coord_id: Coord[0].coordinatorID,
+      trainee_list_id: trainee_list,
+    });
+    const savedMessage = await NewMsg.save();
+    res.status(201).json(savedMessage);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// get messages from Messagesent collection
+
+router.get("/messages", coordAuthenticate, async (req, res) => {
+  try {
+    const ID = req.rootUser.id;    
+    const Coordi = await Class.find({ coordinatorID: ID });
+    console.log("coordinator " + Coordi);
+    const coord = Coordi[0].coordinatorID;
+    const msgs = await MessageSent.find({ coord_id: coord }) ;
+    // console.log("coordinator id" + coord);
+    const m = [];
+    msgs.map((val) => m.push(val.message));
+    console.log("Messages - " + m);
+    if (m) res.send(m);
+    // res.send(msgs);
   } catch (error) {
     console.log(error);
   }

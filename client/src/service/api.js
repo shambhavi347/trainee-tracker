@@ -530,3 +530,15 @@ export const getTraineeDeets = async () => {
     console.log(error);
   }
 };
+
+// get messages
+
+export const GetMessages = async () => {
+  try {
+    const response = await axios.get("/messages");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
