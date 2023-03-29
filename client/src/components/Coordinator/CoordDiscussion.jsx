@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, Button, TextField } from "@mui/material";
-import "../../CSS/Coordinator/CoordDiscussion.css";
+import "../../CSS/Coordinator/DiscussCoord.css";
 import { GetMessages } from "../../service/api";
 const CoordDiscussion = () => {
   const [showInput, setShowInput] = useState(false);
@@ -126,17 +126,22 @@ const CoordDiscussion = () => {
                   )}
                 </div>
               </div>
-              <div style={{overflowY:"scroll"}}>
-              {msg.map((item) => (
-                // <h1 style={{backgroundColor:"black"}}>msgs - {item}</h1>
-                <div className="amt">
-                  <div className="amt__Cnt">
-                    <p className="amt__txt">
-                    <h1 style={{fontStyle:"normal", color:"darkblue"}}>msgs - {item}</h1>
-                    </p>
-                   </div>
-                 </div>
-              ))}
+              <div
+                className="TryScroll"
+                style={{ backgroundColor: "blueviolet" }}
+              >
+                {msg.map((item) => (
+                  // <h1 style={{backgroundColor:"black"}}>msgs - {item}</h1>
+                  <div className="amt">
+                    <div className="amt__Cnt">
+                      <p className="amt__txt">
+                        <h1 style={{ backgroundColor: "black" }}>
+                          msgs - {item}
+                        </h1>
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
