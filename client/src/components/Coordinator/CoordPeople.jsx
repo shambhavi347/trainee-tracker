@@ -67,6 +67,7 @@ const CoordPeople = () => {
   const [traineeTile, setTraineeTile] = useState(trainee_tile);
   const [count, setCount] = useState(1);
   const [groups, setGroups] = useState([]);
+  const [value, setValue] = useState({});
   // const [groupss, setGroupss] = useState([]);
   // const [groupTileDiv, setGroupTileDiv] = useState(group_tile_div1);
 
@@ -76,6 +77,7 @@ const CoordPeople = () => {
       try {
         const data = await getCoordName();
         if (data) setMentor(data);
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -88,6 +90,7 @@ const CoordPeople = () => {
       try {
         const data = await getTraineeDeets();
         if (data) {
+          // console.log(data);
           setTraineeList(data);
           if (trainee.length === 0 && groupList.length === 0)
             setTrainee(traineeList);
@@ -117,12 +120,17 @@ const CoordPeople = () => {
   //add trainee to group list on click of button
   const addGroup = (val) => {
     // setGroupTileDiv(group_tile_div1);
+
     setTraineeTileDiv(trainee_tile_div1);
     setTraineeTile(trainee_tile1);
+    setValue({ val });
+    setValue({ ...val, group: "created" });
     setTrainee(trainee.filter((item) => item._id !== val._id));
     setGroupList([...groupList, val]);
+    // setGroupList([])
   };
-
+  console.log(value);
+  console.log(groupList);
   //remove trainee from group list and add it back to trainee
   const removeGroup = (val) => {
     setGroupList(groupList.filter((item) => item._id !== val._id));
@@ -139,6 +147,14 @@ const CoordPeople = () => {
 
   let groupss = [{}];
   const createGroup = () => {
+    // groupList.map((val) =>
+
+    //   // setGroupList([...groups, val.group:"created"])
+    //   // setGroupList(prevState => {
+    //   //   // Object.assign would also work
+    //   //   return {...prevState, val.group: "created"};
+    //   // });
+    // );
     let name1 = "group " + count;
     const groupee = {
       name: "",
@@ -191,16 +207,20 @@ const CoordPeople = () => {
                 <div style={traineeTile}>
                   {val.prefix} {val.first_name} {val.middle_name}{" "}
                   {val.last_name}
-                  <div
-                    className="check-div-coord"
-                    onClick={() => addGroup(val)}
-                  >
-                    <img
-                      src="./Images/check.png"
-                      alt=""
-                      className="check-img"
-                    />
-                  </div>
+                  {val.group ? null : (
+                    <>
+                      <div
+                        className="check-div-coord"
+                        onClick={() => addGroup(val)}
+                      >
+                        <img
+                          src="./Images/check.png"
+                          alt=""
+                          className="check-img"
+                        />
+                      </div>
+                    </>
+                  )}
                   <div className="expnd-img-coord">
                     <img
                       src={expand}
@@ -266,6 +286,7 @@ const CoordPeople = () => {
               <div>
                 {/* {console.log(val)} */}
                 {val.name}
+                {/* {(val.group = "added")} */}
                 {/* {val.members.map((value) => console.log(value))} */}
                 {val.members.map((value) => (
                   <div>
