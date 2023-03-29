@@ -18,16 +18,6 @@ const CoordDiscussion = () => {
     console.log(name, value);
   };
 
-  const [msg, setMsg] = useState([]);
-  useEffect(() => {
-    const M_data = async () => {
-      const response = await GetMessages();
-      console.log(response);
-      setMsg(response);
-    };
-    M_data();
-  }, []);
-
   const postData = async (e) => {
     e.preventDefault();
     const { message } = user;
@@ -54,6 +44,16 @@ const CoordDiscussion = () => {
       setShowInput(false);
     }
   };
+
+  const [msg, setMsg] = useState([]);
+  useEffect(() => {
+    const M_data = async () => {
+      const response = await GetMessages();
+      console.log(response);
+      setMsg(response);
+    };
+    M_data();
+  }, []);
 
   return (
     <>
@@ -117,7 +117,7 @@ const CoordDiscussion = () => {
                     </div>
                   ) : (
                     <div
-                      // className="main__wrapper100"
+                      className="main__wrapper100"
                       onClick={() => setShowInput(true)}
                     >
                       <Avatar />
