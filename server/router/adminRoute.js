@@ -1318,13 +1318,11 @@ router.get("/messages", coordAuthenticate, async (req, res) => {
     const Coordi = await Class.find({ coordinatorID: ID });
     console.log("coordinator " + Coordi);
     const coord = Coordi[0].coordinatorID;
-    const msgs = await MessageSent.find({ coord_id: coord }) ;
-    // console.log("coordinator id" + coord);
+    const msgs = await MessageSent.find({ coord_id: coord });
     const m = [];
     msgs.map((val) => m.push(val.message));
     console.log("Messages - " + m);
     if (m) res.send(m);
-    // res.send(msgs);
   } catch (error) {
     console.log(error);
   }
