@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, Button, TextField } from "@mui/material";
 import "../../CSS/Coordinator/DiscussCoord.css";
-import { GetMessages, GetNames } from "../../service/api";
+import { GetDetails } from "../../service/api";
 const CoordDiscussion = () => {
   const [showInput, setShowInput] = useState(false);
   const [user, setUser] = useState({
@@ -45,120 +45,103 @@ const CoordDiscussion = () => {
     }
   };
 
-  const [msg, setMsg] = useState([]);
+  const [details, setDetails] = useState([]);
   useEffect(() => {
-    const M_data = async () => {
-      const response = await GetMessages();
+    const D_data = async () => {
+      const response = await GetDetails();
       console.log(response);
-      setMsg(response);
+      setDetails(response);
     };
-    M_data();
+    D_data();
   }, []);
 
-  const [names, setNames] = useState([]);
-  useEffect(() => {
-    const N_data = async () => {
-      const response = await GetNames();
-      console.log(response);
-      setNames(response);
-    };
-    N_data();
-  }, []);
-
-  const alternateArray = [];
-  msg.map((element, index) => {
-    alternateArray.push(element);
-    alternateArray.push(names[index]);
-  });
-  const rev = [...alternateArray].reverse();
-  console.log(rev);
+  const newArray = details.slice().reverse();
 
   return (
     <>
-   
-     <div className="forScroll ">
-      <div className="main ">
-        <div className="main__wrapper">
-          <div className="main__announce">
-            <div className="main__announcements">
-              <div className="main__announcementsWrapper">
-                <div className="main__ancContent">
-                  {showInput ? (
-                    <div className="main__form">
-                      <TextField
-                        id="filled-multiline-flexible"
-                        multiline
-                        label="Announce Something to class"
-                        variant="filled"
-                        className="message"
-                        type="text"
-                        placeholder="write something"
-                        name="message"
-                        value={user.message}
-                        autoComplete="off"
-                        onChange={handleChange}
-                      />
-                      <div className="main__buttons">
-                        <div>
-                          <Button
-                            onClick={() => {
-                              setUser("");
-                              setShowInput(false);
-                            }}
-                          >
-                            Cancel
-                          </Button>
+      <div className="forScroll ">
+        <div className="main ">
+          <div className="main__wrapper">
+            <div className="main__announce">
+              <div className="main__announcements">
+                <div className="main__announcementsWrapper">
+                  <div className="main__ancContent">
+                    {showInput ? (
+                      <div className="main__form">
+                        <TextField
+                          id="filled-multiline-flexible"
+                          multiline
+                          label="Announce Something to class"
+                          variant="filled"
+                          className="message"
+                          type="text"
+                          placeholder="write something"
+                          name="message"
+                          value={user.message}
+                          autoComplete="off"
+                          onChange={handleChange}
+                        />
+                        <div className="main__buttons">
+                          <div>
+                            <Button
+                              onClick={() => {
+                                setUser("");
+                                setShowInput(false);
+                              }}
+                            >
+                              Cancel
+                            </Button>
 
-                          <Button
-                            onClick={postData}
-                            color="primary"
-                            variant="contained"
-                          >
-                            Post
-                          </Button>
+                            <Button
+                              onClick={postData}
+                              color="primary"
+                              variant="contained"
+                            >
+                              Post
+                            </Button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div
-                      className="main__wrapper100"
-                      onClick={() => setShowInput(true)}
-                    >
-                      <Avatar />
-                      <div>Announce Something to class</div>
-                    </div>
-                  )}
+                    ) : (
+                      <div
+                        className="main__wrapper100"
+                        onClick={() => setShowInput(true)}
+                      >
+                        <Avatar />
+                        <div>Announce Something to class</div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-              {/* <div
-                className="TryScroll"
-                style={{ backgroundColor: "blueviolet", height: "10%" }}
-              > */}
-              {rev.map((item, index) =>
-                index % 2 === 0 ? (
+                {newArray.map((item, index) => (
                   <div className="amt">
                     <div className="amt__Cnt">
                       <p className="amt__txt">
+                        <Avatar />
                         <h1 style={{ backgroundColor: "springgreen" }}>
-                          {item}
+                          {item.sender_name}
                         </h1>
                         <h1 style={{ backgroundColor: "springgreen" }}>
-                          {rev[index + 1]}
+                          {new Date(item.createdAt).getDate() +
+                            " " +
+                            new Date(item.createdAt).toLocaleString("default", {
+                              month: "long",
+                            }) +
+                            " " +
+                            new Date(item.createdAt).getFullYear()}
+                        </h1>
+                        <h1 style={{ backgroundColor: "springgreen" }}>
+                          {item.message}
                         </h1>
                       </p>
                     </div>
                   </div>
-                ) : (
-                  <h1></h1>
-                  // <h1 style={{ backgroundColor: "black" }}>{item}</h1>
-                )
-              )}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-      </div>
-      {/* </div> */}
     </>
   );
 };

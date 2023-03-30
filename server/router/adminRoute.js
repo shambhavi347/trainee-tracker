@@ -1323,9 +1323,9 @@ router.post("/send_message", coordAuthenticate, async (req, res) => {
   }
 });
 
-// get messages from MessageSent collection to coordinator
+// get details from MessageSent collection to coordinator
 
-router.get("/messages", coordAuthenticate, async (req, res) => {
+router.get("/details", coordAuthenticate, async (req, res) => {
   const ID = req.rootUser.id;
   const Coordi = await Class.find({ coordinatorID: ID });
   // console.log("coordinator " + Coordi);
@@ -1338,44 +1338,11 @@ router.get("/messages", coordAuthenticate, async (req, res) => {
       .then((data) => {
         const m = [];
         data.map((d) => {
-          m.push(d.message);
+          m.push(d);
         });
         if (!res.headersSent) {
           if (m) {
-            console.log("Messages - " + m);
-            res.send(m);
-            return;
-          }
-        }
-      })
-      .catch((error) => {
-        if (!res.headersSent) {
-          console.log(error);
-        }
-      });
-  });
-});
-
-// get names from MessageSent collection to coordinator
-
-router.get("/names", coordAuthenticate, async (req, res) => {
-  const ID = req.rootUser.id;
-  const Coordi = await Class.find({ coordinatorID: ID });
-  // console.log("coordinator " + Coordi);
-  const coord = Coordi[0].coordinatorID;
-  const msgs = await MessageSent.find({ coord_id: coord });
-  Coordi.map((val) => {
-    let trainee = val.traineeID;
-    console.log("trainee " + trainee);
-    MessageSent.find({ trainee_list_id: trainee })
-      .then((data) => {
-        const m = [];
-        data.map((d) => {
-          m.push(d.sender_name);
-        });
-        if (!res.headersSent) {
-          if (m) {
-            console.log("Names - " + m);
+            console.log("Details - " + m);
             res.send(m);
             return;
           }
@@ -1449,9 +1416,9 @@ router.post("/send_message1", traineeAuthenticate, async (req, res) => {
   }
 });
 
-// get all messages from MessageSent schema to trainee dashboard
+// get all details from MessageSent schema to trainee dashboard
 
-router.get("/messages_trainee", traineeAuthenticate, async (req, res) => {
+router.get("/details1", traineeAuthenticate, async (req, res) => {
   const id = req.rootUser.id;
   console.log("trainee id - " + id);
   const traine = await Trainee.findOne({ _id: id });
@@ -1474,55 +1441,11 @@ router.get("/messages_trainee", traineeAuthenticate, async (req, res) => {
       .then((data) => {
         const m = [];
         data.map((d) => {
-          m.push(d.message);
+          m.push(d);
         });
         if (!res.headersSent) {
           if (m) {
-            console.log("Messages - " + m);
-            res.send(m);
-            return;
-          }
-        }
-      })
-      .catch((error) => {
-        if (!res.headersSent) {
-          console.log(error);
-        }
-      });
-  });
-  
-});
-
-// get all names from MessageSent schema to trainee dashboard
-
-router.get("/names1", traineeAuthenticate, async (req, res) => {
-  const id = req.rootUser.id;
-  console.log("trainee id - " + id);
-  const traine = await Trainee.findOne({ _id: id });
-  const stud = await Student.findOne({ email: traine.email });
-  console.log("student id - " + stud._id);
-  const cla = await Class.findOne({ traineeID: stud._id });
-  const coord = cla.coordinatorID;
-
-  const Coordi = await Class.find({ coordinatorID: coord });
-  // console.log("coordinator " + Coordi);
-
-  const msgs = await MessageSent.find({ coord_id: coord });
-
-  // msgs.map((val) => ms.push(val.message));
-  // console.log("Messages - " + m);
-  Coordi.map((val) => {
-    let trainee = val.traineeID;
-    console.log("trainee " + trainee);
-    MessageSent.find({ trainee_list_id: trainee })
-      .then((data) => {
-        const m = [];
-        data.map((d) => {
-          m.push(d.sender_name);
-        });
-        if (!res.headersSent) {
-          if (m) {
-            console.log("Names - " + m);
+            console.log("Details - " + m);
             res.send(m);
             return;
           }

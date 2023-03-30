@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, Button, TextField } from "@mui/material";
-import "../../CSS/Coordinator/DiscussCoord.css";
-import { GetMessages1, GetNames1 } from "../../service/api";
+import "../../CSS/Trainee/TraineeDiscuss.css";
+import { GetDetails1 } from "../../service/api";
 const TraineeDiscuss = () => {
   const [showInput, setShowInput] = useState(false);
   const [user, setUser] = useState({
@@ -45,113 +45,110 @@ const TraineeDiscuss = () => {
     }
   };
 
-  const [msg, setMsg] = useState([]);
+  const [details, setDetails] = useState([]);
   useEffect(() => {
-    const M_data = async () => {
-      const response = await GetMessages1();
+    const D_data = async () => {
+      const response = await GetDetails1();
       console.log(response);
-      setMsg(response);
+      setDetails(response);
     };
-    M_data();
+    D_data();
   }, []);
 
-  const [names, setNames] = useState([]);
-  useEffect(() => {
-    const N_data = async () => {
-      const response = await GetNames1();
-      console.log(response);
-      setNames(response);
-    };
-    N_data();
-  }, []);
-
-  const alternateArray = [];
-  msg.map((element, index) => {
-    alternateArray.push(element);
-    alternateArray.push(names[index]);
-  });
-  const rev = [...alternateArray].reverse();
-  console.log(rev);
+  const newArray = details.slice().reverse();
 
   return (
     <>
-      <div className="main">
-        <div className="main__wrapper">
-          <div className="main__announce">
-            <div className="main__announcements">
-              <div className="main__announcementsWrapper">
-                <div className="main__ancContent">
-                  {showInput ? (
-                    <div className="main__form">
-                      <TextField
-                        id="filled-multiline-flexible"
-                        multiline
-                        label="Announce Something to class"
-                        variant="filled"
-                        className="message"
-                        type="text"
-                        placeholder="write something"
-                        name="message"
-                        value={user.message}
-                        autoComplete="off"
-                        onChange={handleChange}
-                      />
-                      <div className="main__buttons">
-                        <div>
-                          <Button
-                            onClick={() => {
-                              setUser("");
-                              setShowInput(false);
-                            }}
-                          >
-                            Cancel
-                          </Button>
+      <div className="forScroll">
+        <div className="main ">
+          <div className="main__wrapper">
+            <div className="main__announce">
+              <div className="main__announcements">
+                <div className="main__announcementsWrapper">
+                  <div className="main__ancContent">
+                    {showInput ? (
+                      <div className="main__form">
+                        <TextField
+                          id="filled-multiline-flexible"
+                          multiline
+                          label="Announce Something to class"
+                          variant="filled"
+                          className="message"
+                          type="text"
+                          placeholder="write something"
+                          name="message"
+                          value={user.message}
+                          autoComplete="off"
+                          onChange={handleChange}
+                        />
+                        <div className="main__buttons">
+                          <div>
+                            <Button
+                              onClick={() => {
+                                setUser("");
+                                setShowInput(false);
+                              }}
+                            >
+                              Cancel
+                            </Button>
 
-                          <Button
-                            onClick={postData}
-                            color="primary"
-                            variant="contained"
-                          >
-                            Post
-                          </Button>
+                            <Button
+                              onClick={postData}
+                              color="primary"
+                              variant="contained"
+                            >
+                              Post
+                            </Button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div
-                      className="main__wrapper100"
-                      onClick={() => setShowInput(true)}
-                    >
-                      <Avatar />
-                      <div>Announce Something to class</div>
-                    </div>
-                  )}
-                </div>
-              </div>
-              {/* <div
-                className="TryScroll"
-                style={{ backgroundColor: "blueviolet", height: "10%" }}
-              > */}
-                {rev.map((item, index) =>
-                  index % 2 == 0 ? (
-                    <div className="amt">
-                      <div className="amt__Cnt">
-                        <p className="amt__txt">
-                          <h1 style={{ backgroundColor:"springgreen" }}>{item}</h1>
-                          <h1 style={{ backgroundColor:"springgreen" }}>{rev[index + 1]}</h1>
-                        </p>
+                    ) : (
+                      <div
+                        className="main__wrapper100"
+                        onClick={() => setShowInput(true)}
+                      >
+                        <Avatar />
+                        <div>Announce Something to class</div>
                       </div>
+                    )}
+                  </div>
+                </div>
+                {newArray.map((item, index) => (
+                  <div className="amt">
+                    <div className="amt__Cnt">
+                      <p className="amt__txt">
+                        <Avatar />
+                        <h1
+                          /*style={{ backgroundColor:"pink" }}*/ className="tr_sender"
+                        >
+                          {item.sender_name}
+                        </h1>
+                        <h1
+                          /*style={{ backgroundColor: "skyblue" }}*/ className="tr_date"
+                        >
+                          {new Date(item.createdAt).toLocaleString("default", {
+                            month: "long",
+                          }) +
+                            " " +
+                            new Date(item.createdAt).getDate() +
+                            ", " +
+                            new Date(item.createdAt).getFullYear()}
+                        </h1>
+                        <h1
+                          /*style={{ backgroundColor: "yellowgreen" }}*/
+                          className="tr_message"
+                        >
+                          {item.message}
+                        </h1>
+                      </p>
                     </div>
-                  ) : (
-                    <h1></h1>
-                    // <h1 style={{ backgroundColor: "black" }}>{item}</h1>
-                  )
-                )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
-      {/* </div> */}
+      </div>
     </>
   );
 };
