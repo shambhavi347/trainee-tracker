@@ -133,17 +133,18 @@ const TraineeDiscuss = () => {
                 style={{ backgroundColor: "blueviolet", height: "10%" }}
               > */}
                 {rev.map((item, index) =>
-                  // <h1 style={{backgroundColor:"black"}}>msgs - {item}</h1>
-                  index % 2 === 0 ? (
+                  index % 2 == 0 ? (
                     <div className="amt">
                       <div className="amt__Cnt">
                         <p className="amt__txt">
-                          <h1 style={{ backgroundColor: "black" }}>{item}</h1>
+                          <h1 style={{ backgroundColor:"springgreen" }}>{item}</h1>
+                          <h1 style={{ backgroundColor:"springgreen" }}>{rev[index + 1]}</h1>
                         </p>
                       </div>
                     </div>
                   ) : (
-                    <h1 style={{ backgroundColor: "black" }}>{item}</h1>
+                    <h1></h1>
+                    // <h1 style={{ backgroundColor: "black" }}>{item}</h1>
                   )
                 )}
               </div>
