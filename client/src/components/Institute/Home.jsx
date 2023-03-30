@@ -4,6 +4,7 @@ import "../../CSS/Institute/Home.css";
 import "../Institute/RegInstitute";
 import { getAppstatus, getSelectedStudents } from "../../service/api";
 import { expand, cancel, check, remove } from "../../Images/Images";
+
 const Home = () => {
   const [status, setStatus] = useState("");
   //made a function for calling api.js and then calling same function below

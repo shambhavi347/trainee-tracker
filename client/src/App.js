@@ -13,9 +13,10 @@ import Error from "./components/Error";
 import Logout from "./components/Logout";
 import LogoutTrainee from "./components/LogoutTrainee";
 import TraineeProfile from "./components/Student/TraineeProfile";
-import CoordPeople from "./components/Coordinator/CoordPeople";
-import CoordProject from "./components/Coordinator/CoordProject";
-import CoordDiscussion from "./components/Coordinator/CoordDiscussion";
+import ProjectDetails from "./components/Coordinator/ProjectDetails";
+// import CoordPeople from "./components/Coordinator/CoordPeople";
+// import CoordProject from "./components/Coordinator/CoordProject";
+// import CoordDiscussion from "./components/Coordinator/CoordDiscussion";
 import ForgotPass from "./components/ForgotPass";
 import CreatePass from "./components/CreatePass";
 import StudReg from "./components/Student/StudReg";
@@ -35,7 +36,7 @@ const App = () => {
           <Route path="/institute-home" element={<Home />} />
           {/* <Route path="/reg-coordinator" element={<RegCoordinator />} /> */}
           <Route path="/reg-coord" element={<CoordReg />} />
-
+          <Route path="/pro-details" element={<ProjectDetails />} />
           <Route path="/coordinator-dashboard" element={<CoordinatorDash />} />
           <Route path="/trainee-dashboard" element={<StudDash />} />
           <Route path="/trainee-reg" element={<TraineeReg />} />

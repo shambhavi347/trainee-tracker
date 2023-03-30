@@ -494,6 +494,34 @@ export const postProject = async (data) => {
     console.log(error);
   }
 };
+
+export const getProtitle = async () => {
+  try {
+    let respone = await axios.get("/get-project-title");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProdesc = async () => {
+  try {
+    let respone = await axios.get("/get-project-desc");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postEvents = async (data) => {
+  try {
+    const response = await axios.post("/project-events", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getTraineeData = async () => {
   try {
     let respone = await axios.get("/get-trainee-Data");
@@ -526,6 +554,14 @@ export const getTraineeDeets = async () => {
     let respone = await axios.get("/get-trainee-details");
     // console.log("Res: " + respone);
     return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createEvent = async (data) => {
+  try {
+    await axios.post("/create-event", data);
   } catch (error) {
     console.log(error);
   }

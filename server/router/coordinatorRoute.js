@@ -7,6 +7,7 @@ const Invitation = require("../model/invitationSchema");
 const coordAuthenticate = require("../middleware/coordAuth");
 const Class = require("../model/classSchema");
 const Student = require("../model/studentSchema");
+const { request } = require("express");
 
 router.post("/coordinator-reg", async (req, res) => {
   try {
@@ -211,6 +212,25 @@ router.post("/project-title", async (req, res) => {
     res.status(201).json({ message: "Project successfully added!✌" });
   } else {
     res.status(500).json({ error: "Failed to add Title☹" });
+  }
+});
+
+router.post("/project-events", async (req, res) => {
+  const event = req.body.title;
+  const setevent = new setevent({ title: event });
+  const seteventReg = await setevent.save();
+  if (seteventReg) {
+    res.status(201).json({ message: "Event successfully added!✌" });
+  } else {
+    res.status(500).json({ error: "Failed to add Event☹" });
+  }
+});
+
+router.post("/create-event", async (req, res) => {
+  try {
+    console.log(req.body);
+  } catch (error) {
+    console.log(error);
   }
 });
 
