@@ -56,6 +56,7 @@ const CoordDiscussion = () => {
   }, []);
 
   const newArray = details.slice().reverse();
+    setDetails(newArray);
 
   return (
     <>

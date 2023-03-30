@@ -583,31 +583,7 @@ export const GetDetails = async () => {
 
 export const GetDetails1 = async () => {
   try {
-    const response = await axios.get("/names");
-    return response.data;
-    // console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-// get message to trainee
-
-export const GetMessages1 = async () => {
-  try {
-    const response = await axios.get("/messages_trainee");
-    return response.data;
-    // console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-// get name to trainees
-
-export const GetNames1 = async () => {
-  try {
-    const response = await axios.get("/names1");
+    const response = await axios.get("/details1");
     return response.data;
     // console.log(data);
   } catch (error) {
