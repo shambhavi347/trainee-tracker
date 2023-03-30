@@ -530,3 +530,31 @@ export const getTraineeDeets = async () => {
     console.log(error);
   }
 };
+
+export const postGroup = async (data) => {
+  try {
+    const response = await axios.post("/create-group", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getGroups = async () => {
+  try {
+    let respone = await axios.get("/get-groups");
+    // console.log("Res: " + respone);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const removeGroup = async (data) => {
+  try {
+    let respone = await axios.post("/remove-group", data);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

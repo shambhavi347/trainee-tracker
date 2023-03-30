@@ -141,7 +141,7 @@ const CoordinatorAdmin = () => {
                   <option value="null">Salutation</option>
                   <option value="Mr">Mr</option>
                   <option value="Mrs">Mrs</option>
-                  <option value="Ms">Miss</option>
+                  <option value="Ms">Ms</option>
                   <option value="Dr">Dr</option>
                 </select>
                 <input
@@ -190,7 +190,8 @@ const CoordinatorAdmin = () => {
                     {invit.map((val) => (
                       <div className="invites">
                         <div className="name-invites">
-                          {val.salutation} {val.first_name} {val.last_name}
+                          {val.salutation} {val.first_name} {val.middle_name}{" "}
+                          {val.last_name}
                         </div>
                         <div className="right-invites">
                           <button
@@ -224,7 +225,8 @@ const CoordinatorAdmin = () => {
                       setAssign(val);
                     }}
                   >
-                    {val.salutation} {val.name}
+                    {val.salutation} {val.first_name} {val.middle_name}{" "}
+                    {val.last_name}
                     <div className="img-arrow">
                       <img src={arrowRight} alt="" className="img-arr" />
                     </div>
