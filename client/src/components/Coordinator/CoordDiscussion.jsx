@@ -133,7 +133,7 @@ const CoordDiscussion = () => {
                 style={{ backgroundColor: "blueviolet", height: "10%" }}
               > */}
               {rev.map((item, index) =>
-                index % 2 == 0 ? (
+                index % 2 === 0 ? (
                   <div className="amt">
                     <div className="amt__Cnt">
                       <p className="amt__txt">
