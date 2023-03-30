@@ -75,7 +75,9 @@ const CoordDiscussion = () => {
 
   return (
     <>
-      <div className="main">
+   
+     <div className="forScroll ">
+      <div className="main ">
         <div className="main__wrapper">
           <div className="main__announce">
             <div className="main__announcements">
@@ -154,6 +156,7 @@ const CoordDiscussion = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
       {/* </div> */}
     </>
