@@ -12,6 +12,9 @@ const MessageSentSchema = new mongoose.Schema({
   coord_id: {
     type: String,
   },
+  sender_name: {
+    type: String,
+  },
   trainee_list_id: [
     {
       type: String,

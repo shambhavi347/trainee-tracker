@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, Button, TextField } from "@mui/material";
 import "../../CSS/Coordinator/DiscussCoord.css";
-import { GetMessages } from "../../service/api";
+import { GetMessages, GetNames } from "../../service/api";
 const CoordDiscussion = () => {
   const [showInput, setShowInput] = useState(false);
   const [user, setUser] = useState({
@@ -55,24 +55,26 @@ const CoordDiscussion = () => {
     M_data();
   }, []);
 
+  const [names, setNames] = useState([]);
+  useEffect(() => {
+    const N_data = async () => {
+      const response = await GetNames();
+      console.log(response);
+      setNames(response);
+    };
+    N_data();
+  }, []);
+
+  const alternateArray = [];
+  msg.map((element, index) => {
+    alternateArray.push(element);
+    alternateArray.push(names[index]);
+  });
+  const rev = [...alternateArray].reverse();
+  console.log(rev);
+
   return (
     <>
-      {/* <h1>Announcement - </h1>
-      <br />
-      <div>
-        <input
-          className="message"
-          type="text"
-          placeholder="write something"
-          name="message"
-          value={user.message}
-          autoComplete="off"
-          onChange={handleChange}
-        />
-        <button className="button" onClick={postData}>
-          POST
-        </button>
-      </div> */}
       <div className="main">
         <div className="main__wrapper">
           <div className="main__announce">
@@ -128,15 +130,15 @@ const CoordDiscussion = () => {
               </div>
               <div
                 className="TryScroll"
-                style={{ backgroundColor: "blueviolet" }}
+                style={{ backgroundColor: "blueviolet", height:"20%" }}
               >
-                {msg.map((item) => (
+                {rev.map((item, index) => (
                   // <h1 style={{backgroundColor:"black"}}>msgs - {item}</h1>
                   <div className="amt">
                     <div className="amt__Cnt">
                       <p className="amt__txt">
                         <h1 style={{ backgroundColor: "black" }}>
-                          msgs - {item}
+                          {item}
                         </h1>
                       </p>
                     </div>

@@ -531,11 +531,47 @@ export const getTraineeDeets = async () => {
   }
 };
 
-// get messages
+// get messages to coordinator
 
 export const GetMessages = async () => {
   try {
     const response = await axios.get("/messages");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get name to coordinator
+
+export const GetNames = async () => {
+  try {
+    const response = await axios.get("/names");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get message to trainee
+
+export const GetMessages1 = async () => {
+  try {
+    const response = await axios.get("/messages_trainee");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get name to trainees
+
+export const GetNames1 = async () => {
+  try {
+    const response = await axios.get("/names1");
     return response.data;
     // console.log(data);
   } catch (error) {
