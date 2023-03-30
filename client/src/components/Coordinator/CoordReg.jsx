@@ -31,23 +31,9 @@ const CoordReg = () => {
 
   const PostData = async (e) => {
     e.preventDefault();
-    console.log(user);
-    const {
-      salutation,
-      first_name,
-      middle_name,
-      last_name,
-      email,
-      phone,
-      password,
-    } = user;
-
-    const res = await fetch("/coordinator-reg", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    if (user.password === user.confirm_pass) {
+      console.log(user);
+      const {
         salutation,
         first_name,
         middle_name,
@@ -55,18 +41,37 @@ const CoordReg = () => {
         email,
         phone,
         password,
-      }),
-    });
+      } = user;
 
-    const data = await res.json();
-    console.log(data);
+      const res = await fetch("/coordinator-reg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          salutation,
+          first_name,
+          middle_name,
+          last_name,
+          email,
+          phone,
+          password,
+        }),
+      });
 
-    if (data.status === 422 || data.error) {
-      window.alert("Invalid Registration!❌" + data.error);
-      console.log("Invalid Registration!❌");
+      const data = await res.json();
+      console.log(data);
+
+      if (data.status === 422 || data.error) {
+        window.alert(data.error);
+        console.log("Invalid Registration!❌");
+      } else {
+        window.alert("Registration Successfull !✔");
+        routeChange();
+      }
     } else {
-      window.alert("Registration Successful!✔");
-      routeChange();
+      window.alert("Confirm Password does not match");
+      console.log("Confirm Password does not match");
     }
   };
 
@@ -83,7 +88,7 @@ const CoordReg = () => {
               value={user.salutation}
               onChange={handlechange}
             >
-              <option value="Select">Select Salutation</option>
+              <option value="Select">Salutation *</option>
               <option value="Mr">Mr</option>
               <option value="Mrs">Mrs</option>
               <option value="Ms">Ms</option>
@@ -98,7 +103,7 @@ const CoordReg = () => {
               onChange={handlechange}
               name="first_name"
               id="name"
-              placeholder="Coordinator's First Name"
+              placeholder="First Name *"
             />
 
             <input
@@ -109,7 +114,7 @@ const CoordReg = () => {
               onChange={handlechange}
               name="middle_name"
               id="name"
-              placeholder="Coordinator's Middle Name"
+              placeholder="Middle Name"
             />
             <input
               className="form-text-coord"
@@ -119,7 +124,7 @@ const CoordReg = () => {
               onChange={handlechange}
               name="last_name"
               id="name"
-              placeholder="Coordinator's Last Name"
+              placeholder="Last Name"
             />
             <input
               className="form-text-coord"
@@ -129,7 +134,7 @@ const CoordReg = () => {
               onChange={handlechange}
               name="email"
               id="email"
-              placeholder="Coordinator's Email"
+              placeholder="Email *"
             />
 
             <input
@@ -140,28 +145,28 @@ const CoordReg = () => {
               onChange={handlechange}
               name="phone"
               id="phone"
-              placeholder="Coordinator's Phone No."
+              placeholder="Phone No. *"
             />
 
             <input
               className="form-text-coord"
-              type="text"
+              type="password"
               autoComplete="off"
               value={user.password}
               onChange={handlechange}
               name="password"
               id="password"
-              placeholder="Set Password"
+              placeholder="Set Password *"
             />
             <input
               className="form-text-coord"
-              type="text"
+              type="password"
               autoComplete="off"
               value={user.confirm_pass}
               onChange={handlechange}
               name="confirm_pass"
               id="password"
-              placeholder="Confirm Password"
+              placeholder="Confirm Password *"
             />
 
             <div className="footer-coord">

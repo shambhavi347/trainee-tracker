@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../../CSS/Coordinator/CoordPeople.css";
-import { getCoordName, getTraineeDeets } from "../../service/api";
+import {
+  getCoordName,
+  getTraineeDeets,
+  postGroup,
+  getGroups,
+  removeGroup,
+} from "../../service/api";
 import { expand, cancel } from "../../Images/Images";
 
 var trainee_tile_div = {
-  /* background-color: #eeeeee; */
   padding: "2% 15%",
 };
 
@@ -65,7 +70,48 @@ const CoordPeople = () => {
   const [groupList, setGroupList] = useState([]);
   const [traineeTileDiv, setTraineeTileDiv] = useState(trainee_tile_div);
   const [traineeTile, setTraineeTile] = useState(trainee_tile);
-  // const [groupTileDiv, setGroupTileDiv] = useState(group_tile_div1);
+  const [groupName, setGroupName] = useState(false);
+  const [count, setCount] = useState("");
+  const [groups, setGroups] = useState([]);
+  // const [value, setValue] = useState({});
+  const [groupDelete, setGroupDelete] = useState(0);
+  // const [misCnt, setMisCnt] = useState("");
+  // const groupNo = [];
+
+  //get group details
+  useEffect(() => {
+    const fetchGroups = async () => {
+      try {
+        const data = await getGroups();
+        if (data) {
+          setGroups(data);
+          // groups.map((val) => groupNo.push(val.name));
+          // console.log(groupNo);
+          // const cnt = groupNo[groupNo.length - 1];
+          // console.log(cnt);
+          // if (cnt === 2) {
+          //   setMisCnt(cnt);
+          // } else {
+          //   var nums = parseInt(groupNo);
+          //   console.log(nums);
+          //   var missing = new Array();
+          //   for (let i = 1; i <= cnt; i++) {
+          //     if (!nums.includes(i)) {
+          //       // Checking whether i(current value) present in num(argument)
+          //       missing.push(i); // Adding numbers which are not in num(argument) array
+          //     }
+          //   }
+
+          //   if (missing.length !== groupNo.length) console.log(missing);
+          // }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchGroups();
+    // setCount(groups.length + 1);
+  }, [groups]);
 
   //get coordinator details
   useEffect(() => {
@@ -79,63 +125,57 @@ const CoordPeople = () => {
     };
     fetchCoordName();
   }, [mentor]);
+
   //get trainee details + list
   useEffect(() => {
-    const fetchCoordName = async () => {
+    const fetchTraineeList = async () => {
       try {
         const data = await getTraineeDeets();
         if (data) {
           setTraineeList(data);
-          if (trainee.length === 0 && groupList.length === 0)
+          if (trainee.length === 0 && groupList.length === 0) {
             setTrainee(traineeList);
-          console.log(traineeList.length + " " + groupList.length);
+          }
         }
       } catch (error) {
         console.log(error);
       }
     };
-    fetchCoordName();
+    fetchTraineeList();
   }, [traineeList]);
 
   //expand button function
-
   const handleExpandTrainee = (val) => {
     setTraineeEx(true);
     setTraineeVal(val);
-
-    // console.log(val);
   };
   if (traineeVal) {
     date = new Date(traineeVal.dob);
     dob1 = date.toLocaleDateString("en-US");
   }
 
-  // useEffect(() => {}, [groupList]);
-
   //add trainee to group list on click of button
-  const addGroup = (val) => {
-    // setGroupTileDiv(group_tile_div1);
+  const addGroup = (val, index) => {
+    let newArr = [...trainee];
+    newArr[index].group = "created";
     setTraineeTileDiv(trainee_tile_div1);
     setTraineeTile(trainee_tile1);
-    setTrainee(trainee.filter((item) => item._id !== val._id));
+    setTrainee(newArr);
     setGroupList([...groupList, val]);
-    // groupList.map((value) => {
-    //   console.log(value.email + " " + val.email);
-    //   if (value.email !== val.email) console.log("false");
-    // });
-    // if (groupList.includes(val) === true) {
-    //   console.log("dup");
-    //   setGroupList([...groupList, val]);
-    // }
   };
 
   //remove trainee from group list and add it back to trainee
-  const removeGroup = (val) => {
+  const removeGroups = (val, index) => {
+    let newArr = [...trainee];
+    console.log(newArr);
+    newArr[index].group = "null";
+    setTrainee(newArr);
     setGroupList(groupList.filter((item) => item._id !== val._id));
-    setTrainee([...trainee, val]);
+
+    // setTrainee([...trainee, val]);
   };
 
-  //change css back file groupList is empty
+  //change css back when file groupList is empty
   useEffect(() => {
     if (groupList.length === 0) {
       setTraineeTileDiv(trainee_tile_div);
@@ -143,7 +183,109 @@ const CoordPeople = () => {
     }
   }, [groupList]);
 
-  // console.log(groupList);
+  // let groupss = [{}];
+  // const createGroup = () => {
+  //   let name1 = "group " + count;
+  //   const groupee = {
+  //     name: "",
+  //     members: "",
+  //   };
+  //   setCount((prev) => prev + 1);
+
+  //   groupee["name"] = name1;
+  //   groupee["members"] = groupList;
+  //   groupss.push(groupee);
+
+  //   setGroups([...groups, groupee]);
+
+  //   setGroupList([]);
+  // };
+  // console.log(groups);
+  // const removeGroupMem = (value, index, memkey) => {
+  //   const id = value._id;
+  //   console.log("ID: " + id);
+
+  //   let newArr = [...trainee];
+
+  //   newArr.map((val) => {
+  //     if (val._id === id) val.group = "null";
+  //   });
+  //   console.log("Index: " + index + " " + memkey);
+  //   setTrainee(newArr);
+
+  //   let groupArr = [...groups];
+  //   console.log(groupArr[index].members[memkey].first_name);
+  //   groupArr[index].members.splice(memkey, 1);
+  //   setGroups(groupArr);
+  //   console.log(groupArr);
+  // };
+
+  //used to remove single individual from group but now depricated
+  // useEffect(() => {
+
+  //   // groups.map((val) => {
+  //   //   if (val.members.length === 0) {
+  //   //     const indx = groups.indexOf(val);
+  //   //     groups.splice(indx, 1);
+  //   //   }
+  //   // });
+  // }, [groups]);
+
+  //create an group
+
+  const postData = async (e) => {
+    e.preventDefault();
+
+    let memId = [];
+    let name1 = count;
+
+    groupList.map((val) => memId.push(val._id));
+
+    const data = await postGroup({
+      members: memId,
+      name: name1,
+    });
+
+    if (data.error) {
+      window.alert("Groups Creation Failed " + data.error);
+    }
+    if (data.message === "saved") {
+      setGroupList([]);
+      // console.log("HI");
+      // setCount((prev) => prev + 1);
+    }
+  };
+
+  //delete group
+
+  const removeData = async (val, mem) => {
+    try {
+      const studId = [];
+      // console.log(val);
+      mem.map((val) => studId.push(val._id));
+      // console.log(studId);
+      const data = await removeGroup({ groupId: val, studID: studId });
+      // console.log(data);
+      if (data.message) setGroupDelete(1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //set green tick back on an trainee whenver a group is deleted
+  useEffect(() => {
+    if (groupDelete === 1) {
+      setGroupDelete(2);
+      // setGroupDelete(false);
+    }
+    if (groupDelete === 2) {
+      setTrainee(traineeList);
+      setGroupDelete(3);
+    }
+    // setGroupDelete(false);
+  }, [groups]);
+  const handleSubmit = () => {};
+  // console.log(count);
   return (
     <>
       <div className="coord-people-divUp">
@@ -159,7 +301,9 @@ const CoordPeople = () => {
           <h2 className="traineeTitle">
             <div className="titleTrainee">Trainee </div>
             {groupList.length ? (
-              <button className="create-grp">Create Group</button>
+              <button className="create-grp" onClick={() => setGroupName(true)}>
+                Create Group
+              </button>
             ) : null}
             <div className="traineeStrength">{trainee.length}</div>
           </h2>
@@ -170,21 +314,26 @@ const CoordPeople = () => {
                 <div>No Students Assigned</div>
               </>
             ) : null}
-            {trainee.map((val) => (
+            {trainee.map((val, index) => (
               <>
                 <div style={traineeTile}>
                   {val.prefix} {val.first_name} {val.middle_name}{" "}
                   {val.last_name}
-                  <div
-                    className="check-div-coord"
-                    onClick={() => addGroup(val)}
-                  >
-                    <img
-                      src="./Images/check.png"
-                      alt=""
-                      className="check-img"
-                    />
-                  </div>
+                  {/* Group: {val.group} */}
+                  {val.group === "null" ? (
+                    <>
+                      <div
+                        className="check-div-coord"
+                        onClick={() => addGroup(val, index)}
+                      >
+                        <img
+                          src="./Images/check.png"
+                          alt=""
+                          className="check-img"
+                        />
+                      </div>
+                    </>
+                  ) : null}
                   <div className="expnd-img-coord">
                     <img
                       src={expand}
@@ -202,7 +351,7 @@ const CoordPeople = () => {
             <>
               {/* style={group_tile1} */}
               <div style={group_tile_div1}>
-                {groupList.map((val) => (
+                {groupList.map((val, index) => (
                   <>
                     {/* <div >{Val.first_name}</div> */}
                     <div style={group_tile1}>
@@ -210,7 +359,7 @@ const CoordPeople = () => {
                       {val.last_name}
                       <div
                         className="check-div-coord"
-                        onClick={() => removeGroup(val)}
+                        onClick={() => removeGroups(val, index)}
                       >
                         <img
                           src="./Images/remove.png"
@@ -233,6 +382,71 @@ const CoordPeople = () => {
             </>
           ) : null}
         </div>
+        {groups.length === 0 ? null : (
+          <>
+            {" "}
+            <h2 className="traineeTitle">
+              <div className="titleTrainee">Groups </div>
+              {/* {groupList.length ? ( */}
+              {/* <button className="create-grp" onClick={postData}>
+                Submit
+              </button> */}
+              {/* // ) : null} */}
+              <div className="traineeStrength">{groups.length}</div>
+            </h2>
+            <hr style={{ backgroundColor: "#393e46", opacity: "0.4" }} />{" "}
+            {groups.map((val, index) => (
+              <div>
+                Group {val.name}
+                <div
+                  className="check-div-coord"
+                  onClick={() => removeData(val._id, val.members)}
+                  // onClick={() => removeGroupMem(value, index, memkey)}
+                  // onClick={() => addGroup(val)}
+                >
+                  <img src="./Images/remove.png" alt="" className="check-img" />
+                </div>
+                {val.members.map((value, memkey) => (
+                  <div>
+                    {/* {console.log(value)} */}
+                    {value.salutation} {value.first_name} {value.middle_name}{" "}
+                    {value.last_name}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </>
+        )}
+        {groupName ? (
+          <>
+            <div className="expanded-div">
+              <div className="groupNo">
+                <button
+                  className="close-btn-group"
+                  onClick={() => setGroupName(false)}
+                >
+                  <img
+                    className="img-close"
+                    src={cancel}
+                    alt="close model box"
+                  />
+                </button>
+                <div className="form-group">
+                  <div className="titlegroupName">Add Group No</div>
+                  <input
+                    className="grpN-input"
+                    type="number"
+                    step="1"
+                    placeholder="Group No..."
+                    value={count}
+                    onChange={handleSubmit}
+                  />
+                  <button className="grpN-submit">Submit</button>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : null}
         {traineeEx ? (
           <div className="expanded-div">
             <button

@@ -60,6 +60,7 @@ const Demo = () => {
     // resume: null,
     pdfname: "",
     status: "selection pending",
+    group: "null",
   });
 
   const fileType = ["application/pdf"];
@@ -196,6 +197,7 @@ const Demo = () => {
       passout_year,
       status,
       fileID,
+      group,
     } = user;
 
     const res = await fetch("/reg-stud1", {
@@ -220,6 +222,7 @@ const Demo = () => {
         passout_year,
         status,
         fileID,
+        group,
       }),
     });
 
@@ -254,6 +257,7 @@ const Demo = () => {
       passout_year,
       status,
       fileID,
+      group,
     } = user;
 
     const res = await fetch("/reg-stud", {
@@ -280,6 +284,7 @@ const Demo = () => {
         inttech,
         status,
         fileID,
+        group,
       }),
     });
 
@@ -288,10 +293,10 @@ const Demo = () => {
 
     if (data.error) {
       window.alert("Invalid Registration, " + data.error);
-      console.log("Invalid Regestration");
+      // console.log("Invalid Regestration");
     } else {
       window.alert("Registration Successfully");
-      console.log("Successfull Regestration");
+      // console.log("Successfull Regestration");
     }
   };
 

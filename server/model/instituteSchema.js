@@ -18,7 +18,25 @@ const instituteSchema = new mongoose.Schema({
       }
     },
   },
-  month: {
+  smonth: {
+    type: String,
+    enum: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+    required: true,
+  },
+  emonth: {
     type: String,
     enum: [
       "January",
@@ -97,7 +115,7 @@ const instituteSchema = new mongoose.Schema({
   },
   phoneno: {
     type: Number,
-    unique: true,
+    // unique: true,
   },
   status: {
     type: String,
@@ -118,7 +136,7 @@ const instituteSchema = new mongoose.Schema({
   },
   coordlastName: {
     type: String,
-    required: true,
+    required: false,
   },
   coordEmail: {
     type: String,
@@ -132,14 +150,11 @@ const instituteSchema = new mongoose.Schema({
   },
   coordPhone: {
     type: Number,
+    sparse: true,
     unique: true,
     required: true,
   },
   password: {
-    type: String,
-    required: true,
-  },
-  confirmPassword: {
     type: String,
     required: true,
   },

@@ -74,7 +74,7 @@ const RegInstitute = () => {
     landline: "",
     extension: "",
     phoneno: "",
-    status: "",
+    status: "pending",
     salutation: "",
     coordfirstName: "",
     coordmiddleName: "",
@@ -132,6 +132,11 @@ const RegInstitute = () => {
 
   const [record, setRecord] = useState([]);
 
+  useEffect(() => {
+    setUserRegistration({ ...userRegistration, landline: value });
+  }, [value]);
+
+  // console.log(userRegistration);
   const handlechange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -145,9 +150,8 @@ const RegInstitute = () => {
     console.log(userRegistration);
   };
 
-  const PostData = async (e) => {
+  const ValidateData = async (e) => {
     e.preventDefault();
-    console.log(userRegistration);
     const {
       name,
       email,
@@ -166,18 +170,9 @@ const RegInstitute = () => {
       landline,
       extension,
       phoneno,
-      status,
-      salutation,
-      coordfirstName,
-      coordmiddleName,
-      coordlastName,
-      coordEmail,
-      coordPhone,
-      password,
-      confirmPassword,
     } = userRegistration;
 
-    const res = await fetch("/institute-reg", {
+    const res = await fetch("/institute-reg0", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -200,6 +195,44 @@ const RegInstitute = () => {
         phoneno,
         landline,
         extension,
+      }),
+    });
+
+    const data = await res.json();
+    // console.log(data);
+
+    if (data.error) {
+      window.alert(data.error);
+      console.log("Invalid Regestration");
+    } else {
+      setInst(false);
+      setDisplay(true);
+      //console.log("Registration Successful!✔");
+    }
+  };
+
+  const PostData = async (e) => {
+    e.preventDefault();
+    console.log(userRegistration);
+    if (userRegistration.password === userRegistration.confirmPassword) {
+      const {
+        name,
+        email,
+        smonth,
+        emonth,
+        duration,
+        rating,
+        rvalue,
+        type,
+        addressline1,
+        addressline2,
+        city,
+        state,
+        country,
+        zipcode,
+        landline,
+        extension,
+        phoneno,
         status,
         salutation,
         coordfirstName,
@@ -208,42 +241,70 @@ const RegInstitute = () => {
         coordEmail,
         coordPhone,
         password,
-        confirmPassword,
-      }),
-    });
+      } = userRegistration;
 
-    const data = await res.json();
-    console.log(data);
+      const res = await fetch("/institute-reg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          smonth,
+          emonth,
+          duration,
+          rating,
+          rvalue,
+          type,
+          addressline1,
+          addressline2,
+          city,
+          state,
+          country,
+          zipcode,
+          phoneno,
+          landline,
+          extension,
+          status,
+          salutation,
+          coordfirstName,
+          coordmiddleName,
+          coordlastName,
+          coordEmail,
+          coordPhone,
+          password,
+        }),
+      });
 
-    //email and password validation
-    // if (!validEmail.test(email)) {
-    //   window.alert("Invalid Institute Email ID☹");
-    //   console.log("Invalid Email ID");
+      const data = await res.json();
+      console.log(data);
 
-    // } else if (!validEmail.test(coordEmail)) {
-    //   window.alert("Invalid Coordinator Email ID☹");
-    //   console.log("Invalid Email ID");
-    // } else if (!validPassword.test(password)) {
-    //   window.alert(
-    //     "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
-    //   );
-    //console.log("Make the Password Strong !!");
-    // } else
-    if (data.status === 422 || data.error) {
-      window.alert("Invalid Registration!❌" + data.error);
-      console.log("Invalid Registration!❌");
+      //email and password validation
+      // if (!validEmail.test(email)) {
+      //   window.alert("Invalid Institute Email ID☹");
+      //   console.log("Invalid Email ID");
+
+      // } else if (!validEmail.test(coordEmail)) {
+      //   window.alert("Invalid Coordinator Email ID☹");
+      //   console.log("Invalid Email ID");
+      // } else if (!validPassword.test(password)) {
+      //   window.alert(
+      //     "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
+      //   );
+      //console.log("Make the Password Strong !!");
+      // } else
+      if (data.status === 422 || data.error) {
+        window.alert("Invalid Registration!❌" + data.error);
+        console.log("Invalid Registration!❌");
+      } else {
+        window.alert("Registration Successful!✔");
+        routeChange();
+        //console.log("Registration Successful!✔");
+      }
     } else {
-      window.alert("Registration Successful!✔");
-      routeChange();
-      //console.log("Registration Successful!✔");
-    }
-  };
-
-  const checkValidation = (e) => {
-    e.preventDefault();
-    // userRegistration.confirmPassword = e.target.value;
-    if (userRegistration.password != userRegistration.confirmPassword) {
-      setIsError("Confirm Password should be same as Password!");
+      window.alert("Confirm Password does not match");
+      console.log("Confirm Password does not match");
     }
   };
 
@@ -274,7 +335,7 @@ const RegInstitute = () => {
                   value={userRegistration.rating}
                   onChange={handlechange}
                 >
-                  <option value="Select">NAAC Rating</option>
+                  <option value="Select">NAAC Rating *</option>
                   <option value="A++">A++</option>
                   <option value="A+">A+</option>
                   <option value="A">A</option>
@@ -290,7 +351,7 @@ const RegInstitute = () => {
                   value={userRegistration.type}
                   onChange={handlechange}
                 >
-                  <option value="Select">Institute Type</option>
+                  <option value="Select">Institute Type *</option>
                   <option value="Central University">Central University</option>
                   <option value="State University">State University</option>
                   <option value="Deemed University">Deemed University</option>
@@ -309,7 +370,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="addressline1"
                   id="addressline1"
-                  placeholder="Address Line 1*"
+                  placeholder="Address Line 1 *"
                 />
                 <input
                   className="form-text-inst fieldd2"
@@ -332,7 +393,7 @@ const RegInstitute = () => {
                     //   console.log(e.target.value);
                     // }}
                   >
-                    <option value="select">Country</option>
+                    <option value="select">Country *</option>
                     {country.map((key) => {
                       return <option value={key.isoCode}> {key.name}</option>;
                     })}
@@ -344,7 +405,7 @@ const RegInstitute = () => {
                     value={userRegistration.state}
                     onChange={handlechange}
                   >
-                    <option value="select">State</option>
+                    <option value="select">State *</option>
                     {/* <option value="select">State 1</option> */}
                     {states.map((Con) => {
                       return <option value={Con.isoCode}>{Con.name}</option>;
@@ -357,7 +418,7 @@ const RegInstitute = () => {
                     value={userRegistration.city}
                     onChange={handlechange}
                   >
-                    <option value="select">City</option>
+                    <option value="select">City *</option>
                     {/* <option value="select">City 1</option> */}
                     {cities.map((Con) => {
                       return <option value={Con.isoCode}>{Con.name}</option>;
@@ -375,7 +436,7 @@ const RegInstitute = () => {
                     onChange={handlechange}
                     name="zipcode"
                     id="zipcode"
-                    placeholder="Zipcode*"
+                    placeholder="Zipcode *"
                   />
                 </div>
 
@@ -389,7 +450,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="email"
                   id="email"
-                  placeholder="Email*"
+                  placeholder="Email *"
                 />
                 <input
                   className="form-text-inst fieldd2 required"
@@ -412,7 +473,7 @@ const RegInstitute = () => {
 
                     <PhoneInput
                       className="fieldd7"
-                      placeholder="Landline number *"
+                      placeholder="Landline number(xxx-xxx-xxxx) *"
                       value={userRegistration.landline}
                       onChange={setValue}
                       name="landline"
@@ -439,7 +500,7 @@ const RegInstitute = () => {
                   value={userRegistration.duration}
                   onChange={handlechange}
                 >
-                  <option value="Select">Internship Duration</option>
+                  <option value="Select">Internship Duration *</option>
                   <option value="1 Month">1 Month</option>
                   <option value="2 Months">2 Months</option>
                   <option value="3 Months">3 Months</option>
@@ -454,7 +515,7 @@ const RegInstitute = () => {
                   value={userRegistration.smonth}
                   onChange={handlechange}
                 >
-                  <option value="Select">Start Month</option>
+                  <option value="Select">Start Month *</option>
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -475,7 +536,7 @@ const RegInstitute = () => {
                   value={userRegistration.emonth}
                   onChange={handlechange}
                 >
-                  <option value="Select">End Month</option>
+                  <option value="Select">End Month *</option>
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -494,10 +555,11 @@ const RegInstitute = () => {
                   <button
                     type="submit"
                     className="btn-inst0"
-                    onClick={() => {
-                      setInst(false);
-                      setDisplay(true);
-                    }}
+                    onClick={ValidateData}
+                    // onClick={() => {
+                      // setInst(false);
+                      // setDisplay(true);
+                    // }}
                   >
                     Next
                   </button>
@@ -512,7 +574,7 @@ const RegInstitute = () => {
                   value={userRegistration.salutation}
                   onChange={handlechange}
                 >
-                  <option value="Select">Title</option>
+                  <option value="Select">Title *</option>
                   <option value="Mr">Mr</option>
                   <option value="Mrs">Mrs</option>
                   <option value="Ms">Ms</option>
@@ -527,7 +589,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="coordfirstName"
                   id="coordname"
-                  placeholder="First Name*"
+                  placeholder="First Name *"
                 />
 
                 <input
@@ -549,7 +611,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="coordlastName"
                   id="coordname"
-                  placeholder="Last Name*"
+                  placeholder="Last Name"
                 />
 
                 <h4 className="head-inst-home-2">Contact Details</h4>
@@ -561,7 +623,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="coordEmail"
                   id="coordemail"
-                  placeholder="Coordinator's Email*"
+                  placeholder="Coordinator's Email *"
                 />
 
                 <input
@@ -572,7 +634,7 @@ const RegInstitute = () => {
                   onChange={handlechange}
                   name="coordPhone"
                   id="coordphone"
-                  placeholder="Coordinator's Phone No.*"
+                  placeholder="Coordinator's Phone No. *"
                 />
 
                 <h4 className="head-inst-home-2">Credentials</h4>
@@ -593,13 +655,17 @@ const RegInstitute = () => {
                     type="password"
                     autoComplete="off"
                     value={userRegistration.confirmPassword}
-                    onChange={(e) => {
-                      handlechange();
-                      checkValidation();
-                    }}
                     name="confirmPassword"
-                    id="Confirm password"
+                    id="confirmPassword"
                     placeholder="Confirm Password *"
+                    // onChange={() => {
+                    //   handlechange();
+                    //   checkValidation();
+                    // }}
+                    onChange={handlechange}
+                    // name="confirmPassword"
+                    // id="Confirm password"
+                    // placeholder="Confirm Password  *"
                   />
                 </div>
 

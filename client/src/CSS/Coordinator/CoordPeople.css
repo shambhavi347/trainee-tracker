@@ -3,7 +3,7 @@
 }
 .coord-people-divUp {
   background: linear-gradient(to bottom, #393e46, #00adb5);
-  height: 100vh;
+  height: 77vh;
   width: 100%;
   margin: 0;
   padding: 0% 15%;
@@ -81,4 +81,73 @@
 .check-div-coord:hover,
 .expnd-img-coord:hover {
   cursor: pointer;
+}
+
+.groupNo {
+  background-color: #eeeeee;
+  border: 2px #00adb5 solid;
+  width: 30%;
+  height: 40%;
+  margin-top: 13%;
+  margin-left: 33%;
+  padding: 1%;
+}
+
+.close-btn-group {
+  width: 8%;
+  height: 10%;
+  float: right;
+  border: none;
+}
+
+.close-btn-group:hover {
+  /* background-color: #393e46;
+   */
+  border: 1px #00adb5 solid;
+  cursor: pointer;
+}
+
+.form-group {
+  /* background-color: #393e46; */
+  width: 100%;
+  height: 90%;
+  padding: 2% 4%;
+}
+
+.titlegroupName {
+  margin: 2% 0%;
+  color: #00adb5;
+  font-size: large;
+  font-weight: bold;
+}
+
+.grpN-input {
+  width: 100%;
+  height: 30%;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 2% 0%;
+}
+
+.grpN-input:focus,
+.grpN-input:active {
+  border: 1.5px #00adb5 solid;
+}
+
+.grpN-submit {
+  width: 100%;
+  height: 30%;
+  background-color: #00adb5;
+  color: #eeeeee;
+  border: none;
+  border-radius: 10px;
+}
+
+.grpN-submit:hover {
+  cursor: pointer;
+  background-color: #eeeeee;
+  color: #00adb5;
+  font-weight: bold;
+  font-size: medium;
+  border: 1.5px #00adb5 solid;
 }

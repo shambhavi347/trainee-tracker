@@ -33,18 +33,18 @@ router.post("/trainee-reg", async (req, res) => {
     // /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
     if (email.length > 254) {
-      return res.status(422).json({ error: "Fill the Email ID correctly1 !!" });
+      return res.status(422).json({ error: "Fill the Email ID correctly !!" });
     }
 
     var emailValid = emailRegex.test(email);
     if (!emailValid) {
-      return res.status(422).json({ error: "Fill the Email ID correctly 2!!" });
+      return res.status(422).json({ error: "Fill the Email ID correctly !!" });
     }
 
     // Further checking of some things regex can't handle
     var parts = email.split("@");
     if (parts[0].length > 64) {
-      return res.status(422).json({ error: "Fill the Email ID correctly 3!!" });
+      return res.status(422).json({ error: "Fill the Email ID correctly !!" });
     }
 
     var domainParts = parts[1].split(".");
@@ -53,7 +53,7 @@ router.post("/trainee-reg", async (req, res) => {
         return part.length > 63;
       })
     ) {
-      return res.status(422).json({ error: "Fill the Email ID correctly 4!!" });
+      return res.status(422).json({ error: "Fill the Email ID correctly !!" });
     }
 
     //third -- email !exist in trainee db
