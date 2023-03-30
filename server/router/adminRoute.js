@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const adminAuthenticate = require("../middleware/adminauth");
+const coordAuthenticate = require("../middleware/coordAuth");
+const traineeAuthenticate = require("../middleware/traineeauth");
 const nodemailer = require("nodemailer");
 
 require("../db/database");
@@ -1278,7 +1280,9 @@ router.get("/get-passout-year-class", adminAuthenticate, async (req, res) => {
   }
 });
 
-router.post("/send_message", adminAuthenticate, async (req, res) => {
+// send coordinator message to database
+
+router.post("/send_message", coordAuthenticate, async (req, res) => {
   try {
     const { message } = req.body;
     if (!message) {
@@ -1286,27 +1290,250 @@ router.post("/send_message", adminAuthenticate, async (req, res) => {
     }
     const trainee_list = [];
     const ID = req.rootUser.id;
-    const Coord = await Class.findOne({ _id: ID });
-    const trainees = await Class.find({ coordinatorID : Coord });
-    trainees.map((val) => trainee_list.push(val.traineeID));
-    const user = new MessageSent({
+    const c = await Coordinator.findOne({ _id: ID });
+    console.log(c.first_name);
+    const Coord = await Class.find({ coordinatorID: ID });
+    console.log(Coord[0].coordinatorID);
+    Coord.map((val) => trainee_list.push(val.traineeID));
+    console.log("trainee list");
+    console.log(trainee_list);
+    console.log("coord id");
+    console.log(Coord[0].coordinatorID);
+    console.log("message");
+    console.log(message);
+    let name = c.first_name;
+    if(c.middle_name)
+    {
+      name = name.concat(" " + c.middle_name);
+    }
+    if(c.last_name)
+    {
+      name = name.concat(" " + c.last_name);
+    }
+    const NewMsg = new MessageSent({
       message,
-      Coord,
-      trainee_list
+      coord_id: Coord[0].coordinatorID,
+      sender_name: name,
+      trainee_list_id: trainee_list,
     });
-    console.log("trainee list")
-    console.log(trainee_list)
-    console.log("coord id")
-    console.log(Coord)
-    console.log("message")
-    console.log(message)
-    await user.save();
-    res.status(201).json({ message: "Message sent !!" });
-    // res.send("Message sent");
+    const savedMessage = await NewMsg.save();
+    res.status(201).json(savedMessage);
   } catch (error) {
     console.log(error);
   }
 });
 
+// get messages from MessageSent collection to coordinator
+
+router.get("/messages", coordAuthenticate, async (req, res) => {
+  const ID = req.rootUser.id;
+  const Coordi = await Class.find({ coordinatorID: ID });
+  // console.log("coordinator " + Coordi);
+  const coord = Coordi[0].coordinatorID;
+  const msgs = await MessageSent.find({ coord_id: coord });
+  Coordi.map((val) => {
+    let trainee = val.traineeID;
+    console.log("trainee " + trainee);
+    MessageSent.find({ trainee_list_id: trainee })
+      .then((data) => {
+        const m = [];
+        data.map((d) => {
+          m.push(d.message);
+        });
+        if (!res.headersSent) {
+          if (m) {
+            console.log("Messages - " + m);
+            res.send(m);
+            return;
+          }
+        }
+      })
+      .catch((error) => {
+        if (!res.headersSent) {
+          console.log(error);
+        }
+      });
+  });
+});
+
+// get names from MessageSent collection to coordinator
+
+router.get("/names", coordAuthenticate, async (req, res) => {
+  const ID = req.rootUser.id;
+  const Coordi = await Class.find({ coordinatorID: ID });
+  // console.log("coordinator " + Coordi);
+  const coord = Coordi[0].coordinatorID;
+  const msgs = await MessageSent.find({ coord_id: coord });
+  Coordi.map((val) => {
+    let trainee = val.traineeID;
+    console.log("trainee " + trainee);
+    MessageSent.find({ trainee_list_id: trainee })
+      .then((data) => {
+        const m = [];
+        data.map((d) => {
+          m.push(d.sender_name);
+        });
+        if (!res.headersSent) {
+          if (m) {
+            console.log("Names - " + m);
+            res.send(m);
+            return;
+          }
+        }
+      })
+      .catch((error) => {
+        if (!res.headersSent) {
+          console.log(error);
+        }
+      });
+  });
+});
+
+// send trainee message to database
+
+router.post("/send_message1", traineeAuthenticate, async (req, res) => {
+  try {
+    const { message } = req.body;
+    if (!message) {
+      return res.status(422).json({ error: "Write Something to Post" });
+    }
+    const receiverId = []; //direct isse store karayenge class mein
+    //aur jitne logo ko msg receive hoga unki id isme push karte rahenge
+
+    const id = req.rootUser.id; // trainee OBJECTID;
+    console.log("trainee id - " + id);
+    const traine = await Trainee.findOne({ _id: id }); // use this to get trainee email
+    const stud = await Student.findOne({ email: traine.email }); // use this to get student OBJECT ID
+    console.log("student id - " + stud._id);
+    const cla = await Class.findOne({ traineeID: stud._id }); //use this to get coordinator Id
+    console.log("class " + cla);
+    receiverId.push(cla.coordinatorID); // kyunki coordinator ko bhi msg bhejna hai
+    //toh coordinator Id bhi receiver Id mein store hogi
+
+    //ab class ke baaki saare students ki id nikalenge
+    const coll = await Class.find({ coordinatorID: cla.coordinatorID });
+    coll.map((val) => {
+      return receiverId.push(val.traineeID);
+      // jitne bhi saathe ke trainee hai unki id push ho jaayegi isme
+    });
+    //receiverId array mein ab saare logo ki id save ho jaani chahiye jinko bhi msg bhejna hai
+
+    // const filtered = receiverId.filter(obj => {
+    //   console.log("ele - " + obj + " & stud - " + stud._id);
+    //   return obj !== stud._id;
+    // });
+    let name = stud.first_name;
+    if(stud.middle_name)
+    {
+      name = name.concat(" " + stud.middle_name);
+    }
+    if(stud.last_name)
+    {
+      name = name.concat(" " + stud.last_name);
+    }
+    console.log("sender id => " + stud._id);
+    console.log("rcvr id => " + receiverId);
+    console.log("message => " + message);
+
+    const NewMsg = new MessageSent({
+      message,
+      coord_id: stud._id,
+      sender_name: name,
+      name: stud.first_name,
+      trainee_list_id: receiverId,
+    });
+    const savedMessage = await NewMsg.save();
+    res.status(201).json(savedMessage);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// get all messages from MessageSent schema to trainee dashboard
+
+router.get("/messages_trainee", traineeAuthenticate, async (req, res) => {
+  const id = req.rootUser.id;
+  console.log("trainee id - " + id);
+  const traine = await Trainee.findOne({ _id: id });
+  const stud = await Student.findOne({ email: traine.email });
+  console.log("student id - " + stud._id);
+  const cla = await Class.findOne({ traineeID: stud._id });
+  const coord = cla.coordinatorID;
+
+  const Coordi = await Class.find({ coordinatorID: coord });
+  // console.log("coordinator " + Coordi);
+
+  const msgs = await MessageSent.find({ coord_id: coord });
+
+  // msgs.map((val) => ms.push(val.message));
+  // console.log("Messages - " + m);
+  Coordi.map((val) => {
+    let trainee = val.traineeID;
+    console.log("trainee " + trainee);
+    MessageSent.find({ trainee_list_id: trainee })
+      .then((data) => {
+        const m = [];
+        data.map((d) => {
+          m.push(d.message);
+        });
+        if (!res.headersSent) {
+          if (m) {
+            console.log("Messages - " + m);
+            res.send(m);
+            return;
+          }
+        }
+      })
+      .catch((error) => {
+        if (!res.headersSent) {
+          console.log(error);
+        }
+      });
+  });
+  
+});
+
+// get all names from MessageSent schema to trainee dashboard
+
+router.get("/names1", traineeAuthenticate, async (req, res) => {
+  const id = req.rootUser.id;
+  console.log("trainee id - " + id);
+  const traine = await Trainee.findOne({ _id: id });
+  const stud = await Student.findOne({ email: traine.email });
+  console.log("student id - " + stud._id);
+  const cla = await Class.findOne({ traineeID: stud._id });
+  const coord = cla.coordinatorID;
+
+  const Coordi = await Class.find({ coordinatorID: coord });
+  // console.log("coordinator " + Coordi);
+
+  const msgs = await MessageSent.find({ coord_id: coord });
+
+  // msgs.map((val) => ms.push(val.message));
+  // console.log("Messages - " + m);
+  Coordi.map((val) => {
+    let trainee = val.traineeID;
+    console.log("trainee " + trainee);
+    MessageSent.find({ trainee_list_id: trainee })
+      .then((data) => {
+        const m = [];
+        data.map((d) => {
+          m.push(d.sender_name);
+        });
+        if (!res.headersSent) {
+          if (m) {
+            console.log("Names - " + m);
+            res.send(m);
+            return;
+          }
+        }
+      })
+      .catch((error) => {
+        if (!res.headersSent) {
+          console.log(error);
+        }
+      });
+  });
+});
 
 module.exports = router;

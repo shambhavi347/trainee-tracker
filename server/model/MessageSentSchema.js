@@ -4,20 +4,34 @@ const bcrypt = require("bcryptjs");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
 
-const MessageSentSchema = new mongoose.Schema({
-  message: {
-    type: String,
-    required: true,
-  },
-  tokens: [
-    {
-      token: {
-        type: String,
-        required: true,
-      },
+const MessageSentSchema = new mongoose.Schema(
+  {
+    message: {
+      type: String,
+      required: true,
     },
-  ],
-});
+    coord_id: {
+      type: String,
+    },
+    sender_name: {
+      type: String,
+    },
+    trainee_list_id: [
+      {
+        type: String,
+      },
+    ],
+    tokens: [
+      {
+        token: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 //generating token - login
 MessageSentSchema.methods.generateAuthToken = async function () {

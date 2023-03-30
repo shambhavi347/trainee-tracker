@@ -40,9 +40,6 @@ const coordinatorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  confirm_pass: {
-    type: String,
-  },
   tokens: [
     {
       token: {
