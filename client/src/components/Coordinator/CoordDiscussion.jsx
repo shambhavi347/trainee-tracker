@@ -56,7 +56,6 @@ const CoordDiscussion = () => {
   }, []);
 
   const newArray = details.slice().reverse();
-    setDetails(newArray);
 
   return (
     <>
@@ -119,19 +118,26 @@ const CoordDiscussion = () => {
                     <div className="amt__Cnt">
                       <p className="amt__txt">
                         <Avatar />
-                        <h1 style={{ backgroundColor: "springgreen" }}>
+                        <h1
+                          /*style={{ backgroundColor:"pink" }}*/ className="tr_sender"
+                        >
                           {item.sender_name}
                         </h1>
-                        <h1 style={{ backgroundColor: "springgreen" }}>
-                          {new Date(item.createdAt).getDate() +
+                        <h1
+                          /*style={{ backgroundColor: "skyblue" }}*/ className="tr_date"
+                        >
+                          {new Date(item.createdAt).toLocaleString("default", {
+                            month: "long",
+                          }) +
                             " " +
-                            new Date(item.createdAt).toLocaleString("default", {
-                              month: "long",
-                            }) +
-                            " " +
+                            new Date(item.createdAt).getDate() +
+                            ", " +
                             new Date(item.createdAt).getFullYear()}
                         </h1>
-                        <h1 style={{ backgroundColor: "springgreen" }}>
+                        <h1
+                          /*style={{ backgroundColor: "yellowgreen" }}*/
+                          className="tr_message"
+                        >
                           {item.message}
                         </h1>
                       </p>
