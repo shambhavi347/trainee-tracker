@@ -215,7 +215,7 @@
   /* background-color: antiquewhite; */
   height: 87%;
   width: 100%;
-  overflow-y: auto;
+
   padding: 1%;
 }
 
@@ -346,4 +346,56 @@
   cursor: pointer;
   background-color: transparent;
   border: 2px #00adb5 solid;
+}
+
+.listStud {
+  /* background-color: #eeeeee; */
+  margin-top: 2%;
+  height: 83%;
+  overflow-y: auto;
+  padding: 1%;
+  text-align: justify;
+  padding: 0% 25%;
+
+  /* margin-bottom: -3%; */
+}
+
+.listNone {
+  text-align: center;
+}
+.studDetails {
+  padding: 1%;
+  /* background-color: #eeeeee; */
+  border: 1px #00adb5 solid;
+  background-color: #393e46;
+  color: #eeeeee;
+  border-radius: 10px;
+  width: 100%;
+  height: 20%;
+  margin: 1%;
+}
+
+.mailSentBtn,
+.mailNotSentBtn,
+.btnExpnd {
+  background-color: transparent;
+  float: right;
+  width: 6%;
+  height: 70%;
+  margin-right: 3%;
+  border: none;
+}
+.btnImg {
+  width: 100%;
+  height: 100%;
+}
+
+.mailSentBtn:hover,
+.mailNotSentBtn:hover,
+.btnExpnd:hover {
+  cursor: pointer;
+}
+
+.p1 {
+  color: #eeeeee;
 }

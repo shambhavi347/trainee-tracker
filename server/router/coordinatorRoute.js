@@ -7,6 +7,9 @@ const Invitation = require("../model/invitationSchema");
 const coordAuthenticate = require("../middleware/coordAuth");
 const Class = require("../model/classSchema");
 const Student = require("../model/studentSchema");
+const Group = require("../model/groupSchema");
+const { response } = require("express");
+const { request } = require("express");
 
 router.post("/coordinator-reg", async (req, res) => {
   try {
@@ -22,14 +25,10 @@ router.post("/coordinator-reg", async (req, res) => {
     console.log(req.body);
     //checks if all the fields are filled or not
     if (!salutation) {
-      return res
-        .status(422)
-        .json({ error: "Please fill Salutation" });
+      return res.status(422).json({ error: "Please fill Salutation" });
     }
     if (!first_name) {
-      return res
-        .status(422)
-        .json({ error: "Please fill the First Name" });
+      return res.status(422).json({ error: "Please fill the First Name" });
     }
     // if (!last_name) {
     //   return res
@@ -37,19 +36,13 @@ router.post("/coordinator-reg", async (req, res) => {
     //     .json({ error: "Please fill the Last Name" });
     // }
     if (!email) {
-      return res
-        .status(422)
-        .json({ error: "Please fill the Email Id" });
+      return res.status(422).json({ error: "Please fill the Email Id" });
     }
     if (!phone) {
-      return res
-        .status(422)
-        .json({ error: "Please fill the Phone No." });
+      return res.status(422).json({ error: "Please fill the Phone No." });
     }
     if (!password) {
-      return res
-        .status(422)
-        .json({ error: "Please fill the Password" });
+      return res.status(422).json({ error: "Please fill the Password" });
     }
     // console.log("Success");
     //checks if its a new coordinator registration or not(email exist)
@@ -229,6 +222,76 @@ router.post("/project-title", async (req, res) => {
   } else {
     res.status(500).json({ error: "Failed to add Title☹" });
   }
+});
+
+//create-group {DO NOT TOUCH!!}
+const handleStudent = (id, members) => {
+  members.map((val) => {
+    Student.findOneAndUpdate({ _id: val }, { $set: { group: id } })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        return err;
+      });
+  });
+};
+router.post("/create-group", coordAuthenticate, async (req, res) => {
+  const coordID = req.rootUser.id;
+  const { name, members } = req.body;
+
+  const mem = await Student.find({ _id: { $in: members } });
+  console.log(mem);
+
+  const group = new Group({
+    name: name,
+    coordinatorID: coordID,
+    members: mem,
+  });
+  group.save(function (err, result) {
+    if (err) {
+      return res.status(422).json({ error: "Unable to save" });
+    } else {
+      console.log("saved");
+      handleStudent(result._id, members);
+      return res.status(200).json({ message: "saved" });
+      // console.log("Result: " + res);
+    }
+  });
+});
+
+router.get("/get-groups", coordAuthenticate, async (req, res) => {
+  try {
+    const id = req.rootUser.id;
+    // console.log(id);
+    const data = await Group.find({ coordinatorID: id });
+    // console.log(data);
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/remove-group", coordAuthenticate, (req, res) => {
+  const { groupId, studID } = req.body;
+  // const data = await Group.findOneAndDelete({ _id: id });
+  console.log(groupId);
+  console.log(studID);
+  Group.findOneAndDelete({ _id: groupId })
+    .then((data) => {
+      studID.map((val) => {
+        Student.findOneAndUpdate({ _id: val }, { $set: { group: "null" } })
+          .then((data) => {
+            return res.status(200).json({ message: "saved" });
+          })
+          .catch((err) => console.log(err));
+      });
+    })
+    .catch((err) => {
+      return res.status(422).json({ error: err });
+    });
+  // // console.log(data);
+  // res.send(data);
 });
 
 module.exports = router;

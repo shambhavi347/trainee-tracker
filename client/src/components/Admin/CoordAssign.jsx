@@ -177,6 +177,7 @@ const CoordAssign = ({ coord }) => {
       console.log(error);
     }
   };
+  console.log(group);
   const handleExpand = (val) => {
     setExpnd(true);
     setTrainee(val);
@@ -194,6 +195,7 @@ const CoordAssign = ({ coord }) => {
       group.map((val) => {
         trainee_id.push(val._id);
       });
+      setGroup([]);
       const data = await postClass({
         trainees: trainee_id,
         coord_id: coord._id,
@@ -207,7 +209,8 @@ const CoordAssign = ({ coord }) => {
       <div className="coordAssign-div">
         <div className="coordDeets">
           <div className="title-coord">
-            {coord.salutation} {coord.name}
+            {coord.salutation} {coord.first_name} {coord.middle_name}{" "}
+            {coord.last_name}
           </div>
           <div className="coordPhone">
             Phone:
@@ -483,7 +486,11 @@ const CoordAssign = ({ coord }) => {
                     </div>
                   ))}
                 </>
-              ) : null}
+              ) : (
+                <>
+                  <div style={{ color: "#eee" }}>No Trainees assigned yet</div>
+                </>
+              )}
               {group ? (
                 <>
                   {group.map((val) => (

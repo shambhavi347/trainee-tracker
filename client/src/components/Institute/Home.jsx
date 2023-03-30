@@ -4,8 +4,12 @@ import "../../CSS/Institute/Home.css";
 import "../Institute/RegInstitute";
 import { getAppstatus, getSelectedStudents } from "../../service/api";
 import { expand, cancel, check, remove } from "../../Images/Images";
+
 const Home = () => {
+  var date, dob;
   const [status, setStatus] = useState("");
+  const [valExpnd, setValExpnd] = useState(false);
+  const [trainee, setTrainee] = useState([]);
   //made a function for calling api.js and then calling same function below
   useEffect(() => {
     const fetchStatus = async () => {
@@ -21,11 +25,24 @@ const Home = () => {
       const response = await getSelectedStudents();
       // console.log(response);
       setStud(response);
+      console.log(stud);
     };
     getStudent();
   }, [stud]);
 
   const [expnd, setExpnd] = useState(false);
+  const handleExpand = (val) => {
+    setValExpnd(true);
+    setTrainee(val);
+    date = new Date(val.dob);
+    dob = date.toLocaleDateString("en-US");
+    // console.log(expnd + "Val: " + trainee + dob);
+  };
+  if (trainee) {
+    date = new Date(trainee.dob);
+    dob = date.toLocaleDateString("en-US");
+    // console.log(dob);
+  }
 
   return (
     <>
@@ -44,6 +61,52 @@ const Home = () => {
               Application Status
             </button>
           </div>
+          {stud.length === 0 ? (
+            <>
+              <div className="listNone">
+                There are no students selected from your institute yet.
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="listStud">
+                <h3 className="p1">List of Accepted Students</h3>
+                <p>Please confirm the students accept our internship offer</p>
+                <hr style={{ backgroundColor: "#393e46", opacity: "0.2" }} />
+                {/* <div className="listStudents"> */}
+                {stud.map((val) => (
+                  <div className="studDetails">
+                    {val.first_name} {val.last_name}
+                    <button className="mailSentBtn">
+                      <img
+                        className="btnImg"
+                        src="../Images/check.png"
+                        alt="accept"
+                        width="20"
+                        heigth="2"
+                      />
+                    </button>
+                    <button className="mailNotSentBtn">
+                      <img
+                        className="btnImg"
+                        src="../Images/remove.png"
+                        alt="reject"
+                        width="20"
+                        heigth="2"
+                      />
+                    </button>
+                    <button
+                      className="btnExpnd"
+                      onClick={() => handleExpand(val)}
+                    >
+                      <img src={expand} alt="" className="img-expnd" />
+                    </button>
+                  </div>
+                ))}
+                {/* </div> */}
+              </div>
+            </>
+          )}
         </div>
         {expnd ? (
           <>
@@ -104,12 +167,13 @@ const Home = () => {
                           "rejected."
                         </p>
                         <p>
+                          If there is any change in the status of your
+                          application we will inform you through e-mail
+                        </p>
+                        <p>
                           We appreciate your interest in our organization and
                           wish you the best of luck in your future endeavors.
                         </p>
-                        {/* <p>
-                          Thank you again for your interest in our organization.
-                        </p> */}
                       </div>
                     </>
                   ) : null}
@@ -117,6 +181,67 @@ const Home = () => {
               </div>
             </div>
           </>
+        ) : null}
+        {valExpnd ? (
+          <div className="expanded-div">
+            <button onClick={() => setValExpnd(false)} className="expnd-cancel">
+              <img className="expnd-img" src={cancel} alt="" />
+            </button>
+            <div className="info-outer">
+              <div className="info">
+                <div className="info-first">
+                  {trainee.prefix} {trainee.first_name} {trainee.middle_name}{" "}
+                  {trainee.last_name}
+                </div>
+                <div className="info-second">
+                  <div className="info-type">Gender: {trainee.gender}</div>
+                  <div className="info-rating"> DOB: {dob}</div>
+                </div>
+                <div className="info-third">
+                  <div className="info-instname">
+                    Institue Name: {trainee.instname}{" "}
+                  </div>
+                  <div className="info-email">Course: {trainee.course}</div>
+                  <div className="info-email">Stream: {trainee.stream}</div>
+                  <div className="info-email">Semester: {trainee.semester}</div>
+                  <div className="info-email">CGPA: {trainee.cgpa}</div>
+                </div>
+                <div className="info-fourth">
+                  <div className="info-email">Email: {trainee.email}</div>
+                  <div className="info-phone">
+                    Phone No : {trainee.phone_no}
+                  </div>
+                </div>
+                <div className="info-fifth">
+                  <div className="info-month">
+                    Familiar Technologies <br />
+                    <br />
+                    {trainee.famtech.map((val) => (
+                      <>
+                        {val}
+                        <hr
+                          style={{ backgroundColor: "#393e46", opacity: "0.2" }}
+                        />
+                      </>
+                    ))}
+                  </div>
+                  <div className="info-duration">
+                    Interseted Technologies
+                    <br />
+                    <br />
+                    {trainee.inttech.map((val) => (
+                      <>
+                        {val}
+                        <hr
+                          style={{ backgroundColor: "#393e46", opacity: "0.2" }}
+                        />
+                      </>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         ) : null}
       </div>
       {/* <div className="body-inst-home"> */}

@@ -15,6 +15,7 @@ import forgotBack from "../Images/forgotBack.gif";
 import check from "../Images/check.png";
 import remove from "../Images/remove.png";
 import loading from "../Images/loading.gif";
+import add from "../Images/add.png";
 export {
   cdacLogo,
   instagram,
@@ -33,4 +34,5 @@ export {
   check,
   remove,
   loading,
+  add,
 };

@@ -60,7 +60,7 @@ const Demo = () => {
     // resume: null,
     pdfname: "",
     status: "selection pending",
-    group: null,
+    group: "null",
   });
 
   const fileType = ["application/pdf"];
@@ -293,10 +293,10 @@ const Demo = () => {
 
     if (data.error) {
       window.alert("Invalid Registration, " + data.error);
-      console.log("Invalid Regestration");
+      // console.log("Invalid Regestration");
     } else {
       window.alert("Registration Successfully");
-      console.log("Successfull Regestration");
+      // console.log("Successfull Regestration");
     }
   };
 

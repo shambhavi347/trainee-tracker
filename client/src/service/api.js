@@ -494,6 +494,34 @@ export const postProject = async (data) => {
     console.log(error);
   }
 };
+
+export const getProtitle = async () => {
+  try {
+    let respone = await axios.get("/get-project-title");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProdesc = async () => {
+  try {
+    let respone = await axios.get("/get-project-desc");
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postEvents = async (data) => {
+  try {
+    const response = await axios.post("/project-events", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getTraineeData = async () => {
   try {
     let respone = await axios.get("/get-trainee-Data");
@@ -531,7 +559,15 @@ export const getTraineeDeets = async () => {
   }
 };
 
-// get details of messagesent schema to coordinator
+export const createEvent = async (data) => {
+  try {
+    await axios.post("/create-event", data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get messages to coordinator
 
 export const GetDetails = async () => {
   try {
@@ -547,9 +583,61 @@ export const GetDetails = async () => {
 
 export const GetDetails1 = async () => {
   try {
-    const response = await axios.get("/details1");
+    const response = await axios.get("/names");
     return response.data;
     // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get message to trainee
+
+export const GetMessages1 = async () => {
+  try {
+    const response = await axios.get("/messages_trainee");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get name to trainees
+
+export const GetNames1 = async () => {
+  try {
+    const response = await axios.get("/names1");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postGroup = async (data) => {
+  try {
+    const response = await axios.post("/create-group", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getGroups = async () => {
+  try {
+    let respone = await axios.get("/get-groups");
+    // console.log("Res: " + respone);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const removeGroup = async (data) => {
+  try {
+    let respone = await axios.post("/remove-group", data);
+    return respone.data;
   } catch (error) {
     console.log(error);
   }
