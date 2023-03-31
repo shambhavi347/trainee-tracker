@@ -85,25 +85,6 @@ const CoordPeople = () => {
         const data = await getGroups();
         if (data) {
           setGroups(data);
-          // groups.map((val) => groupNo.push(val.name));
-          // console.log(groupNo);
-          // const cnt = groupNo[groupNo.length - 1];
-          // console.log(cnt);
-          // if (cnt === 2) {
-          //   setMisCnt(cnt);
-          // } else {
-          //   var nums = parseInt(groupNo);
-          //   console.log(nums);
-          //   var missing = new Array();
-          //   for (let i = 1; i <= cnt; i++) {
-          //     if (!nums.includes(i)) {
-          //       // Checking whether i(current value) present in num(argument)
-          //       missing.push(i); // Adding numbers which are not in num(argument) array
-          //     }
-          //   }
-
-          //   if (missing.length !== groupNo.length) console.log(missing);
-          // }
         }
       } catch (error) {
         console.log(error);
@@ -183,76 +164,34 @@ const CoordPeople = () => {
     }
   }, [groupList]);
 
-  // let groupss = [{}];
-  // const createGroup = () => {
-  //   let name1 = "group " + count;
-  //   const groupee = {
-  //     name: "",
-  //     members: "",
-  //   };
-  //   setCount((prev) => prev + 1);
-
-  //   groupee["name"] = name1;
-  //   groupee["members"] = groupList;
-  //   groupss.push(groupee);
-
-  //   setGroups([...groups, groupee]);
-
-  //   setGroupList([]);
-  // };
-  // console.log(groups);
-  // const removeGroupMem = (value, index, memkey) => {
-  //   const id = value._id;
-  //   console.log("ID: " + id);
-
-  //   let newArr = [...trainee];
-
-  //   newArr.map((val) => {
-  //     if (val._id === id) val.group = "null";
-  //   });
-  //   console.log("Index: " + index + " " + memkey);
-  //   setTrainee(newArr);
-
-  //   let groupArr = [...groups];
-  //   console.log(groupArr[index].members[memkey].first_name);
-  //   groupArr[index].members.splice(memkey, 1);
-  //   setGroups(groupArr);
-  //   console.log(groupArr);
-  // };
-
-  //used to remove single individual from group but now depricated
-  // useEffect(() => {
-
-  //   // groups.map((val) => {
-  //   //   if (val.members.length === 0) {
-  //   //     const indx = groups.indexOf(val);
-  //   //     groups.splice(indx, 1);
-  //   //   }
-  //   // });
-  // }, [groups]);
-
   //create an group
 
-  const postData = async (e) => {
-    e.preventDefault();
-
-    let memId = [];
-    let name1 = count;
-
-    groupList.map((val) => memId.push(val._id));
-
-    const data = await postGroup({
-      members: memId,
-      name: name1,
+  const postData = async () => {
+    groups?.map((val) => {
+      if (count.includes(Number(val.name))) {
+        window.alert("This group no already exists");
+        setCount("");
+      }
     });
+    if (count) {
+      let memId = [];
+      let name1 = count;
 
-    if (data.error) {
-      window.alert("Groups Creation Failed " + data.error);
-    }
-    if (data.message === "saved") {
-      setGroupList([]);
-      // console.log("HI");
-      // setCount((prev) => prev + 1);
+      console.log(name1);
+
+      groupList.map((val) => memId.push(val._id));
+
+      const data = await postGroup({
+        members: memId,
+        name: name1,
+      });
+
+      if (data.error) window.alert("Groups Creation Failed " + data.error);
+
+      if (data.message === "saved") {
+        setGroupList([]);
+        setGroupName(false);
+      }
     }
   };
 
@@ -284,7 +223,11 @@ const CoordPeople = () => {
     }
     // setGroupDelete(false);
   }, [groups]);
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setCount(e.target.value);
+    // console.log(count);
+  };
   // console.log(count);
   return (
     <>
@@ -387,32 +330,36 @@ const CoordPeople = () => {
             {" "}
             <h2 className="traineeTitle">
               <div className="titleTrainee">Groups </div>
-              {/* {groupList.length ? ( */}
-              {/* <button className="create-grp" onClick={postData}>
-                Submit
-              </button> */}
-              {/* // ) : null} */}
+
               <div className="traineeStrength">{groups.length}</div>
             </h2>
             <hr style={{ backgroundColor: "#393e46", opacity: "0.4" }} />{" "}
             {groups.map((val, index) => (
-              <div>
-                Group {val.name}
-                <div
-                  className="check-div-coord"
-                  onClick={() => removeData(val._id, val.members)}
-                  // onClick={() => removeGroupMem(value, index, memkey)}
-                  // onClick={() => addGroup(val)}
-                >
-                  <img src="./Images/remove.png" alt="" className="check-img" />
-                </div>
-                {val.members.map((value, memkey) => (
-                  <div>
-                    {/* {console.log(value)} */}
-                    {value.salutation} {value.first_name} {value.middle_name}{" "}
-                    {value.last_name}
+              <div className="ind-group-up">
+                <div className="ind-group">
+                  Group {val.name}
+                  <div
+                    className="check-div-group"
+                    onClick={() => removeData(val._id, val.members)}
+                  >
+                    <img
+                      src="./Images/remove.png"
+                      alt=""
+                      className="check-img"
+                    />
                   </div>
-                ))}
+                  {val.members.map((value, memkey) => (
+                    <>
+                      <div className="mem-name">
+                        {value.salutation} {value.first_name}{" "}
+                        {value.middle_name} {value.last_name}
+                      </div>
+                      <hr
+                        style={{ backgroundColor: "#393e46", opacity: "0.4" }}
+                      />
+                    </>
+                  ))}
+                </div>
               </div>
             ))}
           </>
@@ -441,7 +388,9 @@ const CoordPeople = () => {
                     value={count}
                     onChange={handleSubmit}
                   />
-                  <button className="grpN-submit">Submit</button>
+                  <button className="grpN-submit" onClick={postData}>
+                    Submit
+                  </button>
                 </div>
               </div>
             </div>
