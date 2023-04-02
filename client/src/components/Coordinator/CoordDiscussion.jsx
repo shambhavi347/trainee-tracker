@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Button, TextField} from "@mui/material";
-import "../../CSS/Coordinator/DiscussCoord.css";
+import { Avatar, Button, TextField } from "@mui/material";
+// import "../../CSS/Coordinator/DiscussCoord.css";
 import { icon } from "../../Images/Images";
 import { GetDetails } from "../../service/api";
 
@@ -66,7 +66,7 @@ const CoordDiscussion = () => {
   return (
     <>
       <div className="forScroll ">
-        <div className="main " style={{background:"#00adb5"}}>
+        <div className="main " style={{ background: "#00adb5" }}>
           <div className="main__wrapper">
             <div className="main__announce">
               <div className="main__announcements">
@@ -110,7 +110,7 @@ const CoordDiscussion = () => {
                       </div>
                     ) : (
                       <div
-                        className="main__wrapper100" 
+                        className="main__wrapper100"
                         onClick={() => setShowInput(true)}
                       >
                         <Avatar />
