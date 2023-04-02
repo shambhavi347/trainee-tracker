@@ -272,7 +272,7 @@ const Home = () => {
       </div>
       {/* <div className="body-inst-home"> */}
       {/* <div className="head-inst-home">
-          <h1>Welcome to CDAC Trainee Tracker👩🏽‍💻</h1>
+          <h1>Welcome to CDAC Trainee Work Harvester👩🏽‍💻</h1>
         </div> */}
       {/* <div className="content-inst-home">
           <h3>

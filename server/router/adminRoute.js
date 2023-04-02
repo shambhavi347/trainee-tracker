@@ -634,11 +634,11 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
 
 //     // send mail with defined transport object
 //     let info = await transporter.sendMail({
-//       from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+//       from: '"CDAC Trainee Work Harvester" <shambhavishanker1999@gmail.com>', // sender address
 //       to: email, // list of receivers
 //       subject: "CDAC Student Application Result", // Subject line
-//       text: "Hello from trainee tracker!! Thank You for applying but we are not moving forward with your application", // plain text body
-//       html: " <b>Hello from trainee tracker!! Thank You for applying but we are not moving forward with your application </b>", // html body
+//       text: "Hello from Trainee Work Harvester!! Thank You for applying but we are not moving forward with your application", // plain text body
+//       html: " <b>Hello from Trainee Work Harvester!! Thank You for applying but we are not moving forward with your application </b>", // html body
 //     });
 //     if (info.messageId) {
 //       await Student.findOneAndUpdate(
@@ -738,7 +738,7 @@ router.post("/reg-coord", adminAuthenticate, async (req, res) => {
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+      from: '"CDAC Trainee Work Harvester" <shambhavishanker1999@gmail.com>', // sender address
       to: email, // list of receivers
       subject: "CDAC Coordinator Registration", // Subject line
       text: `Hello ${salutation} ${first_name} !! You have been selected as coordinator in our internship program. Kindly Register yourself Link : http://localhost:3000/reg-coord`, // plain text body
@@ -802,11 +802,11 @@ router.post("/revoke-invitation", adminAuthenticate, async (req, res) => {
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+      from: '"CDAC Trainee Work Harvester" <shambhavishanker1999@gmail.com>', // sender address
       to: email, // list of receivers
       subject: "CDAC Coordinator Invite Revoke", // Subject line
-      text: "Hello from trainee tracker!! We are revoking your coordinator invitaion", // plain text body
-      html: " <b>Hello from trainee tracker!! We are revoking your coordinator invitaion </b>", // html body
+      text: "Hello from Trainee Work Harvester!! We are revoking your coordinator invitaion", // plain text body
+      html: " <b>Hello from Trainee Work Harvester!! We are revoking your coordinator invitaion </b>", // html body
     });
     if (info.messageId) {
       await Invitation.findOneAndDelete({ email: email });
@@ -948,9 +948,9 @@ router.post("/forgot-pass", async (req, res) => {
 
       // send mail with defined transport object
       let info = await transporter.sendMail({
-        from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+        from: '"CDAC Trainee Work Harvester" <shambhavishanker1999@gmail.com>', // sender address
         to: email, // list of receivers
-        subject: "Reset your password on Trainee Tracker", // Subject line
+        subject: "Reset your password on Trainee Work Harvester", // Subject line
         text: `We got your request. You can now reset your password Link: ${link} You can ignore this email.Keep your account extra safe`, // plain text body
         html: `<b>We got your request.</b> You can now reset your password Link: ${link}  Didn’t ask for a new password? You can ignore this email.<b>Keep your account extra safe</b>`, // html body
       });
