@@ -84,7 +84,7 @@ const NavBar4 = () => {
           <img src={cdacLogo} alt="CDAC LOGO" className="logo" />
         </div>
         <div className="head-title">
-          <h1>Trainee Tracker</h1>
+          <h1>Trainee Work Harvester</h1>
         </div>
         {/* <div className="buttonLogin">
           <button className="btn-login">Login</button>
@@ -123,14 +123,14 @@ const NavBar4 = () => {
             <MenuItem id="menu-items" onClick={handlePassword}>
               Change Password
             </MenuItem>
-            <Link to="/trainee-logout">
-              <MenuItem id="menu-items" onClick={handleClose}>
-                Logout
-              </MenuItem>
-            </Link>
             <Link to="/trainee-profile">
               <MenuItem id="menu-items" onClick={handleClose}>
                 Profile
+              </MenuItem>
+            </Link>
+            <Link to="/trainee-logout">
+              <MenuItem id="menu-items" onClick={handleClose}>
+                Logout
               </MenuItem>
             </Link>
           </Menu>

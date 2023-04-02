@@ -16,7 +16,7 @@ const NavBar2 = () => {
           <img src={cdacLogo} alt="CDAC LOGO" className="logo" />
         </div>
         <div className="head-title-2">
-          <h1>Trainee Tracker</h1>
+          <h1>Trainee Work Harvester</h1>
         </div>
       </div>
     </>
