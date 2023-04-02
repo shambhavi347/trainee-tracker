@@ -1290,7 +1290,7 @@ router.get("/details", coordAuthenticate, async (req, res) => {
   const msgs = await MessageSent.find({ coord_id: coord });
   Coordi.map((val) => {
     let trainee = val.traineeID;
-    console.log("trainee " + trainee);
+    // console.log("trainee " + trainee);
     MessageSent.find({ trainee_list_id: trainee })
       .then((data) => {
         const m = [];
@@ -1299,7 +1299,7 @@ router.get("/details", coordAuthenticate, async (req, res) => {
         });
         if (!res.headersSent) {
           if (m) {
-            console.log("Details - " + m);
+            // console.log("Details - " + m);
             res.send(m);
             return;
           }
@@ -1375,10 +1375,10 @@ router.post("/send_message1", traineeAuthenticate, async (req, res) => {
 
 router.get("/details1", traineeAuthenticate, async (req, res) => {
   const id = req.rootUser.id;
-  console.log("trainee id - " + id);
+  // console.log("trainee id - " + id);
   const traine = await Trainee.findOne({ _id: id });
   const stud = await Student.findOne({ email: traine.email });
-  console.log("student id - " + stud._id);
+  // console.log("student id - " + stud._id);
   const cla = await Class.findOne({ traineeID: stud._id });
   const coord = cla.coordinatorID;
 
@@ -1391,7 +1391,7 @@ router.get("/details1", traineeAuthenticate, async (req, res) => {
   // console.log("Messages - " + m);
   Coordi.map((val) => {
     let trainee = val.traineeID;
-    console.log("trainee " + trainee);
+    // console.log("trainee " + trainee);
     MessageSent.find({ trainee_list_id: trainee })
       .then((data) => {
         const m = [];
@@ -1400,7 +1400,7 @@ router.get("/details1", traineeAuthenticate, async (req, res) => {
         });
         if (!res.headersSent) {
           if (m) {
-            console.log("Details - " + m);
+            // console.log("Details - " + m);
             res.send(m);
             return;
           }
