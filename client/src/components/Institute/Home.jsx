@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import NavBarInst from "../NavBarInst";
 import "../../CSS/Institute/Home.css";
 import "../Institute/RegInstitute";
-import { getAppstatus, getSelectedStudents } from "../../service/api";
+import {
+  getAppstatus,
+  getSelectedStudents,
+  sendSetudentMail,
+} from "../../service/api";
 import { expand, cancel, check, remove } from "../../Images/Images";
 
 const Home = () => {
@@ -25,7 +29,7 @@ const Home = () => {
       const response = await getSelectedStudents();
       // console.log(response);
       setStud(response);
-      console.log(stud);
+      // console.log(stud);
     };
     getStudent();
   }, [stud]);
@@ -43,6 +47,15 @@ const Home = () => {
     dob = date.toLocaleDateString("en-US");
     // console.log(dob);
   }
+
+  const handleAccept = async (email, id) => {
+    console.log(email + " " + id);
+    const data = await sendSetudentMail({
+      email: email,
+      id: id,
+    });
+    window.alert(data);
+  };
 
   return (
     <>
@@ -84,6 +97,7 @@ const Home = () => {
                         alt="accept"
                         width="20"
                         heigth="2"
+                        onClick={() => handleAccept(val.email, val._id)}
                       />
                     </button>
                     <button className="mailNotSentBtn">

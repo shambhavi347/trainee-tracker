@@ -272,7 +272,7 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Institute.distinct("month", { status: "pending" });
+      const cat = await Institute.distinct("smonth", { status: "pending" });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -285,7 +285,7 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Institute.distinct("month", { status: "accept" });
+      const cat = await Institute.distinct("smonth", { status: "accept" });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -298,7 +298,7 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Institute.distinct("month", { status: "reject" });
+      const cat = await Institute.distinct("smonth", { status: "reject" });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -601,46 +601,47 @@ router.post("/accept-student", adminAuthenticate, async (req, res) => {
   }
 });
 
-// router.post("/send-student-mail", adminAuthenticate, async (req, res) => {
-//   try {
-//     const { email } = req.body;
-//     URL = "http://localhost:3000/trainee-reg";
+router.post("/send-student-mail", async (req, res) => {
+  try {
+    const { email, id } = req.body;
+    const URL = "http://localhost:3000/trainee-reg";
 
-//     console.log(email);
-//     let testAccount = await nodemailer.createTestAccount();
+    // console.log(email);
+    // console.log(id);
+    let testAccount = await nodemailer.createTestAccount();
 
-//     // create reusable transporter object using the default SMTP transport
-//     let transporter = nodemailer.createTransport({
-//       host: "smtp.ethereal.email",
-//       port: 587,
-//       secure: false, // true for 465, false for other ports
-//       auth: {
-//         user: "randy67@ethereal.email", // generated ethereal user
-//         pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
-//       },
-//     });
+    // // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: "seth8@ethereal.email", // generated ethereal user
+        pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
+      },
+    });
 
-//     // send mail with defined transport object
-//     let info = await transporter.sendMail({
-//       from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
-//       to: email, // list of receivers
-//       subject: "CDAC Student Application Result", // Subject line
-//       text: "Hello from trainee tracker!! The interested student must register on the below link copy paste it in your browser  Link: http://localhost:3000/trainee-reg", // plain text body
-//       html: " <b>Hello from trainee tracker</b> <a href= ${URl} > Register </a> <br/> Copy Paste the below URL :- http://localhost:3000/trainee-reg", // html body
-//     });
-//     if (info.messageId) {
-//       await Student.findOneAndUpdate(
-//         { email: email },
-//         { $set: { status: "mail sent" } }
-//       );
-//       res.send("Mail Sent");
-//     } else {
-//       res.send("Mail Not Sent");
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+    // // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"CDAC Student Work Harvestor" <shambhavishanker1999@gmail.com>', // sender address
+      to: email, // list of receivers
+      subject: "CDAC Trainee Registration Mail", // Subject line
+      text: "Hello from Student Work Harvestor!! The selected students must register on the below link. Copy paste it in your browser  Link: http://localhost:3000/trainee-reg ", // plain text body
+      html: `<b>Hello from Student Work Harvestor</b> <a href= ${URL} > Register </a> <br/> Copy Paste the below URL :- http://localhost:3000/trainee-reg`, // html body
+    });
+    if (info.messageId) {
+      await Student.findOneAndUpdate(
+        { _id: id },
+        { $set: { status: "mail sent" } }
+      );
+      res.send("Mail Sent");
+    } else {
+      res.send("Mail Not Sent");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 //reject Student
 router.post("/reject-student", adminAuthenticate, async (req, res) => {
@@ -668,8 +669,8 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
 //       port: 587,
 //       secure: false, // true for 465, false for other ports
 //       auth: {
-//         user: "randy67@ethereal.email", // generated ethereal user
-//         pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+//         user: "seth8@ethereal.email", // generated ethereal user
+//         pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
 //       },
 //     });
 
@@ -772,8 +773,8 @@ router.post("/reg-coord", adminAuthenticate, async (req, res) => {
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: "randy67@ethereal.email", // generated ethereal user
-        pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+        user: "seth8@ethereal.email", // generated ethereal user
+        pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
       },
     });
 
@@ -798,7 +799,7 @@ router.post("/reg-coord", adminAuthenticate, async (req, res) => {
       res.status(201).json({ message: "Mail sent Successfully!!" });
       // res.send("Mail Sent");
     } else {
-      res.status(422).json({ message: "Mail sent Successfully!!" });
+      res.status(422).json({ message: "Mail not sent!!" });
     }
   } catch (error) {
     console.log(error);
@@ -836,8 +837,8 @@ router.post("/revoke-invitation", adminAuthenticate, async (req, res) => {
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: "randy67@ethereal.email", // generated ethereal user
-        pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+        user: "seth8@ethereal.email", // generated ethereal user
+        pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
       },
     });
 
@@ -982,8 +983,8 @@ router.post("/forgot-pass", async (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "randy67@ethereal.email", // generated ethereal user
-          pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+          user: "seth8@ethereal.email", // generated ethereal user
+          pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
         },
       });
 
