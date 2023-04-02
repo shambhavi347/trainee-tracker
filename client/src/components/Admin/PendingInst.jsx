@@ -42,7 +42,7 @@ const PendingInst = ({ inst, btnClicked }) => {
         </div>
         <div className="inst-first">{inst.name}</div>
         <div className="inst-second">
-          <div className="inst-month">{inst.month}</div>
+          <div className="inst-month">{inst.smonth}</div>
           <div className="inst-rating">{inst.rating}</div>
           <div className="inst-duration">{inst.duration}</div>
         </div>
@@ -84,19 +84,26 @@ const PendingInst = ({ inst, btnClicked }) => {
               <div className="info-rating"> NAAC Rating: {inst.rating}</div>
             </div>
             <div className="info-third">
-              {inst.street ? <div>Street: {inst.street} </div> : null}
+              {/* {inst.street ? <div>Street: {inst.street} </div> : null} */}
+              <div>{inst.addressline1}</div>
+              <div>{inst.addressline2}</div>
               <div>City: {inst.city}</div>
               <div>State:{inst.state}</div>
               <div>Country: {inst.country}</div>
               <div>Zip code :{inst.zipcode}</div>
+              {inst.phoneno ? (
+                <div className="">Phone No : {inst.phoneno}</div>
+              ) : null}
             </div>
             <div className="info-fourth">
-              <div className="info-email">Email : {inst.email}</div>
-              <div className="info-phone">Phone No : {inst.phoneno}</div>
+              <div className="info-email">Email: {inst.email}</div>
+              <div className="info-phone">
+                Landline: {inst.extension} {inst.landline}
+              </div>
             </div>
             <div className="info-fifth">
               <div className="info-month">
-                Internship Start Month: {inst.month}
+                Start Month: {inst.smonth} | End Month: {inst.emonth}
               </div>
               <div className="info-duration">
                 Insternship Duration : {inst.duration}
@@ -106,7 +113,10 @@ const PendingInst = ({ inst, btnClicked }) => {
             <div className="info-coord-title">
               Institute Coordinator's Details
             </div>
-            <div className="info-sixth">Name : {inst.coordName}</div>
+            <div className="info-sixth">
+              Name : {inst.salutation} {inst.coordfirstName}{" "}
+              {inst.coordmiddleName} {inst.coordlastName}
+            </div>
             <div className="info-seventh">
               <div className="info-coor-email">Email: {inst.coordEmail}</div>
               <div className="info-coor-phone">Phone: {inst.coordPhone}</div>

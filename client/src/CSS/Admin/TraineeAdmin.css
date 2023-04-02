@@ -4,3 +4,89 @@
   height: 100vh;
   margin-top: -117px;
 }
+
+.stud-bdy {
+  width: 28%;
+  height: 65%;
+  background-color: #393e46;
+  margin: 2%;
+  float: left;
+  padding: 2%;
+  border-radius: 15px;
+  border: 1px #00adb5 solid;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+.stud-first {
+  background-color: #eeeeee;
+  height: 23%;
+  border-radius: 8px;
+  border: 2px #222831 solid;
+  padding: 3%;
+  text-align: center;
+  color: #222831;
+  font-weight: bold;
+  margin: 2%;
+}
+
+.stud-second,
+.stud-third {
+  border: 1px #00adb5 solid;
+  padding: 1%;
+  border-radius: 5px;
+  background-color: #222831;
+  text-align: center;
+  height: 20%;
+  margin: 1%;
+}
+
+.stud-third {
+  height: 15%;
+  margin-top: 2%;
+}
+
+.stud-fourth {
+  padding: 1%;
+}
+
+.stud-year,
+.stud-sem,
+.stud-course {
+  height: 100%;
+  width: 31.5%;
+  float: left;
+  border: 1px #00adb5 solid;
+  padding: 2%;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #222831;
+}
+.stud-course,
+.stud-sem {
+  margin-right: 2%;
+}
+.stud-fifth {
+  height: 20%;
+  padding: 2% 0%;
+  /* background-color: #eeeeee; */
+}
+
+.btn-resume {
+  background-color: #eeeeee;
+  border-bottom: 2px #00adb5 solid;
+  float: right;
+  margin-right: 2%;
+  padding: 1%;
+  color: #00adb5;
+  border-radius: 10px;
+  width: 50%;
+  font-weight: bold;
+}
+
+.btn-resume:hover {
+  cursor: pointer;
+  border: 2px #00adb5 solid;
+  width: 80%;
+  font-size: medium;
+}
