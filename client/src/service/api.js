@@ -627,3 +627,12 @@ export const sendSetudentMail = async (data) => {
     console.log(error);
   }
 };
+
+export const setRejectStudInst = async (data) => {
+  try {
+    let respone = await axios.post("/rejction-from-student", data);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

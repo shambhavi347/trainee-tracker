@@ -340,3 +340,40 @@
   border-radius: 10px;
   width: 98%;
 }
+
+.btn-revoke-div {
+  /* background-color: #393e46; */
+  height: 8vh;
+}
+
+.revoke-yes,
+.revoke-no {
+  width: 45%;
+  height: 100%;
+  border-radius: 10px;
+  color: #222831;
+  border: none;
+  font-weight: bold;
+}
+
+.revoke-yes:hover,
+.revoke-no:hover {
+  font-size: medium;
+  cursor: pointer;
+}
+
+.revoke-yes:hover {
+  background-color: #70e48f;
+}
+
+.revoke-no:hover {
+  background-color: #eb5858;
+}
+
+.revoke-yes {
+  background-color: #a5ecb8;
+}
+.revoke-no {
+  float: right;
+  background-color: #ea6b6b;
+}

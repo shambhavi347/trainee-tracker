@@ -342,7 +342,7 @@ input[type="file"]::file-selector-button:hover {
   /* color: #00adb5; */
   /* font-size: x-large;  */
   border: 1px #00adb5 solid;
-  
+
   text-align: center;
   padding: 1%;
   border-radius: 22px;
@@ -385,4 +385,86 @@ input[type="file"]::file-selector-button:hover {
   align-content: center;
   background-size: cover;
   box-shadow: 5px 5px 8px #888888;
+}
+
+.trainee-reg-box {
+  background-color: #888888;
+  background-image: url("../../Images/forgotBack.gif");
+  background-attachment: fixed;
+  align-content: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px;
+  float: left;
+}
+.formRegTrainee {
+  width: 65%;
+  float: left;
+  padding: 5% 3% 5% 15%;
+}
+.trainee-reg-up {
+  /* background-color: #00adb5; */
+  height: 100%;
+  margin: 6% 10%;
+}
+
+.form-element-trainee {
+  /* background-color: #00adb5; */
+  width: 100%;
+  padding: 3%;
+  /* height: 60%; */
+  margin: 2% 0%;
+  border-radius: 10px;
+}
+
+.form-element-trainee:focus,
+.form-element-trainee:active,
+.form-element-trainee:hover {
+  border: 2px #00adb5 solid;
+}
+
+.btn-form-trainee,
+.btn-trainee-disable {
+  width: 100%;
+  background-color: #393e46;
+  border: 1px #00adb5 solid;
+  font-size: medium;
+  color: #eeeeee;
+  border-radius: 10px;
+  padding: 3%;
+  margin: 2% 0%;
+}
+
+.btn-form-trainee:hover {
+  width: 100%;
+  background-color: #00adb5;
+  color: #eeeeee;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rules {
+  width: 35%;
+  float: right;
+  background-color: #eeeeee4d;
+  /* background-color: aqua; */
+  padding: 0;
+  height: 100%;
+  /* height: 100%; */
+  /* padding: 5% 0%; */
+  text-align: justify;
+  border-left: 1px #393e466c solid;
+  /* margin-right: 5%; */
+  margin: 6% 0%;
+}
+
+/* .btn-trainee-disable {
+  width: 100%;
+} */
+
+.btn-trainee-disable:hover {
+  background-color: #393e46;
+  cursor: not-allowed;
 }

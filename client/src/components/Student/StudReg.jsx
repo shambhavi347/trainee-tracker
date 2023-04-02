@@ -311,7 +311,7 @@ const Demo = () => {
           <br />
           <br />
           {!page2 ? (
-            <h1 className="regHead1">Register Yourself</h1>
+            <h1 className="regHead1">Register Student</h1>
           ) : (
             <h1 className="regHead">
               {" "}

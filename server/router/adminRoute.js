@@ -601,48 +601,6 @@ router.post("/accept-student", adminAuthenticate, async (req, res) => {
   }
 });
 
-router.post("/send-student-mail", async (req, res) => {
-  try {
-    const { email, id } = req.body;
-    const URL = "http://localhost:3000/trainee-reg";
-
-    // console.log(email);
-    // console.log(id);
-    let testAccount = await nodemailer.createTestAccount();
-
-    // // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: "seth8@ethereal.email", // generated ethereal user
-        pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
-      },
-    });
-
-    // // send mail with defined transport object
-    let info = await transporter.sendMail({
-      from: '"CDAC Student Work Harvestor" <shambhavishanker1999@gmail.com>', // sender address
-      to: email, // list of receivers
-      subject: "CDAC Trainee Registration Mail", // Subject line
-      text: "Hello from Student Work Harvestor!! The selected students must register on the below link. Copy paste it in your browser  Link: http://localhost:3000/trainee-reg ", // plain text body
-      html: `<b>Hello from Student Work Harvestor</b> <a href= ${URL} > Register </a> <br/> Copy Paste the below URL :- http://localhost:3000/trainee-reg`, // html body
-    });
-    if (info.messageId) {
-      await Student.findOneAndUpdate(
-        { _id: id },
-        { $set: { status: "mail sent" } }
-      );
-      res.send("Mail Sent");
-    } else {
-      res.send("Mail Not Sent");
-    }
-  } catch (error) {
-    console.log(error);
-  }
-});
-
 //reject Student
 router.post("/reject-student", adminAuthenticate, async (req, res) => {
   try {

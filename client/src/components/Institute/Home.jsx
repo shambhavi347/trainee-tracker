@@ -6,6 +6,7 @@ import {
   getAppstatus,
   getSelectedStudents,
   sendSetudentMail,
+  setRejectStudInst,
 } from "../../service/api";
 import { expand, cancel, check, remove } from "../../Images/Images";
 
@@ -49,12 +50,22 @@ const Home = () => {
   }
 
   const handleAccept = async (email, id) => {
-    console.log(email + " " + id);
+    // console.log(email + " " + id);
     const data = await sendSetudentMail({
       email: email,
       id: id,
     });
     window.alert(data);
+  };
+
+  const handleReject = async (id) => {
+    // console.log(email + " " + id);
+    const data = await setRejectStudInst({
+      // email: email,
+      id: id,
+    });
+    // window.alert(data);
+    console.log(data);
   };
 
   return (
@@ -107,6 +118,7 @@ const Home = () => {
                         alt="reject"
                         width="20"
                         heigth="2"
+                        onClick={() => handleReject(val._id)}
                       />
                     </button>
                     <button
