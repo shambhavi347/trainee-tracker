@@ -1,7 +1,11 @@
+*{
+  justify-content: center;
+}
 .main{
   background: linear-gradient(to bottom, #393e46, #00adb5);
   margin:0;
   padding:2%;
+  
   }
 
 .main__wrapper {
