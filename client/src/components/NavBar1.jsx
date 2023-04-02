@@ -85,7 +85,7 @@ const NavBar1 = () => {
           <img src={cdacLogo} alt="CDAC LOGO" className="logo" />
         </div>
         <div className="head-title">
-          <h1> &nbsp;&nbsp; Trainee Tracker</h1>
+          <h1> &nbsp;&nbsp; Trainee Work Harvester</h1>
         </div>
         <div className="buttonLogin">
           <button className="btn-login" onClick={() => setOpenLogin(true)}>

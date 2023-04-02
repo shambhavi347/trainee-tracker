@@ -79,93 +79,93 @@ const NavBar5 = () => {
   };
   return (
     <>
-        <div className="NavBody">
-            <div className="logoDiv" onClick={routeMain}>
-                <img src={cdacLogo} alt="CDAC LOGO" className="logo" />
-            </div>
-            <div className="head-title">
-                <h1>Trainee Tracker</h1>
-            </div>
-
-            <div className="menu">
-                <Button
-                    sx={{ height: 50, width: 30, marginRight: 7, marginTop: 1 }}
-                    id="demo-positioned-button"
-                    aria-controls={open ? "demo-positioned-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    onClick={handleClick}
-                >
-                    {/* Dashboard */}
-                    <img className="settings-icon" src={settings} alt="" />
-                </Button>
-                <Menu
-                        id="demo-positioned-menu"
-                        aria-labelledby="demo-positioned-button"
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                        anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "left",
-                        }}
-                        transformOrigin={{
-                        vertical: "top",
-                        horizontal: "left",
-                        }}
-                    >
-                    <MenuItem id="menu-items" onClick={handlePassword}>
-                      Change Password
-                    </MenuItem>
-                    <Link to="/trainee-logout">
-                        <MenuItem id="menu-items" onClick={handleClose}>
-                            Logout
-                        </MenuItem>
-                    </Link>
-                    <Link to="/trainee-dashboard">
-                        <MenuItem id="menu-items" onClick={handleClose}>
-                            Home Page
-                        </MenuItem>
-                    </Link>
-                </Menu>
-            </div>
-            {password ? (
-              <>
-                <div className="pass-box">
-                  <button className="cancel-btn-login">
-                    <img
-                      className="cancel-img"
-                      src={cancel}
-                      alt="close login box"
-                      onClick={() => setPassword(false)}
-                    />
-                  </button>
-                  <form method="POST">
-                    <input
-                      type="text"
-                      name="old_pass"
-                      placeholder="Old Password"
-                      className="login-component"
-                      onChange={handleChange}
-                    />
-                    <input
-                      type="text"
-                      name="new_pass"
-                      placeholder="Set New Password"
-                      className="login-component"
-                      onChange={handleChange}
-                    />
-                    <button
-                      className="login-component login-btn"
-                      onClick={PostData}
-                    >
-                      Submit
-                    </button>
-                  </form>
-                </div>
-              </>
-            ) : null}
+      <div className="NavBody">
+        <div className="logoDiv" onClick={routeMain}>
+          <img src={cdacLogo} alt="CDAC LOGO" className="logo" />
         </div>
+        <div className="head-title">
+          <h1>Trainee Work Harvester</h1>
+        </div>
+
+        <div className="menu">
+          <Button
+            sx={{ height: 50, width: 30, marginRight: 7, marginTop: 1 }}
+            id="demo-positioned-button"
+            aria-controls={open ? "demo-positioned-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+          >
+            {/* Dashboard */}
+            <img className="settings-icon" src={settings} alt="" />
+          </Button>
+          <Menu
+            id="demo-positioned-menu"
+            aria-labelledby="demo-positioned-button"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+          >
+            <MenuItem id="menu-items" onClick={handlePassword}>
+              Change Password
+            </MenuItem>
+            <Link to="/trainee-dashboard">
+              <MenuItem id="menu-items" onClick={handleClose}>
+                Home Page
+              </MenuItem>
+            </Link>
+            <Link to="/trainee-logout">
+              <MenuItem id="menu-items" onClick={handleClose}>
+                Logout
+              </MenuItem>
+            </Link>
+          </Menu>
+        </div>
+        {password ? (
+          <>
+            <div className="pass-box">
+              <button className="cancel-btn-login">
+                <img
+                  className="cancel-img"
+                  src={cancel}
+                  alt="close login box"
+                  onClick={() => setPassword(false)}
+                />
+              </button>
+              <form method="POST">
+                <input
+                  type="text"
+                  name="old_pass"
+                  placeholder="Old Password"
+                  className="login-component"
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="new_pass"
+                  placeholder="Set New Password"
+                  className="login-component"
+                  onChange={handleChange}
+                />
+                <button
+                  className="login-component login-btn"
+                  onClick={PostData}
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </>
+        ) : null}
+      </div>
     </>
   );
 };

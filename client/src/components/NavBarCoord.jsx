@@ -84,7 +84,7 @@ const NavBarCoord = () => {
           <img src={cdacLogo} alt="CDAC LOGO" className="logo" />
         </div>
         <div className="head-title">
-          <h1>Trainee Tracker</h1>
+          <h1>Trainee Work Harvester</h1>
         </div>
         {/* <div className="buttonLogin">
           <button className="btn-login">Login</button>
