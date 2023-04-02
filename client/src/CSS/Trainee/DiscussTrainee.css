@@ -1,7 +1,9 @@
+
 .main{
   background: linear-gradient(to bottom, #393e46, #00adb5);
   margin:0;
   padding:2%;
+  
   }
 
 .main__wrapper {
@@ -88,11 +90,12 @@
   flex-shrink: 0;
   margin-top: 1rem;
 }
+/*shambhavi change*/
 .main__announcements1 {
   padding: 1rem;
   /* overflow: hidden; */
   margin: -2.4rem;
-  margin-left: 1rem;
+  margin-left: 6.5rem;
   /* margin-top: 1.5rem; */
 }
 .main__subText {
@@ -195,7 +198,9 @@ margin-top: 1.5rem;
 }*/
 .forScroll1 {
    overflow-y: scroll;
-  height: 600px;
+  /* height: 600px; */
+  
+  height:80vh;
   width: auto;
   border: 1px solid black;
   border-bottom: red;

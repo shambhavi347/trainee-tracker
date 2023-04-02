@@ -74,6 +74,7 @@ const TraineeDiscuss = () => {
               <div className="main__announcements1">
                 <div className="main__announcementsWrapper1">
                   <div className="main__ancContent1">
+                  
                     {showInput ? (
                       <div className="main__form1">
                         <TextField
