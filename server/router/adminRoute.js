@@ -593,7 +593,7 @@ router.post("/accept-student", adminAuthenticate, async (req, res) => {
     const { email } = req.body;
     await Student.findOneAndUpdate(
       { email: email },
-      { $set: { status: "mail sent" } }
+      { $set: { status: "selection accept" } }
     );
     res.send("Student Accepted");
   } catch (error) {
@@ -1302,12 +1302,10 @@ router.post("/send_message", coordAuthenticate, async (req, res) => {
     console.log("message");
     console.log(message);
     let name = c.first_name;
-    if(c.middle_name)
-    {
+    if (c.middle_name) {
       name = name.concat(" " + c.middle_name);
     }
-    if(c.last_name)
-    {
+    if (c.last_name) {
       name = name.concat(" " + c.last_name);
     }
     const NewMsg = new MessageSent({
@@ -1390,12 +1388,10 @@ router.post("/send_message1", traineeAuthenticate, async (req, res) => {
     //   return obj !== stud._id;
     // });
     let name = stud.first_name;
-    if(stud.middle_name)
-    {
+    if (stud.middle_name) {
       name = name.concat(" " + stud.middle_name);
     }
-    if(stud.last_name)
-    {
+    if (stud.last_name) {
       name = name.concat(" " + stud.last_name);
     }
     console.log("sender id => " + stud._id);
