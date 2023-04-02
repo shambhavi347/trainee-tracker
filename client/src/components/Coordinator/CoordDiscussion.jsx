@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Button, TextField } from "@mui/material";
+import { Avatar, Button, TextField} from "@mui/material";
 import "../../CSS/Coordinator/DiscussCoord.css";
+import { icon } from "../../Images/Images";
 import { GetDetails } from "../../service/api";
+
+// const Component = styled(TextField)`
+//    background-color: #eeeeee;
+//    border:1px solid blue;
+// `;
 const CoordDiscussion = () => {
   const [showInput, setShowInput] = useState(false);
   const [user, setUser] = useState({
@@ -60,7 +66,7 @@ const CoordDiscussion = () => {
   return (
     <>
       <div className="forScroll ">
-        <div className="main ">
+        <div className="main " style={{background:"#00adb5"}}>
           <div className="main__wrapper">
             <div className="main__announce">
               <div className="main__announcements">
@@ -104,7 +110,7 @@ const CoordDiscussion = () => {
                       </div>
                     ) : (
                       <div
-                        className="main__wrapper100"
+                        className="main__wrapper100" 
                         onClick={() => setShowInput(true)}
                       >
                         <Avatar />
@@ -117,7 +123,8 @@ const CoordDiscussion = () => {
                   <div className="amt">
                     <div className="amt__Cnt">
                       <p className="amt__txt">
-                        <Avatar />
+                        {/* <Avatar /> */}
+                        <img className="icon_img1" src={icon} alt="" />
                         <h1
                           /*style={{ backgroundColor:"pink" }}*/ className="tr_sender"
                         >

@@ -5,12 +5,16 @@
   width: calc(100% - 2 * 1.5rem);
   max-width: 62.5rem;
 }
+.main {
+  background-color: linear-gradient(to bottom, #393e46, #00adb5);
+}
 .main__content {
   background-color: #1967d2;
   border-radius: 0.5rem;
   margin-top: 1.5rem;
   overflow: hidden;
 }
+
 .main__wrapper1 {
   height: 15rem;
   position: relative;
@@ -85,6 +89,7 @@
   overflow: hidden;
   margin: -2.4rem;
   margin-left: 1rem;
+
   /* margin-top: 1.5rem; */
 }
 .main__subText {
@@ -102,10 +107,12 @@
 .main__announcementsWrapper {
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
     0 2px 6px 2px rgba(60, 64, 67, 0.149);
+background-color:#eeeeee;
+border: 1px solid #00adb5;
   border-radius: 0.5rem;
   overflow: hidden;
   min-height: 4.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
   margin-top: 1.5rem;
 }
 
@@ -122,6 +129,8 @@
 }
 .main__wrapper100 > * {
   margin-right: 20px;
+  background-color: #eeeeee;
+  
 }
 #filled-multiline-flexible {
   width: 50vw !important;
@@ -145,11 +154,13 @@
 }
 .amt {
   background-color: #fff;
-  border: 0.0625rem solid #dadce0;
+  /* border: 0.0625rem solid #dadce0; */
+  border: 1px solid #00adb5;
   -webkit-border-radius: 0.5rem;
   border-radius: 0.5rem;
   /* overflow: scroll;*/
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.8rem;
+  background-color: #393e46;
 }
 .amt__top {
   display: flex;
@@ -213,8 +224,8 @@
   font-size: x-large;
   margin-left: 6%;
   margin-top: -5.7%;
-  margin-top: -6%;
-  color: black;
+  margin-top: -8%;
+  color: #00adb5;
 }
 .tr_date {
   height: 10%;
@@ -224,7 +235,7 @@
   font-size: 80%;
   margin-top: -2.8%;
   margin-left: 6%;
-  color: black;
+  color: #00adb5;
 }
 .tr_message {
   height: 10%;
@@ -233,5 +244,10 @@
   font-weight: bold;
   font-size: large;
   margin-left: 0%;
-  color: yellowgreen;
+  color: #eeeeee;
+}
+.icon_img1 {
+  height: 2.5vw;
+  width: 2.5vw;
+  margin-top: 2%;
 }

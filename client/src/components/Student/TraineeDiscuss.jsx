@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Button, TextField } from "@mui/material";
+import { Avatar, Button, TextField} from "@mui/material";
 import "../../CSS/Trainee/DiscussTrainee.css";
 import { GetDetails1 } from "../../service/api";
 import { icon} from "../../Images/Images";
+// const Component = styled(Button)`
+// background-color: #00abd5;
+// border:1px solid  #00abd5;
+
+// `;
+ 
 
 const TraineeDiscuss = () => {
   const [showInput, setShowInput] = useState(false);
@@ -85,7 +91,7 @@ const TraineeDiscuss = () => {
                         />
                         <div className="main__buttons1">
                           <div>
-                            <Button
+                            <Button  id ="cbtnT"
                               onClick={() => {
                                 setUser("");
                                 setShowInput(false);
@@ -93,14 +99,15 @@ const TraineeDiscuss = () => {
                             >
                               Cancel
                             </Button>
-
-                            <Button
+                            
+                            <Button id="btnTrainee"
                               onClick={postData}
-                              color="primary"
+                              // color="primary"
                               variant="contained"
                             >
                               Post
                             </Button>
+                         
                           </div>
                         </div>
                       </div>
