@@ -3,31 +3,55 @@
   background: -webkit-linear-gradient(to top, #222831, #393e46);
   background: linear-gradient(to bottom, #393e46, #00adb5);
   height: 80vh;
-  overflow-y: scroll !important;
+  /* overflow-y: scroll !important; */
+}
+
+.event {
+  background-color: #222831;
+  height: 75vh;
+  width: 30%;
+  overflow-y: auto;
+  float: left;
+  padding: 1%;
+}
+
+.event-item {
+  width: 90%;
+  margin: 3% 0%;
+  padding: 2%;
+  background-color: #393e46;
+  color: #00adb5;
+  border-radius: 10px;
+  border: 1.5px #00adb5 solid;
+}
+
+.event-title,
+.event-deadline {
+  color: #eeeeee;
+  width: 40%;
+}
+
+.event-title {
+  float: left;
+  margin-left: 2%;
+  /* text-align: center; */
+}
+.event-deadline {
+  float: right;
+}
+
+.projectdiv {
+  background-color: purple;
+  height: 75vh;
+  width: 70%;
+  float: right;
+  padding: 1%;
 }
 
 /* .event{
    background-color: #222831;
      height: auto;
 } */
-
-.event-title {
-  background-color: #222831;
-  color: #00adb5;
-  border: 1px #00adb5 solid;
-  width: 36%;
-  float: left;
-  /* margin-top: 2%; */
-  padding: 2%;
-  height: 16vh;
-  font-size: 25px;
-  text-align: center;
-  border-radius: 10px;
-  /* margin: 2% 0%; */
-  margin-left: 28%;
-  margin-right: 2%;
-  /* color: #eeeeee; */
-}
 
 .event-detail {
   background-color: #eeeeee;
@@ -99,13 +123,39 @@
 
 .add-event-btn {
   /* float: right; */
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
+  width: 90%;
+  height: 10%;
+  background-color: #eeeeee;
   border: none;
+  margin: 2% 0;
+  border-radius: 10px;
+  border: 1.5px #00adb5 solid;
 }
 
-.add-event-img,
+.add-event-btn:hover {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.btn-msg {
+  float: left;
+  /* background-color: aqua; */
+  height: 100%;
+  text-align: center;
+  color: #00adb5;
+  padding: 2%;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.add-event-img {
+  float: right;
+  width: 15%;
+  height: 100%;
+  /* background-color: aquamarine; */
+}
+
+/* .add-event-img, */
 .img-event {
   width: fit-content;
   height: 100%;

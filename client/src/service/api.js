@@ -488,7 +488,7 @@ export const getStream = async () => {
 
 export const postProject = async (data) => {
   try {
-    const response = await axios.post("/project-title", data);
+    const response = await axios.post("/add-project", data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -513,14 +513,14 @@ export const getProdesc = async () => {
   }
 };
 
-export const postEvents = async (data) => {
-  try {
-    const response = await axios.post("/project-events", data);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+// export const postEvents = async (data) => {
+//   try {
+//     const response = await axios.post("/project-events", data);
+//     return response.data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 export const getTraineeData = async () => {
   try {
@@ -551,9 +551,9 @@ export const getCoordName = async () => {
 
 export const getTraineeDeets = async () => {
   try {
-    let respone = await axios.get("/get-trainee-details");
+    let response = await axios.get("/get-trainee-details");
     // console.log("Res: " + respone);
-    return respone.data;
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -561,7 +561,18 @@ export const getTraineeDeets = async () => {
 
 export const createEvent = async (data) => {
   try {
-    await axios.post("/create-event", data);
+    const response = await axios.post("/create-event", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getEvents = async () => {
+  try {
+    let response = await axios.get("/get-events");
+    // console.log("Res: " + respone);
+    return response.data;
   } catch (error) {
     console.log(error);
   }

@@ -10,6 +10,8 @@ const Student = require("../model/studentSchema");
 const Group = require("../model/groupSchema");
 const { response } = require("express");
 const { request } = require("express");
+const Event = require("../model/eventsSchema");
+const Project = require("../model/projectSchema");
 
 router.post("/coordinator-reg", async (req, res) => {
   try {
@@ -213,14 +215,62 @@ router.post("/change-password-coord", coordAuthenticate, async (req, res) => {
   }
 });
 
-router.post("/project-title", async (req, res) => {
-  const title = req.body.title;
-  const project = new Project({ title });
-  const projectReg = await project.save();
-  if (projectReg) {
-    res.status(201).json({ message: "Project successfully added!✌" });
+router.post("/create-event", coordAuthenticate, async (req, res) => {
+  try {
+    const { event_name, deadline } = req.body;
+    const id = req.rootUser._id;
+    // console.log(event_name);
+    // console.log(deadline);
+    // console.log(id);
+    const eve = new Event({
+      title: event_name,
+      timestamp: deadline,
+      coordinator_id: id,
+    });
+    const new_event = await eve.save();
+    // console.log(new_event);
+    if (new_event) {
+      // console.log("Added");
+
+      res.status(200).json({ message: "Added" });
+      // res.send("Added");
+    } else {
+      // console.log("Not Added");
+      res.status(422).json({ error: "Failed to add" });
+      // res.send(" Not Added");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-events", coordAuthenticate, async (req, res) => {
+  try {
+    const id = req.rootUser._id;
+    console.log(id);
+    const events = await Event.find({ coordinator_id: id });
+    res.send(events);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/add-project", coordAuthenticate, async (req, res) => {
+  const { title, description } = req.body;
+  const id = req.rootUser._id;
+  console.log(title);
+  console.log(description);
+  console.log(id);
+  const pro = new Project({
+    title: title,
+    description: description,
+    coordinator_id: id,
+  });
+  const new_project = await pro.save();
+  if (new_project) {
+    res.status(200).json({ message: "Project successfully added!✌" });
   } else {
-    res.status(500).json({ error: "Failed to add Title☹" });
+    res.status(422).json({ error: "Failed to add Projecg☹" });
   }
 });
 
