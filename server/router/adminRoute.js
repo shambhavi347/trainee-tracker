@@ -272,7 +272,7 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Institute.distinct("month", { status: "pending" });
+      const cat = await Institute.distinct("smonth", { status: "pending" });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -285,7 +285,7 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Institute.distinct("month", { status: "accept" });
+      const cat = await Institute.distinct("smonth", { status: "accept" });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -298,7 +298,7 @@ router.get(
   adminAuthenticate,
   async (req, res) => {
     try {
-      const cat = await Institute.distinct("month", { status: "reject" });
+      const cat = await Institute.distinct("smonth", { status: "reject" });
       res.send(cat);
     } catch (error) {
       console.log(error);
@@ -601,47 +601,6 @@ router.post("/accept-student", adminAuthenticate, async (req, res) => {
   }
 });
 
-// router.post("/send-student-mail", adminAuthenticate, async (req, res) => {
-//   try {
-//     const { email } = req.body;
-//     URL = "http://localhost:3000/trainee-reg";
-
-//     console.log(email);
-//     let testAccount = await nodemailer.createTestAccount();
-
-//     // create reusable transporter object using the default SMTP transport
-//     let transporter = nodemailer.createTransport({
-//       host: "smtp.ethereal.email",
-//       port: 587,
-//       secure: false, // true for 465, false for other ports
-//       auth: {
-//         user: "randy67@ethereal.email", // generated ethereal user
-//         pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
-//       },
-//     });
-
-//     // send mail with defined transport object
-//     let info = await transporter.sendMail({
-//       from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
-//       to: email, // list of receivers
-//       subject: "CDAC Student Application Result", // Subject line
-//       text: "Hello from trainee tracker!! The interested student must register on the below link copy paste it in your browser  Link: http://localhost:3000/trainee-reg", // plain text body
-//       html: " <b>Hello from trainee tracker</b> <a href= ${URl} > Register </a> <br/> Copy Paste the below URL :- http://localhost:3000/trainee-reg", // html body
-//     });
-//     if (info.messageId) {
-//       await Student.findOneAndUpdate(
-//         { email: email },
-//         { $set: { status: "mail sent" } }
-//       );
-//       res.send("Mail Sent");
-//     } else {
-//       res.send("Mail Not Sent");
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
 //reject Student
 router.post("/reject-student", adminAuthenticate, async (req, res) => {
   try {
@@ -668,18 +627,18 @@ router.post("/reject-student", adminAuthenticate, async (req, res) => {
 //       port: 587,
 //       secure: false, // true for 465, false for other ports
 //       auth: {
-//         user: "randy67@ethereal.email", // generated ethereal user
-//         pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+//         user: "seth8@ethereal.email", // generated ethereal user
+//         pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
 //       },
 //     });
 
 //     // send mail with defined transport object
 //     let info = await transporter.sendMail({
-//       from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+//       from: '"CDAC Trainee Work Harvester" <shambhavishanker1999@gmail.com>', // sender address
 //       to: email, // list of receivers
 //       subject: "CDAC Student Application Result", // Subject line
-//       text: "Hello from trainee tracker!! Thank You for applying but we are not moving forward with your application", // plain text body
-//       html: " <b>Hello from trainee tracker!! Thank You for applying but we are not moving forward with your application </b>", // html body
+//       text: "Hello from Trainee Work Harvester!! Thank You for applying but we are not moving forward with your application", // plain text body
+//       html: " <b>Hello from Trainee Work Harvester!! Thank You for applying but we are not moving forward with your application </b>", // html body
 //     });
 //     if (info.messageId) {
 //       await Student.findOneAndUpdate(
@@ -772,14 +731,14 @@ router.post("/reg-coord", adminAuthenticate, async (req, res) => {
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: "randy67@ethereal.email", // generated ethereal user
-        pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+        user: "seth8@ethereal.email", // generated ethereal user
+        pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
       },
     });
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+      from: '"CDAC Trainee Work Harvester" <shambhavishanker1999@gmail.com>', // sender address
       to: email, // list of receivers
       subject: "CDAC Coordinator Registration", // Subject line
       text: `Hello ${salutation} ${first_name} !! You have been selected as coordinator in our internship program. Kindly Register yourself Link : http://localhost:3000/reg-coord`, // plain text body
@@ -798,7 +757,7 @@ router.post("/reg-coord", adminAuthenticate, async (req, res) => {
       res.status(201).json({ message: "Mail sent Successfully!!" });
       // res.send("Mail Sent");
     } else {
-      res.status(422).json({ message: "Mail sent Successfully!!" });
+      res.status(422).json({ message: "Mail not sent!!" });
     }
   } catch (error) {
     console.log(error);
@@ -836,18 +795,18 @@ router.post("/revoke-invitation", adminAuthenticate, async (req, res) => {
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: "randy67@ethereal.email", // generated ethereal user
-        pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+        user: "seth8@ethereal.email", // generated ethereal user
+        pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
       },
     });
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+      from: '"CDAC Trainee Work Harvester" <shambhavishanker1999@gmail.com>', // sender address
       to: email, // list of receivers
       subject: "CDAC Coordinator Invite Revoke", // Subject line
-      text: "Hello from trainee tracker!! We are revoking your coordinator invitaion", // plain text body
-      html: " <b>Hello from trainee tracker!! We are revoking your coordinator invitaion </b>", // html body
+      text: "Hello from Trainee Work Harvester!! We are revoking your coordinator invitaion", // plain text body
+      html: " <b>Hello from Trainee Work Harvester!! We are revoking your coordinator invitaion </b>", // html body
     });
     if (info.messageId) {
       await Invitation.findOneAndDelete({ email: email });
@@ -982,16 +941,16 @@ router.post("/forgot-pass", async (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "randy67@ethereal.email", // generated ethereal user
-          pass: "jgUkDR2nsSUKFHKG1e", // generated ethereal password
+          user: "seth8@ethereal.email", // generated ethereal user
+          pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
         },
       });
 
       // send mail with defined transport object
       let info = await transporter.sendMail({
-        from: '"CDAC Trainee Tracker" <shambhavishanker1999@gmail.com>', // sender address
+        from: '"CDAC Trainee Work Harvester" <shambhavishanker1999@gmail.com>', // sender address
         to: email, // list of receivers
-        subject: "Reset your password on Trainee Tracker", // Subject line
+        subject: "Reset your password on Trainee Work Harvester", // Subject line
         text: `We got your request. You can now reset your password Link: ${link} You can ignore this email.Keep your account extra safe`, // plain text body
         html: `<b>We got your request.</b> You can now reset your password Link: ${link}  Didn’t ask for a new password? You can ignore this email.<b>Keep your account extra safe</b>`, // html body
       });
@@ -1331,7 +1290,7 @@ router.get("/details", coordAuthenticate, async (req, res) => {
   const msgs = await MessageSent.find({ coord_id: coord });
   Coordi.map((val) => {
     let trainee = val.traineeID;
-    console.log("trainee " + trainee);
+    // console.log("trainee " + trainee);
     MessageSent.find({ trainee_list_id: trainee })
       .then((data) => {
         const m = [];
@@ -1340,7 +1299,7 @@ router.get("/details", coordAuthenticate, async (req, res) => {
         });
         if (!res.headersSent) {
           if (m) {
-            console.log("Details - " + m);
+            // console.log("Details - " + m);
             res.send(m);
             return;
           }
@@ -1416,10 +1375,10 @@ router.post("/send_message1", traineeAuthenticate, async (req, res) => {
 
 router.get("/details1", traineeAuthenticate, async (req, res) => {
   const id = req.rootUser.id;
-  console.log("trainee id - " + id);
+  // console.log("trainee id - " + id);
   const traine = await Trainee.findOne({ _id: id });
   const stud = await Student.findOne({ email: traine.email });
-  console.log("student id - " + stud._id);
+  // console.log("student id - " + stud._id);
   const cla = await Class.findOne({ traineeID: stud._id });
   const coord = cla.coordinatorID;
 
@@ -1432,7 +1391,7 @@ router.get("/details1", traineeAuthenticate, async (req, res) => {
   // console.log("Messages - " + m);
   Coordi.map((val) => {
     let trainee = val.traineeID;
-    console.log("trainee " + trainee);
+    // console.log("trainee " + trainee);
     MessageSent.find({ trainee_list_id: trainee })
       .then((data) => {
         const m = [];
@@ -1441,7 +1400,7 @@ router.get("/details1", traineeAuthenticate, async (req, res) => {
         });
         if (!res.headersSent) {
           if (m) {
-            console.log("Details - " + m);
+            // console.log("Details - " + m);
             res.send(m);
             return;
           }

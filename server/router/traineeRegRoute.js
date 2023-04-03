@@ -98,7 +98,10 @@ router.post("/trainee-reg", async (req, res) => {
       password,
     });
     await user.save();
-    await Student.findOneAndUpdate({ status: "registered" });
+    await Student.findOneAndUpdate(
+      { email: email },
+      { $set: { status: "registered" } }
+    );
     res.status(201).json({ message: "Trainee registered successfully !!" });
   } catch (err) {
     console.log(err);

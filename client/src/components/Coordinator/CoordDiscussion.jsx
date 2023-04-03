@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, Button, TextField } from "@mui/material";
-import "../../CSS/Coordinator/DiscussCoord.css";
+import "../../CSS/Coordinator/CoordDiscussion.css";
+import { icon } from "../../Images/Images";
 import { GetDetails } from "../../service/api";
+
+// const Component = styled(TextField)`
+//    background-color: #eeeeee;
+//    border:1px solid blue;
+// `;
 const CoordDiscussion = () => {
   const [showInput, setShowInput] = useState(false);
   const [user, setUser] = useState({
@@ -53,23 +59,23 @@ const CoordDiscussion = () => {
       setDetails(response);
     };
     D_data();
-  }, []);
+  }, [details]);
 
   const newArray = details.slice().reverse();
 
   return (
     <>
-      <div className="forScroll ">
-        <div className="main ">
+      <div className="forScroll1">
+        <div className="main " >
           <div className="main__wrapper">
-            <div className="main__announce">
-              <div className="main__announcements">
-                <div className="main__announcementsWrapper">
-                  <div className="main__ancContent">
+            <div className="main__announce1">
+              <div className="main__announcements1">
+                <div className="main__announcementsWrapper1">
+                  <div className="main__ancContent1">
                     {showInput ? (
-                      <div className="main__form">
+                      <div className="main__form1">
                         <TextField
-                          id="filled-multiline-flexible"
+                          id="filled-multiline-flexible1"
                           multiline
                           label="Announce Something to class"
                           variant="filled"
@@ -81,9 +87,9 @@ const CoordDiscussion = () => {
                           autoComplete="off"
                           onChange={handleChange}
                         />
-                        <div className="main__buttons">
+                        <div className="main__buttons1">
                           <div>
-                            <Button
+                            <Button id="C1"
                               onClick={() => {
                                 setUser("");
                                 setShowInput(false);
@@ -92,9 +98,9 @@ const CoordDiscussion = () => {
                               Cancel
                             </Button>
 
-                            <Button
+                            <Button id="C2"
                               onClick={postData}
-                              color="primary"
+                              // color="primary"
                               variant="contained"
                             >
                               Post
@@ -104,7 +110,7 @@ const CoordDiscussion = () => {
                       </div>
                     ) : (
                       <div
-                        className="main__wrapper100"
+                        className="main__wrapper1001"
                         onClick={() => setShowInput(true)}
                       >
                         <Avatar />
@@ -114,17 +120,18 @@ const CoordDiscussion = () => {
                   </div>
                 </div>
                 {newArray.map((item, index) => (
-                  <div className="amt">
-                    <div className="amt__Cnt">
-                      <p className="amt__txt">
-                        <Avatar />
+                  <div className="amt1">
+                    <div className="amt__Cnt1">
+                      <p className="amt__txt1">
+                        {/* <Avatar /> */}
+                        <img className="icon_img" src={icon} alt="" />
                         <h1
-                          /*style={{ backgroundColor:"pink" }}*/ className="tr_sender"
+                          /*style={{ backgroundColor:"pink" }}*/ className="tr_sender2"
                         >
                           {item.sender_name}
                         </h1>
                         <h1
-                          /*style={{ backgroundColor: "skyblue" }}*/ className="tr_date"
+                          /*style={{ backgroundColor: "skyblue" }}*/ className="tr_date2"
                         >
                           {new Date(item.createdAt).toLocaleString("default", {
                             month: "long",
@@ -136,7 +143,7 @@ const CoordDiscussion = () => {
                         </h1>
                         <h1
                           /*style={{ backgroundColor: "yellowgreen" }}*/
-                          className="tr_message"
+                          className="tr_message2"
                         >
                           {item.message}
                         </h1>

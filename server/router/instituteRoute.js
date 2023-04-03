@@ -5,6 +5,7 @@ router.use(express.static("../client/src/"));
 const Institute = require("../model/instituteSchema");
 const instituteAuthenticate = require("../middleware/instituteauth");
 const Student = require("../model/studentSchema");
+const traineeAuthenticate = require("../middleware/traineeauth");
 
 // Check validation on current page
 
@@ -520,4 +521,62 @@ router.post(
     }
   }
 );
+
+router.post("/send-student-mail", async (req, res) => {
+  try {
+    const { email, id } = req.body;
+    const URL = "http://localhost:3000/trainee-reg";
+
+    // console.log(email);
+    // console.log(id);
+    let testAccount = await nodemailer.createTestAccount();
+
+    // // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: "seth8@ethereal.email", // generated ethereal user
+        pass: "dcyhqJmzRxGxRY3S32", // generated ethereal password
+      },
+    });
+
+    // // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"CDAC Student Work Harvestor" <shambhavishanker1999@gmail.com>', // sender address
+      to: email, // list of receivers
+      subject: "CDAC Trainee Registration Mail", // Subject line
+      text: "Hello from Student Work Harvestor!! The selected students must register on the below link. Copy paste it in your browser  Link: http://localhost:3000/trainee-reg ", // plain text body
+      html: `<b>Hello from Student Work Harvestor</b> <a href= ${URL} > Register </a> <br/> Copy Paste the below URL :- http://localhost:3000/trainee-reg`, // html body
+    });
+    if (info.messageId) {
+      await Student.findOneAndUpdate(
+        { _id: id },
+        { $set: { status: "mail sent" } }
+      );
+      res.send("Mail Sent");
+    } else {
+      res.send("Mail Not Sent");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//reject student selection from institute side
+router.post("/rejction-from-student", traineeAuthenticate, async (req, res) => {
+  try {
+    const update = await Student.findOneAndUpdate(
+      {
+        _id: id,
+      },
+      { $set: { status: "mail not sent" } }
+    );
+    if (update) res.status(200).json({ message: "Updated" });
+    else res.status(422).json({ message: "Not Updated" });
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;

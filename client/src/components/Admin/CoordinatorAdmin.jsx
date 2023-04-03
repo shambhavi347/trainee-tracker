@@ -5,13 +5,16 @@ import {
   getCoordinators,
   revokeInvitation,
 } from "../../service/api";
-import { arrowRight, arrowLeft } from "../../Images/Images.js";
+import { arrowRight, arrowLeft, cancel } from "../../Images/Images.js";
 import CoordAssign from "./CoordAssign";
 import "../../CSS/Admin/CoordinatorAdmin.css";
 
 const CoordinatorAdmin = () => {
   const [addDisplay, setAddDisplay] = useState(true);
   const [assgnDis, setAssgnDis] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [coord, setCoord] = useState({
     salutation: "",
     first_name: "",
@@ -26,10 +29,11 @@ const CoordinatorAdmin = () => {
   const [assign, setAssign] = useState([]);
   const revokeInvite = async (e) => {
     e.preventDefault();
-    let email = e.target.value;
+    // let email = e.target.value;
     try {
       // console.log(email);
-      await revokeInvitation({ email: email });
+      const data = await revokeInvitation({ email: email });
+      setConfirm(false);
     } catch (error) {
       console.log(error);
     }
@@ -47,8 +51,10 @@ const CoordinatorAdmin = () => {
   // console.log(invit);
   const PostData = async (e) => {
     e.preventDefault();
-    console.log(new Date());
-    setCoord({ ...coord, date: new Date() });
+    // console.log(new Date());
+    const date1 = new Date();
+    console.log("Date: " + date1);
+    setCoord({ ...coord, date: date1 });
     const { salutation, first_name, middle_name, last_name, email, date } =
       coord;
     console.log(coord);
@@ -196,8 +202,15 @@ const CoordinatorAdmin = () => {
                         <div className="right-invites">
                           <button
                             className="btn-invites"
-                            onClick={revokeInvite}
-                            value={val.email}
+                            onClick={() => {
+                              let name1 =
+                                val.salutation + " " + val.first_name + " ";
+
+                              setName(name1);
+                              setEmail(val.email);
+                              setConfirm(true);
+                            }}
+                            // value={val.email}
                           >
                             Revoke
                           </button>
@@ -247,6 +260,40 @@ const CoordinatorAdmin = () => {
               <img src={arrowLeft} alt="" className="img-arr" />
             </div>
             <CoordAssign coord={assign} />
+          </>
+        ) : null}
+
+        {confirm ? (
+          <>
+            <div className="expanded-div">
+              <div className="groupNo">
+                <button
+                  className="close-btn-group"
+                  onClick={() => setConfirm(false)}
+                >
+                  <img
+                    className="img-close"
+                    src={cancel}
+                    alt="close model box"
+                  />
+                </button>
+                <h3 style={{ color: "#00adb5" }}>
+                  <br />
+                  Are sure you want to revoke {name}'s invitation ?
+                </h3>
+                <div className="btn-revoke-div">
+                  <button className="revoke-yes" onClick={revokeInvite}>
+                    Yes
+                  </button>{" "}
+                  <button
+                    className="revoke-no"
+                    onClick={() => setConfirm(false)}
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+            </div>
           </>
         ) : null}
       </div>

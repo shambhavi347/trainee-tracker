@@ -30,6 +30,7 @@
   background-color: #222831;
   font-weight: bold;
   border-bottom: 3px #00adb5 solid;
+  cursor: pointer;
 }
 
 .btn-institute:focus,
