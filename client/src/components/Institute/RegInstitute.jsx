@@ -557,8 +557,8 @@ const RegInstitute = () => {
                     className="btn-inst0"
                     onClick={ValidateData}
                     // onClick={() => {
-                      // setInst(false);
-                      // setDisplay(true);
+                    // setInst(false);
+                    // setDisplay(true);
                     // }}
                   >
                     Next
