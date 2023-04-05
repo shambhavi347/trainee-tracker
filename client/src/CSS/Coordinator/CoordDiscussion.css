@@ -179,7 +179,8 @@
 }
 .amt__Cnt1 {
   /* padding: 0.5rem 0;*/
-  /* padding: 0.5rem 0; */
+   padding: 0.5rem 0;
+   padding-bottom:0.3rem;
 }
 .amt__txt1 {
   margin: 10px 15px;
@@ -223,6 +224,7 @@
   /* border: 2px #00adb5 solid; */
   /* padding-bottom: 10%; */
   /* padding-top: -10%; */
+  
 }
 
 .tr_sender2 {
@@ -277,4 +279,9 @@
   background-color: #00adb5;
   color: #eeeeee;
   font-style: italic;
+}
+#TScroll{
+  overflow-y:scroll;
+  height: 100vh;
+  width:auto;
 }
