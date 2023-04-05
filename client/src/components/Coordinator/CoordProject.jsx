@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../CSS/Coordinator/CoordProject.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,7 +7,7 @@ import { display } from "@mui/system";
 import { Link } from "react-router-dom";
 import "../Coordinator/ProjectDetails";
 import { add, cancel } from "../../Images/Images";
-import { createEvent } from "../../service/api";
+import { createEvent, getEvents, postProject } from "../../service/api";
 var events = {
   backgroundColor: "#222831",
   /* height: 30vh;*/
@@ -30,7 +30,6 @@ const CoordProject = () => {
     title: "",
     description: "",
     coordinator_id: "",
-    group_id: "",
   });
 
   const [display, setDisplay] = useState(false); //will not show students details to us until we make display true
@@ -48,6 +47,36 @@ const CoordProject = () => {
   const [eventExp, setEventExp] = useState(false);
   const [newEvent, setNewEvent] = useState({ event_name: "", deadline: "" });
 
+  var dateList = new Array();
+  let strDescending = [];
+  var date, dob;
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const data = await getEvents();
+        setEvent(data);
+        event.map((val) => {
+          date = new Date(val.timestamp);
+          dob = date.toLocaleDateString("en-US");
+          // console.log(dob);
+          // dateList.push(dob);
+          val.timestamp = dob;
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchEvent();
+  }, [event]);
+ 
+
+  // dateList.map((val) => {
+  //   console.log("deadline " + val);
+  // });
+  // console.log("Dates " + dateList.length);
+  // console.log(event);
+
   const addEvent = async (e) => {
     try {
       e.preventDefault();
@@ -56,33 +85,65 @@ const CoordProject = () => {
         event_name: newEvent.event_name,
         deadline: newEvent.deadline,
       });
-      console.log(data);
+      if (data.message) {
+        window.alert(data.message);
+        //after adding it'll reresh and the fields will be empty
+        setEventExp(false);
+        setNewEvent({ event_name: "", deadline: "" });
+      } else {
+        window.alert(data.error);
+      }
+      // console.log(data);
+      // const res = await data.json();
+      // console.log(res.message);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const addItem = () => {
-    if (!item && !des) {
-      window.alert(
-        "Please specify a valid project title and description to add"
-      );
-    } else if (!item)
-      window.alert("Please specify a valid project title to add");
-    else {
-      setData([...data, item]); //spread operator(...)
-      setItem("");
+  const addPro = async (e) => {
+    try {
+      e.preventDefault();
+      console.log(coordPro);
+      const data = await postProject({
+        title: coordPro.title,
+        description: coordPro.description,
+      });
+      if (data.message) {
+        window.alert(data.message);
+        setData([...data, item]);
+        setPro([...pro, des]);
+        setItem("");
+        setDes("");
+      } else {
+        window.alert(data.error);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const addDes = () => {
-    if (item && !des) {
-      window.alert("Please specify a valid project description to add");
-    } else {
-      setPro([...pro, des]);
-      setDes("");
-    }
-  };
+  // const addItem = () => {
+  //   if (!item && !des) {
+  //     window.alert(
+  //       "Please specify a valid project title and description to add"
+  //     );
+  //   } else if (!item)
+  //     window.alert("Please specify a valid project title to add");
+  //   else {
+  //     setData([...data, item]); //spread operator(...)
+  //     // setItem("");
+  //   }
+  // };
+
+  // const addDes = () => {
+  //   if (item && !des) {
+  //     window.alert("Please specify a valid project description to add");
+  //   } else {
+  //     // setPro([...pro, des]);
+  //     // setDes("");
+  //   }
+  // };
 
   let name, value;
   const handleChange = (e) => {
@@ -150,10 +211,9 @@ const CoordProject = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: item,
+        title: "",
         description: "",
         coordinator_id: "",
-        group_id: "",
       }),
     });
     if (res.status === 200) {
@@ -171,58 +231,89 @@ const CoordProject = () => {
   return (
     <>
       <div className="body-coord-pro">
-        {/* <div>
-            <h4 className="event-item1 date">
-              SRS<br></br>
-            </h4>
-            <div className="deadline">
-              <DatePicker
-                placeholderText="Set Deadline"
-                selected={selectedDate1}
-                onChange={(date1) => setSelectedDate1(date1)}
-              />
-            </div>
-          </div>
-          <div>
-            <h4 className="event-item1 date">
-              SDS<br></br>
-            </h4>
-            <div className="deadline">
-              <DatePicker
-                placeholderText="Set Deadline"
-                selected={selectedDate2}
-                onChange={(date2) => setSelectedDate2(date2)}
-              />
-            </div>
-          </div>
-          <div>
-            <h4 className="event-item1 date">
-              Document<br></br>
-            </h4>
-            <div className="deadline">
-              <DatePicker
-                placeholderText="Set Deadline"
-                selected={selectedDate3}
-                onChange={(date3) => setSelectedDate3(date3)}
-              />
-            </div>
-          </div>
-          <div>
-            <h4 className="event-item1 date">
-              Report<br></br>
-            </h4>
-            <div className="deadline">
-              <DatePicker
-                placeholderText="Set Deadline"
-                selected={selectedDate4}
-                onChange={(date4) => setSelectedDate4(date4)}
-              />
-            </div>
-          </div>
-        </div> */}
-        <div style={{ padding: "2%" }}>
+        <div className="event">
+          <button className="add-event-btn" onClick={() => setEventExp(true)}>
+            <div className="btn-msg">Add Events and their Deadlines</div>
+            <img className="add-event-img" src={add} alt="Add Event"></img>
+          </button>
+
           {event.length ? (
-            <>events</>
+            <>
+              {" "}
+              <div>
+                {event.map((val, index) => (
+                  <div className="event-item" key={val.id}>
+                    <div className="event-title">{val.title}</div>
+                    <div className="event-deadline">
+                      {new Date(val.timestamp).toLocaleDateString("en-US")}
+                    </div>
+                    {/* {console.log("Date " + index)} */}
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="event-title">Add Events and their Deadlines</div>
+            </>
+          )}
+        </div>
+
+        <div className="projectdiv">
+          <div className="main-coord-pro">
+            <div className="addItem">
+              <input
+                className="title"
+                type="text"
+                placeholder="✍🏽Add Project Title.."
+                value={item}
+                onChange={(e) => setItem(e.target.value)}
+              />
+            </div>
+
+            <div className="confirm">
+              <button
+                className="btn-effect"
+                onClick={() => {
+                  // addItem();
+                  // addDes();
+                  addPro();
+                }}
+              >
+                ADD PROJECT
+              </button>
+            </div>
+
+            <div className="description-bar">
+              <textarea
+                rows={6}
+                cols={52}
+                className="description"
+                placeholder="Add Project Description"
+                value={des}
+                onChange={(e) => setDes(e.target.value)}
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        {/* <div style={{ padding: "2%" }}>
+          {event.length ? (
+            <>
+              {" "}
+              <div
+
+              >
+                {event.map((val) => (
+                  <div
+                    key={val.id}
+                
+                  >
+                    {val.title}
+                    <t></t>
+                  </div>
+                ))}
+              </div>
+            </>
           ) : (
             <>
               <div className="event-title">Add Events and their Deadlines</div>
@@ -322,7 +413,7 @@ const CoordProject = () => {
               ;
             </div>
           </div>
-        </div>
+        </div>*/}
         {eventExp ? (
           <>
             <div className="expanded-div">

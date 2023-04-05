@@ -6,7 +6,7 @@ const eventsSchema = new mongoose.Schema({
     required: true,
   },
   timestamp: {
-    type: timestamp,
+    type: Date,
     required: true,
   },
   coordinator_id: {
@@ -16,5 +16,5 @@ const eventsSchema = new mongoose.Schema({
   },
 });
 
-const Events = mongoose.model("EVENTS", eventsSchema);
-module.exports = Events;
+const Event = mongoose.model("EVENTS", eventsSchema);
+module.exports = Event;

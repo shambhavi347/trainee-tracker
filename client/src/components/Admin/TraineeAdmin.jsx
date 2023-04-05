@@ -1101,7 +1101,10 @@ const TraineeAdmin = () => {
                       }}
                     />
                   </button>
-                  <h3 className="title-inst-accpt"> Accepted Student List</h3>
+                  <h3 className="title-inst-accpt">
+                    Accepted Student Application
+                  </h3>
+                  <p className="count-inst">Count: {acceptStud.length}</p>
                 </div>
                 <div
                   style={{
@@ -1122,11 +1125,45 @@ const TraineeAdmin = () => {
             </>
           ) : null}
 
-          {disPend
-            ? studs.map((val, key) => (
-                <PendingStudent stud={val} btnClicked={btnClicked} />
-              ))
-            : null}
+          {/* {disPend ? (
+            studs.map((val, key) => (
+              <PendingStudent stud={val} btnClicked={btnClicked} />
+            ))
+          ) : (
+            <>
+              <div>Loading...</div>
+            </>
+          )} */}
+
+          {disPend ? (
+            studs ? (
+              <>
+                <div className="accept-bdy">
+                  <div className="head-inst">
+                    <h3 className="title-inst-pend">
+                      Pending Student Application
+                    </h3>
+                    <p className="count-inst">Count: {studs.length}</p>
+                  </div>
+                  <div
+                    style={{
+                      padding: "1%",
+                      height: "80vh",
+                      overflowY: "auto",
+                    }}
+                  >
+                    {studs.map((val, key) => (
+                      <PendingStudent stud={val} btnClicked={btnClicked} />
+                    ))}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div>Loading..</div>
+              </>
+            )
+          ) : null}
 
           {disRej ? (
             <>
@@ -1144,7 +1181,10 @@ const TraineeAdmin = () => {
                       }}
                     />
                   </button>
-                  <h3 className="title-inst-accpt"> Rejcted Student List</h3>
+                  <h3 className="title-inst-accpt">
+                    Rejected Student Application
+                  </h3>
+                  <p className="count-inst">Count: {rejectStud.length}</p>
                 </div>
                 <div
                   style={{
@@ -1158,7 +1198,9 @@ const TraineeAdmin = () => {
                       <PendingStudent stud={val} btnClicked={btnClicked} />
                     ))
                   ) : (
-                    <>No rejected list</>
+                    <>
+                      <div>No rejected list</div>
+                    </>
                   )}
                 </div>
               </div>

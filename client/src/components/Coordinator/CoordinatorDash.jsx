@@ -7,8 +7,8 @@ import "../../CSS/Coordinator/CoordinatorDash.css";
 
 const CoordinatorDash = () => {
   const [Ppl, setPpl] = useState(false);
-  const [Proj, setProj] = useState(false);
-  const [Diss, setDiss] = useState(true);
+  const [Proj, setProj] = useState(true);
+  const [Diss, setDiss] = useState(false);
 
   return (
     <>
