@@ -82,7 +82,7 @@ const TraineeDiscuss = () => {
                           variant="filled"
                           className="message"
                           type="text"
-                          placeholder="write something"
+                          placeholder="Write Something"
                           name="message"
                           value={user.message}
                           autoComplete="off"
