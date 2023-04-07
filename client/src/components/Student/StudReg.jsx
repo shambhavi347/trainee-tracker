@@ -8,8 +8,18 @@ import WatchTrainee from "../WatchTrainee";
 import axios from "axios";
 // import { cancel } from "././../Images/Images";
 import { useNavigate } from "react-router-dom";
+import { createContext } from "react";
+import Switch from "react-switch";
+
+export const ThemeContext = createContext(null);
 
 const Demo = () => {
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
+
   let navigate = useNavigate();
   const [page0, setPage0] = useState(true);
   const [page2, setPage2] = useState(false);
@@ -303,452 +313,457 @@ const Demo = () => {
   console.log(user);
   return (
     <>
-      <NavBar2 />
-      {/* write your page 1 code here*/}
-      <div className="DivUpper1">
-        <div className="main1">
-          <br />
-          <br />
-          <br />
-          {!page2 ? (
-            <h1 className="regHead1">Register Student</h1>
-          ) : (
-            <h1 className="regHead">
-              {" "}
-              {user.prefix} {user.first_name}, choose Technologies
-            </h1>
-          )}
-          <div className="regBox1">
-            <form
-              className="form-body-stu"
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
-              {page0 ? (
-                <>
-                  <div>
-                    <h4 className="head-stud">Basic Details</h4>
-                  </div>
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <div id={theme}>
+          <NavBar2 />
+          {/* write your page 1 code here*/}
+          <div className="DivUpper1">
+            <div className="main1">
+              <br />
+              <br />
+              <br />
+              {!page2 ? (
+                <h1 className="regHead1">Register Student</h1>
+              ) : (
+                <h1 className="regHead">
+                  {" "}
+                  {user.prefix} {user.first_name}, choose Technologies
+                </h1>
+              )}
+              <Switch onChange={toggleTheme} checked={theme === "light"} />
+              <div className="regBox1">
+                <form
+                  className="form-body-stu"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  {page0 ? (
+                    <>
+                      <div>
+                        <h4 className="head-stud">Basic Details</h4>
+                      </div>
 
-                  <select
-                    name="prefix"
-                    className="drop-down11 field1"
-                    value={user.prefix}
-                    onChange={handleChange}
-                  >
-                    <option value="null">Title</option>
-                    <option value="Mr">Mr</option>
-                    <option value="Mrs">Mrs</option>
-                    <option value="Miss">Miss</option>
-                    <option value="Dr">Dr</option>
-                  </select>
-                  <input
-                    className="form-element11 form-text1 field2 "
-                    type="text"
-                    placeholder="First Name"
-                    name="first_name"
-                    value={user.first_name}
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
-                  <input
-                    className="form-element11 form-text1 field3"
-                    type="text"
-                    placeholder="Middle Name"
-                    name="middle_name"
-                    value={user.middle_name}
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
-                  <input
-                    className="form-element11 form-text1 field4"
-                    type="text"
-                    placeholder="Last Name"
-                    name="last_name"
-                    value={user.last_name}
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
+                      <select
+                        name="prefix"
+                        className="drop-down11 field1"
+                        value={user.prefix}
+                        onChange={handleChange}
+                      >
+                        <option value="null">Title</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Dr">Dr</option>
+                      </select>
+                      <input
+                        className="form-element11 form-text1 field2 "
+                        type="text"
+                        placeholder="First Name"
+                        name="first_name"
+                        value={user.first_name}
+                        autoComplete="off"
+                        onChange={handleChange}
+                      />
+                      <input
+                        className="form-element11 form-text1 field3"
+                        type="text"
+                        placeholder="Middle Name"
+                        name="middle_name"
+                        value={user.middle_name}
+                        autoComplete="off"
+                        onChange={handleChange}
+                      />
+                      <input
+                        className="form-element11 form-text1 field4"
+                        type="text"
+                        placeholder="Last Name"
+                        name="last_name"
+                        value={user.last_name}
+                        autoComplete="off"
+                        onChange={handleChange}
+                      />
 
-                  <input
-                    className="form-element11 form-date1 field7"
-                    type="date"
-                    name="dob"
-                    value={user.dob}
-                    placeholder="DOB (dd/mm/yy)"
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
+                      <input
+                        className="form-element11 form-date1 field7"
+                        type="date"
+                        name="dob"
+                        value={user.dob}
+                        placeholder="DOB (dd/mm/yy)"
+                        autoComplete="off"
+                        onChange={handleChange}
+                      />
 
-                  <select
-                    name="gender"
-                    className="drop-down11 field8"
-                    value={user.gender}
-                    onChange={handleChange}
-                  >
-                    <option value="null">Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Binary">Binary</option>
-                  </select>
+                      <select
+                        name="gender"
+                        className="drop-down11 field8"
+                        value={user.gender}
+                        onChange={handleChange}
+                      >
+                        <option value="null">Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Binary">Binary</option>
+                      </select>
 
-                  <h4 className="head-stud">Contact Details</h4>
+                      <h4 className="head-stud">Contact Details</h4>
 
-                  <input
-                    className="form-element11 form-email1 field5"
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    value={user.email}
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
-                  <input
-                    className="form-element11 form-text1 field5"
-                    type="text"
-                    name="phone_no"
-                    value={user.phone_no}
-                    placeholder="Contact Number"
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
+                      <input
+                        className="form-element11 form-email1 field5"
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        value={user.email}
+                        autoComplete="off"
+                        onChange={handleChange}
+                      />
+                      <input
+                        className="form-element11 form-text1 field5"
+                        type="text"
+                        name="phone_no"
+                        value={user.phone_no}
+                        placeholder="Contact Number"
+                        autoComplete="off"
+                        onChange={handleChange}
+                      />
 
-                  {/* write your page 1 code here */}
-                  {/* <h1 className="regHead1">
+                      {/* write your page 1 code here */}
+                      {/* <h1 className="regHead1">
                     Hey {user.prefix} {user.first_name}, fill your Academic
                     details
                   </h1>*/}
 
-                  <h4 className="head-stud">Academic Details</h4>
+                      <h4 className="head-stud">Academic Details</h4>
 
-                  <input
-                    className="form-element11 form-text1 field9"
-                    type="text"
-                    placeholder="Institute Name"
-                    name="instname"
-                    value={user.instname}
-                    autoComplete="off"
-                    onChange={handleChange}
-                  />
-                  <div className="course">
-                    <select
-                      name="course"
-                      className="drop-down11 field10"
-                      value={user.course}
-                      onChange={handleChange}
-                    >
-                      <option value="null">Enter your Course</option>
-                      <option value="BCA">BCA</option>
-                      <option value="MCA">MCA</option>
-                      <option value="BTech">BTech</option>
-                      <option value="MTech">MTech</option>
-                    </select>
-
-                    <select
-                      name="stream"
-                      className="drop-down22 field10"
-                      value={user.stream}
-                      onChange={handleChange}
-                    >
-                      <option value="null">Enter your Stream</option>
-                      <option value="Aeronautical Engineering">
-                        Aeronautical Engineering
-                      </option>
-                      <option value="Automobile Engineering">
-                        Automobile Engineering
-                      </option>
-                      <option value="Biotechnology">Biotechnology</option>
-                      <option value="Civil Engineering">
-                        Civil Engineering
-                      </option>
-                      <option value="Computer Application">
-                        Computer Application
-                      </option>
-                      <option value="Electronics & Communication">
-                        Electronics & Communication
-                      </option>
-                      <option value="Mechanical Engineering">
-                        Mechanical Engineering
-                      </option>
-                      <option value="Electrical and Electronics Engineering">
-                        Electrical and Electronics Engineering
-                      </option>
-                      <option value="Computer Science and Engineering">
-                        Computer Science and Engineering
-                      </option>
-                    </select>
-                    <br />
-                    <div className="Sem">
-                      <select
-                        name="semester"
-                        className="drop-down22 field11"
-                        value={user.semester}
+                      <input
+                        className="form-element11 form-text1 field9"
+                        type="text"
+                        placeholder="Institute Name"
+                        name="instname"
+                        value={user.instname}
+                        autoComplete="off"
                         onChange={handleChange}
-                      >
-                        <option value="null">Enter your Semester</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                      </select>
-                    </div>
-                  </div>
+                      />
+                      <div className="course">
+                        <select
+                          name="course"
+                          className="drop-down11 field10"
+                          value={user.course}
+                          onChange={handleChange}
+                        >
+                          <option value="null">Enter your Course</option>
+                          <option value="BCA">BCA</option>
+                          <option value="MCA">MCA</option>
+                          <option value="BTech">BTech</option>
+                          <option value="MTech">MTech</option>
+                        </select>
 
-                  <div className="Academic">
-                    <input
-                      className="drop-down22 field13"
-                      type="number"
-                      step="0.1"
-                      min="0"
-                      max="10"
-                      name="cgpa"
-                      placeholder="CGPA"
-                      value={user.cgpa}
-                      autoComplete="off"
-                      onChange={handleChange}
-                    />
-
-                    <input
-                      className="drop-down22 field13"
-                      type="number"
-                      step="1"
-                      min="1887"
-                      max="3000"
-                      name="passout_year"
-                      placeholder="Passout Year"
-                      value={user.passout_year}
-                      autoComplete="off"
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <h4 className="head-stud">Resume</h4>
-                  <div className="resume-upload">
-                    {fileId ? (
-                      <>
-                        <div className="file-info">
-                          <div className="file-info1">{fileName}</div>
-
-                          <div className="file-info3" onClick={deletePdf}>
-                            Delete
-                          </div>
-                          <div className="file-info2" onClick={ViewPDf}>
-                            View
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <WatchTrainee sendId={sendId} sendName={sendName} />
-                    )}
-                  </div>
-                  <button
-                    className="tb1 "
-                    // onClick={validateData}
-                    onClick={() => {
-                      setPage2(true);
-                      setPage0(false);
-                    }}
-                  >
-                    NEXT
-                  </button>
-                </>
-              ) : page2 ? (
-                <>
-                  {/* write your page 2 code here */}
-
-                  <div className="fam-tech">
-                    <div className="drop-first">
-                      Familiar Technologies
-                      <button
-                        className="down-btn"
-                        onClick={() => {
-                          famdrop ? setFamdrop(false) : setFamdrop(true);
-                        }}
-                      >
-                        <img
-                          className="downarrow-img "
-                          src={arrowDown}
-                          alt=""
-                        />
-                      </button>
-                    </div>
-
-                    {famdrop ? (
-                      <>
-                        <div className="option">
-                          {tech.map((val, key) => (
-                            <>
-                              <label className="container">
-                                {val}
-                                <input
-                                  type="checkbox"
-                                  name={val}
-                                  id=""
-                                  value={val}
-                                  onClick={handlefamTech}
-                                />
-
-                                <span className="checkmark"></span>
-                              </label>
-                              <hr
-                                style={{
-                                  backgroundColor: "#393e46",
-                                  opacity: "0.2",
-                                }}
-                              />
-                            </>
-                          ))}
-                        </div>
-                      </>
-                    ) : null}
-                  </div>
-                  <div className="int-drop">
-                    <div className="drop-first">
-                      Instrested Technologies
-                      <button
-                        className="down-btn"
-                        onClick={() => {
-                          intdrop ? setIntdrop(false) : setIntdrop(true);
-                        }}
-                      >
-                        <img
-                          className="downarrow-img "
-                          src={arrowDown}
-                          alt=""
-                        />
-                      </button>
-                    </div>
-                    {intdrop ? (
-                      <>
-                        <div className="option">
-                          {tech.map((val, key) => (
-                            <>
-                              <label className="container">
-                                {val}
-                                <input
-                                  type="checkbox"
-                                  name={val}
-                                  id=""
-                                  value={val}
-                                  onChange={handleintTech}
-                                />
-
-                                <span className="checkmark"></span>
-                              </label>
-                              <hr
-                                style={{
-                                  backgroundColor: "#393e46",
-                                  opacity: "0.2",
-                                }}
-                              />
-                            </>
-                          ))}
-                        </div>
-                      </>
-                    ) : null}
-                  </div>
-
-                  {Object.keys(famtech).length === 0 ? null : (
-                    <>
-                      <h4 style={{ marginLeft: "42%" }}>
-                        Familiar Technologies
-                      </h4>
-                      <div className="tech-box-outer">
-                        <div className="tech-box">
-                          {famtech.map((key) => (
-                            <>
-                              <div className="tech-outer"></div>
-                              <div className="tech">
-                                <div className="cancel-text-tech">
-                                  {key}
-                                  <button
-                                    className="cancel-btn-tech"
-                                    onClick={() => {
-                                      setFamtech((oldValues) => {
-                                        return oldValues.filter(
-                                          (famtech) => famtech !== key
-                                        );
-                                      });
-                                    }}
-                                  >
-                                    <img
-                                      className="cancel-img-tech"
-                                      src={cancel}
-                                      alt=""
-                                    />
-                                  </button>
-                                </div>
-                              </div>
-                            </>
-                          ))}
+                        <select
+                          name="stream"
+                          className="drop-down22 field10"
+                          value={user.stream}
+                          onChange={handleChange}
+                        >
+                          <option value="null">Enter your Stream</option>
+                          <option value="Aeronautical Engineering">
+                            Aeronautical Engineering
+                          </option>
+                          <option value="Automobile Engineering">
+                            Automobile Engineering
+                          </option>
+                          <option value="Biotechnology">Biotechnology</option>
+                          <option value="Civil Engineering">
+                            Civil Engineering
+                          </option>
+                          <option value="Computer Application">
+                            Computer Application
+                          </option>
+                          <option value="Electronics & Communication">
+                            Electronics & Communication
+                          </option>
+                          <option value="Mechanical Engineering">
+                            Mechanical Engineering
+                          </option>
+                          <option value="Electrical and Electronics Engineering">
+                            Electrical and Electronics Engineering
+                          </option>
+                          <option value="Computer Science and Engineering">
+                            Computer Science and Engineering
+                          </option>
+                        </select>
+                        <br />
+                        <div className="Sem">
+                          <select
+                            name="semester"
+                            className="drop-down22 field11"
+                            value={user.semester}
+                            onChange={handleChange}
+                          >
+                            <option value="null">Enter your Semester</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                          </select>
                         </div>
                       </div>
-                    </>
-                  )}
 
-                  {Object.keys(inttech).length === 0 ? null : (
-                    <>
-                      <h4 style={{ marginLeft: "42%" }}>
-                        Interested Technologies
-                      </h4>
-                      <div className="tech-box-outer">
-                        <div className="tech-box">
-                          {inttech.map((key) => (
-                            <>
-                              <div className="tech-outer"></div>
-                              <div className="tech">
-                                <div className="cancel-text-tech">
-                                  {key}
-                                  <button
-                                    className="cancel-btn-tech"
-                                    onClick={() => {
-                                      setInttech((oldValues) => {
-                                        return oldValues.filter(
-                                          (inttech) => inttech !== key
-                                        );
-                                      });
-                                    }}
-                                  >
-                                    <img
-                                      className="cancel-img-tech"
-                                      src={cancel}
-                                      alt=""
-                                    />
-                                  </button>
-                                </div>
-                              </div>
-                            </>
-                          ))}
-                        </div>
+                      <div className="Academic">
+                        <input
+                          className="drop-down22 field13"
+                          type="number"
+                          step="0.1"
+                          min="0"
+                          max="10"
+                          name="cgpa"
+                          placeholder="CGPA"
+                          value={user.cgpa}
+                          autoComplete="off"
+                          onChange={handleChange}
+                        />
+
+                        <input
+                          className="drop-down22 field13"
+                          type="number"
+                          step="1"
+                          min="1887"
+                          max="3000"
+                          name="passout_year"
+                          placeholder="Passout Year"
+                          value={user.passout_year}
+                          autoComplete="off"
+                          onChange={handleChange}
+                        />
                       </div>
+
+                      <h4 className="head-stud">Resume</h4>
+                      <div className="resume-upload">
+                        {fileId ? (
+                          <>
+                            <div className="file-info">
+                              <div className="file-info1">{fileName}</div>
+
+                              <div className="file-info3" onClick={deletePdf}>
+                                Delete
+                              </div>
+                              <div className="file-info2" onClick={ViewPDf}>
+                                View
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <WatchTrainee sendId={sendId} sendName={sendName} />
+                        )}
+                      </div>
+                      <button
+                        className="tb1 "
+                        // onClick={validateData}
+                        onClick={() => {
+                          setPage2(true);
+                          setPage0(false);
+                        }}
+                      >
+                        NEXT
+                      </button>
                     </>
-                  )}
+                  ) : page2 ? (
+                    <>
+                      {/* write your page 2 code here */}
 
-                  {/* demo */}
+                      <div className="fam-tech">
+                        <div className="drop-first">
+                          Familiar Technologies
+                          <button
+                            className="down-btn"
+                            onClick={() => {
+                              famdrop ? setFamdrop(false) : setFamdrop(true);
+                            }}
+                          >
+                            <img
+                              className="downarrow-img "
+                              src={arrowDown}
+                              alt=""
+                            />
+                          </button>
+                        </div>
 
-                  <button
-                    className="btn-form1"
-                    onClick={() => {
-                      setPage0(true);
-                      setPage2(false);
-                    }}
-                  >
-                    PREVIOUS
-                  </button>
-                  <button className="btn-form2" onClick={postData}>
-                    SUBMIT
-                  </button>
-                </>
-              ) : null}
-            </form>
+                        {famdrop ? (
+                          <>
+                            <div className="option">
+                              {tech.map((val, key) => (
+                                <>
+                                  <label className="container">
+                                    {val}
+                                    <input
+                                      type="checkbox"
+                                      name={val}
+                                      id=""
+                                      value={val}
+                                      onClick={handlefamTech}
+                                    />
+
+                                    <span className="checkmark"></span>
+                                  </label>
+                                  <hr
+                                    style={{
+                                      backgroundColor: "#393e46",
+                                      opacity: "0.2",
+                                    }}
+                                  />
+                                </>
+                              ))}
+                            </div>
+                          </>
+                        ) : null}
+                      </div>
+                      <div className="int-drop">
+                        <div className="drop-first">
+                          Instrested Technologies
+                          <button
+                            className="down-btn"
+                            onClick={() => {
+                              intdrop ? setIntdrop(false) : setIntdrop(true);
+                            }}
+                          >
+                            <img
+                              className="downarrow-img "
+                              src={arrowDown}
+                              alt=""
+                            />
+                          </button>
+                        </div>
+                        {intdrop ? (
+                          <>
+                            <div className="option">
+                              {tech.map((val, key) => (
+                                <>
+                                  <label className="container">
+                                    {val}
+                                    <input
+                                      type="checkbox"
+                                      name={val}
+                                      id=""
+                                      value={val}
+                                      onChange={handleintTech}
+                                    />
+
+                                    <span className="checkmark"></span>
+                                  </label>
+                                  <hr
+                                    style={{
+                                      backgroundColor: "#393e46",
+                                      opacity: "0.2",
+                                    }}
+                                  />
+                                </>
+                              ))}
+                            </div>
+                          </>
+                        ) : null}
+                      </div>
+
+                      {Object.keys(famtech).length === 0 ? null : (
+                        <>
+                          <h4 style={{ marginLeft: "42%" }}>
+                            Familiar Technologies
+                          </h4>
+                          <div className="tech-box-outer">
+                            <div className="tech-box">
+                              {famtech.map((key) => (
+                                <>
+                                  <div className="tech-outer"></div>
+                                  <div className="tech">
+                                    <div className="cancel-text-tech">
+                                      {key}
+                                      <button
+                                        className="cancel-btn-tech"
+                                        onClick={() => {
+                                          setFamtech((oldValues) => {
+                                            return oldValues.filter(
+                                              (famtech) => famtech !== key
+                                            );
+                                          });
+                                        }}
+                                      >
+                                        <img
+                                          className="cancel-img-tech"
+                                          src={cancel}
+                                          alt=""
+                                        />
+                                      </button>
+                                    </div>
+                                  </div>
+                                </>
+                              ))}
+                            </div>
+                          </div>
+                        </>
+                      )}
+
+                      {Object.keys(inttech).length === 0 ? null : (
+                        <>
+                          <h4 style={{ marginLeft: "42%" }}>
+                            Interested Technologies
+                          </h4>
+                          <div className="tech-box-outer">
+                            <div className="tech-box">
+                              {inttech.map((key) => (
+                                <>
+                                  <div className="tech-outer"></div>
+                                  <div className="tech">
+                                    <div className="cancel-text-tech">
+                                      {key}
+                                      <button
+                                        className="cancel-btn-tech"
+                                        onClick={() => {
+                                          setInttech((oldValues) => {
+                                            return oldValues.filter(
+                                              (inttech) => inttech !== key
+                                            );
+                                          });
+                                        }}
+                                      >
+                                        <img
+                                          className="cancel-img-tech"
+                                          src={cancel}
+                                          alt=""
+                                        />
+                                      </button>
+                                    </div>
+                                  </div>
+                                </>
+                              ))}
+                            </div>
+                          </div>
+                        </>
+                      )}
+
+                      {/* demo */}
+
+                      <button
+                        className="btn-form1"
+                        onClick={() => {
+                          setPage0(true);
+                          setPage2(false);
+                        }}
+                      >
+                        PREVIOUS
+                      </button>
+                      <button className="btn-form2" onClick={postData}>
+                        SUBMIT
+                      </button>
+                    </>
+                  ) : null}
+                </form>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </ThemeContext.Provider>
     </>
   );
 };

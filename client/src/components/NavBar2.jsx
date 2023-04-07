@@ -1,7 +1,8 @@
 import React from "react";
-import "../CSS/NavBar1.css";
+import "../CSS/Trainee/StudReg.css";
 import { cdacLogo } from "../Images/Images";
 import { useNavigate } from "react-router-dom";
+
 const NavBar2 = () => {
   //   let navigate = useNavigate();
   //   const routeChange = () => {
@@ -11,11 +12,11 @@ const NavBar2 = () => {
 
   return (
     <>
-      <div className="NavBody">
-        <div className="logoDiv">
-          <img src={cdacLogo} alt="CDAC LOGO" className="logo" />
+      <div className="NavBodyy">
+        <div className="logoDivv">
+          <img src={cdacLogo} alt="CDAC LOGO" className="logoo" />
         </div>
-        <div className="head-title-2">
+        <div className="head-title-22">
           <h1>Trainee Work Harvester</h1>
         </div>
       </div>

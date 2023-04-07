@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+#light {
+  background-color: #ECF9FF;
+}
 .DivUpper1 {
   background: #222831;
   background: -webkit-linear-gradient(to top, #222831, #393e46);
@@ -10,6 +13,7 @@
   margin: 0px;
   /* overflow-y: scroll; */
 }
+
 /* .divLower {
   background-color: #393e46;
   height: 70%;
@@ -43,6 +47,7 @@
   font-style: italic;
   cursor: pointer;
 }
+
 .btn-form2 {
   text-align: center;
   border-radius: 20px;
@@ -66,6 +71,7 @@
   font-style: italic;
   cursor: pointer;
 }
+
 /* .body {
   /* padding-top: 0vh; */
 /* margin: 0;
@@ -171,6 +177,7 @@ input[type="file"]::file-selector-button1:hover {
   height: 68%;
   margin-top: -3%;
 }
+
 .form-element11 {
   /*change*/
   /*justify-content: left;
@@ -194,6 +201,7 @@ input[type="file"]::file-selector-button1:hover {
   color: white;
   margin-top: -3%;
 }
+
 .signupImg {
   max-width: 100%;
   flex-basis: 40%;
@@ -611,3 +619,131 @@ input[type="file"]::file-selector-button1:hover {
 
   /* background-color: #00adb5; */
 }
+
+/* navbar css */
+* {
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+.NavBodyy {
+  background-color: #393e46;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px #00adb5 solid;
+  /* make one div at right and one div at left */
+  display: flex;
+  flex-direction: row; /* default value; can be omitted */
+  flex-wrap: nowrap; /* default value; can be omitted */
+  justify-content: space-between;
+}
+
+.head-title-22 {
+  text-align: left;
+  padding-left: 0px;
+  width: 45%;
+  color: #00adb5;
+  float: left;
+
+  margin: -10px 0px;
+  margin-right: 48%;
+  margin-left: -50%;
+  margin-top: 1px;
+}
+
+.logoDivv {
+  margin-left: 2%;
+  margin-right: -2%;
+  padding-top: 20px;
+  margin-right: 60px;
+  min-width: auto;
+  width: 50px;
+  height: auto;
+}
+
+.logoo {
+  background-color: transparent;
+  width: 100%;
+  min-width: 100%;
+  height: fit-content;
+}
+
+#light .NavBodyy {
+  /* 393e46 */
+  background-color: #FAEAB1;
+  /* 00adb5 */
+  border-bottom: 2px #E5BA73 solid;
+}
+#light .head-title-22 {
+  /* 00abd5 */
+  color: #E5BA73;
+}
+#light .DivUpper1 {
+  /* background: #222831; */
+  background: #C58940;
+  /* #222831, #393e46 */
+  background: -webkit-linear-gradient(to top, #C58940, #FAEAB1);
+  /* #393e46, #222831 */
+  background: linear-gradient(to bottom, #FAEAB1, #C58940);
+}
+#light .main1 {
+  /* 00abd5 */
+  background-color: #E5BA73;
+}
+#light .regBox1 {
+  /* 222831 */
+  background-color: #C58940;
+}
+#light .btn-form1,
+#light .btn-form2 {
+  background-color: #C58940 /* 22831 */;
+  border: 2px #E5BA73 /* 00abd5 */ solid;
+  color: #E5BA73 /* 00abd5 */;
+}
+#light .btn-form1:hover,
+#light .btn-form2:hover {
+  background-color: #C58940 /* 22831 */;
+  color: #FAF8F1 /* eeeeee */;
+}
+#light .regHead {
+  color: #FAF8F1 /* eeeeee */;
+}
+#light .fam-tech,
+#light .int-drop {
+  border: 2px #E5BA73 /* 00abd5 */ solid;
+  background-color: #C58940 /* 22831 */;
+}
+#light .checkmark-form {
+  border: 1px #E5BA73 /* 00abd5 */ solid;
+}
+#light .container-form input:checked ~ .checkmark-form {
+  background-color: #E5BA73 /* 00abd5 */;
+}
+#light .tech-box-outer {
+  border: 2px #E5BA73 /* 00abd5 */ solid;
+  background-color: #C58940 /* 22831 */;
+}
+#light .tech {
+  background-color: #FAEAB1 /* 393e46 */;
+  border: 1px #E5BA73 /* 00abd5 */ solid;
+}
+#light .tb1 {
+  background-color: #C58940 /* 22831 */;
+  border: 2px #E5BA73 /* 00abd5 */ solid;
+  color: #E5BA73 /* 00abd5 */;
+}
+#light .tb1:hover {
+  background-color: #C58940 /* 22831 */;
+  color: #FAF8F1 /* eeeeee */;
+}
+#light .head-stud {
+  color: #FAF8F1 /* eeeeee */;
+}
+/*
+#222831 ko # C58940 
+#393e46 ko #FAEAB1
+#00adb5 ko #E5BA73
+#eeeeee ko #FAF8F1 SE
+*/
