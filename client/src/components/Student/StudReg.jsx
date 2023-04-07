@@ -16,10 +16,14 @@ export const ThemeContext = createContext(null);
 const Demo = () => {
   const [theme, setTheme] = useState("light");
 
-  const toggleTheme = () => {
-    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  const retTheme = (btn) => {
+    console.log("Button" + btn);
+    setTheme(btn);
+    // if (btn === "accept") {
+    //   console.log("btn clicked");
+    //   setAccBtn("clicked");
+    // }
   };
-
   let navigate = useNavigate();
   const [page0, setPage0] = useState(true);
   const [page2, setPage2] = useState(false);
@@ -313,9 +317,9 @@ const Demo = () => {
   console.log(user);
   return (
     <>
-      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <ThemeContext.Provider value={{ theme, retTheme }}>
         <div id={theme}>
-          <NavBar2 />
+          <NavBar2 retTheme={retTheme} />
           {/* write your page 1 code here*/}
           <div className="DivUpper1">
             <div className="main1">
@@ -330,7 +334,7 @@ const Demo = () => {
                   {user.prefix} {user.first_name}, choose Technologies
                 </h1>
               )}
-              <Switch onChange={toggleTheme} checked={theme === "light"} />
+
               <div className="regBox1">
                 <form
                   className="form-body-stu"

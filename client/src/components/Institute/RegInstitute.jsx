@@ -555,11 +555,11 @@ const RegInstitute = () => {
                   <button
                     type="submit"
                     className="btn-inst0"
-                    onClick={ValidateData}
-                    // onClick={() => {
-                    // setInst(false);
-                    // setDisplay(true);
-                    // }}
+                    // onClick={ValidateData}
+                    onClick={() => {
+                      setInst(false);
+                      setDisplay(true);
+                    }}
                   >
                     Next
                   </button>
