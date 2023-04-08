@@ -1,9 +1,9 @@
 * {
   box-sizing: border-box;
 }
-#light {
-  background-color: #ECF9FF;
-}
+/* #light {
+  background-color: #ecf9ff;
+} */
 .DivUpper1 {
   background: #222831;
   background: -webkit-linear-gradient(to top, #222831, #393e46);
@@ -44,7 +44,7 @@
   background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
-  font-style: italic;
+  /* font-style: italic; */
   cursor: pointer;
 }
 
@@ -68,7 +68,7 @@
   background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
-  font-style: italic;
+  /* font-style: italic; */
   cursor: pointer;
 }
 
@@ -225,17 +225,6 @@ input[type="file"]::file-selector-button1:hover {
   display: table-cell;
   vertical-align: middle;
 }
-/*.drop-down {
-  width: 250px;
-  padding: 20px;
-  color: black;
-  background-color: #f2f4f4;
-  border-radius: 20px;
-  border: 1px solid rgba(52, 73, 94, 0.1);
-  font-size: medium;
-  clear: right;
-
-}*/
 .drop-down11 {
   /*padding: 20px;*/
   color: black;
@@ -332,32 +321,22 @@ input[type="file"]::file-selector-button1:hover {
 }
 
 .tech-box-outer {
-  /* width: 60%; */
-  height: 90px;
-  /* background-color: #222831; */
-  /* border-radius: 10px; */
-  /* border: 1px #00adb5 solid; */
-
-  /* margin: 5% 0; */
+  /* height: 90px; */
+  /* height: 150px; */
+  /* height: 100px; */
+  height: auto;
   margin-bottom: 2%;
-  /* margin-left: 20%; */
-  /* color: #ccc; */
-  /* padding: 1%; */
-
   border: 2px #00adb5 solid;
   width: 40%;
   margin-left: 30%;
   border-radius: 15px;
-  /* padding: 1px; */
   background-color: #222831;
-  /* margin-bottom: 5%;
-  margin-top: 2%; */
 }
 .tech-box {
   height: 100%;
   padding: 5%;
   padding-top: 15px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .tech {
@@ -375,29 +354,22 @@ input[type="file"]::file-selector-button1:hover {
 
 .cancel-text-tech {
   float: left;
-  /* margin-right: -20px; */
-  /* margin-top: 1%; */
+  padding: 2%;
 }
 
 .cancel-btn-tech {
-  /* height: 20%;
-  width: ; */
   width: 5%;
   height: 2%;
   margin: 0;
   padding: 0;
-  /* margin-top: -5%; */
   background-color: transparent;
   border: none;
   float: right;
   margin-left: 5px;
-  /* margin-right: -20px; */
-  /* margin-top: 6px; */
-  /* margin-top: -5%; */
-  /* margin-left: 15px; */
-  /* margin-left: 10px;
-  margin-top: 4%; */
-  /* margin: 0 10%; */
+}
+
+.cancel-btn-tech:hover {
+  cursor: pointer;
 }
 
 .cancel-img-tech {
@@ -407,16 +379,6 @@ input[type="file"]::file-selector-button1:hover {
 }
 
 .choose-file1 {
-  /* border: 2px #00adb5 solid; */
-  /* padding: 2%; */
-  /* background-color: #ccc; */
-  /* width: 30%; */
-  /* margin: 2%; */
-  /* margin-top: 5%; */
-  /* margin-left: 35%; */
-  /* border-radius: 20px; */
-  /* color: #00adb5; */
-  /* font-size: x-large;  */
   border: 1px #00adb5 solid;
 
   text-align: center;
@@ -449,9 +411,9 @@ input[type="file"]::file-selector-button1:hover {
   border: 1px #eeeeee solid;
 }
 
-/* .option::-webkit-scrollbar {
+.option::-webkit-scrollbar {
   display: none;
-} */
+}
 
 .App1 {
   margin: 20px;
@@ -481,9 +443,9 @@ input[type="file"]::file-selector-button1:hover {
   transition: mask-position 0.3s, -webkit-mask-position 0.3s;
 }
 
-/* .form-body-stu:hover {
+.form-body-stu:hover {
   -webkit-mask-position: left top;
-} */
+}
 .field1 {
   /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
   width: 12%;
@@ -588,7 +550,7 @@ input[type="file"]::file-selector-button1:hover {
   background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
-  font-style: italic;
+  /* font-style: italic; */
   cursor: pointer;
 }
 
@@ -619,131 +581,3 @@ input[type="file"]::file-selector-button1:hover {
 
   /* background-color: #00adb5; */
 }
-
-/* navbar css */
-* {
-  box-sizing: border-box;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  overflow: hidden;
-}
-
-.NavBodyy {
-  background-color: #393e46;
-  width: 100%;
-  height: 100%;
-  border-bottom: 2px #00adb5 solid;
-  /* make one div at right and one div at left */
-  display: flex;
-  flex-direction: row; /* default value; can be omitted */
-  flex-wrap: nowrap; /* default value; can be omitted */
-  justify-content: space-between;
-}
-
-.head-title-22 {
-  text-align: left;
-  padding-left: 0px;
-  width: 45%;
-  color: #00adb5;
-  float: left;
-
-  margin: -10px 0px;
-  margin-right: 48%;
-  margin-left: -50%;
-  margin-top: 1px;
-}
-
-.logoDivv {
-  margin-left: 2%;
-  margin-right: -2%;
-  padding-top: 20px;
-  margin-right: 60px;
-  min-width: auto;
-  width: 50px;
-  height: auto;
-}
-
-.logoo {
-  background-color: transparent;
-  width: 100%;
-  min-width: 100%;
-  height: fit-content;
-}
-
-#light .NavBodyy {
-  /* 393e46 */
-  background-color: #FAEAB1;
-  /* 00adb5 */
-  border-bottom: 2px #E5BA73 solid;
-}
-#light .head-title-22 {
-  /* 00abd5 */
-  color: #E5BA73;
-}
-#light .DivUpper1 {
-  /* background: #222831; */
-  background: #C58940;
-  /* #222831, #393e46 */
-  background: -webkit-linear-gradient(to top, #C58940, #FAEAB1);
-  /* #393e46, #222831 */
-  background: linear-gradient(to bottom, #FAEAB1, #C58940);
-}
-#light .main1 {
-  /* 00abd5 */
-  background-color: #E5BA73;
-}
-#light .regBox1 {
-  /* 222831 */
-  background-color: #C58940;
-}
-#light .btn-form1,
-#light .btn-form2 {
-  background-color: #C58940 /* 22831 */;
-  border: 2px #E5BA73 /* 00abd5 */ solid;
-  color: #E5BA73 /* 00abd5 */;
-}
-#light .btn-form1:hover,
-#light .btn-form2:hover {
-  background-color: #C58940 /* 22831 */;
-  color: #FAF8F1 /* eeeeee */;
-}
-#light .regHead {
-  color: #FAF8F1 /* eeeeee */;
-}
-#light .fam-tech,
-#light .int-drop {
-  border: 2px #E5BA73 /* 00abd5 */ solid;
-  background-color: #C58940 /* 22831 */;
-}
-#light .checkmark-form {
-  border: 1px #E5BA73 /* 00abd5 */ solid;
-}
-#light .container-form input:checked ~ .checkmark-form {
-  background-color: #E5BA73 /* 00abd5 */;
-}
-#light .tech-box-outer {
-  border: 2px #E5BA73 /* 00abd5 */ solid;
-  background-color: #C58940 /* 22831 */;
-}
-#light .tech {
-  background-color: #FAEAB1 /* 393e46 */;
-  border: 1px #E5BA73 /* 00abd5 */ solid;
-}
-#light .tb1 {
-  background-color: #C58940 /* 22831 */;
-  border: 2px #E5BA73 /* 00abd5 */ solid;
-  color: #E5BA73 /* 00abd5 */;
-}
-#light .tb1:hover {
-  background-color: #C58940 /* 22831 */;
-  color: #FAF8F1 /* eeeeee */;
-}
-#light .head-stud {
-  color: #FAF8F1 /* eeeeee */;
-}
-/*
-#222831 ko # C58940 
-#393e46 ko #FAEAB1
-#00adb5 ko #E5BA73
-#eeeeee ko #FAF8F1 SE
-*/

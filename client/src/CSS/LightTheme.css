@@ -1,0 +1,146 @@
+/* --------------------------------------NAVBAR2 CSS------------------------------------------------- */
+#light .NavBodyy {
+  background-color: #393e46;
+  border-bottom: 2px #00adb5 solid;
+}
+
+#light .head-title-22 {
+  color: #00adb5;
+}
+
+#light .switchLabel {
+  color: #00adb5;
+  font-weight: bold;
+}
+/* --------------------------------------STUD REG------------------------------------------------- */
+
+#light .main1 {
+  background-color: #eeeeee;
+}
+#light .regBox1 {
+  background-color: #aad7d4;
+  box-shadow: 5px 5px 8px #888888;
+  border: 1px #90dbdf solid;
+}
+
+#light .regHead,
+#light .regHead1,
+#light .head-stud,
+#light input[file],
+#light .studReg-h4,
+#light .file-info1 {
+  color: #393e46;
+}
+
+#light .btn-form1,
+#light .btn-form2,
+#light .tb1,
+#light #upload-btn,
+#light input[type="file"]::file-selector-button {
+  background-color: #00adb5;
+  border: 1px #393e46 solid;
+  color: #eeeeee;
+}
+#light .btn-form1:hover,
+#light .btn-form2:hover,
+#light .tb1:hover,
+#light #upload-btn:hover {
+  background-color: #eeeeee;
+  color: #393e46;
+  border: 2px #393e46 solid;
+}
+
+#light .tech-box-outer,
+#light .fam-tech,
+#light .int-drop {
+  background-color: #eeeeee;
+  color: #393e46;
+}
+
+#light .checkmark {
+  background-color: #eeeeee;
+  border: 1px #00adb5 solid;
+}
+
+#light .container:hover input ~ .checkmark {
+  background-color: #00adb5;
+}
+
+#light .tech {
+  background-color: #aad7d4;
+}
+
+/* ------------------------------------------INST REG--------------------------------------------------- */
+
+#light .body-reg-inst {
+  background: #eeeeee;
+}
+
+#light .form-body-inst-up {
+  background-color: #aad7d4;
+  box-shadow: 5px 5px 8px #888888;
+  border: 1px #90dbdf solid;
+  /* background: #aad7d4; */
+}
+
+#light .regHead-inst,
+#light .head-inst-home-2,
+#light .head-inst-home {
+  color: #393e46;
+}
+
+#light .btn-inst0,
+#light .btn-inst1,
+#light .btn-inst {
+  background-color: #00adb5;
+  border: 1px #393e46 solid;
+  color: #eeeeee;
+}
+
+#light .btn-inst0:hover,
+#light .btn-inst1:hover,
+#light .btn-inst:hover {
+  background-color: #eeeeee;
+  color: #393e46;
+  border: 2px #393e46 solid;
+}
+
+#light .guidelines {
+  color: #393e46;
+}
+/* ------------------------------------------COORD REG--------------------------------------------------- */
+#light .body-reg-coord {
+  background: #eeeeee;
+}
+#light .regHead-coord {
+  color: #393e46;
+}
+#light .form-body-coord-up {
+  background-color: #90dbdf;
+  box-shadow: 5px 5px 8px #888888;
+  border: 1px #90dbdf solid;
+}
+
+#light .btn-coord {
+  background-color: #00adb5;
+  border: 1px #393e46 solid;
+  color: #eeeeee;
+}
+
+#light .btn-coord:hover {
+  background-color: #eeeeee;
+  color: #393e46;
+  border: 2px #393e46 solid;
+}
+/* -----------------------------------ADMIN DASHBOARD CSS-------------------------------------------- */
+#light .filter-panel {
+  background-color: aliceblue;
+}
+
+#light .divBdyCoord {
+  background-color: aliceblue;
+}
+
+#light .institute-panel {
+  background-color: aliceblue;
+}

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../CSS/Trainee/StudReg.css";
 import { cdacLogo } from "../Images/Images";
 import { useNavigate } from "react-router-dom";
 import Switch from "react-switch";
+import "../CSS/NavBar2.css";
 
 const NavBar2 = ({ retTheme }) => {
   //   let navigate = useNavigate();
@@ -10,9 +11,10 @@ const NavBar2 = ({ retTheme }) => {
   //     let path = "/reg-institute";
   //     navigate(path);
   //   };
-  let theme;
+  const [theme, setTheme] = useState("");
   const toggleTheme = () => {
-    retTheme((curr) => (curr === "light" ? "dark" : "light"));
+    setTheme((curr) => (curr === "dark" ? "light" : "dark"));
+    retTheme((curr) => (curr === "dark" ? "light" : "dark"));
   };
 
   return (
@@ -25,7 +27,10 @@ const NavBar2 = ({ retTheme }) => {
           <h1>Trainee Work Harvester</h1>
         </div>
         <div className="switch-toggle">
-          <Switch onChange={toggleTheme} checked={theme === "light"} />
+          <label htmlFor="switch" className="switchLabel">
+            Dark Mode
+          </label>
+          <Switch onChange={toggleTheme} checked={theme === "dark"} />
         </div>
       </div>
     </>

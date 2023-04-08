@@ -9,7 +9,6 @@ import axios from "axios";
 // import { cancel } from "././../Images/Images";
 import { useNavigate } from "react-router-dom";
 import { createContext } from "react";
-import Switch from "react-switch";
 
 export const ThemeContext = createContext(null);
 
@@ -17,12 +16,7 @@ const Demo = () => {
   const [theme, setTheme] = useState("light");
 
   const retTheme = (btn) => {
-    console.log("Button" + btn);
     setTheme(btn);
-    // if (btn === "accept") {
-    //   console.log("btn clicked");
-    //   setAccBtn("clicked");
-    // }
   };
   let navigate = useNavigate();
   const [page0, setPage0] = useState(true);
@@ -31,6 +25,7 @@ const Demo = () => {
   const [fileName, setFileName] = useState(null);
   const [famdrop, setFamdrop] = useState(false);
   const [intdrop, setIntdrop] = useState(false);
+  const [err, setErr] = useState("");
 
   const [tech, setTech] = useState([
     "Javascript",
@@ -158,6 +153,7 @@ const Demo = () => {
         setUser({ ...user, fileID: null });
       }
     } catch (error) {
+      setErr(error);
       console.log(error);
     }
   };
@@ -306,6 +302,7 @@ const Demo = () => {
     console.log(data);
 
     if (data.error) {
+      setErr(data.error);
       window.alert("Invalid Registration, " + data.error);
       // console.log("Invalid Regestration");
     } else {
@@ -326,6 +323,7 @@ const Demo = () => {
               <br />
               <br />
               <br />
+
               {!page2 ? (
                 <h1 className="regHead1">Register Student</h1>
               ) : (
@@ -336,6 +334,7 @@ const Demo = () => {
               )}
 
               <div className="regBox1">
+                {/* {err ? <div className="errormsg">{err}</div> : null} */}
                 <form
                   className="form-body-stu"
                   onSubmit={(e) => {
@@ -571,7 +570,7 @@ const Demo = () => {
                           setPage0(false);
                         }}
                       >
-                        NEXT
+                        Next
                       </button>
                     </>
                   ) : page2 ? (
@@ -672,7 +671,10 @@ const Demo = () => {
 
                       {Object.keys(famtech).length === 0 ? null : (
                         <>
-                          <h4 style={{ marginLeft: "42%" }}>
+                          <h4
+                            style={{ marginLeft: "42%" }}
+                            className="studReg-h4"
+                          >
                             Familiar Technologies
                           </h4>
                           <div className="tech-box-outer">
@@ -710,7 +712,10 @@ const Demo = () => {
 
                       {Object.keys(inttech).length === 0 ? null : (
                         <>
-                          <h4 style={{ marginLeft: "42%" }}>
+                          <h4
+                            style={{ marginLeft: "42%" }}
+                            className="studReg-h4"
+                          >
                             Interested Technologies
                           </h4>
                           <div className="tech-box-outer">
@@ -755,10 +760,10 @@ const Demo = () => {
                           setPage2(false);
                         }}
                       >
-                        PREVIOUS
+                        Previous
                       </button>
                       <button className="btn-form2" onClick={postData}>
-                        SUBMIT
+                        Submit
                       </button>
                     </>
                   ) : null}

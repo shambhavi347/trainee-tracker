@@ -4,9 +4,10 @@
 }
 
 .body-reg-inst {
-  /* background: #222831;
-  background: -webkit-linear-gradient(to top, #222831, #393e46); */
+  background: #222831;
+  background: -webkit-linear-gradient(to top, #222831, #393e46);
   background: linear-gradient(to bottom, #393e46, #00adb5);
+  /* background-color: #00adb5; */
   height: 100vh;
   width: auto;
 }
@@ -177,6 +178,7 @@
   background-color: #00adb5;
   color: #eeeeee;
   font-size: larger;
+  cursor: pointer;
 }
 
 .btn-inst1 {
