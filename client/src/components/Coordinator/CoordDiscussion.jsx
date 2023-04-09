@@ -119,6 +119,7 @@ const CoordDiscussion = () => {
                     )}
                   </div>
                 </div>
+                <div  id= "TScroll">
                 {newArray.map((item, index) => (
                   <div className="amt1">
                     <div className="amt__Cnt1">
@@ -151,6 +152,7 @@ const CoordDiscussion = () => {
                     </div>
                   </div>
                 ))}
+              </div>
               </div>
             </div>
           </div>

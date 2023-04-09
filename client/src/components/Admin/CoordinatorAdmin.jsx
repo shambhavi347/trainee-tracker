@@ -21,7 +21,7 @@ const CoordinatorAdmin = () => {
     middle_name: "",
     last_name: "",
     email: "",
-    date: "",
+    // date: "",
   });
   const [invit, setInvit] = useState([]);
   const [coordinators, setCoordinators] = useState([]);
@@ -52,11 +52,10 @@ const CoordinatorAdmin = () => {
   const PostData = async (e) => {
     e.preventDefault();
     // console.log(new Date());
-    const date1 = new Date();
-    console.log("Date: " + date1);
-    setCoord({ ...coord, date: date1 });
-    const { salutation, first_name, middle_name, last_name, email, date } =
-      coord;
+    const date = new Date();
+    console.log("Date: " + date);
+    // setCoord({ ...coord, date: date1 });
+    const { salutation, first_name, middle_name, last_name, email } = coord;
     console.log(coord);
     const res = await fetch("/reg-coord", {
       method: "POST",

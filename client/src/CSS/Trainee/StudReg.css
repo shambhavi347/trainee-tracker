@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+/* #light {
+  background-color: #ecf9ff;
+} */
 .DivUpper1 {
   background: #222831;
   background: -webkit-linear-gradient(to top, #222831, #393e46);
@@ -10,6 +13,7 @@
   margin: 0px;
   /* overflow-y: scroll; */
 }
+
 /* .divLower {
   background-color: #393e46;
   height: 70%;
@@ -40,9 +44,10 @@
   background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
-  font-style: italic;
+  /* font-style: italic; */
   cursor: pointer;
 }
+
 .btn-form2 {
   text-align: center;
   border-radius: 20px;
@@ -63,9 +68,10 @@
   background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
-  font-style: italic;
+  /* font-style: italic; */
   cursor: pointer;
 }
+
 /* .body {
   /* padding-top: 0vh; */
 /* margin: 0;
@@ -171,6 +177,7 @@ input[type="file"]::file-selector-button1:hover {
   height: 68%;
   margin-top: -3%;
 }
+
 .form-element11 {
   /*change*/
   /*justify-content: left;
@@ -194,6 +201,7 @@ input[type="file"]::file-selector-button1:hover {
   color: white;
   margin-top: -3%;
 }
+
 .signupImg {
   max-width: 100%;
   flex-basis: 40%;
@@ -217,17 +225,6 @@ input[type="file"]::file-selector-button1:hover {
   display: table-cell;
   vertical-align: middle;
 }
-/*.drop-down {
-  width: 250px;
-  padding: 20px;
-  color: black;
-  background-color: #f2f4f4;
-  border-radius: 20px;
-  border: 1px solid rgba(52, 73, 94, 0.1);
-  font-size: medium;
-  clear: right;
-
-}*/
 .drop-down11 {
   /*padding: 20px;*/
   color: black;
@@ -324,32 +321,22 @@ input[type="file"]::file-selector-button1:hover {
 }
 
 .tech-box-outer {
-  /* width: 60%; */
-  height: 90px;
-  /* background-color: #222831; */
-  /* border-radius: 10px; */
-  /* border: 1px #00adb5 solid; */
-
-  /* margin: 5% 0; */
+  /* height: 90px; */
+  /* height: 150px; */
+  /* height: 100px; */
+  height: auto;
   margin-bottom: 2%;
-  /* margin-left: 20%; */
-  /* color: #ccc; */
-  /* padding: 1%; */
-
   border: 2px #00adb5 solid;
   width: 40%;
   margin-left: 30%;
   border-radius: 15px;
-  /* padding: 1px; */
   background-color: #222831;
-  /* margin-bottom: 5%;
-  margin-top: 2%; */
 }
 .tech-box {
   height: 100%;
   padding: 5%;
   padding-top: 15px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .tech {
@@ -367,29 +354,22 @@ input[type="file"]::file-selector-button1:hover {
 
 .cancel-text-tech {
   float: left;
-  /* margin-right: -20px; */
-  /* margin-top: 1%; */
+  padding: 2%;
 }
 
 .cancel-btn-tech {
-  /* height: 20%;
-  width: ; */
   width: 5%;
   height: 2%;
   margin: 0;
   padding: 0;
-  /* margin-top: -5%; */
   background-color: transparent;
   border: none;
   float: right;
   margin-left: 5px;
-  /* margin-right: -20px; */
-  /* margin-top: 6px; */
-  /* margin-top: -5%; */
-  /* margin-left: 15px; */
-  /* margin-left: 10px;
-  margin-top: 4%; */
-  /* margin: 0 10%; */
+}
+
+.cancel-btn-tech:hover {
+  cursor: pointer;
 }
 
 .cancel-img-tech {
@@ -399,16 +379,6 @@ input[type="file"]::file-selector-button1:hover {
 }
 
 .choose-file1 {
-  /* border: 2px #00adb5 solid; */
-  /* padding: 2%; */
-  /* background-color: #ccc; */
-  /* width: 30%; */
-  /* margin: 2%; */
-  /* margin-top: 5%; */
-  /* margin-left: 35%; */
-  /* border-radius: 20px; */
-  /* color: #00adb5; */
-  /* font-size: x-large;  */
   border: 1px #00adb5 solid;
 
   text-align: center;
@@ -441,9 +411,9 @@ input[type="file"]::file-selector-button1:hover {
   border: 1px #eeeeee solid;
 }
 
-/* .option::-webkit-scrollbar {
+.option::-webkit-scrollbar {
   display: none;
-} */
+}
 
 .App1 {
   margin: 20px;
@@ -473,9 +443,9 @@ input[type="file"]::file-selector-button1:hover {
   transition: mask-position 0.3s, -webkit-mask-position 0.3s;
 }
 
-/* .form-body-stu:hover {
+.form-body-stu:hover {
   -webkit-mask-position: left top;
-} */
+}
 .field1 {
   /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
   width: 12%;
@@ -580,7 +550,7 @@ input[type="file"]::file-selector-button1:hover {
   background-color: #222831;
   color: #eeeeee;
   font-weight: bolder;
-  font-style: italic;
+  /* font-style: italic; */
   cursor: pointer;
 }
 

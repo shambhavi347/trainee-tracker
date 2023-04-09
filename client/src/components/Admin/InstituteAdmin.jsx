@@ -100,7 +100,7 @@ const InstituteAdmin = () => {
       if (accepts.length === 0 || accBtn === "clicked") setAccepts(acceptList);
     };
     handleAcceptList();
-  }, [acceptList, accepts]);
+  }, [acceptList]);
 
   useEffect(() => {
     const handleRejectList = async () => {

@@ -23,7 +23,7 @@ import StudReg from "./components/Student/StudReg";
 import WatchTrainee from "./components/WatchTrainee";
 import ViewDoc from "./components/ViewDoc";
 import PdfViewer from "./components/PdfViewer";
-
+import "./CSS/LightTheme.css";
 const App = () => {
   return (
     <>

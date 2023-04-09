@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import NavBar2 from "../NavBar2";
 import "../../CSS/Trainee/RegStudent.css";
 import { validEmail, validPassword } from "../../components/Regex";
+import { createContext } from "react";
+
+export const ThemeContext = createContext(null);
 
 const TraineeReg = () => {
   const [req, setReq] = useState(false);
@@ -19,6 +22,11 @@ const TraineeReg = () => {
     password: "",
     confirmPassword: "",
   });
+  const [theme, setTheme] = useState("light");
+
+  const retTheme = (btn) => {
+    setTheme(btn);
+  };
 
   useEffect(() => {
     var hasNumber = /\d/;
@@ -112,70 +120,80 @@ const TraineeReg = () => {
 
   return (
     <>
-      <NavBar2 />
-      <div className="trainee-reg-up" style={{ marginTop: "1%" }}>
-        <h1 style={{ textAlign: "center" }}>Trainee Registration</h1>
-        {error ? (
-          <div style={{ color: "red", marginRight: "5%" }}>{error}</div>
-        ) : null}
-        <div className="trainee-reg-box">
-          <div className="formRegTrainee">
-            <input
-              className="form-element-trainee"
-              type="email"
-              name="email"
-              placeholder="Registered Email"
-              value={user.email}
-              autoComplete="off"
-              onChange={handleChange}
-            />
-            <input
-              className="form-element-trainee"
-              type="text"
-              // type="password"
-              name="password"
-              value={password}
-              placeholder="Set Password"
-              autoComplete="off"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              className="form-element-trainee"
-              type="text"
-              // type="password"
-              name="confirmPassword"
-              value={user.confirmPassword}
-              placeholder="Confirm Password"
-              autoComplete="off"
-              onChange={handleChange}
-            />
-            <br />
+      <ThemeContext.Provider value={{ theme, retTheme }}>
+        <div id={theme}>
+          <NavBar2 retTheme={retTheme} />
+          <div className="trainee-reg-up" style={{ marginTop: "1%" }}>
+            <h1 style={{ textAlign: "center" }}>Trainee Registration</h1>
+            {error ? (
+              <div style={{ color: "red", marginRight: "5%" }}>{error}</div>
+            ) : null}
+            <div className="trainee-reg-box">
+              <div className="formRegTrainee">
+                <input
+                  className="form-element-trainee"
+                  type="email"
+                  name="email"
+                  placeholder="Registered Email"
+                  value={user.email}
+                  autoComplete="off"
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-element-trainee"
+                  type="text"
+                  // type="password"
+                  name="password"
+                  value={password}
+                  placeholder="Set Password"
+                  autoComplete="off"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <input
+                  className="form-element-trainee"
+                  type="text"
+                  // type="password"
+                  name="confirmPassword"
+                  value={user.confirmPassword}
+                  placeholder="Confirm Password"
+                  autoComplete="off"
+                  onChange={handleChange}
+                />
+                <br />
 
-            {btnDisable ? (
-              <button className="btn-trainee-disable" disabled={btnDisable}>
-                SUBMIT
-              </button>
-            ) : (
-              <button className="btn-form-trainee" onClick={postData}>
-                SUBMIT
-              </button>
-            )}
-          </div>
-          <div className="rules">
-            {/* <p style={{ fontSize: "small" }}> */}
-            <ul>
-              <p style={{ color: passUpper }}>Must Conatin Uppercase Letter</p>
-              <p style={{ color: passLower }}>Must Contain Lowercase Letter</p>
-              <p style={{ color: passNum }}>Must Contain a Numeric Value</p>
-              <p style={{ color: passSpe }}>Must Contain a Special Symbol</p>
-              <p style={{ color: passMin }}>
-                Must Contain Minimum 8 Characters
-              </p>
-            </ul>
-            {/* </p> */}
+                {btnDisable ? (
+                  <button className="btn-trainee-disable" disabled={btnDisable}>
+                    SUBMIT
+                  </button>
+                ) : (
+                  <button className="btn-form-trainee" onClick={postData}>
+                    SUBMIT
+                  </button>
+                )}
+              </div>
+              <div className="rules">
+                {/* <p style={{ fontSize: "small" }}> */}
+                <ul>
+                  <p style={{ color: passUpper }}>
+                    Must Conatin Uppercase Letter
+                  </p>
+                  <p style={{ color: passLower }}>
+                    Must Contain Lowercase Letter
+                  </p>
+                  <p style={{ color: passNum }}>Must Contain a Numeric Value</p>
+                  <p style={{ color: passSpe }}>
+                    Must Contain a Special Symbol
+                  </p>
+                  <p style={{ color: passMin }}>
+                    Must Contain Minimum 8 Characters
+                  </p>
+                </ul>
+                {/* </p> */}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </ThemeContext.Provider>
     </>
   );
 };

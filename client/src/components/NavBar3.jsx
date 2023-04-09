@@ -6,14 +6,24 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Switch from "react-switch";
 
-const NavBar3 = () => {
+const NavBar3 = ({ retTheme }) => {
   //navigation
   let navigate = useNavigate();
   // const routeChange = () => {
   //   let path = "/reg-institute";
   //   navigate(path);
   // };
+
+  // let theme;
+  const [theme, setTheme] = useState("");
+  // var theme = "";
+  const toggleTheme = () => {
+    // console.log(theme);
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+    retTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
 
   const routeMain = () => {
     let path = "/";
@@ -122,6 +132,10 @@ const NavBar3 = () => {
 
             <MenuItem id="menu-items" onClick={handlePassword}>
               Change Password
+            </MenuItem>
+            <MenuItem id="menu-items">
+              <label htmlFor="switch"> Light Mode</label>{" "}
+              <Switch onChange={toggleTheme} checked={theme === "light"} />
             </MenuItem>
             <Link to="/logout">
               <MenuItem id="menu-items" onClick={handleClose}>

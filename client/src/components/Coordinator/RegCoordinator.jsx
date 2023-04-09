@@ -6,8 +6,16 @@ import { useEffect } from "react";
 import { validEmail } from "../../components/Regex";
 import { validPassword } from "../../components/Regex";
 
+import { createContext } from "react";
+
+export const ThemeContext = createContext(null);
 const RegCoordinator = () => {
   const [req, setReq] = useState(false);
+  const [theme, setTheme] = useState("light");
+
+  const retTheme = (btn) => {
+    setTheme(btn);
+  };
 
   const [userRegistration, setUserRegistration] = useState({
     salutation: "",
@@ -86,96 +94,104 @@ const RegCoordinator = () => {
 
   return (
     <>
-      <NavBar2 />
-      <div className="body-reg-coord">
-        <h1 className="regHead-coord">Register Yourself</h1>
-        <div className="form-body-coord-up">
-          <form action="" method="POST" className="form-body-coord">
-            <select
-              name="salutation"
-              className="drop-down-coord"
-              value={userRegistration.salutation}
-              onChange={handlechange}
-            >
-              <option value="Select">Select Salutation</option>
-              <option value="Mr">Mr</option>
-              <option value="Mrs">Mrs</option>
-              <option value="Ms">Ms</option>
-              <option value="Dr">Dr</option>
-            </select>
+      <ThemeContext.Provider value={{ theme, retTheme }}>
+        <div id={theme}>
+          <NavBar2 retTheme={retTheme} />
+          <div className="body-reg-coord">
+            <h1 className="regHead-coord">Register Yourself </h1>
+            <div className="form-body-coord-up">
+              <form action="" method="POST" className="form-body-coord">
+                <select
+                  name="salutation"
+                  className="drop-down-coord"
+                  value={userRegistration.salutation}
+                  onChange={handlechange}
+                >
+                  <option value="Select">Select Salutation</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="Ms">Ms</option>
+                  <option value="Dr">Dr</option>
+                </select>
 
-            <input
-              className="form-text-coord"
-              type="text"
-              autoComplete="off"
-              value={user.first_name}
-              onChange={handlechange}
-              name="name"
-              id="name"
-              placeholder="Coordinator's First Name"
-            />
+                <input
+                  className="form-text-coord"
+                  type="text"
+                  autoComplete="off"
+                  value={user.first_name}
+                  onChange={handlechange}
+                  name="name"
+                  id="name"
+                  placeholder="Coordinator's First Name"
+                />
 
-            <input
-              className="form-text-coord"
-              type="text"
-              autoComplete="off"
-              value={user.middle_name}
-              onChange={handlechange}
-              name="name"
-              id="name"
-              placeholder="Coordinator's Middle Name"
-            />
-            <input
-              className="form-text-coord"
-              type="text"
-              autoComplete="off"
-              value={user.last_name}
-              onChange={handlechange}
-              name="name"
-              id="name"
-              placeholder="Coordinator's Last Name"
-            />
-            <input
-              className="form-text-coord"
-              type="email"
-              autoComplete="off"
-              value={user.email}
-              onChange={handlechange}
-              name="email"
-              id="email"
-              placeholder="Coordinator's Email"
-            />
+                <input
+                  className="form-text-coord"
+                  type="text"
+                  autoComplete="off"
+                  value={user.middle_name}
+                  onChange={handlechange}
+                  name="name"
+                  id="name"
+                  placeholder="Coordinator's Middle Name"
+                />
+                <input
+                  className="form-text-coord"
+                  type="text"
+                  autoComplete="off"
+                  value={user.last_name}
+                  onChange={handlechange}
+                  name="name"
+                  id="name"
+                  placeholder="Coordinator's Last Name"
+                />
+                <input
+                  className="form-text-coord"
+                  type="email"
+                  autoComplete="off"
+                  value={user.email}
+                  onChange={handlechange}
+                  name="email"
+                  id="email"
+                  placeholder="Coordinator's Email"
+                />
 
-            <input
-              className="form-text-coord"
-              type="text"
-              autoComplete="off"
-              value={user.phone}
-              onChange={handlechange}
-              name="phone"
-              id="phone"
-              placeholder="Coordinator's Phone No."
-            />
+                <input
+                  className="form-text-coord"
+                  type="text"
+                  autoComplete="off"
+                  value={user.phone}
+                  onChange={handlechange}
+                  name="phone"
+                  id="phone"
+                  placeholder="Coordinator's Phone No."
+                />
 
-            <input
-              className="form-text-coord"
-              type="text"
-              autoComplete="off"
-              value={user.password}
-              onChange={handlechange}
-              name="password"
-              id="password"
-              placeholder="Set Password"
-            />
+                <input
+                  className="form-text-coord"
+                  type="text"
+                  autoComplete="off"
+                  value={user.password}
+                  onChange={handlechange}
+                  name="password"
+                  id="password"
+                  placeholder="Set Password"
+                />
 
-            <div className="footer-coord">
-              <button type="submit" className="btn-coord" onClick={PostData}>
-                Register
-              </button>
+                <div className="footer-coord">
+                  <button
+                    type="submit"
+                    className="btn-coord"
+                    onClick={PostData}
+                  >
+                    Register
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
+      </ThemeContext.Provider>
     </>
   );
 };
