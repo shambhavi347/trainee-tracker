@@ -41,11 +41,12 @@
 }
 
 .projectdiv {
-  background-color: purple;
+  background-color: #393e46;
   height: 75vh;
   width: 70%;
   float: right;
   padding: 1%;
+  border: 2px #00adb5 solid;
 }
 
 /* .event{
@@ -199,11 +200,12 @@
   /* background: #222831;
   background: -webkit-linear-gradient(to top, #222831, #393e46);
   background: linear-gradient(to bottom, #393e46, #00adb5); border and width*/
-  background-color: #222831;
-  margin-top: 1%;
-  height: 35vh;
-  width: 60%;
-  margin-left: 3%;
+  background-color: #393e46;
+  /* margin-top: 1%; */
+  height: 75vh;
+  width: 100%;
+  padding: 0;
+  /* margin-left: 3%; */
   border-color: 1px #00adb5 solid;
   /* overflow-y: scroll; */
 }
@@ -237,10 +239,10 @@
 }
 .addItem {
   width: 335px;
-  height: 50px;
+  height: 65px;
   /* background-color: #00adb5; */
-  margin-top: 6px;
-  margin-left: 5%;
+  margin-top: 2%;
+  margin-left: 23.5%;
 }
 
 .title {
@@ -339,30 +341,30 @@
   justify-content: center;
   height: 35vh;
   width: 60%;
-  margin-left: 5%;
-  margin-top: 0%;
+  margin-left: 19%;
+  margin-top: 1%;
 }
 
 .descrption {
   width: 300px;
   height: 100px;
-  margin-top: -9%;
+  margin-top: 1%;
   margin-left: 15%;
   border-radius: 8px;
 }
 
 .confirm {
   /* background-color: purple; */
-  margin-left: 50%;
+  margin-left: 63%;
   width: 140px;
-  margin-top: -6%;
+  margin-top: -8%;
   height: 50px;
   margin-bottom: 0;
 }
 
 .btn-effect {
   margin-left: 0%;
-  margin-top: 0%;
+  margin-top: 8%;
   background-color: #393e46;
   color: #eeeeee;
   border-radius: 6px;

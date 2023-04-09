@@ -574,7 +574,7 @@ export const getEvents = async () => {
     // console.log("Res: " + respone);
     return response.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 

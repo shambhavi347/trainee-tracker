@@ -337,16 +337,16 @@ const Demo = () => {
                     value={user.prefix}
                     onChange={handleChange}
                   >
-                    <option value="null">Title</option>
+                    <option value="null">Title *</option>
                     <option value="Mr">Mr</option>
                     <option value="Mrs">Mrs</option>
-                    <option value="Miss">Miss</option>
+                    <option value="Ms">Ms</option>
                     <option value="Dr">Dr</option>
                   </select>
                   <input
                     className="form-element11 form-text1 field2 "
                     type="text"
-                    placeholder="First Name"
+                    placeholder="First Name *"
                     name="first_name"
                     value={user.first_name}
                     autoComplete="off"
@@ -387,7 +387,7 @@ const Demo = () => {
                     value={user.gender}
                     onChange={handleChange}
                   >
-                    <option value="null">Gender</option>
+                    <option value="null">Gender *</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Binary">Binary</option>
@@ -399,7 +399,7 @@ const Demo = () => {
                     className="form-element11 form-email1 field5"
                     type="email"
                     name="email"
-                    placeholder="Email Address"
+                    placeholder="Email Address *"
                     value={user.email}
                     autoComplete="off"
                     onChange={handleChange}
@@ -409,7 +409,7 @@ const Demo = () => {
                     type="text"
                     name="phone_no"
                     value={user.phone_no}
-                    placeholder="Contact Number"
+                    placeholder="Contact Number *"
                     autoComplete="off"
                     onChange={handleChange}
                   />
@@ -425,7 +425,7 @@ const Demo = () => {
                   <input
                     className="form-element11 form-text1 field9"
                     type="text"
-                    placeholder="Institute Name"
+                    placeholder="Institute Name *"
                     name="instname"
                     value={user.instname}
                     autoComplete="off"
@@ -438,7 +438,7 @@ const Demo = () => {
                       value={user.course}
                       onChange={handleChange}
                     >
-                      <option value="null">Enter your Course</option>
+                      <option value="null">Enter your Course *</option>
                       <option value="BCA">BCA</option>
                       <option value="MCA">MCA</option>
                       <option value="BTech">BTech</option>
@@ -451,7 +451,7 @@ const Demo = () => {
                       value={user.stream}
                       onChange={handleChange}
                     >
-                      <option value="null">Enter your Stream</option>
+                      <option value="null">Enter your Stream *</option>
                       <option value="Aeronautical Engineering">
                         Aeronautical Engineering
                       </option>
@@ -486,7 +486,7 @@ const Demo = () => {
                         value={user.semester}
                         onChange={handleChange}
                       >
-                        <option value="null">Enter your Semester</option>
+                        <option value="null">Enter your Semester *</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -507,7 +507,7 @@ const Demo = () => {
                       min="0"
                       max="10"
                       name="cgpa"
-                      placeholder="CGPA"
+                      placeholder="CGPA *"
                       value={user.cgpa}
                       autoComplete="off"
                       onChange={handleChange}
@@ -520,7 +520,7 @@ const Demo = () => {
                       min="1887"
                       max="3000"
                       name="passout_year"
-                      placeholder="Passout Year"
+                      placeholder="Passout Year *"
                       value={user.passout_year}
                       autoComplete="off"
                       onChange={handleChange}
@@ -563,7 +563,7 @@ const Demo = () => {
 
                   <div className="fam-tech">
                     <div className="drop-first">
-                      Familiar Technologies
+                      Familiar Technologies *
                       <button
                         className="down-btn"
                         onClick={() => {
@@ -609,7 +609,7 @@ const Demo = () => {
                   </div>
                   <div className="int-drop">
                     <div className="drop-first">
-                      Instrested Technologies
+                      Instrested Technologies *
                       <button
                         className="down-btn"
                         onClick={() => {

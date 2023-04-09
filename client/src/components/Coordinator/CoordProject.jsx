@@ -69,7 +69,6 @@ const CoordProject = () => {
 
     fetchEvent();
   }, [event]);
- 
 
   // dateList.map((val) => {
   //   console.log("deadline " + val);
@@ -103,7 +102,7 @@ const CoordProject = () => {
 
   const addPro = async (e) => {
     try {
-      e.preventDefault();
+      // e.preventDefault();
       console.log(coordPro);
       const data = await postProject({
         title: coordPro.title,
@@ -122,28 +121,6 @@ const CoordProject = () => {
       console.log(error);
     }
   };
-
-  // const addItem = () => {
-  //   if (!item && !des) {
-  //     window.alert(
-  //       "Please specify a valid project title and description to add"
-  //     );
-  //   } else if (!item)
-  //     window.alert("Please specify a valid project title to add");
-  //   else {
-  //     setData([...data, item]); //spread operator(...)
-  //     // setItem("");
-  //   }
-  // };
-
-  // const addDes = () => {
-  //   if (item && !des) {
-  //     window.alert("Please specify a valid project description to add");
-  //   } else {
-  //     // setPro([...pro, des]);
-  //     // setDes("");
-  //   }
-  // };
 
   let name, value;
   const handleChange = (e) => {
@@ -224,6 +201,35 @@ const CoordProject = () => {
     }
   };
 
+  // const addItem = async (e) => {
+  //   e.preventDefault();
+  //   if (!item && !des) {
+  //     window.alert(
+  //       "Please specify a valid project title and description to add"
+  //     );
+  //   } else if (!item)
+  //     window.alert("Please specify a valid project title to add");
+  //   else {
+  //     setData([...data, item]); //spread operator(...)
+  //     setItem("");
+  //   }
+  // };
+
+  // const addDes = async (e) => {
+  //   e.preventDefault();
+  //   const data = await postProject({
+  //     // title: coordPro.title,
+  //     description: coordPro.description,
+  //   });
+  //   if(data.messa)
+  //   if (item && !des) {
+  //     window.alert("Please specify a valid project description to add");
+  //   } else {
+  //     setPro([...pro, des]);
+  //     setDes("");
+  //   }
+  // };
+
   // const removeAll = () => {
   //   setData([]);
   // };
@@ -286,7 +292,7 @@ const CoordProject = () => {
 
             <div className="description-bar">
               <textarea
-                rows={6}
+                rows={8}
                 cols={52}
                 className="description"
                 placeholder="Add Project Description"
