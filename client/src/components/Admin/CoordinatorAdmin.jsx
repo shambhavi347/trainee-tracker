@@ -249,16 +249,19 @@ const CoordinatorAdmin = () => {
           </>
         ) : assgnDis ? (
           <>
-            <div
-              className="img-arrow-left"
-              onClick={() => {
-                setAddDisplay(true);
-                setAssgnDis(false);
-              }}
-            >
-              <img src={arrowLeft} alt="" className="img-arr" />
+            <div style={{ margin: "1%" }}>
+              <div
+                className="img-arrow-left"
+                // style={{ marginTop: "1%", marginLeft: "1%" }}
+                onClick={() => {
+                  setAddDisplay(true);
+                  setAssgnDis(false);
+                }}
+              >
+                <img src={arrowLeft} alt="" className="img-arr" />
+              </div>
+              <CoordAssign coord={assign} />
             </div>
-            <CoordAssign coord={assign} />
           </>
         ) : null}
 

@@ -116,7 +116,7 @@
   color: #393e46;
 }
 #light .form-body-coord-up {
-  background-color: #90dbdf;
+  background-color: #aad7d4;
   box-shadow: 5px 5px 8px #888888;
   border: 1px #90dbdf solid;
 }
@@ -132,15 +132,226 @@
   color: #393e46;
   border: 2px #393e46 solid;
 }
-/* -----------------------------------ADMIN DASHBOARD CSS-------------------------------------------- */
-#light .filter-panel {
-  background-color: aliceblue;
+/* -----------------------------------SELECTOR CSS-------------------------------------------- */
+#light .selector,
+#light .btn-institute,
+#light .btn-trainee,
+#light .btn-coordinator {
+  background-color: #00adb5;
+  color: #eeeeee;
+  font-size: medium;
 }
 
-#light .divBdyCoord {
-  background-color: aliceblue;
+#light .btn-institute:hover,
+#light .btn-trainee:hover,
+#light .btn-coordinator:hover {
+  background-color: #aad7d4;
+  color: #393e46;
+  font-weight: bold;
+}
+/* -----------------------------------ADMIN DASHBOARD CSS-------------------------------------------- */
+/* - - - - - - -INSTITUTE- - - - - - */
+
+#light .filter-panel {
+  background-color: #aad7d4;
+}
+
+#light .search-text,
+#light .sort-div,
+#light .filter-div,
+#light .applied-filter,
+#light .accepted-btn,
+#light .rejected-btn {
+  background-color: #eeeeee;
+  border: 2px #00adb5 solid;
+  color: #393e46;
+}
+
+#light .sort-menu-list:hover,
+#light .check-filter:hover,
+#light .accepted-btn:hover,
+#light .rejected-btn:hover {
+  background-color: #00adb5;
+  color: #eeeeee;
+  border: 1px #393e46 solid;
+}
+
+#light .filter {
+  background-color: #aad7d4;
+  color: #393e46;
 }
 
 #light .institute-panel {
-  background-color: aliceblue;
+  background-color: #eeeeee;
+}
+#light .inst-month,
+#light .inst-duration,
+#light .inst-rating {
+  background-color: #eeeeee;
+  color: #393e46;
+}
+
+#light .info-outer {
+  background-color: #aad7d4;
+}
+#light .info-first {
+  border: 2px #eeeeee solid;
+  background-color: #00adb5;
+  color: #eeeeee;
+}
+
+#light .info-third,
+#light .info-sixth {
+  background-color: #eeeeee;
+  color: #393e46;
+}
+
+#light .info-type,
+#light .info-email,
+#light .info-month,
+#light .info-coor-email,
+#light .info-rating,
+#light .info-phone,
+#light .info-duration,
+#light .info-coor-phone,
+#light .info-instname {
+  background-color: #eeeeee;
+  border: 1px #00adb5 solid;
+  color: #393e46;
+}
+
+#light .inst-bdy {
+  background-color: #aad7d4;
+}
+
+#light .inst-first {
+  border: 2px #eeeeee solid;
+  color: #eeeeee;
+  background-color: #00adb5;
+}
+
+#light .info-coord-title,
+#light .count-inst,
+#light .title-inst-accpt,
+#light .title-inst-pend {
+  color: #393e46;
+}
+
+#light .expnd-cancel {
+  background-color: #eeeeee;
+}
+/* - - - - - - -TRAINEE- - - - - - - - */
+
+#light .stud-bdy {
+  background-color: #aad7d4;
+}
+
+#light .stud-third,
+#light .stud-second,
+#light .stud-year,
+#light .stud-sem,
+#light .stud-course {
+  background-color: #eeeeee;
+  color: #393e46;
+}
+
+#light .stud-first {
+  border: 2px #eeeeee solid;
+  color: #eeeeee;
+  background-color: #00adb5;
+}
+
+/* - - - - - - - - -COORDINATOR- - - - - - - - - - */
+#light .divBdyCoord {
+  background-color: #eeeeee;
+}
+
+#light .coord-panel {
+  background-color: #aad7d4;
+  color: #393e46;
+  border-bottom: 2px #00adb5 solid;
+}
+
+#light .coord-form,
+#light .coord-drop,
+#light .coord-form-name {
+  background-color: #eeeeee;
+  border: 1px #393e46 solid;
+  color: #393e46;
+}
+
+#light .invitated-panel,
+#light .accepted-panel {
+  /* background-color: #aad7d4; */
+  color: #393e46;
+}
+
+#light .invites,
+#light .coordName {
+  background-color: #aad7d4;
+}
+
+#light .coordName:hover {
+  background-color: #eeeeee;
+  border: 2px #00adb5 solid;
+  color: #00adb5;
+}
+
+#light .timestamp {
+  color: #393e46;
+}
+
+/* #light .coordDeets {
+  box-shadow: 5px 5px 10px #90dbdf;
+} */
+
+#light .coordDeets {
+  background-color: #aad7d4;
+  border: 1px #00adb5 solid;
+}
+
+#light .filters-outer {
+  background-color: #aad7d4;
+  border: 1px #00adb5 solid;
+}
+
+#light .coordPhone,
+#light .coordEmail {
+  background-color: #eeeeee;
+  color: #00adb5;
+  border: 1px #00adb5 solid;
+}
+
+#light .studentList-outer,
+#light .classPannel-outer {
+  background-color: #eeeeee;
+  border: 2px #00adb5 solid;
+}
+
+#light .applied-filter-coord-outer {
+  background-color: #eeeeee;
+  border: 2px #00adb5 solid;
+}
+
+#light .name-title {
+  background-color: #aad7d4;
+  border: 1px #00adb5 solid;
+  color: #393e46;
+}
+
+#light .filter-coord {
+  background-color: #aad7d4;
+  border: 1px #00adb5 solid;
+  color: #393e46;
+}
+
+#light .submit-btn {
+  background-color: #00adb5;
+  color: #eeeeee;
+}
+
+#light .submit-btn:hover {
+  background-color: #90dbdf;
+  border: 2px #00adb5 solid;
+  color: #393e46;
 }

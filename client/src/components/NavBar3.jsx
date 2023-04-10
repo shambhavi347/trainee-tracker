@@ -134,7 +134,7 @@ const NavBar3 = ({ retTheme }) => {
               Change Password
             </MenuItem>
             <MenuItem id="menu-items">
-              <label htmlFor="switch"> Light Mode</label>{" "}
+              <label htmlFor="switch"> Dark Mode </label>{" "}
               <Switch onChange={toggleTheme} checked={theme === "light"} />
             </MenuItem>
             <Link to="/logout">

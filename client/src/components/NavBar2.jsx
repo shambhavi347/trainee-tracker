@@ -6,11 +6,6 @@ import Switch from "react-switch";
 import "../CSS/NavBar2.css";
 
 const NavBar2 = ({ retTheme }) => {
-  //   let navigate = useNavigate();
-  //   const routeChange = () => {
-  //     let path = "/reg-institute";
-  //     navigate(path);
-  //   };
   const [theme, setTheme] = useState("");
   const toggleTheme = () => {
     setTheme((curr) => (curr === "dark" ? "light" : "dark"));
