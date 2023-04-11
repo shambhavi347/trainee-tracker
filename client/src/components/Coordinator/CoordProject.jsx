@@ -10,16 +10,8 @@ import { add, cancel } from "../../Images/Images";
 import { createEvent, getEvents, postProject } from "../../service/api";
 var events = {
   backgroundColor: "#222831",
-  /* height: 30vh;*/
   width: "8%",
   height: "auto",
-  /* width: auto; */
-  // marginTop: "1%",
-  /* margin-left: 15%; */
-  /* display: flex; */
-  /* justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; */
   padding: "1%",
   border: "1px #00adb5 solid",
   borderRadius: "50%",
@@ -54,7 +46,13 @@ const CoordProject = () => {
     const fetchEvent = async () => {
       try {
         const data = await getEvents();
-        setEvent(data);
+        // console.log(data);
+        // data.map((val) => console.log(val));
+        const sortedAsc = data.sort(function (a, b) {
+          return new Date(a.timestamp) - new Date(b.timestamp);
+        });
+        console.log(sortedAsc);
+        setEvent(sortedAsc);
         event.map((val) => {
           date = new Date(val.timestamp);
           dob = date.toLocaleDateString("en-US");
@@ -62,6 +60,10 @@ const CoordProject = () => {
           // dateList.push(dob);
           val.timestamp = dob;
         });
+        // const sortedAsc = event.sort(
+        //   (objA, objB) => Number(objA.timestamp) - Number(objB.timestamp)
+        // );
+        // console.log(sortedAsc);
       } catch (error) {
         console.log(error);
       }
@@ -129,12 +131,6 @@ const CoordProject = () => {
     value = e.target.value;
     setNewEvent({ ...newEvent, [name]: value });
   };
-  // const deleteItem = (id) => {
-  //   const newData = data.filter((item) => {
-  //     return item.id !== id;
-  //   });
-  //   setData(newData);
-  // };
 
   const deleteItem = (id) => {
     const newData = data.filter((item) => {
@@ -142,24 +138,6 @@ const CoordProject = () => {
     });
     setData(newData);
   };
-
-  //setting date
-
-  function handleDateChange(date1) {
-    setSelectedDate1(date1);
-  }
-
-  function handleDateChange(date2) {
-    setSelectedDate1(date2);
-  }
-
-  function handleDateChange(date3) {
-    setSelectedDate1(date3);
-  }
-
-  function handleDateChange(date4) {
-    setSelectedDate1(date4);
-  }
 
   const PostEvent = async () => {
     const event = await fetch("/api/coordinator/project", {
@@ -200,39 +178,6 @@ const CoordProject = () => {
       window.alert("Error adding project");
     }
   };
-
-  // const addItem = async (e) => {
-  //   e.preventDefault();
-  //   if (!item && !des) {
-  //     window.alert(
-  //       "Please specify a valid project title and description to add"
-  //     );
-  //   } else if (!item)
-  //     window.alert("Please specify a valid project title to add");
-  //   else {
-  //     setData([...data, item]); //spread operator(...)
-  //     setItem("");
-  //   }
-  // };
-
-  // const addDes = async (e) => {
-  //   e.preventDefault();
-  //   const data = await postProject({
-  //     // title: coordPro.title,
-  //     description: coordPro.description,
-  //   });
-  //   if(data.messa)
-  //   if (item && !des) {
-  //     window.alert("Please specify a valid project description to add");
-  //   } else {
-  //     setPro([...pro, des]);
-  //     setDes("");
-  //   }
-  // };
-
-  // const removeAll = () => {
-  //   setData([]);
-  // };
 
   return (
     <>
