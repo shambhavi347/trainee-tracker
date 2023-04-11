@@ -1282,35 +1282,20 @@ router.post("/send_message", coordAuthenticate, async (req, res) => {
 
 // get details from MessageSent collection to coordinator
 
-router.get("/details", coordAuthenticate, async (req, res) => {
+router.get("/details", coordAuthenticate, (req, res) => {
   const ID = req.rootUser.id;
-  const Coordi = await Class.find({ coordinatorID: ID });
-  // console.log("coordinator " + Coordi);
-  const coord = Coordi[0].coordinatorID;
-  const msgs = await MessageSent.find({ coord_id: coord });
-  Coordi.map((val) => {
-    let trainee = val.traineeID;
-    // console.log("trainee " + trainee);
-    MessageSent.find({ trainee_list_id: trainee })
-      .then((data) => {
-        const m = [];
-        data.map((d) => {
-          m.push(d);
-        });
-        if (!res.headersSent) {
-          if (m) {
-            // console.log("Details - " + m);
-            res.send(m);
-            return;
-          }
-        }
+  Class.find({ coordinatorID: ID })
+    .then((data) => {
+      MessageSent.find({
+        $or: [
+          { coord_id: data[0].coordinatorID },
+          { trainee_list_id: data[0].coordinatorID },
+        ],
       })
-      .catch((error) => {
-        if (!res.headersSent) {
-          console.log(error);
-        }
-      });
-  });
+        .then((data) => res.send(data))
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
 });
 
 // send trainee message to database

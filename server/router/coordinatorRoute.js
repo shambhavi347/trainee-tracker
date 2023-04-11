@@ -247,7 +247,7 @@ router.post("/create-event", coordAuthenticate, async (req, res) => {
 router.get("/get-events", coordAuthenticate, async (req, res) => {
   try {
     const id = req.rootUser._id;
-    console.log(id);
+    // console.log(id);
     const events = await Event.find({ coordinator_id: id });
     res.send(events);
   } catch (error) {
@@ -258,9 +258,9 @@ router.get("/get-events", coordAuthenticate, async (req, res) => {
 router.post("/add-project", coordAuthenticate, async (req, res) => {
   const { title, description } = req.body;
   const id = req.rootUser._id;
-  console.log(title);
-  console.log(description);
-  console.log(id);
+  // console.log(title);
+  // console.log(description);
+  // console.log(id);
   const pro = new Project({
     title: title,
     description: description,
@@ -291,7 +291,7 @@ router.post("/create-group", coordAuthenticate, async (req, res) => {
   const { name, members } = req.body;
 
   const mem = await Student.find({ _id: { $in: members } });
-  console.log(mem);
+  // console.log(mem);
 
   const group = new Group({
     name: name,
@@ -325,8 +325,8 @@ router.get("/get-groups", coordAuthenticate, async (req, res) => {
 router.post("/remove-group", coordAuthenticate, (req, res) => {
   const { groupId, studID } = req.body;
   // const data = await Group.findOneAndDelete({ _id: id });
-  console.log(groupId);
-  console.log(studID);
+  // console.log(groupId);
+  // console.log(studID);
   Group.findOneAndDelete({ _id: groupId })
     .then((data) => {
       studID.map((val) => {

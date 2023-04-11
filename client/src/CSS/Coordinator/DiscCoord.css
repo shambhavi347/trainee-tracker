@@ -1,0 +1,61 @@
+.discUp {
+  background: linear-gradient(to bottom, #393e46, #00adb5);
+  height: 80vh;
+  overflow-y: auto;
+  padding: 1%;
+}
+
+.announceBox,
+.msgsDiv {
+  padding: 1%;
+  margin: 2% 20%;
+}
+.announceBox {
+  box-shadow: 5px 5px 10px #0f1010;
+  background-color: #eeeeee;
+  border: 1px #393e46 solid;
+  border-radius: 10px;
+}
+
+.announceMsg {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.avatar {
+  background-color: #393e46;
+  width: 4%;
+  height: 100%;
+  padding: 1%;
+  border-radius: 50%;
+  float: left;
+  margin-right: 2%;
+  color: #eeeeee;
+  font-weight: bold;
+}
+.annMsg {
+  float: left;
+  margin-top: 1%;
+}
+
+.annBtnDiv {
+  float: right;
+  margin-top: 1%;
+  margin-right: 3%;
+}
+
+#cancelBtnDisc {
+  float: left;
+  color: #00adb5;
+}
+
+#postBtnDisc {
+  float: right;
+  background-color: #00adb5;
+}
+
+.msgsDiv {
+  /* background-color: #393e46; */
+  height: auto;
+  /* padding: 1%; */
+}

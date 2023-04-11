@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import "../../CSS/Coordinator/CoordProject.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { display } from "@mui/system";
+// import { display } from "@mui/system";
 // import "react-router-dom";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "../Coordinator/ProjectDetails";
 import { add, cancel } from "../../Images/Images";
 import { createEvent, getEvents, postProject } from "../../service/api";
-var events = {
-  backgroundColor: "#222831",
-  width: "8%",
-  height: "auto",
-  padding: "1%",
-  border: "1px #00adb5 solid",
-  borderRadius: "50%",
-};
+// var events = {
+//   backgroundColor: "#222831",
+//   width: "8%",
+//   height: "auto",
+//   padding: "1%",
+//   border: "1px #00adb5 solid",
+//   borderRadius: "50%",
+// };
 
 const CoordProject = () => {
   const [coordPro, setCoordPro] = useState({
@@ -24,17 +24,17 @@ const CoordProject = () => {
     coordinator_id: "",
   });
 
-  const [display, setDisplay] = useState(false); //will not show students details to us until we make display true
-  const [detail, setDetail] = useState(true);
+  // const [display, setDisplay] = useState(false); //will not show students details to us until we make display true
+  // const [detail, setDetail] = useState(true);
   const [item, setItem] = useState("");
   const [data, setData] = useState([]);
-  const [expnd, setExpnd] = useState("none");
+  // const [expnd, setExpnd] = useState("none");
   const [des, setDes] = useState("");
   const [pro, setPro] = useState([]);
-  const [selectedDate1, setSelectedDate1] = useState(null);
-  const [selectedDate2, setSelectedDate2] = useState(null);
-  const [selectedDate3, setSelectedDate3] = useState(null);
-  const [selectedDate4, setSelectedDate4] = useState(null);
+  // const [selectedDate1, setSelectedDate1] = useState(null);
+  // const [selectedDate2, setSelectedDate2] = useState(null);
+  // const [selectedDate3, setSelectedDate3] = useState(null);
+  // const [selectedDate4, setSelectedDate4] = useState(null);
   const [event, setEvent] = useState([]);
   const [eventExp, setEventExp] = useState(false);
   const [newEvent, setNewEvent] = useState({ event_name: "", deadline: "" });
@@ -46,8 +46,6 @@ const CoordProject = () => {
     const fetchEvent = async () => {
       try {
         const data = await getEvents();
-        // console.log(data);
-        // data.map((val) => console.log(val));
         const sortedAsc = data.sort(function (a, b) {
           return new Date(a.timestamp) - new Date(b.timestamp);
         });
@@ -56,14 +54,8 @@ const CoordProject = () => {
         event.map((val) => {
           date = new Date(val.timestamp);
           dob = date.toLocaleDateString("en-US");
-          // console.log(dob);
-          // dateList.push(dob);
           val.timestamp = dob;
         });
-        // const sortedAsc = event.sort(
-        //   (objA, objB) => Number(objA.timestamp) - Number(objB.timestamp)
-        // );
-        // console.log(sortedAsc);
       } catch (error) {
         console.log(error);
       }
@@ -124,60 +116,60 @@ const CoordProject = () => {
     }
   };
 
-  let name, value;
-  const handleChange = (e) => {
-    e.preventDefault();
-    name = e.target.name;
-    value = e.target.value;
-    setNewEvent({ ...newEvent, [name]: value });
-  };
+  // let name, value;
+  // const handleChange = (e) => {
+  //   e.preventDefault();
+  //   name = e.target.name;
+  //   value = e.target.value;
+  //   setNewEvent({ ...newEvent, [name]: value });
+  // };
 
-  const deleteItem = (id) => {
-    const newData = data.filter((item) => {
-      return item.id !== id;
-    });
-    setData(newData);
-  };
+  // const deleteItem = (id) => {
+  //   const newData = data.filter((item) => {
+  //     return item.id !== id;
+  //   });
+  //   setData(newData);
+  // };
 
-  const PostEvent = async () => {
-    const event = await fetch("/api/coordinator/project", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: "",
-        timestamp: "",
-        coordinator_id: "",
-      }),
-    });
-    if (event.status === 200) {
-      window.alert("Event added successfully");
-      setPro([...pro, event.json()]);
-    } else {
-      window.alert("Error adding Event");
-    }
-  };
+  // const PostEvent = async () => {
+  //   const event = await fetch("/api/coordinator/project", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       title: "",
+  //       timestamp: "",
+  //       coordinator_id: "",
+  //     }),
+  //   });
+  //   if (event.status === 200) {
+  //     window.alert("Event added successfully");
+  //     setPro([...pro, event.json()]);
+  //   } else {
+  //     window.alert("Error adding Event");
+  //   }
+  // };
 
-  const PostData = async () => {
-    const res = await fetch("/api/coordinator/project", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: "",
-        description: "",
-        coordinator_id: "",
-      }),
-    });
-    if (res.status === 200) {
-      window.alert("Successfully added project");
-      setItem("");
-    } else {
-      window.alert("Error adding project");
-    }
-  };
+  // const PostData = async () => {
+  //   const res = await fetch("/api/coordinator/project", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       title: "",
+  //       description: "",
+  //       coordinator_id: "",
+  //     }),
+  //   });
+  //   if (res.status === 200) {
+  //     window.alert("Successfully added project");
+  //     setItem("");
+  //   } else {
+  //     window.alert("Error adding project");
+  //   }
+  // };
 
   return (
     <>
@@ -226,8 +218,6 @@ const CoordProject = () => {
               <button
                 className="btn-effect"
                 onClick={() => {
-                  // addItem();
-                  // addDes();
                   addPro();
                 }}
               >

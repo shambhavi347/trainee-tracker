@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, Button, TextField } from "@mui/material";
 import "../../CSS/Coordinator/CoordDiscussion.css";
+import "../../CSS/Coordinator/DiscCoord.css";
 import { icon } from "../../Images/Images";
 import { GetDetails } from "../../service/api";
 
@@ -10,9 +11,20 @@ import { GetDetails } from "../../service/api";
 // `;
 const CoordDiscussion = () => {
   const [showInput, setShowInput] = useState(false);
+  const [details, setDetails] = useState([]);
   const [user, setUser] = useState({
     message: "",
   });
+
+  useEffect(() => {
+    const D_data = async () => {
+      const response = await GetDetails();
+      // console.log(response);
+      const newArray = response.slice().reverse();
+      setDetails(newArray);
+    };
+    D_data();
+  }, [details]);
 
   let name, value;
   const handleChange = (e) => {
@@ -51,21 +63,109 @@ const CoordDiscussion = () => {
     }
   };
 
-  const [details, setDetails] = useState([]);
-  useEffect(() => {
-    const D_data = async () => {
-      const response = await GetDetails();
-      console.log(response);
-      setDetails(response);
-    };
-    D_data();
-  }, [details]);
-
-  const newArray = details.slice().reverse();
+  // const newArray = details.slice().reverse();
+  // console.log(newArray);
 
   return (
     <>
-      <div className="forScroll1">
+      <div className="discUp">
+        <div className="announceBox">
+          {showInput ? (
+            <div className="">
+              <TextField
+                id="filled-multiline-flexible1"
+                multiline
+                label="Announce Something to class"
+                variant="filled"
+                className="announceMsg"
+                type="text"
+                placeholder="write something"
+                name="message"
+                value={user.message}
+                autoComplete="off"
+                onChange={handleChange}
+              />
+              <div className="annBtnDiv">
+                <div>
+                  <Button
+                    id="cancelBtnDisc"
+                    onClick={() => {
+                      setUser("");
+                      setShowInput(false);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+
+                  <Button
+                    id="postBtnDisc"
+                    onClick={postData}
+                    color="primary"
+                    variant="contained"
+                  >
+                    Post
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div onClick={() => setShowInput(true)}>
+              {/* <Avatar /> */}
+              <div className="avatar">SK</div>
+              <div className="annMsg">Announce Something to class</div>
+            </div>
+          )}
+        </div>
+
+        <div className="msgsDiv">
+          {/* All Messages */}
+          {details.map((item, index) => (
+            <div className="amt1">
+              <div className="amt__Cnt1">
+                <p className="amt__txt1">
+                  {" "}
+                  {/* <Avatar /> */}
+                  <img className="icon_img" src={icon} alt="" />
+                  <h1
+                    // style={{ backgroundColor: "pink" }}
+                    className="tr_sender2"
+                  >
+                    {item.sender_name}
+                  </h1>
+                  <h1
+                    //  style={{ backgroundColor: "skyblue" }}
+                    className="tr_date2"
+                  >
+                    {new Date(item.createdAt).toLocaleString("default", {
+                      month: "long",
+                    }) +
+                      " " +
+                      new Date(item.createdAt).getDate() +
+                      ", " +
+                      new Date(item.createdAt).getFullYear()}
+                  </h1>
+                  <h1
+                    //  style={{ backgroundColor: "yellowgreen" }}
+                    className="tr_message2"
+                  >
+                    {item.message}
+                  </h1>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* onClick={() => {
+                                setUser("");
+                               setShowInput(false);
+                               }}
+                            
+                              Cancel
+                            </Button> */}
+
+      {/* <div className="forScroll1">
         <div className="main " >
           <div className="main__wrapper">
             <div className="main__announce1">
@@ -99,8 +199,8 @@ const CoordDiscussion = () => {
                             </Button>
 
                             <Button id="C2"
-                              onClick={postData}
-                              // color="primary"
+                              onClick={postData} */}
+      {/* color="primary"
                               variant="contained"
                             >
                               Post
@@ -123,16 +223,16 @@ const CoordDiscussion = () => {
                 {newArray.map((item, index) => (
                   <div className="amt1">
                     <div className="amt__Cnt1">
-                      <p className="amt__txt1">
-                        {/* <Avatar /> */}
-                        <img className="icon_img" src={icon} alt="" />
+                      <p className="amt__txt1"> */}
+      {/* <Avatar /> */}
+      {/* <img className="icon_img" src={icon} alt="" />
                         <h1
-                          /*style={{ backgroundColor:"pink" }}*/ className="tr_sender2"
+                          style={{ backgroundColor:"pink" }} className="tr_sender2"
                         >
                           {item.sender_name}
                         </h1>
-                        <h1
-                          /*style={{ backgroundColor: "skyblue" }}*/ className="tr_date2"
+                        <h1 */}
+      {/* style={{ backgroundColor: "skyblue" }} className="tr_date2"
                         >
                           {new Date(item.createdAt).toLocaleString("default", {
                             month: "long",
@@ -142,8 +242,8 @@ const CoordDiscussion = () => {
                             ", " +
                             new Date(item.createdAt).getFullYear()}
                         </h1>
-                        <h1
-                          /*style={{ backgroundColor: "yellowgreen" }}*/
+                        <h1 */}
+      {/* style={{ backgroundColor: "yellowgreen" }}
                           className="tr_message2"
                         >
                           {item.message}
@@ -157,7 +257,7 @@ const CoordDiscussion = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
