@@ -1252,14 +1252,8 @@ router.post("/send_message", coordAuthenticate, async (req, res) => {
     const c = await Coordinator.findOne({ _id: ID });
     // console.log(c.first_name);
     const Coord = await Class.find({ coordinatorID: ID });
-    // console.log(Coord[0].coordinatorID);
     Coord.map((val) => trainee_list.push(val.traineeID));
-    // console.log("trainee list");
-    // console.log(trainee_list);
-    // console.log("coord id");
-    // console.log(Coord[0].coordinatorID);
-    // console.log("message");
-    // console.log(message);
+
     let name = c.first_name;
     if (c.middle_name) {
       name = name.concat(" " + c.middle_name);
