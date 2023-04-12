@@ -101,7 +101,7 @@
 #light .btn-inst1:hover,
 #light .btn-inst:hover {
   background-color: #eeeeee;
-  color: #393e46;
+  color: #00adb5;
   border: 2px #393e46 solid;
 }
 
@@ -129,7 +129,7 @@
 
 #light .btn-coord:hover {
   background-color: #eeeeee;
-  color: #393e46;
+  color: #00adb5;
   border: 2px #393e46 solid;
 }
 /* -----------------------------------SELECTOR CSS-------------------------------------------- */

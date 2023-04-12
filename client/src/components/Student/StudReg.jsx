@@ -362,6 +362,7 @@ const Demo = () => {
                   <input
                     className="form-element11 form-text1 field2 "
                     type="text"
+                    id="f_name"
                     placeholder="First Name *"
                     name="first_name"
                     value={user.first_name}

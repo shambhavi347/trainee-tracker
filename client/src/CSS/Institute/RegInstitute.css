@@ -80,7 +80,7 @@
 } */
 
 .form-text-inst,
-.drop-down-inst,
+/* .drop-down-inst, */
 .btn-inst {
   margin: 1% 0;
   /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
@@ -88,6 +88,22 @@
   margin-left: 2%;
   padding: 1%;
   border-radius: 6px;
+  /* background: transparent; */
+}
+::placeholder {
+  color: black;
+}
+
+.drop-down-inst {
+  border: 1px solid rgba(52, 73, 94, 0.1);
+  margin: 1% 0;
+  /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
+  width: 36%;
+  margin-left: 2%;
+  padding: 1%;
+  border-radius: 6px;
+  background-color: white;
+  font-size: medium;
   /* background: transparent; */
 }
 
@@ -220,7 +236,7 @@
   width: 41%;
   border-radius: 6px;
   height: 80%;
-  background-color: #f0ebebfd;
+  background-color: white;
   margin-left: 2.3%;
   margin-top: 0.6%;
   padding: 0;
