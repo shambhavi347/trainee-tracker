@@ -4,6 +4,7 @@ import { cdacLogo } from "../Images/Images";
 import { useNavigate } from "react-router-dom";
 import Switch from "react-switch";
 import "../CSS/NavBar2.css";
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 const NavBar2 = ({ retTheme }) => {
   const [theme, setTheme] = useState("");
@@ -23,9 +24,9 @@ const NavBar2 = ({ retTheme }) => {
         </div>
         <div className="switch-toggle">
           <label htmlFor="switch" className="switchLabel">
-            Dark Mode
+            {theme === "light" ? "Light Mode" : "Dark Mode"}
           </label>
-          <Switch onChange={toggleTheme} checked={theme === "dark"} />
+          <DarkModeSwitch onChange={toggleTheme} checked={theme === "dark"} style={{color:theme === "light" ? "FFD966" : "eeeeee"}} />
         </div>
       </div>
     </>

@@ -356,7 +356,7 @@ const RegInstitute = () => {
                       </option>
                     </select>
 
-                    <h4 className="head-inst-home">Institute Address</h4>
+                    <h4 className="head-inst-home-2">Institute Address</h4>
 
                     <input
                       className="form-text-inst fieldd2 required"
@@ -475,7 +475,7 @@ const RegInstitute = () => {
 
                         <PhoneInput
                           className="fieldd7"
-                          placeholder="Landline number(xxx-xxx-xxxx) *"
+                          placeholder="Landline number(xxxx-xxx-xxx) *"
                           value={userRegistration.landline}
                           onChange={setValue}
                           name="landline"
@@ -494,7 +494,7 @@ const RegInstitute = () => {
                       />
                     </div>
 
-                    <h4 className="head-inst-home">Internship Details</h4>
+                    <h4 className="head-inst-home-2">Internship Details</h4>
 
                     <select
                       name="duration"
@@ -569,7 +569,7 @@ const RegInstitute = () => {
                   </>
                 ) : display ? (
                   <>
-                    <h4 className="head-inst-home">Coordinator Details</h4>
+                    <h4 className="head-inst-home-2">Coordinator Details</h4>
                     <select
                       name="salutation"
                       className="drop-down-inst fieldd4 required"

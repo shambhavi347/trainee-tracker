@@ -47,8 +47,23 @@
 }
 
 .form-text-coord,
-.drop-down-coord,
+/* .drop-down-coord, */
 .btn-coord {
+  margin: 2% 0;
+  /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
+  width: 70%;
+  margin-left: 15%;
+  padding: 3%;
+  border-radius: 15px;
+}
+::placeholder {
+  color: black;
+}
+
+.drop-down-coord {
+  font-size: medium;
+  border: 1px solid rgba(52, 73, 94, 0.1);
+  background-color: white;
   margin: 2% 0;
   /* 1%implies to top,bottom and 0 to left,right for specifying separately format is tbrl */
   width: 70%;
