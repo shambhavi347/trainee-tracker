@@ -22,16 +22,25 @@
   border-radius: 10px;
 }
 
-.avatar {
-  background-color: #393e46;
-  width: 4%;
+.avatar,
+.avatarMsg {
+  text-align: center;
+  width: 6%;
   height: 100%;
-  padding: 1%;
+  padding: 1.5% 1%;
   border-radius: 50%;
   float: left;
   margin-right: 2%;
-  color: #eeeeee;
+  font-size: medium;
   font-weight: bold;
+}
+.avatar {
+  background-color: #393e46;
+  color: #eeeeee;
+}
+.avatarMsg {
+  background-color: #eeeeee;
+  color: #0f1010;
 }
 .annMsg {
   float: left;
@@ -54,8 +63,39 @@
   background-color: #00adb5;
 }
 
+#filled-multiline-flexible1 {
+  width: 50vw !important;
+  height: 20vh !important;
+}
+
 .msgsDiv {
-  /* background-color: #393e46; */
   height: auto;
-  /* padding: 1%; */
+}
+
+.msgDivUp {
+  width: 100%;
+  background-color: #393e46;
+  margin: 3% 0%;
+  height: auto;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px #0f1010 solid;
+  text-align: justify;
+}
+
+.senderName {
+  font-size: large;
+  font-weight: bold;
+  color: #00adb5;
+}
+
+.senderTime {
+  font-size: small;
+  color: #0f1010;
+}
+
+.msgs {
+  padding: 1%;
+  font-weight: normal;
+  color: #eeeeee;
 }

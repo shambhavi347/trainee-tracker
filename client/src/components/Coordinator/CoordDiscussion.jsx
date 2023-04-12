@@ -1,30 +1,54 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Button, TextField } from "@mui/material";
-import "../../CSS/Coordinator/CoordDiscussion.css";
+import { Button, TextField } from "@mui/material";
+// import "../../CSS/Coordinator/CoordDiscussion.css";
 import "../../CSS/Coordinator/DiscCoord.css";
-import { icon } from "../../Images/Images";
-import { GetDetails } from "../../service/api";
+import { GetDetails, getCoordName } from "../../service/api";
 
-// const Component = styled(TextField)`
-//    background-color: #eeeeee;
-//    border:1px solid blue;
-// `;
 const CoordDiscussion = () => {
+  const [mentor, setMentor] = useState([]);
   const [showInput, setShowInput] = useState(false);
   const [details, setDetails] = useState([]);
+  const [nameMentor, setNameMentor] = useState("");
   const [user, setUser] = useState({
     message: "",
   });
-
+  let initial = [];
+  //get all the messages
   useEffect(() => {
     const D_data = async () => {
       const response = await GetDetails();
-      // console.log(response);
       const newArray = response.slice().reverse();
       setDetails(newArray);
     };
     D_data();
   }, [details]);
+
+  //create array of initials
+  details.map((val) => {
+    const init = val.sender_name.split(" ");
+    const initialMsg = init.map((initials) => initials[0]).join("");
+    initial.push(initialMsg);
+  });
+
+  //get coordinator details for initial
+  let initMentor = [];
+  useEffect(() => {
+    const fetchCoordName = async () => {
+      try {
+        const data = await getCoordName();
+        if (data) {
+          setMentor(data);
+          initMentor.push(mentor.first_name);
+          if (mentor.middle_name) initMentor.push(mentor.middle_name);
+          if (mentor.last_name) initMentor.push(mentor.last_name);
+          setNameMentor(initMentor.map((init) => init[0]).join(""));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCoordName();
+  }, [mentor]);
 
   let name, value;
   const handleChange = (e) => {
@@ -50,21 +74,17 @@ const CoordDiscussion = () => {
       }),
     });
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
 
     if (data.error) {
       window.alert(data.error);
       console.log("Error");
     } else {
-      window.alert("Message Sent !!");
       console.log("Message Sent !!");
       setUser("");
       setShowInput(false);
     }
   };
-
-  // const newArray = details.slice().reverse();
-  // console.log(newArray);
 
   return (
     <>
@@ -110,32 +130,21 @@ const CoordDiscussion = () => {
             </div>
           ) : (
             <div onClick={() => setShowInput(true)}>
-              {/* <Avatar /> */}
-              <div className="avatar">SK</div>
+              <div className="avatar">{nameMentor}</div>
               <div className="annMsg">Announce Something to class</div>
             </div>
           )}
         </div>
 
         <div className="msgsDiv">
-          {/* All Messages */}
           {details.map((item, index) => (
-            <div className="amt1">
-              <div className="amt__Cnt1">
-                <p className="amt__txt1">
-                  {" "}
-                  {/* <Avatar /> */}
-                  <img className="icon_img" src={icon} alt="" />
-                  <h1
-                    // style={{ backgroundColor: "pink" }}
-                    className="tr_sender2"
-                  >
-                    {item.sender_name}
-                  </h1>
-                  <h1
-                    //  style={{ backgroundColor: "skyblue" }}
-                    className="tr_date2"
-                  >
+            <div className="msgDivUp">
+              <div className="msgDeet">
+                {}
+                <div className="avatarMsg">{initial[index]}</div>
+                <div className="senderDeets">
+                  <div className="senderName">{item.sender_name}</div>
+                  <div className="senderTime">
                     {new Date(item.createdAt).toLocaleString("default", {
                       month: "long",
                     }) +
@@ -143,121 +152,14 @@ const CoordDiscussion = () => {
                       new Date(item.createdAt).getDate() +
                       ", " +
                       new Date(item.createdAt).getFullYear()}
-                  </h1>
-                  <h1
-                    //  style={{ backgroundColor: "yellowgreen" }}
-                    className="tr_message2"
-                  >
-                    {item.message}
-                  </h1>
-                </p>
+                  </div>
+                </div>
               </div>
+              <div className="msgs"> {item.message}</div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* onClick={() => {
-                                setUser("");
-                               setShowInput(false);
-                               }}
-                            
-                              Cancel
-                            </Button> */}
-
-      {/* <div className="forScroll1">
-        <div className="main " >
-          <div className="main__wrapper">
-            <div className="main__announce1">
-              <div className="main__announcements1">
-                <div className="main__announcementsWrapper1">
-                  <div className="main__ancContent1">
-                    {showInput ? (
-                      <div className="main__form1">
-                        <TextField
-                          id="filled-multiline-flexible1"
-                          multiline
-                          label="Announce Something to class"
-                          variant="filled"
-                          className="message"
-                          type="text"
-                          placeholder="write something"
-                          name="message"
-                          value={user.message}
-                          autoComplete="off"
-                          onChange={handleChange}
-                        />
-                        <div className="main__buttons1">
-                          <div>
-                            <Button id="C1"
-                              onClick={() => {
-                                setUser("");
-                                setShowInput(false);
-                              }}
-                            >
-                              Cancel
-                            </Button>
-
-                            <Button id="C2"
-                              onClick={postData} */}
-      {/* color="primary"
-                              variant="contained"
-                            >
-                              Post
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div
-                        className="main__wrapper1001"
-                        onClick={() => setShowInput(true)}
-                      >
-                        <Avatar />
-                        <div>Announce Something to class</div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div  id= "TScroll">
-                {newArray.map((item, index) => (
-                  <div className="amt1">
-                    <div className="amt__Cnt1">
-                      <p className="amt__txt1"> */}
-      {/* <Avatar /> */}
-      {/* <img className="icon_img" src={icon} alt="" />
-                        <h1
-                          style={{ backgroundColor:"pink" }} className="tr_sender2"
-                        >
-                          {item.sender_name}
-                        </h1>
-                        <h1 */}
-      {/* style={{ backgroundColor: "skyblue" }} className="tr_date2"
-                        >
-                          {new Date(item.createdAt).toLocaleString("default", {
-                            month: "long",
-                          }) +
-                            " " +
-                            new Date(item.createdAt).getDate() +
-                            ", " +
-                            new Date(item.createdAt).getFullYear()}
-                        </h1>
-                        <h1 */}
-      {/* style={{ backgroundColor: "yellowgreen" }}
-                          className="tr_message2"
-                        >
-                          {item.message}
-                        </h1>
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 };

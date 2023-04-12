@@ -1,20 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Button, TextField } from "@mui/material";
-import "../../CSS/Trainee/DiscussTrainee.css";
-import { GetDetails1 } from "../../service/api";
-import { icon } from "../../Images/Images";
-// const Component = styled(Button)`
-// background-color: #00abd5;
-// border:1px solid  #00abd5;
-
-// `;
+import { Button, TextField } from "@mui/material";
+import { GetDetails1, StudentData } from "../../service/api";
 
 const TraineeDiscuss = () => {
+  const [initProfile, setInitProfile] = useState("");
+  const [userData, setuserData] = useState([]);
   const [showInput, setShowInput] = useState(false);
+  const [details, setDetails] = useState([]);
   const [user, setUser] = useState({
     message: "",
   });
 
+  //call user Profile
+  let initTrainee = [];
+  useEffect(() => {
+    const fetchPeople = async () => {
+      const response = await StudentData();
+      if (response) {
+        setuserData(response);
+        initTrainee.push(userData.first_name);
+        if (userData.middle_name) initTrainee.push(userData.middle_name);
+        if (userData.last_name) initTrainee.push(userData.last_name);
+        setInitProfile(initTrainee.map((init) => init[0]).join(""));
+      }
+    };
+    fetchPeople();
+  }, [userData]);
+
+  let initial = [];
   let name, value;
   const handleChange = (e) => {
     e.preventDefault();
@@ -25,6 +38,7 @@ const TraineeDiscuss = () => {
     console.log(name, value);
   };
 
+  //send messages
   const postData = async (e) => {
     e.preventDefault();
     const { message } = user;
@@ -45,119 +59,101 @@ const TraineeDiscuss = () => {
       window.alert(data.error);
       console.log("Error");
     } else {
-      window.alert("Message Sent !!");
       console.log("Message Sent !!");
       setUser("");
       setShowInput(false);
     }
   };
 
-  const [details, setDetails] = useState([]);
+  //get all the messages
   useEffect(() => {
     const D_data = async () => {
       const response = await GetDetails1();
-      console.log(response);
-      setDetails(response);
+      // console.log(response);
+      const newArray = response.slice().reverse();
+      setDetails(newArray);
     };
     D_data();
   }, [details]);
 
-  const newArray = details.slice().reverse();
-
+  //create array of initials
+  details.map((val) => {
+    const init = val.sender_name.split(" ");
+    const initialMsg = init.map((initials) => initials[0]).join("");
+    initial.push(initialMsg);
+  });
   return (
     <>
-      <div className="forScroll1">
-        <div className="main">
-          <div className="main__wrapper">
-            <div className="main__announce1">
-              <div className="main__announcements1">
-                <div className="main__announcementsWrapper1">
-                  <div className="main__ancContent1">
-                    {showInput ? (
-                      <div className="main__form1">
-                        <TextField
-                          id="filled-multiline-flexible1"
-                          multiline
-                          label="Announce Something to class"
-                          variant="filled"
-                          className="message"
-                          type="text"
-                          placeholder="Write Something"
-                          name="message"
-                          value={user.message}
-                          autoComplete="off"
-                          onChange={handleChange}
-                        />
-                        <div className="main__buttons1">
-                          <div>
-                            <Button
-                              id="cbtnT"
-                              onClick={() => {
-                                setUser("");
-                                setShowInput(false);
-                              }}
-                            >
-                              Cancel
-                            </Button>
+      <div className="discUp">
+        <div className="announceBox">
+          {showInput ? (
+            <div className="">
+              <TextField
+                id="filled-multiline-flexible1"
+                multiline
+                label="Announce Something to class"
+                variant="filled"
+                className="announceMsg"
+                type="text"
+                placeholder="write something"
+                name="message"
+                value={user.message}
+                autoComplete="off"
+                onChange={handleChange}
+              />
+              <div className="annBtnDiv">
+                <div>
+                  <Button
+                    id="cancelBtnDisc"
+                    onClick={() => {
+                      setUser("");
+                      setShowInput(false);
+                    }}
+                  >
+                    Cancel
+                  </Button>
 
-                            <Button
-                              id="btnTrainee"
-                              onClick={postData}
-                              // color="primary"
-                              variant="contained"
-                            >
-                              Post
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div
-                        className="main__wrapper1001"
-                        onClick={() => setShowInput(true)}
-                      >
-                        <Avatar />
-
-                        <div>Announce Something to class</div>
-                      </div>
-                    )}
-                  </div>
+                  <Button
+                    id="postBtnDisc"
+                    onClick={postData}
+                    color="primary"
+                    variant="contained"
+                  >
+                    Post
+                  </Button>
                 </div>
-                {newArray.map((item, index) => (
-                  <div className="amt1">
-                    <div className="amt__Cnt1">
-                      <p className="amt__txt1">
-                        {/* <Avatar/> */}
-                        <img className="icon_img" src={icon} alt="" />
-                        <h1
-                          /*style={{ backgroundColor:"pink" }}*/ className="tr_sender2"
-                        >
-                          {item.sender_name}
-                        </h1>
-                        <h1
-                          /*style={{ backgroundColor: "skyblue" }}*/ className="tr_date2"
-                        >
-                          {new Date(item.createdAt).toLocaleString("default", {
-                            month: "long",
-                          }) +
-                            " " +
-                            new Date(item.createdAt).getDate() +
-                            ", " +
-                            new Date(item.createdAt).getFullYear()}
-                        </h1>
-                        <h1
-                          /*style={{ backgroundColor: "yellowgreen" }}*/
-                          className="tr_message2"
-                        >
-                          {item.message}
-                        </h1>
-                      </p>
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
-          </div>
+          ) : (
+            <div onClick={() => setShowInput(true)}>
+              <div className="avatar">{initProfile}</div>
+              <div className="annMsg">Announce Something to class</div>
+            </div>
+          )}
+        </div>
+
+        <div className="msgsDiv">
+          {details.map((item, index) => (
+            <div className="msgDivUp">
+              <div className="msgDeet">
+                {}
+                <div className="avatarMsg">{initial[index]}</div>
+                <div className="senderDeets">
+                  <div className="senderName">{item.sender_name}</div>
+                  <div className="senderTime">
+                    {new Date(item.createdAt).toLocaleString("default", {
+                      month: "long",
+                    }) +
+                      " " +
+                      new Date(item.createdAt).getDate() +
+                      ", " +
+                      new Date(item.createdAt).getFullYear()}
+                  </div>
+                </div>
+              </div>
+              <div className="msgs"> {item.message}</div>
+            </div>
+          ))}
         </div>
       </div>
     </>
