@@ -19,36 +19,28 @@ var trainee_tile = {
   margin: "1%",
   padding: "2% 2%",
   borderRadius: "10px",
-  backgroundColor: "#393e46",
-  color: "#eeeeee",
 };
 var trainee_tile_div1 = {
   padding: "2%",
   width: "49%",
-  backgroundColor: "#222831",
   float: "left",
   borderRadius: "10px",
-  border: "1px #00adb5 solid",
+  border: "1px #222831 solid",
 };
+
 var trainee_tile1 = {
   width: "100%",
-  border: "1px #00adb5 solid",
   margin: "2% 1%",
   padding: "4%",
   borderRadius: "10px",
-  backgroundColor: "#393e46",
-  color: "#eeeeee",
-  // float: "right",
 };
 
 var group_tile_div1 = {
   padding: "2%",
   width: "49%",
-
-  backgroundColor: "#222831",
   float: "right",
   borderRadius: "10px",
-  border: "1px #00adb5 solid",
+  border: "1px #222831 solid",
 };
 var group_tile1 = {
   width: "100%",
@@ -56,9 +48,6 @@ var group_tile1 = {
   margin: "2% 1%",
   padding: "4%",
   borderRadius: "10px",
-  backgroundColor: "#393e46",
-  color: "#eeeeee",
-  // float: "right",
 };
 const CoordPeople = () => {
   var date, dob1;
@@ -73,10 +62,8 @@ const CoordPeople = () => {
   const [groupName, setGroupName] = useState(false);
   const [count, setCount] = useState("");
   const [groups, setGroups] = useState([]);
-  // const [value, setValue] = useState({});
   const [groupDelete, setGroupDelete] = useState(0);
-  // const [misCnt, setMisCnt] = useState("");
-  // const groupNo = [];
+  const [countErr, setCountErr] = useState(false);
 
   //get group details
   useEffect(() => {
@@ -91,7 +78,6 @@ const CoordPeople = () => {
       }
     };
     fetchGroups();
-    // setCount(groups.length + 1);
   }, [groups]);
 
   //get coordinator details
@@ -152,8 +138,6 @@ const CoordPeople = () => {
     newArr[index].group = "null";
     setTrainee(newArr);
     setGroupList(groupList.filter((item) => item._id !== val._id));
-
-    // setTrainee([...trainee, val]);
   };
 
   //change css back when file groupList is empty
@@ -167,17 +151,20 @@ const CoordPeople = () => {
   //create an group
 
   const postData = async () => {
+    setCountErr(false);
     groups?.map((val) => {
       if (count.includes(Number(val.name))) {
+        setCount(null);
         window.alert("This group no already exists");
-        setCount("");
+        setCountErr(true);
+        setCount(null);
+        setGroupName(false);
       }
     });
-    if (count) {
+    if (countErr === false) console.log("Error");
+    if (countErr === true) {
       let memId = [];
       let name1 = count;
-
-      console.log(name1);
 
       groupList.map((val) => memId.push(val._id));
 
@@ -234,7 +221,7 @@ const CoordPeople = () => {
       <div className="coord-people-divUp">
         <div className="coord-div">
           <h2 className="coordTitle">Coordinator Name</h2>
-          <hr style={{ backgroundColor: "#393e46", opacity: "0.4" }} />
+          <hr className="lineCoordName" />
           <div className="coord-name">
             {mentor.salutation} {mentor.first_name} {mentor.middle_name}{" "}
             {mentor.last_name}
@@ -250,7 +237,7 @@ const CoordPeople = () => {
             ) : null}
             <div className="traineeStrength">{trainee.length}</div>
           </h2>
-          <hr style={{ backgroundColor: "#393e46", opacity: "0.4" }} />
+          <hr className="lineCoordName" />
           <div style={traineeTileDiv}>
             {trainee.length === 0 ? (
               <>
@@ -259,7 +246,7 @@ const CoordPeople = () => {
             ) : null}
             {trainee.map((val, index) => (
               <>
-                <div style={traineeTile}>
+                <div style={traineeTile} id="traineeTileID">
                   {val.prefix} {val.first_name} {val.middle_name}{" "}
                   {val.last_name}
                   {/* Group: {val.group} */}
@@ -297,7 +284,7 @@ const CoordPeople = () => {
                 {groupList.map((val, index) => (
                   <>
                     {/* <div >{Val.first_name}</div> */}
-                    <div style={group_tile1}>
+                    <div style={group_tile1} id="group_tile1ID">
                       {val.prefix} {val.first_name} {val.middle_name}{" "}
                       {val.last_name}
                       <div
@@ -333,7 +320,7 @@ const CoordPeople = () => {
 
               <div className="traineeStrength">{groups.length}</div>
             </h2>
-            <hr style={{ backgroundColor: "#393e46", opacity: "0.4" }} />{" "}
+            <hr className="lineCoordName" />{" "}
             {groups.map((val, index) => (
               <div className="ind-group-up">
                 <div className="ind-group">
@@ -354,9 +341,7 @@ const CoordPeople = () => {
                         {value.salutation} {value.first_name}{" "}
                         {value.middle_name} {value.last_name}
                       </div>
-                      <hr
-                        style={{ backgroundColor: "#393e46", opacity: "0.4" }}
-                      />
+                      <hr className="lineGroupName" />
                     </>
                   ))}
                 </div>

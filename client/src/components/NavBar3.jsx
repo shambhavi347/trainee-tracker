@@ -18,9 +18,7 @@ const NavBar3 = ({ retTheme }) => {
 
   // let theme;
   const [theme, setTheme] = useState("");
-  // var theme = "";
   const toggleTheme = () => {
-    // console.log(theme);
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
     retTheme((curr) => (curr === "light" ? "dark" : "light"));
   };

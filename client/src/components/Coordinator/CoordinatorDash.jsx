@@ -60,7 +60,7 @@ const CoordinatorDash = () => {
             </div>
           </div>
           {Ppl ? (
-            <CoordPeople />
+            <CoordPeople theme={theme} />
           ) : Proj ? (
             <CoordProject />
           ) : Diss ? (

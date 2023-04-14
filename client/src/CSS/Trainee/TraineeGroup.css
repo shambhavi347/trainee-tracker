@@ -1,113 +1,74 @@
 * {
   box-sizing: border-box;
 }
-.DivUp2 {
+.body-trainee-people {
   background: linear-gradient(to bottom, #393e46, #00adb5);
-
-  /* background-color: blue; */
-  margin-top: 0;
-  /* border: 20px #00adb5 solid; */
-  /* padding: 2%; */
   height: 100vh;
-  /* margin: -8%; */
-  /* margin-bottom: 15%; */
-  /* overflow: hidden; */
-  overflow-y: scroll;
-  /* border: 2px #00adb5 solid; */
-  padding-bottom: 10%;
-  /* padding-top: -10%; */
+  overflow-y: auto;
+  padding: 2% 20%;
+}
+.coordDeetsTrainee {
+  margin-bottom: 2%;
 }
 
-/* .scroll {
-  height: 100vh;
-  background-color: aqua;
-  overflow-y: scroll;
-} */
-
-.coord-title {
-  width: 100%;
-  height: auto;
-  margin-bottom: -1%;
-  font-size: 200%;
-  padding: 2%;
-  padding-top: 0%;
-  margin-left: 25%;
-  /* background-color: #222831; */
+.CoordDetails {
+  margin: 0% 2%;
 }
 
-.mentor {
-  height: 11%;
-  margin: 2%;
-  font-size: 150%;
-  margin-bottom: -3%;
-  padding-top: -2%;
-  margin-left: 27%;
+.coordNameTrainee {
+  font-size: larger;
 }
 
-.trainee {
-  height: auto;
-  font-size: 180%;
-  padding: 2%;
-  margin-bottom: 6%;
-  /* border: 2px #00adb5 solid; */
+.coordInfo {
+  margin: 2% 5% 0% 5%;
 }
 
-.trainee-title {
-  width: 100%;
-  height: auto;
-  margin-bottom: -1.5%;
-  font-size: 120%;
-  padding: 2%;
-  padding-top: -6%;
-  margin-left: 24%;
-}
-
-.strength-title {
-  width: 100%;
-  height: auto;
-  margin: -8%;
-  margin-bottom: -3.7%;
-  font-size: 80%;
-  padding: 4%;
-  margin-left: 62%;
-  /* border: 2px #00adb5 solid; */
-}
-
-.people {
-  margin: 2%;
-  margin-bottom: -1.5%;
-  font-size: 68%;
-  margin-left: 26.3%;
-  /* background-color: aliceblue; */
-  width: 70%;
-}
-
-.mentor-info {
-  margin-top: 1%;
-  /* background-color: aliceblue; */
-  font-size: medium;
-  width: 70%;
-}
-
-.mentor-email,
-.mentor-phone {
-  border: 1px #eeeeee solid;
+.coordEmailTrainee,
+.coordPhoneTrainee {
+  background-color: #393e46;
+  width: 45%;
   padding: 1%;
   border-radius: 10px;
-  background-color: #393e46;
-  color: #eeeeee;
+  text-align: center;
+  color: #00adb5;
+  border: 1.5px #222831 solid;
 }
 
-.mentor-email {
+.coordEmailTrainee {
   float: left;
 }
 
-.mentor-phone {
+.coordPhoneTrainee {
   float: right;
+}
+
+.traineeTitle {
+  float: left;
+}
+.traineeTitle,
+.traineeStrength {
+  width: 40%;
+}
+.traineeStrength {
+  float: right;
+  text-align: right;
+}
+
+.peopleInd {
+  /* background-color: aliceblue; */
+  margin: 1% 7%;
+  padding: 1% 2%;
+  background-color: #393e46;
+  border: 1px #222831 solid;
+  border-radius: 10px;
+  color: #eeeeee;
 }
 
 .expnd-img-trainee {
   width: 3%;
   float: right;
-  margin-left: 15%;
+}
+
+.expnd-img-trainee:hover {
+  cursor: pointer;
 }

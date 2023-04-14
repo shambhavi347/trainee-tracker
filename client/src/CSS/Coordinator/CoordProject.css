@@ -8,7 +8,8 @@
 
 .event {
   background-color: #222831;
-  height: 75vh;
+  /* height: 75vh; */
+  height: 100%;
   width: 30%;
   overflow-y: auto;
   float: left;
@@ -42,11 +43,12 @@
 
 .projectdiv {
   background-color: #393e46;
-  height: 75vh;
+  /* height: 75vh; */
+  height: 100%;
   width: 70%;
   float: right;
   padding: 1%;
-  border: 2px #00adb5 solid;
+  /* border: 2px #00adb5 solid; */
 }
 
 /* .event{
