@@ -6,14 +6,21 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Switch from "react-switch";
 
-const NavBar5 = () => {
+const NavBar5 = ({ retTheme }) => {
   //navigation
   let navigate = useNavigate();
   // const routeChange = () => {
   //   let path = "/reg-institute";
   //   navigate(path);
   // };
+
+  const [theme, setTheme] = useState("");
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+    retTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
 
   const routeMain = () => {
     let path = "/";
@@ -122,6 +129,10 @@ const NavBar5 = () => {
                 Home Page
               </MenuItem>
             </Link>
+            <MenuItem id="menu-items">
+              <label htmlFor="switch"> Dark Mode </label>{" "}
+              <Switch onChange={toggleTheme} checked={theme === "light"} />
+            </MenuItem>
             <Link to="/trainee-logout">
               <MenuItem id="menu-items" onClick={handleClose}>
                 Logout

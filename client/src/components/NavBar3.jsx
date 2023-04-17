@@ -18,10 +18,13 @@ const NavBar3 = ({ retTheme }) => {
   // };
 
   // let theme;
+<<<<<<< HEAD
   const [theme, setTheme] = useState("light");
   // var theme = "";
+=======
+  const [theme, setTheme] = useState("");
+>>>>>>> fbb110e81b65fe633b60284fdfc96c71549ada6f
   const toggleTheme = () => {
-    // console.log(theme);
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
     retTheme((curr) => (curr === "light" ? "dark" : "light"));
   };

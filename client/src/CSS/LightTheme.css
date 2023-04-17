@@ -382,12 +382,9 @@
 
 #light .announceBox {
   background-color: #eeeeee;
-  /* border: ; */
   box-shadow: 5px 5px 10px #888888;
-  /* background-color: #00adb5; */
   border: 1px #00adb5 solid;
   color: #00adb5;
-  /* color: #eeeeee; */
   font-weight: bold;
 }
 
@@ -409,11 +406,6 @@
 
 #light .senderName {
   color: #0f1010;
-  /* color: #00adb5; */
-  /* font-size: 50px; */
-  /* color: #00adb5;
-  -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: #393e46; */
 }
 
 #light .senderTime {
@@ -424,12 +416,146 @@
   color: #222831;
 }
 
-/* #light #filled-multiline-flexible1 {
-  background-color: #eeeeee;
-  width: 100%;
+/* ----------------------------------------------COORD DASH-------------------------------------------- */
+/* - - - - - - - - COORD GROUP - - - - - - - */
+#light .coord-people-divUp {
+  background: #eeeeee;
 }
 
-#light .announceMsg {
+#light .coordTitle,
+#light .traineeTitle,
+#light .titleTrainee,
+#light .traineeStrength,
+#light .titleTrainee,
+#light .traineeStrength {
+  color: #00adb5;
+}
+
+#light #traineeTileID,
+#light #group_tile1ID {
+  background-color: #aad7d4;
+  color: #0f1010;
+}
+
+#light #traineeTileDivID {
+  background-color: #00adb5;
+  border: 1px #0f1010 solid;
+}
+
+#light .create-grp {
+  background-color: #00adb5;
+}
+
+#light .create-grp:hover {
+  background-color: #aad7d4;
+  border: 2px #00adb5 solid;
+  color: #393e46;
+}
+
+#light .ind-group {
+  background-color: #aad7d4;
+  border: 1px #00adb5 solid;
+  font-weight: bold;
+  color: #0f1010;
+}
+
+#light .mem-name {
+  color: #393e46;
+}
+
+#light .lineCoordName {
+  background-color: #0f1010;
+  height: 2px;
+  opacity: 1;
+}
+
+#light .lineGroupName {
+  background-color: #67bac6;
+  height: 2px;
+  opacity: 1;
+}
+
+/* - - - - - - - - - -COORD PROJECT- - - - - - - - - - */
+#light .event {
+  background-color: #aad7d4;
+}
+
+#light .no-event {
+  color: #0f1010;
+}
+
+#light .add-event-btn {
+  background-color: #00adb5;
+  border: 2px #eeeeee solid;
+}
+#light .btn-msg {
+  color: #eeeeee;
+}
+#light .btn-msg:hover {
+  color: #0f1010;
+}
+#light .add-event-btn:hover {
+  color: #0f1010;
+  background-color: transparent;
+  border: 2px #00adb5 solid;
+}
+
+#light .event-item {
   background-color: #eeeeee;
-  padding: 0;
-} */
+}
+
+#light .event-title,
+#light .event-deadline {
+  color: #0f1010;
+}
+
+#light .project-body {
+  background-color: #eeeeee;
+}
+#light .add-pro-btn {
+  background-color: #00adb5;
+  border: 2px #90dbdf solid;
+  color: #eeeeee;
+}
+
+#light .add-pro-btn:hover {
+  background-color: transparent;
+  color: #00adb5;
+  font-weight: bold;
+  border: 2px #00adb5 solid;
+}
+/* ----------------------------------TRAINEE DASH---------------------------------------------- */
+#light .selector-stud,
+#light .btn-institute-stud,
+#light .btn-trainee-stud,
+#light .btn-coordinator-stud {
+  background-color: #00adb5;
+  color: #eeeeee;
+  font-size: medium;
+}
+
+#light .btn-institute-stud:hover,
+#light .btn-trainee-stud:hover,
+#light .btn-coordinator-stud:hover {
+  background-color: #aad7d4;
+  color: #393e46;
+  font-weight: bold;
+}
+
+/* - - - - - - - - - -TRAINEE PEOPLE- - - - - - - - - - -  */
+#light .body-trainee-people {
+  background: #eeeeee;
+}
+
+#light .coordEmailTrainee,
+#light .coordPhoneTrainee {
+  background-color: #aad7d4;
+  color: #0f1010;
+  border: 1px #00adb5 solid;
+}
+
+#light .peopleInd {
+  background-color: #aad7d4;
+  color: #0f1010;
+  border: 1px #00adb5 solid;
+}

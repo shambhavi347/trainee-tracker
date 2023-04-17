@@ -182,3 +182,29 @@
   color: #eeeeee;
   font-weight: normal;
 }
+
+#traineeTileID {
+  border: 1px #00adb5 solid;
+  background-color: #393e46;
+  color: #eeeeee;
+}
+
+#traineeTileDivID {
+  background-color: #222831;
+  border: 1px #00adb5 solid;
+}
+
+#group_tile1ID {
+  background-color: #393e46;
+  color: #eeeeee;
+}
+
+.lineCoordName {
+  background-color: #393e46;
+  opacity: 0.4;
+}
+
+.lineGroupName {
+  background-color: #393e46;
+  opacity: 0.4;
+}

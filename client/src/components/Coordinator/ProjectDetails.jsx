@@ -1,53 +1,140 @@
-import React, { useState, useEffect } from "react";
-import NavBar2 from "../NavBar2";
-import "../../CSS/NavBar3.css";
-import "../Coordinator/CoordProject";
-import { getProdesc, getProtitle } from "../../service/api";
-import "../../CSS/Coordinator/ProjectDetails.css";
+import React, { useEffect, useState } from "react";
+import { getGroupAssign, getGroups, assignProject } from "../../service/api";
+import { cancel } from "../../Images/Images";
 
-const ProjectDetails = () => {
-  const [titles, setTitles] = useState("");
+const ProjectDetails = ({ project }) => {
+  const [groups, setGroups] = useState([]);
+  const [groupAssign, setGroupAssign] = useState([]);
+  const [groupEx, setGroupEx] = useState(false);
+  const [groupName, setGroupName] = useState("");
+  const [groupTitle, setGroupTitle] = useState("");
+  const [errorPro, setErrorPro] = useState("");
+  const [proGroup, setProGroup] = useState([]);
+
   useEffect(() => {
-    const fetchTitles = async () => {
-      const response = await getProtitle();
-      setTitles(response);
-    };
-    fetchTitles();
-  }, []);
+    groups.map((val) => {
+      if (project.group_id === val._id) setProGroup(val);
+    });
+    console.log(proGroup);
+  }, [groupAssign]);
 
-  const [desc, setDesc] = useState("");
   useEffect(() => {
-    const fetchDesc = async () => {
-      const response = await getProdesc();
-      setDesc(response);
+    const fetchGroups = async () => {
+      try {
+        const data1 = await getGroups();
+        const data = await getGroupAssign();
+        setGroups(data1);
+        setGroupAssign(data);
+        groupAssign.map((val) => {
+          setGroups((oldValue) => {
+            return oldValue.filter((group) => group._id !== val);
+          });
+        });
+        // console.log(groups);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    fetchDesc();
-  }, []);
+    fetchGroups();
+  }, [groups]);
 
+  const handleYes = async (name, title) => {
+    try {
+      console.log(name + " " + title);
+
+      const data = await assignProject({
+        name,
+        title,
+      });
+      console.log(data);
+      if (data.message === "Saved") {
+        setGroups((oldValue) => {
+          return oldValue.filter((group) => group.name !== name);
+        });
+        setGroupEx(false);
+      } else {
+        // console.log("error");
+        setErrorPro(data.error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
-      <NavBar2 />
-      <div className="main-pro-del">
-        <div className="head-pro-del">
-          {/* {titles.map((val) => ( */}
-          <h3>{titles}</h3>
-          {/* ))} */}
-        </div>
-        <div className="desc-pro-del">
+      <div>
+        {/* ProjectDetails */}
+        <div>{project.title}</div>
+        <div>{project.description}</div>
+        {project.group_id === "null" ? (
           <>
-            <div className="div1">
-              <h3>Description</h3>
-              <div className="content">
-                <p>{desc}hii</p>
-                <button className="editme">Edit</button>
-              </div>
-            </div>
+            <div>
+              <select
+                name={project.title}
+                id=""
+                value={groupName}
+                onChange={(e) => {
+                  setGroupEx(true);
 
-            <div className="div2">
-              <h3>Group Details</h3>
+                  setGroupName(e.target.value);
+                  setGroupTitle(e.target.name);
+                }}
+              >
+                {groups.length > 0 ? (
+                  <>
+                    <option value="null">Assign Group</option>
+                    {groups.map((val) => (
+                      <option value={val.name}>Group {val.name}</option>
+                    ))}
+                  </>
+                ) : (
+                  <option> No Groups</option>
+                )}
+              </select>
             </div>
           </>
-        </div>
+        ) : (
+          <>
+            <div>
+              {proGroup ? (
+                <>
+                  Group {proGroup.name}
+                  Members:{" "}
+                  {proGroup.members?.map((val) => (
+                    <div>{val.first_name}</div>
+                  ))}
+                </>
+              ) : null}
+            </div>
+          </>
+        )}
+
+        {groupEx ? (
+          <>
+            <div className="expanded-div">
+              <div className="event-detail">
+                <button
+                  className="close-btn-event"
+                  onClick={() => setGroupEx(false)}
+                >
+                  <img
+                    className="img-event"
+                    src={cancel}
+                    alt="close model box"
+                  />
+                </button>
+                <div className="cnfrm-group">
+                  <p className="pro-error">{errorPro}</p>
+                  Confirm Group {groupName} for {groupTitle} ?
+                  <button onClick={() => handleYes(groupName, groupTitle)}>
+                    Yes
+                  </button>
+                  <button onClick={() => setGroupEx(false)}>No</button>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : null}
       </div>
     </>
   );

@@ -56,9 +56,9 @@
   padding: 3%;
   border-radius: 15px;
 }
-::placeholder {
+/* ::placeholder {
   color: black;
-}
+} */
 
 .drop-down-coord {
   font-size: medium;

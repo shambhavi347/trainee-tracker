@@ -230,23 +230,22 @@ router.post("/update", traineeAuthenticate, async (req, res) => {
   }
 });
 
-// traineeAuthenticate => const id = req.rootUser._id; => your object id
-
-// const coord_id = await Class.find({traineeID: id})
-// const clases = await Class.find({coordinatorId: coord_id})
-
-// res.send(classes)
 router.get("/get-trainee-Data", traineeAuthenticate, async (req, res) => {
   try {
     let Traineeid = [];
-
-    const id = req.rootUser._id;
-    const idofcoor = await Class.findOne({ traineeID: id });
-    const trada = await Class.find({ coordinatorId: idofcoor });
-    trada.map((val) => Traineeid.push(val.traineeID));
-    const tname = await Student.find({ _id: { $in: Traineeid } });
-
-    res.send(tname);
+    const id = req.rootUser.id;
+    const traineeData = await Trainee.findOne({ _id: id });
+    const studData = await Student.findOne({ email: traineeData.email });
+    const CoordData = await Class.findOne({ traineeID: studData._id });
+    // console.log(CoordData);
+    const TraineeData = await Class.find({
+      coordinatorID: CoordData.coordinatorID,
+    });
+    TraineeData.map((val) => {
+      Traineeid.push(val.traineeID);
+    });
+    const StudentData = await Student.find({ _id: { $in: Traineeid } });
+    res.send(StudentData);
   } catch (error) {
     console.log(error);
   }

@@ -2,46 +2,46 @@ import React, { useState, useEffect } from "react";
 import "../../CSS/Coordinator/CoordProject.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import { display } from "@mui/system";
-// import "react-router-dom";
-// import { Link } from "react-router-dom";
 import "../Coordinator/ProjectDetails";
-import { add, cancel } from "../../Images/Images";
-import { createEvent, getEvents, postProject } from "../../service/api";
-// var events = {
-//   backgroundColor: "#222831",
-//   width: "8%",
-//   height: "auto",
-//   padding: "1%",
-//   border: "1px #00adb5 solid",
-//   borderRadius: "50%",
-// };
+import { add, arrowLeft, arrowRight, cancel } from "../../Images/Images";
+import {
+  createEvent,
+  getEvents,
+  postProject,
+  getProjects,
+} from "../../service/api";
+import ProjectDetails from "../Coordinator/ProjectDetails";
 
 const CoordProject = () => {
   const [coordPro, setCoordPro] = useState({
     title: "",
     description: "",
-    coordinator_id: "",
   });
-
-  // const [display, setDisplay] = useState(false); //will not show students details to us until we make display true
-  // const [detail, setDetail] = useState(true);
-  const [item, setItem] = useState("");
-  const [data, setData] = useState([]);
-  // const [expnd, setExpnd] = useState("none");
-  const [des, setDes] = useState("");
-  const [pro, setPro] = useState([]);
-  // const [selectedDate1, setSelectedDate1] = useState(null);
-  // const [selectedDate2, setSelectedDate2] = useState(null);
-  // const [selectedDate3, setSelectedDate3] = useState(null);
-  // const [selectedDate4, setSelectedDate4] = useState(null);
+  const [proEx, setProEx] = useState(false);
+  const [errorPro, setErrorPro] = useState("");
   const [event, setEvent] = useState([]);
   const [eventExp, setEventExp] = useState(false);
   const [newEvent, setNewEvent] = useState({ event_name: "", deadline: "" });
-
-  var dateList = new Array();
-  let strDescending = [];
+  const [projects, setProjects] = useState([]);
+  const [proTitleEx, setProTitleEx] = useState(true);
+  const [displayDesc, setDisplayDesc] = useState(false);
+  const [proValue, setProValue] = useState([]);
   var date, dob;
+
+  //get projects
+  useEffect(() => {
+    const getProjectList = async () => {
+      try {
+        const data = await getProjects();
+        setProjects(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProjectList();
+  }, [projects]);
+
+  //get events
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -49,7 +49,6 @@ const CoordProject = () => {
         const sortedAsc = data.sort(function (a, b) {
           return new Date(a.timestamp) - new Date(b.timestamp);
         });
-        console.log(sortedAsc);
         setEvent(sortedAsc);
         event.map((val) => {
           date = new Date(val.timestamp);
@@ -63,12 +62,6 @@ const CoordProject = () => {
 
     fetchEvent();
   }, [event]);
-
-  // dateList.map((val) => {
-  //   console.log("deadline " + val);
-  // });
-  // console.log("Dates " + dateList.length);
-  // console.log(event);
 
   const addEvent = async (e) => {
     try {
@@ -86,90 +79,37 @@ const CoordProject = () => {
       } else {
         window.alert(data.error);
       }
-      // console.log(data);
-      // const res = await data.json();
-      // console.log(res.message);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const addPro = async (e) => {
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    console.log(name + " " + value);
+    setCoordPro({ ...coordPro, [name]: value });
+  };
+
+  const handleAddProject = async (e) => {
     try {
-      // e.preventDefault();
-      console.log(coordPro);
+      e.preventDefault();
+      console.log(coordPro.title + coordPro.description);
       const data = await postProject({
         title: coordPro.title,
         description: coordPro.description,
       });
-      if (data.message) {
-        window.alert(data.message);
-        setData([...data, item]);
-        setPro([...pro, des]);
-        setItem("");
-        setDes("");
+      console.log(data);
+      if (data.message === "Saved") {
+        setCoordPro({});
+        setProEx(false);
       } else {
-        window.alert(data.error);
+        setErrorPro(data.error);
       }
     } catch (error) {
       console.log(error);
     }
   };
-
-  // let name, value;
-  // const handleChange = (e) => {
-  //   e.preventDefault();
-  //   name = e.target.name;
-  //   value = e.target.value;
-  //   setNewEvent({ ...newEvent, [name]: value });
-  // };
-
-  // const deleteItem = (id) => {
-  //   const newData = data.filter((item) => {
-  //     return item.id !== id;
-  //   });
-  //   setData(newData);
-  // };
-
-  // const PostEvent = async () => {
-  //   const event = await fetch("/api/coordinator/project", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       title: "",
-  //       timestamp: "",
-  //       coordinator_id: "",
-  //     }),
-  //   });
-  //   if (event.status === 200) {
-  //     window.alert("Event added successfully");
-  //     setPro([...pro, event.json()]);
-  //   } else {
-  //     window.alert("Error adding Event");
-  //   }
-  // };
-
-  // const PostData = async () => {
-  //   const res = await fetch("/api/coordinator/project", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       title: "",
-  //       description: "",
-  //       coordinator_id: "",
-  //     }),
-  //   });
-  //   if (res.status === 200) {
-  //     window.alert("Successfully added project");
-  //     setItem("");
-  //   } else {
-  //     window.alert("Error adding project");
-  //   }
-  // };
 
   return (
     <>
@@ -182,7 +122,6 @@ const CoordProject = () => {
 
           {event.length ? (
             <>
-              {" "}
               <div>
                 {event.map((val, index) => (
                   <div className="event-item" key={val.id}>
@@ -190,171 +129,120 @@ const CoordProject = () => {
                     <div className="event-deadline">
                       {new Date(val.timestamp).toLocaleDateString("en-US")}
                     </div>
-                    {/* {console.log("Date " + index)} */}
                   </div>
                 ))}
               </div>
             </>
           ) : (
             <>
-              <div className="event-title">Add Events and their Deadlines</div>
+              <div className="no-event">No Events Added Yet </div>
             </>
           )}
         </div>
-
-        <div className="projectdiv">
-          <div className="main-coord-pro">
-            <div className="addItem">
-              <input
-                className="title"
-                type="text"
-                placeholder="✍🏽Add Project Title.."
-                value={item}
-                onChange={(e) => setItem(e.target.value)}
-              />
-            </div>
-
-            <div className="confirm">
-              <button
-                className="btn-effect"
-                onClick={() => {
-                  addPro();
-                }}
-              >
-                ADD PROJECT
-              </button>
-            </div>
-
-            <div className="description-bar">
-              <textarea
-                rows={8}
-                cols={52}
-                className="description"
-                placeholder="Add Project Description"
-                value={des}
-                onChange={(e) => setDes(e.target.value)}
-              ></textarea>
-            </div>
-          </div>
-        </div>
-        {/* <div style={{ padding: "2%" }}>
-          {event.length ? (
+        <div className="project-body">
+          {proTitleEx ? (
             <>
-              {" "}
-              <div
-
-              >
-                {event.map((val) => (
-                  <div
-                    key={val.id}
-                
-                  >
-                    {val.title}
-                    <t></t>
-                  </div>
-                ))}
+              <div className="add-pro-div">
+                <button className="add-pro-btn" onClick={() => setProEx(true)}>
+                  Add Projects
+                </button>
               </div>
-            </>
-          ) : (
-            <>
-              <div className="event-title">Add Events and their Deadlines</div>
-            </>
-          )}
-
-          <div className="event" style={events}>
-            <div className="add-event">
-              <button
-                className="add-event-btn"
-                onClick={() => setEventExp(true)}
-              >
-                <img className="add-event-img" src={add} alt="Add Event"></img>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="main-coord-pro">
-          <div className="addItem">
-            <input
-              className="title"
-              type="text"
-              placeholder="✍🏽Add Project Title.."
-              value={item}
-              onChange={(e) => setItem(e.target.value)}
-            />
-          </div>
-
-          <div className="confirm">
-            <button
-              className="btn-effect"
-              onClick={() => {
-                addItem();
-                addDes();
-              }}
-            >
-              ADD PROJECT
-            </button>
-          </div>
-
-          <div className="description-bar">
-            <textarea
-              rows={6}
-              cols={52}
-              className="description"
-              placeholder="Add Project Description"
-              value={des}
-              onChange={(e) => setDes(e.target.value)}
-            ></textarea>
-          </div>
-        </div>
-
-        <div className="divlower">
-          <div className="Head-coord-pro">
-            <h3>List Of Projects</h3>
-          </div>
-          <div className="Line">
-            <p className="line">
-              ______________________________________________________________________________________________________________________________________
-            </p>
-          </div>
-
-          <div className="showItem">
-            <div className="lists">
-              {data.map((element, index) => {
-                return (
+              <div className="pro-lists">
+                Project List
+                {projects ? (
                   <>
-                    <div className="eachItem" key={index}>
-                      <h3>{element}</h3>
-                    </div>
-
-                    <div className="view">
-                      <Link to="/pro-details">
-                        <button
-                          className="btn-view"
-                          placeholder="View"
-                          title="View Details"
-                          // onClick={() => {
-                          //   setDetail(false);
-                          //   setDisplay(true);
-                          // }}
-                        ></button>
-                      </Link>
-                    </div>
-
-                    <div className="trash">
-                      <button
-                        className="btn-trash"
-                        placeholder="Bin"
-                        title="Remove Item"
-                        onClick={() => deleteItem(index)}
-                      ></button>
-                    </div>
+                    {projects.map((val) => (
+                      <>
+                        <div
+                          className="pro-tile"
+                          onClick={() => {
+                            setProTitleEx(false);
+                            setDisplayDesc(true);
+                            setProValue(val);
+                          }}
+                        >
+                          {val.title}
+                          <button className="arrowDown-btn">
+                            <img
+                              src={arrowRight}
+                              alt=""
+                              className="arrowDown-img-pro"
+                            />
+                          </button>
+                        </div>
+                      </>
+                    ))}
                   </>
-                );
-              })}
-              ;
+                ) : null}
+              </div>
+            </>
+          ) : null}
+
+          {displayDesc ? (
+            <>
+              <div>
+                <div
+                  className="img-arrow-left"
+                  onClick={() => {
+                    setProTitleEx(true);
+                    setDisplayDesc(false);
+                  }}
+                >
+                  <img src={arrowLeft} alt="" className="img-arr" />
+                </div>
+                {/* value - {proValue.title} */}
+                <ProjectDetails project={proValue} />
+              </div>
+            </>
+          ) : null}
+        </div>
+
+        {proEx ? (
+          <>
+            <div className="expanded-div-pro">
+              <div className="pro-detail">
+                <button
+                  className="close-btn-pro"
+                  onClick={() => setProEx(false)}
+                >
+                  <img className="img-pro" src={cancel} alt="close model box" />
+                </button>
+                <div className="pro-form-body">
+                  <p className="pro-error">{errorPro}</p>
+                  <form method="POST">
+                    <input
+                      className="pro-input-title"
+                      type="text"
+                      name="title"
+                      id=""
+                      placeholder="Project Title..."
+                      value={coordPro.title}
+                      onChange={handleChange}
+                    />
+                    <textarea
+                      className="pro-input-desc"
+                      placeholder="Project Description..."
+                      name="description"
+                      id=""
+                      cols="80"
+                      rows="10"
+                      value={coordPro.description}
+                      onChange={handleChange}
+                    />
+
+                    <button
+                      className="pro-input-btn"
+                      onClick={handleAddProject}
+                    >
+                      Submit
+                    </button>
+                  </form>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>*/}
+          </>
+        ) : null}
+
         {eventExp ? (
           <>
             <div className="expanded-div">
@@ -401,27 +289,3 @@ const CoordProject = () => {
 };
 
 export default CoordProject;
-
-{
-  /* <div className="list-btn">
-          <button
-            className="btn-effect"
-            data-sm-link-text="Remove All"
-            onClick={removeAll}
-          >
-            <span>Remove All</span>
-          </button>
-        </div>
-      </div> */
-}
-
-{
-  /* <div className="plus">
-              <i
-                className="fa-regular fa-square-plus add-btn"
-                title="Add Item"
-                // onClick={addItem}
-                onClick={() => setExpnd("none")}
-              ></i>
-            </div> */
-}
