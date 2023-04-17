@@ -258,19 +258,73 @@ router.get("/get-events", coordAuthenticate, async (req, res) => {
 router.post("/add-project", coordAuthenticate, async (req, res) => {
   const { title, description } = req.body;
   const id = req.rootUser._id;
-  // console.log(title);
-  // console.log(description);
-  // console.log(id);
   const pro = new Project({
-    title: title,
-    description: description,
+    title,
+    description,
     coordinator_id: id,
+    group_id: "null",
   });
-  const new_project = await pro.save();
-  if (new_project) {
-    res.status(200).json({ message: "Project successfully added!✌" });
+  const new_pro = await pro.save();
+  if (new_pro) {
+    res.status(200).json({ message: "Saved" });
   } else {
-    res.status(422).json({ error: "Failed to add Projecg☹" });
+    res.status(422).json({ error: "Failed to add Project" });
+  }
+});
+
+router.get("/get-projects", coordAuthenticate, async (req, res) => {
+  try {
+    const id = req.rootUser._id;
+    // console.log(id);
+    const projects = await Project.find({ coordinator_id: id });
+    // console.log(projects);
+    res.send(projects);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/assign-project", coordAuthenticate, async (req, res) => {
+  try {
+    const { name, title } = req.body;
+    const ID = req.rootUser._id;
+    console.log(name + " " + title);
+    const groupID = await Group.findOne({
+      $and: [{ coordinatorID: ID }, { name: name }],
+    });
+    // console.log(groupID);
+    const data = await Project.findOneAndUpdate(
+      { $and: [{ coordinator_id: ID }, { title: title }] },
+      { $set: { group_id: groupID._id } }
+    );
+    if (data) {
+      res.status(200).json({ message: "Saved" });
+    } else {
+      res.status(422).json({ error: "Failed to add Project" });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/get-groups-assign", coordAuthenticate, async (req, res) => {
+  try {
+    const ID = req.rootUser.id;
+    // const groupID = await Group.distinct("_id", { coordinatorID: ID });
+    // console.log(groupID);
+    const groupAssignID = await Project.distinct("group_id", {
+      coordinator_id: ID,
+    });
+
+    const newGroupAssign = groupAssignID.filter((val) => {
+      return val !== "null";
+    });
+    // console.log(newGroupAssign);
+    res.send(newGroupAssign);
+    // const newGroupID = groupID.filter((item) => !newGroupAssign.includes(item));
+    // console.log(newGroupID);
+  } catch (error) {
+    console.log(error);
   }
 });
 

@@ -495,32 +495,32 @@ export const postProject = async (data) => {
   }
 };
 
-export const getProtitle = async () => {
+export const getProjects = async () => {
   try {
-    let respone = await axios.get("/get-project-title");
+    let respone = await axios.get("/get-projects");
     return respone.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getProdesc = async () => {
+export const getGroupAssign = async () => {
   try {
-    let respone = await axios.get("/get-project-desc");
+    let respone = await axios.get("/get-groups-assign");
     return respone.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-// export const postEvents = async (data) => {
-//   try {
-//     const response = await axios.post("/project-events", data);
-//     return response.data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const assignProject = async (data) => {
+  try {
+    const response = await axios.post("/assign-project", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getTraineeData = async () => {
   try {

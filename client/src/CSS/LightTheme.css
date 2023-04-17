@@ -382,12 +382,9 @@
 
 #light .announceBox {
   background-color: #eeeeee;
-  /* border: ; */
   box-shadow: 5px 5px 10px #888888;
-  /* background-color: #00adb5; */
   border: 1px #00adb5 solid;
   color: #00adb5;
-  /* color: #eeeeee; */
   font-weight: bold;
 }
 
@@ -478,6 +475,55 @@
   opacity: 1;
 }
 
+/* - - - - - - - - - -COORD PROJECT- - - - - - - - - - */
+#light .event {
+  background-color: #aad7d4;
+}
+
+#light .no-event {
+  color: #0f1010;
+}
+
+#light .add-event-btn {
+  background-color: #00adb5;
+  border: 2px #eeeeee solid;
+}
+#light .btn-msg {
+  color: #eeeeee;
+}
+#light .btn-msg:hover {
+  color: #0f1010;
+}
+#light .add-event-btn:hover {
+  color: #0f1010;
+  background-color: transparent;
+  border: 2px #00adb5 solid;
+}
+
+#light .event-item {
+  background-color: #eeeeee;
+}
+
+#light .event-title,
+#light .event-deadline {
+  color: #0f1010;
+}
+
+#light .project-body {
+  background-color: #eeeeee;
+}
+#light .add-pro-btn {
+  background-color: #00adb5;
+  border: 2px #90dbdf solid;
+  color: #eeeeee;
+}
+
+#light .add-pro-btn:hover {
+  background-color: transparent;
+  color: #00adb5;
+  font-weight: bold;
+  border: 2px #00adb5 solid;
+}
 /* ----------------------------------TRAINEE DASH---------------------------------------------- */
 #light .selector-stud,
 #light .btn-institute-stud,

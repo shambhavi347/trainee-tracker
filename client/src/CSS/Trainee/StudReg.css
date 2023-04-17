@@ -121,9 +121,9 @@ input {
   outline: 0;
   font-size: medium;
 }
-::placeholder {
+/* ::placeholder {
   color: black;
-}
+} */
 
 /* input[file] {
   border: 0 !important;
