@@ -84,7 +84,7 @@ const TraineeDiscuss = () => {
   });
   return (
     <>
-      <div className="discUp">
+      <div className="discUp" style={{ width: "80%", float: "right" }}>
         <div className="announceBox">
           {showInput ? (
             <div className="">

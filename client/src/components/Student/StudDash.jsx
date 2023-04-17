@@ -6,6 +6,7 @@ import TraineeDiscuss from "./TraineeDiscuss";
 
 import "../../CSS/Trainee/TraineeDash.css";
 import { createContext } from "react";
+import Announcment from "./Announcment";
 
 export const ThemeContext = createContext(null);
 const StudDash = () => {
@@ -62,7 +63,8 @@ const StudDash = () => {
           ) : Proj ? (
             <TraineeProject />
           ) : Diss ? (
-            <TraineeDiscuss />
+            // <TraineeDiscuss />
+            <Announcment />
           ) : (
             <p> ERROR </p>
           )}

@@ -1,0 +1,8 @@
+.trainee-event-body {
+  width: 20%;
+  height: 100vh;
+  /* background-color: black; */
+  float: left;
+  background: linear-gradient(to bottom, #393e46, #00adb5);
+  /* background: black; */
+}

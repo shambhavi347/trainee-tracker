@@ -263,4 +263,16 @@ router.get("/get-Coordinator-Data", traineeAuthenticate, async (req, res) => {
   }
 });
 
+router.get("/get-event-trainess", traineeAuthenticate, async (req, res) => {
+  try {
+    const ID = req.rootUser._id;
+    const train = await Trainee.findOne({ _id: ID });
+    const Stud = await Student.findOne({ email: train.email });
+    const classes = await Coordinator.findOne({ traineeID: Stud._id });
+    console.log(classes);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

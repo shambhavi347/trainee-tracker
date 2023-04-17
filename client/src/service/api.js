@@ -578,6 +578,16 @@ export const getEvents = async () => {
   }
 };
 
+export const getEventTrainee = async () => {
+  try {
+    let response = await axios.get("/get-event-trainees");
+    // console.log("Res: " + respone);
+    return response.data;
+  } catch (error) {
+    // console.log(error);
+  }
+};
+
 // get messages to coordinator
 
 export const GetDetails = async () => {
