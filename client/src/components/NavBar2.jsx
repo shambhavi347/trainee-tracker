@@ -7,7 +7,7 @@ import "../CSS/NavBar2.css";
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 const NavBar2 = ({ retTheme }) => {
-  const [theme, setTheme] = useState("");
+  const [theme, setTheme] = useState("light");
   const toggleTheme = () => {
     setTheme((curr) => (curr === "dark" ? "light" : "dark"));
     retTheme((curr) => (curr === "dark" ? "light" : "dark"));
@@ -24,7 +24,7 @@ const NavBar2 = ({ retTheme }) => {
         </div>
         <div className="switch-toggle">
           <label htmlFor="switch" className="switchLabel">
-            {theme === "light" ? "Light Mode" : "Dark Mode"}
+            {theme === "dark" ? "Dark Mode" : "Light Mode"}
           </label>
           <DarkModeSwitch onChange={toggleTheme} checked={theme === "dark"} style={{color:theme === "light" ? "FFD966" : "eeeeee"}} />
         </div>

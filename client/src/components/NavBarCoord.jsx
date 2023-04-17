@@ -7,11 +7,12 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Switch from "react-switch";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 
 const NavBarCoord = ({ retTheme }) => {
   let navigate = useNavigate();
 
-  const [theme, setTheme] = useState("");
+  const [theme, setTheme] = useState("light");
   const toggleTheme = () => {
     // console.log(theme);
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
@@ -126,9 +127,12 @@ const NavBarCoord = ({ retTheme }) => {
             <MenuItem id="menu-items" onClick={handlePassword}>
               Change Password
             </MenuItem>
-            <MenuItem id="menu-items">
-              <label htmlFor="switch"> Dark Mode </label>{" "}
-              <Switch onChange={toggleTheme} checked={theme === "light"} />
+            <MenuItem id="menu-items" style={{color:theme === "light" ? "#FFB319" : "#00abd5"}} className="switch-toggle-coord">
+              <label htmlFor="switch" className="switchLabel-coord"> 
+              {theme === "dark" ? "Dark Mode" : "Light Mode"}
+              </label>
+              {/* <Switch onChange={toggleTheme} checked={theme === "light"} /> */}
+              <DarkModeSwitch onChange={toggleTheme} checked={theme === "dark"} style={{color:theme === "light" ? "FFB319" : "lightblue"}} />
             </MenuItem>
             <Link to="/logout">
               <MenuItem id="menu-items" onClick={handleClose}>

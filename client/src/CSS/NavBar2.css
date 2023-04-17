@@ -49,8 +49,20 @@
   margin: 5% 0%;
   float: left;
 }
+.switchLabel-coord {
+  /* color: #00adb5; */
+  font-size: medium;
+  margin: 5% 0%;
+  float: left;
+}
 .switch-toggle label {
-  margin: 7px;
+  margin: 4px;
+}
+.switch-toggle-coord label {
+  margin: 2px;
+}
+#light .switchLabel-coord {
+  color: red;
 }
 /* #light {
   background-color: #ecf9ff;
