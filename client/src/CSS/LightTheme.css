@@ -542,6 +542,31 @@
   font-weight: bold;
 }
 
+/* - - - - - - - - - - - TRAINEE EVENT- - - - - - -- - - - -  */
+#light .trainee-event-body {
+  background: #eeeeee;
+}
+
+#light .eve-main-trainee {
+  background-color: #aad7d4;
+  border: 2px #00adb5 solid;
+}
+
+#light .eve-title {
+  color: #0f1010;
+}
+
+#light .eve-timestamp {
+  color: #393e46;
+}
+
+#light .eve-trainee {
+  border-bottom: 1px #00adb5 solid;
+}
+
+#light .no-work {
+  color: #393e46;
+}
 /* - - - - - - - - - -TRAINEE PEOPLE- - - - - - - - - - -  */
 #light .body-trainee-people {
   background: #eeeeee;

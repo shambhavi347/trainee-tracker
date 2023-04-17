@@ -568,6 +568,16 @@ export const createEvent = async (data) => {
   }
 };
 
+export const postDeleteEvent = async (data) => {
+  try {
+    const response = await axios.post("/delete-event", data);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getEvents = async () => {
   try {
     let response = await axios.get("/get-events");

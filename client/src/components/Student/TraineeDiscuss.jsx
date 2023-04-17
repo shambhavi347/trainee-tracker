@@ -84,8 +84,11 @@ const TraineeDiscuss = () => {
   });
   return (
     <>
-      <div className="discUp" style={{ width: "80%", float: "right" }}>
-        <div className="announceBox">
+      <div className="discUp" style={{ width: "75%", float: "right" }}>
+        <div
+          className="announceBox"
+          style={{ marginLeft: "15%", marginRight: "18%" }}
+        >
           {showInput ? (
             <div className="">
               <TextField
@@ -132,7 +135,10 @@ const TraineeDiscuss = () => {
           )}
         </div>
 
-        <div className="msgsDiv">
+        <div
+          className="msgsDiv"
+          style={{ marginLeft: "15%", marginRight: "18%" }}
+        >
           {details.map((item, index) => (
             <div className="msgDivUp">
               <div className="msgDeet">

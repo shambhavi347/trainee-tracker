@@ -18,6 +18,7 @@ import loading from "../Images/loading.gif";
 import add from "../Images/add.png";
 import icon from "../Images/icon.png";
 import resume from "../Images/resume.png";
+import bin from "../Images/bin.png";
 export {
   cdacLogo,
   instagram,
@@ -39,4 +40,5 @@ export {
   add,
   icon,
   resume,
+  bin,
 };

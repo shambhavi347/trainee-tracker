@@ -993,6 +993,7 @@ router.post("/create-pass", async (req, res) => {
     } else {
       const trainee = await Trainee.findOne({ _id: userId });
       if (trainee) {
+        console.log("Trainee");
         const isMatch = await bcrypt.compare(password, trainee.password);
         if (isMatch)
           return res

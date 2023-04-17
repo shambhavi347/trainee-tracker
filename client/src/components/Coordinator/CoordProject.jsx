@@ -3,12 +3,13 @@ import "../../CSS/Coordinator/CoordProject.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Coordinator/ProjectDetails";
-import { add, arrowLeft, arrowRight, cancel } from "../../Images/Images";
+import { add, arrowLeft, arrowRight, cancel, bin } from "../../Images/Images";
 import {
   createEvent,
   getEvents,
   postProject,
   getProjects,
+  postDeleteEvent,
 } from "../../service/api";
 import ProjectDetails from "../Coordinator/ProjectDetails";
 
@@ -26,6 +27,8 @@ const CoordProject = () => {
   const [proTitleEx, setProTitleEx] = useState(true);
   const [displayDesc, setDisplayDesc] = useState(false);
   const [proValue, setProValue] = useState([]);
+  const [deleteEventEx, setDeleteEventEx] = useState(false);
+  const [deleteEvent, setDeleteEvent] = useState([]);
   var date, dob;
 
   //get projects
@@ -111,6 +114,20 @@ const CoordProject = () => {
     }
   };
 
+  const handleDelEvent = async () => {
+    // console.log(event);
+
+    try {
+      console.log(deleteEvent._id);
+      const data = await postDeleteEvent({ eventID: deleteEvent._id });
+      // console.log(data);
+      if (data.message === "Deleted") setDeleteEventEx(false);
+      else setErrorPro(data.error);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="body-coord-pro">
@@ -126,6 +143,16 @@ const CoordProject = () => {
                 {event.map((val, index) => (
                   <div className="event-item" key={val.id}>
                     <div className="event-title">{val.title}</div>
+                    <button
+                      className="bin-btn"
+                      onClick={() => {
+                        setDeleteEventEx(true);
+                        setDeleteEvent(val);
+                      }}
+                    >
+                      {/* delete */}
+                      <img src={bin} alt="" className="bin-img" />
+                    </button>
                     <div className="event-deadline">
                       {new Date(val.timestamp).toLocaleDateString("en-US")}
                     </div>
@@ -278,6 +305,31 @@ const CoordProject = () => {
                   <button className="event-submit" onClick={addEvent}>
                     Add
                   </button>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : null}
+
+        {deleteEventEx ? (
+          <>
+            <div className="expanded-div">
+              <div className="event-detail">
+                <button
+                  className="close-btn-event"
+                  onClick={() => setDeleteEventEx(false)}
+                >
+                  <img
+                    className="img-event"
+                    src={cancel}
+                    alt="close model box"
+                  />
+                </button>
+                <div className="cnfrm-group">
+                  <p className="pro-error">{errorPro}</p>
+                  Do you want to delete event {deleteEvent.title} ?
+                  <button onClick={handleDelEvent}>Yes</button>
+                  <button onClick={() => setDeleteEventEx(false)}>No</button>
                 </div>
               </div>
             </div>

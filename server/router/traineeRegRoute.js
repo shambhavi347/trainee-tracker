@@ -12,6 +12,7 @@ const Student = require("../model/studentSchema");
 const Class = require("../model/classSchema");
 const Coordinator = require("../model/coordinatorSchema");
 const Trainee = require("../model/traineeSchema");
+const Event = require("../model/eventsSchema");
 //trainee Regestration
 router.post("/trainee-reg", async (req, res) => {
   try {
@@ -263,16 +264,36 @@ router.get("/get-Coordinator-Data", traineeAuthenticate, async (req, res) => {
   }
 });
 
-router.get("/get-event-trainess", traineeAuthenticate, async (req, res) => {
-  try {
-    const ID = req.rootUser._id;
-    const train = await Trainee.findOne({ _id: ID });
-    const Stud = await Student.findOne({ email: train.email });
-    const classes = await Coordinator.findOne({ traineeID: Stud._id });
-    console.log(classes);
-  } catch (error) {
-    console.log(error);
-  }
+// router.get("/get-event-trainees", traineeAuthenticate, async (req, res) => {
+//   try {
+//     const ID = req.rootUser._id;
+//     const train = await Trainee.findOne({ _id: ID });
+//     const Stud = await Student.findOne({ email: train.email });
+//     const classes = await Class.findOne({ traineeID: Stud._id });
+//     const events = await Event.find({ coordinatorID: classes.coordinator_id });
+//     console.log(events);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+router.get("/get-event-trainees", traineeAuthenticate, (req, res) => {
+  const ID = req.rootUser._id;
+  Trainee.findOne({ _id: ID })
+    .then((data) => {
+      Student.findOne({ email: data.email })
+        .then((data) => {
+          Class.findOne({ traineeID: data._id })
+            .then((data) => {
+              Event.find({ coordinator_id: data.coordinatorID })
+                .then((data) => res.send(data))
+                .catch((err) => console.log(err));
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

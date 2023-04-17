@@ -1,8 +1,49 @@
 .trainee-event-body {
-  width: 20%;
+  width: 25%;
   height: 100vh;
-  /* background-color: black; */
   float: left;
   background: linear-gradient(to bottom, #393e46, #00adb5);
-  /* background: black; */
+  padding: 2.5% 0% 2.5% 3%;
+}
+
+.eve-main-trainee {
+  background-color: #393e46;
+  border: 2px #222831 solid;
+  color: #eeeeee;
+  width: 100%;
+  border-radius: 10px;
+  padding: 3%;
+  height: auto;
+}
+
+.eve-heading-trainee {
+  text-align: center;
+  color: #00adb5;
+}
+
+.eve-title {
+  color: #00adb5;
+  font-size: medium;
+  font-weight: bold;
+  width: 50%;
+  float: left;
+}
+
+.eve-timestamp {
+  /* background-color: beige; */
+  /* color: #222831; */
+  color: #eeeeee;
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+
+.eve-trainee {
+  margin: 2% 0%;
+  padding: 1% 0%;
+  border-bottom: 1px #222831 solid;
+}
+
+.no-work {
+  text-align: center;
 }

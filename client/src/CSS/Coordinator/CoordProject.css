@@ -65,8 +65,25 @@
 .event-deadline {
   color: #eeeeee;
   width: 40%;
+  /* background-color: #e86262; */
 }
 
+.bin-btn {
+  background-color: transparent;
+  border: none;
+  float: right;
+  width: 10%;
+  height: 25px;
+}
+
+.bin-btn:hover {
+  cursor: pointer;
+}
+
+.bin-img {
+  width: fit-content;
+  height: 100%;
+}
 .event-title {
   float: left;
   margin-left: 2%;

@@ -3,13 +3,13 @@ const router = express.Router();
 require("../db/database");
 router.use(express.static("../client/src/"));
 const Coordinator = require("../model/coordinatorSchema");
-const Invitation = require("../model/invitationSchema");
+// const Invitation = require("../model/invitationSchema");
 const coordAuthenticate = require("../middleware/coordAuth");
 const Class = require("../model/classSchema");
 const Student = require("../model/studentSchema");
 const Group = require("../model/groupSchema");
-const { response } = require("express");
-const { request } = require("express");
+// const { response } = require("express");
+// const { request } = require("express");
 const Event = require("../model/eventsSchema");
 const Project = require("../model/projectSchema");
 
@@ -239,6 +239,18 @@ router.post("/create-event", coordAuthenticate, async (req, res) => {
       res.status(422).json({ error: "Failed to add" });
       // res.send(" Not Added");
     }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/delete-event", coordAuthenticate, async (req, res) => {
+  try {
+    const { eventID } = req.body;
+    // console.log(eventID);
+    const data = await Event.findOneAndDelete({ _id: eventID });
+    if (data) res.status(200).json({ message: "Deleted" });
+    else res.status(422).json({ error: "Failed to delete" });
   } catch (error) {
     console.log(error);
   }
