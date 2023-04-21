@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getGroupAssign, getGroups, assignProject } from "../../service/api";
 import { cancel } from "../../Images/Images";
+import axios from "axios";
+// import { use } from "../../../../server/router/traineeRegRoute";
 
 const ProjectDetails = ({ project }) => {
   const [groups, setGroups] = useState([]);
@@ -10,7 +12,46 @@ const ProjectDetails = ({ project }) => {
   const [groupTitle, setGroupTitle] = useState("");
   const [errorPro, setErrorPro] = useState("");
   const [proGroup, setProGroup] = useState([]);
+  const [err, setErr] = useState(null);
 
+  const ViewPDf = (fileId) => {
+    //   try {
+    console.log(fileId);
+    fetch(`/api/files/view/${fileId}`)
+      .then((res) => {
+        // convert the response to a blob
+        return res.blob();
+      })
+      .then((blob) => {
+        // create a URL for the blob
+        const url = URL.createObjectURL(blob);
+
+        // create a new window to display the PDF
+        const newWindow = window.open();
+        newWindow.document.write(
+          `<iframe src="${url}" width="100%" height="100%"></iframe>`
+        );
+      });
+  };
+
+  //delete uploaded file
+  // const deletePdf = async (fileId) => {
+  //   try {
+  //     console.log(fileId);
+  //     const data = await axios.get("/file/delete/" + fileId);
+  //     // const res = data.json();
+  //     if (data.status === 500) window.alert("error while deleting file");
+  //     else {
+  //       // setFileId(null);
+  //       // setFileName(null);
+  //       // setDocument({ ...document, fileID: null });
+  //       // setDocument({ ...document, name: null });
+  //     }
+  //   } catch (error) {
+  //     setErr(error);
+  //     console.log(error);
+  //   }
+  // };
   useEffect(() => {
     groups.map((val) => {
       if (project.group_id === val._id) setProGroup(val);
@@ -106,6 +147,22 @@ const ProjectDetails = ({ project }) => {
                 </>
               ) : null}
             </div>
+
+            <h3>Documents</h3>
+            {project.document?.map((val) => (
+              <>
+                <div>{val.fileName}</div>
+                {/* <div
+                  className="file-info3"
+                  onClick={() => deletePdf(val.fileID)}
+                >
+                  Delete
+                </div> */}
+                <div className="file-info2" onClick={() => ViewPDf(val.fileID)}>
+                  View
+                </div>
+              </>
+            ))}
           </>
         )}
 

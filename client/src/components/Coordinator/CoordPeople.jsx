@@ -229,13 +229,15 @@ const CoordPeople = () => {
         </div>
         <div className="trainees-div">
           <h2 className="traineeTitle">
-            <div className="titleTrainee">Trainee </div>
+            <div style={{ float: "left", width: "auto" }}>Trainee </div>
             {groupList.length ? (
               <button className="create-grp" onClick={() => setGroupName(true)}>
                 Create Group
               </button>
             ) : null}
-            <div className="traineeStrength">{trainee.length}</div>
+            <div style={{ float: "right", width: "auto", marginRight: "2%" }}>
+              {trainee.length}
+            </div>
           </h2>
           <hr className="lineCoordName" />
           <div style={traineeTileDiv}>
@@ -316,9 +318,11 @@ const CoordPeople = () => {
           <>
             {" "}
             <h2 className="traineeTitle">
-              <div className="titleTrainee">Groups </div>
+              <div style={{ float: "left", width: "auto" }}>Groups </div>
 
-              <div className="traineeStrength">{groups.length}</div>
+              <div style={{ float: "right", width: "auto" }}>
+                {groups.length}
+              </div>
             </h2>
             <hr className="lineCoordName" />{" "}
             {groups.map((val, index) => (

@@ -667,3 +667,69 @@ export const setRejectStudInst = async (data) => {
     console.log(error);
   }
 };
+
+export const getProjectList = async () => {
+  try {
+    // console.log("Hello");
+    const response = await axios.get("/project-list");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getGroupProject = async () => {
+  try {
+    // console.log("Hello");
+    const response = await axios.get("/project-group");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getOwnPro = async () => {
+  try {
+    // console.log("Hello");
+    const response = await axios.get("/project-own");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getOwnGroup = async () => {
+  try {
+    // console.log("Hello");
+    const response = await axios.get("/group-own");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const uploadFile = async (data) => {
+  try {
+    // console.log("Hello");
+    const response = await axios.post("/submit-file", data);
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const pullDocument = async (data) => {
+  try {
+    // console.log("Hello");
+    const response = await axios.post("/pull-file", data);
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
