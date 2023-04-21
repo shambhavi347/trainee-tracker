@@ -161,8 +161,8 @@ const CoordPeople = () => {
         setGroupName(false);
       }
     });
-    if (countErr === false) console.log("Error");
-    if (countErr === true) {
+    if (countErr === true) console.log("Error");
+    if (countErr === false) {
       let memId = [];
       let name1 = count;
 
@@ -228,7 +228,7 @@ const CoordPeople = () => {
           </div>
         </div>
         <div className="trainees-div">
-          <h2 className="traineeTitle">
+          <h2>
             <div style={{ float: "left", width: "auto" }}>Trainee </div>
             {groupList.length ? (
               <button className="create-grp" onClick={() => setGroupName(true)}>
@@ -317,7 +317,7 @@ const CoordPeople = () => {
         {groups.length === 0 ? null : (
           <>
             {" "}
-            <h2 className="traineeTitle">
+            <h2>
               <div style={{ float: "left", width: "auto" }}>Groups </div>
 
               <div style={{ float: "right", width: "auto" }}>
