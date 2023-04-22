@@ -22,7 +22,8 @@
   padding: 1%;
   width: 66.67%;
   float: right;
-  height: 100%;
+  height: 72vh;
+  overflow-y: auto;
 }
 
 .project-list {
@@ -201,6 +202,7 @@
   border: 1px #00adb5 solid;
   border-radius: 10px;
   padding: 1%;
+  height: auto;
 }
 
 .workSub-heading {
@@ -208,4 +210,69 @@
   font-weight: bold;
   border-bottom: 1px #eeeeeea4 solid;
   color: #00adb5;
+}
+
+.workSub-heading {
+  margin-bottom: 20px;
+}
+
+.file-input {
+  color: #eeeeee;
+}
+
+.file-info4,
+.file-info5,
+.file-info6 {
+  border: 1px #00adb5 solid;
+  margin: 0% 3%;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+
+  flex: 1;
+}
+
+.file-info4:hover,
+.file-info5:hover,
+.file-info6:hover {
+  cursor: pointer;
+}
+.file-info6 {
+  background-color: #f48484;
+}
+
+.file-info5 {
+  background-color: rgb(170, 239, 239);
+}
+.file-info4 {
+  background-color: #d0f4de;
+}
+
+.document-btn {
+  float: left;
+  /* background-color: aqua; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.fileName-Trainee {
+  color: #00adb5;
+  /* background-color: #d0f4de; */
+  width: auto;
+  float: left;
+  font-weight: bold;
+}
+
+.worksub-trainee-tile {
+  background-color: #393e46;
+  margin: 2% 0%;
+  padding: 1%;
+  border: 1px #00adb5 solid;
+  border-radius: 10px;
+}
+
+.remark-trainee {
+  margin: 1% 0%;
+  /* background-color: aqua; */
 }

@@ -156,26 +156,12 @@ const TraineeProject = () => {
     }
   };
 
-  // const deleteUpPdf = async (fileId) => {
-  //   try {
-  //     const data = await pullDocument({
-  //       fileId: fileId,
-  //     });
-  //     console.log(data);
-  //   } catch (error) {
-  //     setErr(error);
-  //     console.log(error);
-  //   }
-  // };
   const postPDF = async () => {
-    // console.log(fileId);
-    // console.log(fileName);
     try {
       const data = await uploadFile({
         fileID: fileId,
         fileName: fileName,
       });
-      // console.log(data);
       if (data === "Success") {
         setFileId(null);
         setFileName(null);
@@ -186,7 +172,6 @@ const TraineeProject = () => {
       console.log(err);
     }
   };
-  // console.log(document);
 
   return (
     <>
@@ -245,7 +230,9 @@ const TraineeProject = () => {
 
               {proOwnEx ? (
                 <>
-                  <div className="proOwnDesc-div">{proOwn.description}</div>
+                  <div className="proOwnDesc-div" style={{ color: "#eee" }}>
+                    {proOwn.description}
+                  </div>
                 </>
               ) : null}
             </div>
@@ -273,10 +260,15 @@ const TraineeProject = () => {
                 {groupEx ? (
                   <>
                     <div className="groupDeet-div">
-                      <div> Group: {groupOwn.name}</div>
-                      <h4>Group Members</h4>
+                      <div style={{ color: "#eee" }}>
+                        {" "}
+                        Group: {groupOwn.name}
+                      </div>
+                      <h4 style={{ textDecoration: "underline" }}>
+                        Group Members
+                      </h4>
                       {groupOwn.members?.map((val) => (
-                        <div>
+                        <div style={{ color: "#eee" }}>
                           {val.prefix} {val.first_name} {val.middle_name}{" "}
                           {val.last_name}
                         </div>
@@ -290,35 +282,65 @@ const TraineeProject = () => {
 
           <div className="workSub-divUp">
             <div className="workSub-heading">Work Submission</div>
-            <WatchTrainee sendId={sendId} sendName={sendName} />
+            <WatchTrainee
+              sendId={sendId}
+              sendName={sendName}
+              className="upload-file"
+            />
             {fileId ? (
               <>
                 <div className="file-info">
-                  <div className="file-info1">{fileName}</div>
-
-                  <div className="file-info3" onClick={() => deletePdf(fileId)}>
-                    Delete
+                  <div className="file-info1">{fileName}</div> <br />
+                  <br />
+                  <div className="document-btn">
+                    <div
+                      className="file-info6"
+                      onClick={() => deletePdf(fileId)}
+                    >
+                      Delete
+                    </div>
+                    <div className="file-info5" onClick={() => ViewPDf(fileId)}>
+                      View
+                    </div>
+                    <div onClick={postPDF} className="file-info4">
+                      Submit
+                    </div>
                   </div>
-                  <div className="file-info2" onClick={() => ViewPDf(fileId)}>
-                    View
-                  </div>
-                  <div onClick={postPDF}>Submit</div>
                 </div>
               </>
             ) : null}
 
-            <h3>Documents</h3>
+            <h4 style={{ color: "#eee" }}>Documents</h4>
             {proOwn.document?.map((val) => (
               <>
-                <div>{val.fileName}</div>
-                <div
-                  className="file-info3"
-                  onClick={() => deleteUpPdf(val.fileID)}
-                >
-                  Delete
-                </div>
-                <div className="file-info2" onClick={() => ViewPDf(val.fileID)}>
-                  View
+                <div className="worksub-trainee-tile">
+                  <div className="fileName-Trainee">{val.fileName}</div>
+                  <div
+                    className="file-info3"
+                    onClick={() => deleteUpPdf(val.fileID)}
+                  >
+                    Delete
+                  </div>
+                  <div
+                    className="file-info2"
+                    onClick={() => ViewPDf(val.fileID)}
+                  >
+                    View
+                  </div>
+                  <br />
+                  <br />
+                  {val.remark ? (
+                    <>
+                      <div className="remark-trainee">
+                        <h5
+                          style={{ color: "#eee", textDecoration: "underline" }}
+                        >
+                          Remark
+                        </h5>
+                        <div>{val.remark}</div>
+                      </div>
+                    </>
+                  ) : null}
                 </div>
               </>
             ))}

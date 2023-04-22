@@ -401,6 +401,7 @@ router.post("/submit-file", traineeAuthenticate, async (req, res) => {
           document: {
             fileID: fileID,
             fileName: fileName,
+            remark: "",
           },
         },
       }

@@ -522,6 +522,15 @@ export const assignProject = async (data) => {
   }
 };
 
+export const sendRemark = async (data) => {
+  try {
+    const response = await axios.post("/send-remark", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getTraineeData = async () => {
   try {
     let respone = await axios.get("/get-trainee-Data");

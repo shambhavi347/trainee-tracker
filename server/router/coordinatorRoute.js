@@ -410,4 +410,31 @@ router.post("/remove-group", coordAuthenticate, (req, res) => {
   // res.send(data);
 });
 
+router.post("/send-remark", coordAuthenticate, async (req, res) => {
+  try {
+    const { remark, fileID, projectId } = req.body;
+    console.log(remark + " " + fileID + " " + projectId);
+    const pro = await Project.findOneAndUpdate(
+      {
+        _id: projectId,
+        "document.fileID": fileID,
+      },
+      {
+        $set: {
+          "document.$.remark": remark,
+        },
+      }
+    );
+    if (pro) res.send("Success");
+    // update(
+    //   { 'items': { '$elemMatch': { 'itemName': 'Name 1' }}},
+    //   { '$set': { 'items.$[item].itemName': 'New Name' }},
+    //   { 'arrayFilter': [{ 'item.itemName': 'Name 1' }], 'multi': true }
+    // )
+    // console.log(pro);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getGroupAssign, getGroups, assignProject } from "../../service/api";
+import {
+  getGroupAssign,
+  getGroups,
+  assignProject,
+  sendRemark,
+} from "../../service/api";
 import { cancel } from "../../Images/Images";
 import axios from "axios";
+import "../../CSS/Coordinator/ProjectDetails.css";
 // import { use } from "../../../../server/router/traineeRegRoute";
 
 const ProjectDetails = ({ project }) => {
@@ -13,10 +19,11 @@ const ProjectDetails = ({ project }) => {
   const [errorPro, setErrorPro] = useState("");
   const [proGroup, setProGroup] = useState([]);
   const [err, setErr] = useState(null);
+  const [remark, setRemark] = useState("");
 
   const ViewPDf = (fileId) => {
     //   try {
-    console.log(fileId);
+    // console.log(fileId);
     fetch(`/api/files/view/${fileId}`)
       .then((res) => {
         // convert the response to a blob
@@ -34,29 +41,33 @@ const ProjectDetails = ({ project }) => {
       });
   };
 
-  //delete uploaded file
-  // const deletePdf = async (fileId) => {
-  //   try {
-  //     console.log(fileId);
-  //     const data = await axios.get("/file/delete/" + fileId);
-  //     // const res = data.json();
-  //     if (data.status === 500) window.alert("error while deleting file");
-  //     else {
-  //       // setFileId(null);
-  //       // setFileName(null);
-  //       // setDocument({ ...document, fileID: null });
-  //       // setDocument({ ...document, name: null });
-  //     }
-  //   } catch (error) {
-  //     setErr(error);
-  //     console.log(error);
-  //   }
-  // };
+  const handleRemark = (e) => {
+    e.preventDefault();
+    let name = e.target.name;
+    let value = e.target.value;
+    setRemark(value);
+    // console.log(remark);
+  };
+  const postRemark = async (fileID, projectId) => {
+    // console.log(fileID + " " + projectId);
+    try {
+      const data = await sendRemark({
+        remark,
+        projectId,
+        fileID,
+      });
+      console.log(data);
+      if (data) window.location.reload(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     groups.map((val) => {
       if (project.group_id === val._id) setProGroup(val);
     });
-    console.log(proGroup);
+    // console.log(proGroup);
   }, [groupAssign]);
 
   useEffect(() => {
@@ -81,13 +92,13 @@ const ProjectDetails = ({ project }) => {
 
   const handleYes = async (name, title) => {
     try {
-      console.log(name + " " + title);
+      // console.log(name + " " + title);
 
       const data = await assignProject({
         name,
         title,
       });
-      console.log(data);
+      // console.log(data);
       if (data.message === "Saved") {
         setGroups((oldValue) => {
           return oldValue.filter((group) => group.name !== name);
@@ -103,7 +114,7 @@ const ProjectDetails = ({ project }) => {
   };
   return (
     <>
-      <div>
+      <div className="project-sub-divup">
         {/* ProjectDetails */}
         <div>{project.title}</div>
         <div>{project.description}</div>
@@ -161,6 +172,31 @@ const ProjectDetails = ({ project }) => {
                 <div className="file-info2" onClick={() => ViewPDf(val.fileID)}>
                   View
                 </div>
+                <h3>Remark</h3>
+                {val.remark ? (
+                  <>
+                    <div>{val.remark}</div>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <textarea
+                        placeholder="Add Remark..."
+                        name="remark"
+                        id=""
+                        cols="80"
+                        rows="8"
+                        value={remark}
+                        onChange={handleRemark}
+                      ></textarea>
+                      <button
+                        onClick={() => postRemark(val.fileID, project._id)}
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </>
+                )}
               </>
             ))}
           </>
