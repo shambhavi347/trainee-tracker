@@ -210,9 +210,7 @@ const TraineeProject = () => {
         <div className="project-submissionUp">
           {proOwn === "no project" ? (
             <>
-              <h2 style={{ color: "#eee", textAlign: "center" }}>
-                No Project Assigned Yet
-              </h2>
+              <h2 className="Nogroup">No Project Assigned Yet</h2>
             </>
           ) : (
             <div className="project-own-div">
@@ -230,18 +228,14 @@ const TraineeProject = () => {
 
               {proOwnEx ? (
                 <>
-                  <div className="proOwnDesc-div" style={{ color: "#eee" }}>
-                    {proOwn.description}
-                  </div>
+                  <div className="proOwnDesc-div">{proOwn.description}</div>
                 </>
               ) : null}
             </div>
           )}
           {groupOwn === "No Group" ? (
             <>
-              <h2 style={{ color: "#eee", textAlign: "center" }}>
-                No Group Assigned Yet
-              </h2>
+              <h2 className="Nogroup">No Group Assigned Yet</h2>
             </>
           ) : (
             <>
@@ -260,15 +254,15 @@ const TraineeProject = () => {
                 {groupEx ? (
                   <>
                     <div className="groupDeet-div">
-                      <div style={{ color: "#eee" }}>
-                        {" "}
-                        Group: {groupOwn.name}
-                      </div>
-                      <h4 style={{ textDecoration: "underline" }}>
+                      <div> Group: {groupOwn.name}</div>
+                      <h4
+                        style={{ textDecoration: "underline" }}
+                        className="groupEx-h4"
+                      >
                         Group Members
                       </h4>
                       {groupOwn.members?.map((val) => (
-                        <div style={{ color: "#eee" }}>
+                        <div>
                           {val.prefix} {val.first_name} {val.middle_name}{" "}
                           {val.last_name}
                         </div>
@@ -310,7 +304,7 @@ const TraineeProject = () => {
               </>
             ) : null}
 
-            <h4 style={{ color: "#eee" }}>Documents</h4>
+            <h4 className="docTitle">Documents</h4>
             {proOwn.document?.map((val) => (
               <>
                 <div className="worksub-trainee-tile">
@@ -333,7 +327,8 @@ const TraineeProject = () => {
                     <>
                       <div className="remark-trainee">
                         <h5
-                          style={{ color: "#eee", textDecoration: "underline" }}
+                          className="groupEx-h4"
+                          style={{ textDecoration: "underline" }}
                         >
                           Remark
                         </h5>
@@ -366,9 +361,9 @@ const TraineeProject = () => {
                     {project.group_id !== "null" ? (
                       <>
                         <div className="group-name-trainee-project">
-                          <h3>Group {groupPro.name}</h3>
+                          <h3 className="groupEx-h3">Group {groupPro.name}</h3>
                         </div>
-                        <h4>Group Members</h4>
+                        <h4 className="groupEx-h4">Group Members</h4>
                         {groupPro ? (
                           <>
                             {groupPro.members?.map((val) => (

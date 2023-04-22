@@ -131,6 +131,10 @@
   border-bottom: 1px #eeeeee96 solid;
 }
 
+.docTitle {
+  color: #eeeeee;
+}
+
 .expnd-btn-trainee-project {
   float: right;
   width: 8%;
@@ -193,7 +197,12 @@
 .groupDeet-div {
   width: 100%;
   margin: 1%;
-  /* background-color: #00adb5; */
+  color: #eeeeee;
+}
+
+.Nogroup {
+  color: #eee;
+  text-align: center;
 }
 
 .workSub-divUp {
