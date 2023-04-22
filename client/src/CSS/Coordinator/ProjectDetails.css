@@ -1,5 +1,19 @@
 .project-sub-divup {
   height: 74vh;
-  overflow-y: scroll;
+  overflow-y: auto;
+  padding: 1%;
   /* background-color: #222831; */
+}
+
+.Nodoc {
+  color: #eeeeee;
+  border: 1px #00adb5 solid;
+  padding: 1%;
+  border-radius: 10px;
+  background-color: #222831;
+  /* font-weight: 100; */
+}
+
+.docuTitle {
+  color: #00adb5;
 }

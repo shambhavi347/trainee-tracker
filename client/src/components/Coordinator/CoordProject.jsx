@@ -175,7 +175,8 @@ const CoordProject = () => {
                 </button>
               </div>
               <div className="pro-lists">
-                Project List
+                <div className="projectList-Title"> Project List</div>
+
                 {projects ? (
                   <>
                     {projects.map((val) => (

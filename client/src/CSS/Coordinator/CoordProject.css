@@ -196,11 +196,19 @@
   cursor: pointer;
 }
 .pro-lists {
-  background-color: aqua;
+  /* background-color: aqua; */
   padding: 1%;
   width: 100%;
   height: 82%;
   overflow-y: auto;
+}
+
+.projectList-Title {
+  overflow-y: auto;
+  height: auto;
+  color: #00adb5;
+  font-size: larger;
+  font-weight: bold;
 }
 
 .expanded-div-pro {
@@ -287,11 +295,22 @@
 }
 
 .pro-tile {
-  background-color: #e86262;
+  /* background-color: #e86262; */
+  background-color: #222831;
   border: 1px #00adb5 solid;
   padding: 2%;
   width: 100%;
   height: auto;
+  border-radius: 10px;
+  margin: 2% 0%;
+  color: #00adb5;
+}
+
+.pro-tile:hover {
+  background-color: #eeeeee;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px #00adb5 solid;
 }
 
 .cnfrm-group {
@@ -305,5 +324,8 @@
 
 .arrowDown-btn {
   width: 5%;
-  height: 20px;
+  height: 30px;
+  float: right;
+  background-color: transparent;
+  border: none;
 }

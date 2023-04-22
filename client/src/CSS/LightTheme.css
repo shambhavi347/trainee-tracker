@@ -476,11 +476,13 @@
 }
 
 /* - - - - - - - - - -COORD PROJECT- - - - - - - - - - */
-#light .event {
+#light .event,
+#light .pro-tile {
   background-color: #aad7d4;
 }
 
-#light .no-event {
+#light .no-event,
+#light .pro-tile {
   color: #0f1010;
 }
 

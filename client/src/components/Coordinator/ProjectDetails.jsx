@@ -5,7 +5,7 @@ import {
   assignProject,
   sendRemark,
 } from "../../service/api";
-import { cancel } from "../../Images/Images";
+import { cancel, arrowDown } from "../../Images/Images";
 import axios from "axios";
 import "../../CSS/Coordinator/ProjectDetails.css";
 // import { use } from "../../../../server/router/traineeRegRoute";
@@ -20,6 +20,8 @@ const ProjectDetails = ({ project }) => {
   const [proGroup, setProGroup] = useState([]);
   const [err, setErr] = useState(null);
   const [remark, setRemark] = useState("");
+  const [groupDivEx, setGroupDivEx] = useState(false);
+  const [proOwnEx, setProOwnEx] = useState(false);
 
   const ViewPDf = (fileId) => {
     //   try {
@@ -116,8 +118,27 @@ const ProjectDetails = ({ project }) => {
     <>
       <div className="project-sub-divup">
         {/* ProjectDetails */}
-        <div>{project.title}</div>
-        <div>{project.description}</div>
+        <div className="project-own-div">
+          <div>
+            <div className="proOwn-title">{project.title}</div>{" "}
+            <button
+              className="down-btn-expand"
+              onClick={() => {
+                proOwnEx ? setProOwnEx(false) : setProOwnEx(true);
+              }}
+            >
+              <img className="arrowDown-img" src={arrowDown} alt="" />
+            </button>
+          </div>
+
+          {proOwnEx ? (
+            <>
+              <div className="proOwnDesc-div">{project.description}</div>
+            </>
+          ) : null}
+        </div>
+        {/* <div className="project-title-coord">{project.title}</div>
+        <div className="project-desc-coord">{project.description}</div> */}
         {project.group_id === "null" ? (
           <>
             <div>
@@ -150,16 +171,53 @@ const ProjectDetails = ({ project }) => {
             <div>
               {proGroup ? (
                 <>
-                  Group {proGroup.name}
+                  <div className="group-own-div">
+                    <div>
+                      <div className="groupOwn-title">Group Details </div>{" "}
+                      <button
+                        className="down-btn-expand"
+                        onClick={() => {
+                          groupDivEx
+                            ? setGroupDivEx(false)
+                            : setGroupDivEx(true);
+                        }}
+                      >
+                        <img className="arrowDown-img" src={arrowDown} alt="" />
+                      </button>
+                    </div>
+                    {groupDivEx ? (
+                      <>
+                        <div className="groupDeet-div">
+                          <div> Group: {proGroup.name}</div>
+                          <h4
+                            style={{ textDecoration: "underline" }}
+                            className="groupEx-h4"
+                          >
+                            Group Members
+                          </h4>
+                          {proGroup.members?.map((val) => (
+                            <div>
+                              {val.prefix} {val.first_name} {val.middle_name}{" "}
+                              {val.last_name}
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    ) : null}
+                  </div>
+                  {/* Group {proGroup.name}
                   Members:{" "}
                   {proGroup.members?.map((val) => (
                     <div>{val.first_name}</div>
-                  ))}
+                  ))} */}
                 </>
               ) : null}
             </div>
 
-            <h3>Documents</h3>
+            <h3 className="docuTitle">Documents</h3>
+            {project.document.length === 0 ? (
+              <div className="Nodoc">No Documents Yet</div>
+            ) : null}
             {project.document?.map((val) => (
               <>
                 <div>{val.fileName}</div>
