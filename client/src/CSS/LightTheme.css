@@ -477,12 +477,15 @@
 
 /* - - - - - - - - - -COORD PROJECT- - - - - - - - - - */
 #light .event,
-#light .pro-tile {
+#light .pro-tile,
+#light .Nodoc,
+#light .document-tile {
   background-color: #aad7d4;
 }
 
 #light .no-event,
-#light .pro-tile {
+#light .pro-tile,
+#light .Nodoc {
   color: #0f1010;
 }
 
@@ -502,12 +505,14 @@
   border: 2px #00adb5 solid;
 }
 
-#light .event-item {
+#light .event-item,
+#light .remark-text {
   background-color: #eeeeee;
 }
 
 #light .event-title,
-#light .event-deadline {
+#light .event-deadline,
+#light .doc-title-tile {
   color: #0f1010;
 }
 
@@ -525,6 +530,11 @@
   color: #00adb5;
   font-weight: bold;
   border: 2px #00adb5 solid;
+}
+
+#light .remark-submit-btn:hover {
+  color: #0f1010;
+  border: 2px #0f1010 solid;
 }
 /* ----------------------------------TRAINEE DASH---------------------------------------------- */
 #light .selector-stud,
@@ -558,7 +568,8 @@
   color: #0f1010;
 }
 
-#light .eve-timestamp {
+#light .eve-timestamp,
+#light .remark-title {
   color: #393e46;
 }
 

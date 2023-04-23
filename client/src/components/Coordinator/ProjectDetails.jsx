@@ -143,6 +143,7 @@ const ProjectDetails = ({ project }) => {
           <>
             <div>
               <select
+                className="drop-down-group"
                 name={project.title}
                 id=""
                 value={groupName}
@@ -217,46 +218,52 @@ const ProjectDetails = ({ project }) => {
             <h3 className="docuTitle">Documents</h3>
             {project.document.length === 0 ? (
               <div className="Nodoc">No Documents Yet</div>
-            ) : null}
-            {project.document?.map((val) => (
-              <>
-                <div>{val.fileName}</div>
-                {/* <div
-                  className="file-info3"
-                  onClick={() => deletePdf(val.fileID)}
-                >
-                  Delete
-                </div> */}
-                <div className="file-info2" onClick={() => ViewPDf(val.fileID)}>
-                  View
-                </div>
-                <h3>Remark</h3>
-                {val.remark ? (
+            ) : (
+              <div className="doc-divUp">
+                {project.document?.map((val) => (
                   <>
-                    <div>{val.remark}</div>
-                  </>
-                ) : (
-                  <>
-                    <div>
-                      <textarea
-                        placeholder="Add Remark..."
-                        name="remark"
-                        id=""
-                        cols="80"
-                        rows="8"
-                        value={remark}
-                        onChange={handleRemark}
-                      ></textarea>
-                      <button
-                        onClick={() => postRemark(val.fileID, project._id)}
+                    <div className="document-tile">
+                      <div
+                        className="doc-title-tile"
+                        onClick={() => ViewPDf(val.fileID)}
                       >
-                        Submit
-                      </button>
+                        {val.fileName}
+                      </div>
+                      <br />
+                      <br />
+                      <div className="remark-title">Remark</div>
+                      {val.remark ? (
+                        <>
+                          <div className="remark-text">{val.remark}</div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="textarea-div">
+                            <textarea
+                              placeholder="Add Remark..."
+                              name="remark"
+                              id=""
+                              cols="80"
+                              rows="8"
+                              value={remark}
+                              onChange={handleRemark}
+                            ></textarea>
+                            <button
+                              className="remark-submit-btn"
+                              onClick={() =>
+                                postRemark(val.fileID, project._id)
+                              }
+                            >
+                              Submit
+                            </button>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </>
-                )}
-              </>
-            ))}
+                ))}
+              </div>
+            )}
           </>
         )}
 
@@ -277,10 +284,20 @@ const ProjectDetails = ({ project }) => {
                 <div className="cnfrm-group">
                   <p className="pro-error">{errorPro}</p>
                   Confirm Group {groupName} for {groupTitle} ?
-                  <button onClick={() => handleYes(groupName, groupTitle)}>
-                    Yes
-                  </button>
-                  <button onClick={() => setGroupEx(false)}>No</button>
+                  <div className="cnfrm-btn">
+                    <button
+                      className="cnfrm-yes"
+                      onClick={() => handleYes(groupName, groupTitle)}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      className="cnfrm-no"
+                      onClick={() => setGroupEx(false)}
+                    >
+                      No
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
