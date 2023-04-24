@@ -355,8 +355,8 @@ const ProjectDetails = ({ project }) => {
                     fontWeight: "normal",
                   }}
                 >
-                  (Note: Download documents related to this project otherwise it
-                  will be gone forever! You can't undo the changes later!!)
+                  (Note: All the document related to this project will be saved
+                  in archive)
                 </p>
                 <div className="cnfrm-btn">
                   <button className="cnfrm-yes" onClick={handleDelPro}>
@@ -391,8 +391,8 @@ const ProjectDetails = ({ project }) => {
                     fontWeight: "normal",
                   }}
                 >
-                  (Note: Download documents related to this project otherwise it
-                  will be gone forever! You can't undo the changes later!!)
+                  (Note: All the document related to this project will be saved
+                  in archive)
                 </p>
                 <div className="cnfrm-btn">
                   <button className="cnfrm-yes" onClick={handleDelGroup}>

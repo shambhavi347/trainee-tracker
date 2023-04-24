@@ -6,6 +6,7 @@ const Institute = require("../model/instituteSchema");
 const instituteAuthenticate = require("../middleware/instituteauth");
 const Student = require("../model/studentSchema");
 const traineeAuthenticate = require("../middleware/traineeauth");
+const nodemailer = require("nodemailer");
 
 // Check validation on current page
 

@@ -6,14 +6,16 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 
-const NavBarInst = () => {
+const NavBarInst = ({ retTheme }) => {
+  const [theme, setTheme] = useState("light");
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+    retTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
   //navigation
   let navigate = useNavigate();
-  // const routeChange = () => {
-  //   let path = "/reg-institute";
-  //   navigate(path);
-  // };
 
   const routeMain = () => {
     let path = "/";
@@ -122,6 +124,21 @@ const NavBarInst = () => {
 
             <MenuItem id="menu-items" onClick={handlePassword}>
               Change Password
+            </MenuItem>
+            <MenuItem
+              id="menu-items"
+              style={{ color: theme === "light" ? "#FFB319" : "#00abd5" }}
+              className="switch-toggle-coord"
+            >
+              <label htmlFor="switch" className="switchLabel">
+                {theme === "dark" ? "Dark Mode" : "Light Mode"}
+              </label>
+              {/* <Switch onChange={toggleTheme} checked={theme === "light"} /> */}
+              <DarkModeSwitch
+                onChange={toggleTheme}
+                checked={theme === "dark"}
+                style={{ color: theme === "light" ? "FFB319" : "lightblue" }}
+              />
             </MenuItem>
             <Link to="/logout">
               <MenuItem id="menu-items" onClick={handleClose}>

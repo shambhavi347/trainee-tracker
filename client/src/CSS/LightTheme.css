@@ -15,7 +15,7 @@
 }
 
 #dark .switchLabel {
-  color: #67bac6;
+  color: #00adb5;
   font-weight: bold;
 }
 /* --------------------------------------STUD REG------------------------------------------------- */
@@ -649,4 +649,82 @@
 #light .Nogroup,
 #light .docTitle {
   color: #393e46;
+}
+
+/* --------------------------ARCHIVE----------------------------------------------------------------- */
+#light .archive-divUP {
+  background-color: #eeeeee;
+}
+
+#light .archive-tile {
+  background-color: #aad7d4;
+}
+
+#light .nameTitle {
+  color: #0f1010;
+}
+
+#light .doc-name {
+  color: #393e46;
+}
+
+#light .NoArchive {
+  background-color: #aad7d4;
+  color: #393e46;
+}
+
+/* --------------------------------------INSTITUTE--------------------------------------- */
+#light .instdivUp {
+  background: #eeeeee;
+}
+
+#light .container1 {
+  color: #0f1010;
+}
+
+#light .status-btn {
+  background-color: #aad7d4;
+  border: 2px #00adb5 solid;
+  color: #0f1010;
+}
+
+#light .status-btn:hover {
+  background-color: #00adb5;
+  color: #eeeeee;
+}
+
+#light .status-div {
+  background-color: #eeeeee;
+  border: 2px #00adb5 solid;
+}
+
+#light .status-line {
+  background-color: #aad7d4;
+  color: #0f1010;
+  font-weight: bold;
+}
+
+#light .regBtn {
+  background-color: #00adb5;
+  color: #eee;
+}
+
+#light .regBtn:hover {
+  background-color: #aad7d4;
+  border: 2px #00adb5 solid;
+  color: #0f1010;
+}
+
+#light .status-message {
+  color: #0f1010;
+}
+
+#light .p1 {
+  color: #0f1010;
+  border-bottom: 1px #0f1010 solid;
+}
+
+#light .studDetails {
+  background-color: #aad7d4;
+  color: #0f1010;
 }

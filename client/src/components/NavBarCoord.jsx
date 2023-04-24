@@ -123,16 +123,32 @@ const NavBarCoord = ({ retTheme }) => {
             }}
           >
             {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-
-            <MenuItem id="menu-items" onClick={handlePassword}>
+            <Link to="/archives">
+              <MenuItem id="menu-items" onClick={handleClose}>
+                Archives
+              </MenuItem>
+            </Link>
+            <MenuItem
+              id="menu-items"
+              onClick={handlePassword}
+              style={{ color: "#00adb5" }}
+            >
               Change Password
             </MenuItem>
-            <MenuItem id="menu-items" style={{color:theme === "light" ? "#FFB319" : "#00abd5"}} className="switch-toggle-coord">
-              <label htmlFor="switch" className="switchLabel-coord"> 
-              {theme === "dark" ? "Dark Mode" : "Light Mode"}
+            <MenuItem
+              id="menu-items"
+              style={{ color: theme === "light" ? "#FFB319" : "#00abd5" }}
+              className="switch-toggle-coord"
+            >
+              <label htmlFor="switch" className="switchLabel">
+                {theme === "dark" ? "Dark Mode" : "Light Mode"}
               </label>
               {/* <Switch onChange={toggleTheme} checked={theme === "light"} /> */}
-              <DarkModeSwitch onChange={toggleTheme} checked={theme === "dark"} style={{color:theme === "light" ? "FFB319" : "lightblue"}} />
+              <DarkModeSwitch
+                onChange={toggleTheme}
+                checked={theme === "dark"}
+                style={{ color: theme === "light" ? "FFB319" : "#00adb5" }}
+              />
             </MenuItem>
             <Link to="/logout">
               <MenuItem id="menu-items" onClick={handleClose}>

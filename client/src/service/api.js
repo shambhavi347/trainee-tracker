@@ -764,3 +764,14 @@ export const pullDocument = async (data) => {
     console.log(error);
   }
 };
+
+export const fetchDocument = async () => {
+  try {
+    // console.log("Hello");
+    const response = await axios.get("/get-archives");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -14,9 +14,6 @@ import Logout from "./components/Logout";
 import LogoutTrainee from "./components/LogoutTrainee";
 import TraineeProfile from "./components/Student/TraineeProfile";
 import ProjectDetails from "./components/Coordinator/ProjectDetails";
-// import CoordPeople from "./components/Coordinator/CoordPeople";
-// import CoordProject from "./components/Coordinator/CoordProject";
-// import CoordDiscussion from "./components/Coordinator/CoordDiscussion";
 import ForgotPass from "./components/ForgotPass";
 import CreatePass from "./components/CreatePass";
 import StudReg from "./components/Student/StudReg";
@@ -24,6 +21,7 @@ import WatchTrainee from "./components/WatchTrainee";
 import ViewDoc from "./components/ViewDoc";
 import PdfViewer from "./components/PdfViewer";
 import "./CSS/LightTheme.css";
+import Archive from "./components/Coordinator/Archive";
 const App = () => {
   return (
     <>
@@ -49,6 +47,7 @@ const App = () => {
           {/* <Route path="/watch-trainee" element={<WatchTrainee />} /> */}
           <Route path="/view/image/:userId" element={<ViewDoc />} />
           <Route path="/view/pdf/:userId" element={<PdfViewer />} />
+          <Route path="/archives" element={<Archive />} />
         </Routes>
       </Router>
     </>

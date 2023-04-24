@@ -440,31 +440,6 @@ router.post("/send-remark", coordAuthenticate, async (req, res) => {
   }
 });
 
-// router.post("/delete-pro-assign", coordAuthenticate, async (req, res) => {
-//   try {
-//     const { projectId } = req.body;
-//     const ID = req.rootUser._id;
-//     console.log(projectId);
-//     const data = await Project.findOne({ _id: projectId });
-//     console.log(data.document);
-//     if(data.document.length>0){
-//       data.document?.map((val) =>
-//        Archive.insert
-//       )
-//     }
-//     db.products.insert( { coordinator_id: ID , project_title: data.title,  fileID: "card", fileNnam: 15 } )
-//     const data = await Project.findOneAndUpdate(
-//       { _id: projectId },
-//       { $set: { group_id: "null" } }
-//     );
-
-//     if (data) res.send("Updated");
-//     else res.send("Failed");
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
 router.post("/delete-pro-assign", coordAuthenticate, (req, res) => {
   const { projectId } = req.body;
   const ID = req.rootUser._id;
@@ -525,25 +500,15 @@ router.post("/delete-pro", coordAuthenticate, async (req, res) => {
   }
 });
 
-// router.post("/delete-pro-assign", coordAuthenticate, (req, res) => {
-//   const { projectId } = req.body;
-//   Project.findOne({ _id: projectId })
-//     .then((val) => {
-//       if (val.document.length > 0) {
-//         const user = Archival({
-//           coordinator_id: val.coordinator_id,
-//           project_name: val.title,
-//           document: val.document,
-//         });
-//         user
-//           .save()
-//           .then((data) => console.log(data))
-//           .catch((err) => console.log(err));
-//       } else {
-//         console.log("No doc for archival");
-//       }
-//     })
-//     .catch((err) => console.log(err));
-// });
-
+router.get("/get-archives", coordAuthenticate, async (req, res) => {
+  try {
+    const id = req.rootUser.id;
+    // console.log(id);
+    const data = await Archive.find({ coordintor_id: id });
+    // console.log(data);
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;
