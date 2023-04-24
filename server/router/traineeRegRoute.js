@@ -13,6 +13,8 @@ const Class = require("../model/classSchema");
 const Coordinator = require("../model/coordinatorSchema");
 const Trainee = require("../model/traineeSchema");
 const Event = require("../model/eventsSchema");
+const Project = require("../model/projectSchema");
+const Group = require("../model/groupSchema");
 //trainee Regestration
 router.post("/trainee-reg", async (req, res) => {
   try {
@@ -296,4 +298,142 @@ router.get("/get-event-trainees", traineeAuthenticate, (req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.get("/project-list", traineeAuthenticate, async (req, res) => {
+  try {
+    // console.log("Hello get projects list");
+    const id = req.rootUser._id;
+    const stud_id = await Trainee.findOne({ _id: id });
+    const studentDeets = await Student.findOne({ email: stud_id.email });
+    const classes = await Class.findOne({ traineeID: studentDeets._id });
+    // console.log(classes.coordinatorID);
+    const pro = await Project.find({ coordinator_id: classes.coordinatorID });
+    // console.log(pro);
+    // if (pro)
+    res.send(pro);
+    // else res.status(200).json({ message: "None" });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// router.get("/project-group", traineeAuthenticate, async (req, res) => {
+//   try {
+//     const id = req.rootUser._id;
+//     const stud_id = await Trainee.findOne({ _id: id });
+//     const studentDeets = await Student.findOne({ email: stud_id.email });
+//     const classes = await Class.findOne({ traineeID: studentDeets._id });
+//     // console.log(classes.coordinatorID);
+//     const pro = await Group.find({
+//       coordinatorID: classes.coordinatorID,
+//     });
+//     console.log(pro);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+router.get("/project-group", traineeAuthenticate, (req, res) => {
+  const ID = req.rootUser._id;
+  Trainee.findOne({ _id: ID })
+    .then((data) => {
+      Student.findOne({ email: data.email })
+        .then((data) => {
+          Class.findOne({ traineeID: data._id })
+            .then((data) => {
+              Group.find({ coordinatorID: data.coordinatorID })
+                .then((data) => res.send(data))
+                .catch((err) => console.log(err));
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
+});
+
+router.get("/project-own", traineeAuthenticate, async (req, res) => {
+  try {
+    const id = req.rootUser._id;
+    const stud_id = await Trainee.findOne({ _id: id });
+    const studentDeets = await Student.findOne({ email: stud_id.email });
+    if (studentDeets.group === "null") res.send("No Group");
+    const pro = await Project.findOne({ group_id: studentDeets.group });
+    // const groups = await Group.findOne({ _id: studentDeets.group });
+    // console.log(pro);
+    if (pro) res.send(pro);
+    else res.send("no project");
+    // else res.status(422).json({ error: "No Project" });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/group-own", traineeAuthenticate, async (req, res) => {
+  try {
+    // console.log("hello");
+    const id = req.rootUser._id;
+    const stud_id = await Trainee.findOne({ _id: id });
+    const studentDeets = await Student.findOne({ email: stud_id.email });
+    if (studentDeets.group === "null") res.send("No Group");
+    const groups = await Group.findOne({ _id: studentDeets.group });
+    res.send(groups);
+    // console.log(groups);
+    // else res.status(422).json({ error: "No Project" });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/submit-file", traineeAuthenticate, async (req, res) => {
+  try {
+    const { fileID, fileName } = req.body;
+    console.log(fileID + " " + fileName);
+    const id = req.rootUser._id;
+    const stud_id = await Trainee.findOne({ _id: id });
+    const studentDeets = await Student.findOne({ email: stud_id.email });
+    if (studentDeets.group === "null") res.send("No Group");
+    const pro = await Project.findOne({ group_id: studentDeets.group });
+    console.log(pro);
+    const data = await Project.findOneAndUpdate(
+      { _id: pro._id },
+      {
+        $push: {
+          document: {
+            fileID: fileID,
+            fileName: fileName,
+            remark: "",
+          },
+        },
+      }
+    );
+    console.log(data);
+    if (data) res.send("Success");
+    else res.send("Fail");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/pull-file", traineeAuthenticate, async (req, res) => {
+  try {
+    const { fileId } = req.body;
+    // console.log(fileI + " " + fileName);
+    const id = req.rootUser._id;
+    const stud_id = await Trainee.findOne({ _id: id });
+    const studentDeets = await Student.findOne({ email: stud_id.email });
+    if (studentDeets.group === "null") res.send("No Group");
+    const pro = await Project.findOne({ group_id: studentDeets.group });
+    console.log(pro);
+    const data = await Project.findOneAndUpdate(
+      { _id: pro._id },
+      { $pull: { document: { fileID: fileId } } }
+    );
+    console.log(data);
+    // console.log(data);
+    // if (data) res.send("Success");
+    // else res.send("Fail");
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;

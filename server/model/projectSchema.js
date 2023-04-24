@@ -16,6 +16,11 @@ const projectSchema = new mongoose.Schema({
   group_id: {
     type: String,
   },
+  document: [
+    {
+      type: Object,
+    },
+  ],
 });
 
 const Project = mongoose.model("PROJECT", projectSchema);

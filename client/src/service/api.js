@@ -522,6 +522,15 @@ export const assignProject = async (data) => {
   }
 };
 
+export const sendRemark = async (data) => {
+  try {
+    const response = await axios.post("/send-remark", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getTraineeData = async () => {
   try {
     let respone = await axios.get("/get-trainee-Data");
@@ -663,6 +672,72 @@ export const setRejectStudInst = async (data) => {
   try {
     let respone = await axios.post("/rejction-from-student", data);
     return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProjectList = async () => {
+  try {
+    // console.log("Hello");
+    const response = await axios.get("/project-list");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getGroupProject = async () => {
+  try {
+    // console.log("Hello");
+    const response = await axios.get("/project-group");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getOwnPro = async () => {
+  try {
+    // console.log("Hello");
+    const response = await axios.get("/project-own");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getOwnGroup = async () => {
+  try {
+    // console.log("Hello");
+    const response = await axios.get("/group-own");
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const uploadFile = async (data) => {
+  try {
+    // console.log("Hello");
+    const response = await axios.post("/submit-file", data);
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const pullDocument = async (data) => {
+  try {
+    // console.log("Hello");
+    const response = await axios.post("/pull-file", data);
+    return response.data;
+    // console.log(data);
   } catch (error) {
     console.log(error);
   }

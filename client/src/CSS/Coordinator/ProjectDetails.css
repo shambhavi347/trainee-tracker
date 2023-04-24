@@ -1,71 +1,125 @@
-.main-pro-del {
-  background: #222831;
-  background: -webkit-linear-gradient(to top, #222831, #393e46);
-  background: linear-gradient(to bottom, #393e46, #00adb5);
-  height: 100vh;
-  overflow-y: scroll !important;
+.project-sub-divup {
+  height: 74vh;
+  overflow-y: auto;
+  padding: 1%;
+  /* background-color: #222831; */
 }
 
-.head-pro-del {
-  background-color: #eeeeee;
-  border-radius: 8px;
-  margin-top: 4%;
-  width: 60%;
-  height: 10%;
-  margin-left: 20%;
-}
-
-.head-pro-del h3 {
-  color: #222831;
-}
-
-.desc-pro-del {
+.Nodoc {
+  color: #eeeeee;
+  border: 1px #00adb5 solid;
+  padding: 1%;
+  border-radius: 10px;
   background-color: #222831;
-  border: 2px #00adb5 solid;
+  /* font-weight: 100; */
+}
+
+.docuTitle {
   color: #00adb5;
-  cursor: pointer;
-  margin-top: 3%;
-  width: 92%;
-  margin-left: 4%;
-  height: 70%;
 }
 
-.div1 {
-  background-color: #393e46;
-  color: #eeeeee;
+.drop-down-group {
   margin-top: 2%;
-  margin-left: 2%;
-  width: 95%;
-  height: 70%;
-  border-radius: 8px;
-  border: 4px #222831 solid;
-}
-
-.div1 h3,
-.div1 p {
-  margin-left: 3%;
-}
-
-.editme {
-  background: #222831;
-  border: #00adb5 solid;
-  border-radius: 6px;
-  color: #eeeeee;
-  margin-top: 8%;
-  margin-left: 45%;
-  width: 10%;
-  height: 15%;
-}
-
-.editme:hover {
-  background-color: #00adb5;
-}
-
-.div2 {
-  background-color: #393e46;
-  color: #eeeeee;
-  margin-top: 1%;
-  margin-left: 2.5%;
   width: 50%;
-  height: 70%;
+  height: 35px;
+  /* padding: 1%; */
+  border-radius: 10px;
+  background-color: #eee;
+  color: #222831;
+  border: 1px #00adb5 solid;
+  font-size: medium;
+}
+
+.cnfrm-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.cnfrm-yes,
+.cnfrm-no {
+  flex: 1;
+  margin: 1%;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 2%;
+}
+
+.cnfrm-no:hover {
+  background-color: #f48484;
+}
+
+.cnfrm-yes:hover {
+  background-color: #d0f4de;
+}
+
+.doc-divUp {
+  border: 1px #00adb5 solid;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.document-tile {
+  border: 1px #00adb5 solid;
+  margin: 2% 0%;
+  padding: 2%;
+  border-radius: 10px;
+  background-color: #222831;
+}
+
+.doc-title-tile {
+  color: #00adb5;
+  font-weight: bold;
+  width: auto;
+  /* margin-bottom: 2%; */
+  float: left;
+}
+
+.doc-title-tile:hover {
+  cursor: pointer;
+}
+
+.remark-title {
+  color: #eee;
+  text-decoration: underline;
+  margin-bottom: 2%;
+}
+
+.remark-text {
+  border: 1px #00adb5 solid;
+  border-radius: 10px;
+  background-color: #393e46;
+  padding: 1%;
+}
+
+.textarea-div {
+  padding: 1%;
+}
+.textarea-div textarea {
+  /* border: 2px #00adb5 solid; */
+  border-radius: 10px;
+  padding: 1%;
+}
+
+.textarea-div textarea:focus,
+.textarea-div textarea:active {
+  overflow-y: auto;
+  outline: none !important;
+  border: 2px #00adb5 solid !important;
+}
+
+.remark-submit-btn {
+  border: 1px #eee solid;
+  border-radius: 10px;
+  height: 30px;
+  padding: 0% 3%;
+  background-color: #00adb5;
+  color: #eee;
+}
+
+.remark-submit-btn:hover {
+  font-weight: bold;
+  background-color: transparent;
+  border: 2px #eee solid;
+  cursor: pointer;
+  font-size: medium;
 }

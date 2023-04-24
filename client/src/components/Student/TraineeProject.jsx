@@ -1,223 +1,392 @@
 import React, { useState, useEffect } from "react";
 import "../../CSS/Trainee/TraineeProject.css";
-import ProgressBar from "./ProgressBar";
-import { expand, cancel } from "../../Images/Images";
-
-// ProjectSchema.js
-// name: "Training Management System",
-// desc: "bkjbk",
-// coordinatorID: "cdfd",
-// groupID: "jb",
-
-// try {
-//   const coor_id = 0;
-//   // let group_memebers
-//   let projects = [
-//     {
-//       name: "",
-//       desc: "",
-//       group_memebers: "",
-//     },
-//   ];
-//   const id = rootUSer.id;
-//   const classes = await Class.findOne({ traineeID: id });
-//   coor_id = classes.coordinatorID;
-
-//   const Pro = await Project.find({ coordinatorID: coor_id });
-//   Pro.map((val) =>
-//     {projects.push(val);
-//     projects.group_memebers = await Group.findOne({ _id: val.groupID });}
-//   )
-//   res.send(projects)
-// } catch (error) {
-//   console.log(error);
-// }
+import {
+  getProjectList,
+  getGroupProject,
+  getOwnPro,
+  getOwnGroup,
+  uploadFile,
+  pullDocument,
+} from "../../service/api.js";
+import { arrowDown, cancel, expand } from "../../Images/Images";
+import WatchTrainee from "../WatchTrainee";
+import axios from "axios";
 
 const TraineeProject = () => {
+  const [projectList, setProjectList] = useState([]);
+  const [proEx, setProEx] = useState(false);
   const [project, setProject] = useState([]);
-  const [expnd, setExpnd] = useState(false);
-  const [projetList, setprojetList] = useState([]); //trainee
-  const [projet, setprojet] = useState([
-    //studList
-    {
-      name: "Training Management System",
-      desc: "The objective and scope of my Project Trainee Management System are to record the details various activities of the user. It will simplify the task and reduce the paperwork. During implementation, every user will be given appropriate training to suit their specific needs. Specific support will also be provided at key points within the academic calendar. Training will be provided on a timely basis, and you will be trained as the new is Trainee Management System rolled out to your area of responsibility. At the moment we are in the very early stages, so it is difficult to put a specific time on the training, but we will keep people informed as plans are developed. The system is very user-friendly and it is anticipated that functions of the system will be easily accessed by administrators, academics. Hence the management system for the College management has been designed to remove all the deficiency from which the present system is suffering and to ensure.",
-      group_members: ["Shambhavi Shanker", "Aakriti Saxena", "Ritu Yadav", "Divya Jain"],
-    },
-    {
-      name: "Plagiarism Checker",
-      desc: "Plagiarism checkers are software that can be used to cross-check text for duplicated content (this may include quoted material, paraphrased material, similarities in wording, etc.). These tools help to ensure that writing is original and correctly cited.",
-      group_members: ["Isha", "Apporva Tyagi", "Aditi Bansal"],
-    },
-    {
-      name: "AI based search engine",
-      desc: "bkjbk",
-      group_members: ["Chelsi", "Vrinda"],
-    },
-    {
-      name: "Image Caption Generator using Deep Learning",
-      desc: "bkjbk",
-      group_members: ["Shambhavi", "Aakriti"],
-    },
-    {
-      name: "Google Calendar",
-      desc: "bkjbk",
-      group_members: ["Shambhavi", "Aakriti"],
-    },
-    {
-      name: "Captcha using AI images",
-      desc: "bkjbk",
-      group_members: ["Shambhavi", "Aakriti"],
-    },
-    {
-      name: "Student Work Harvester",
-      desc: "bkjbk",
-      group_members: ["Shambhavi", "Aakriti"],
-    },
-    {
-      name: "Library Management System",
-      desc: "bkjbk",
-      group_members: ["Shambhavi", "Aakriti"],
-    },
-    {
-      name: "Canteen Management System",
-      desc: "bkjbk",
-      group_members: ["Shambhavi", "Aakriti"],
-    },
-    {
-      name: "Dashboard Analytics",
-      desc: "bkjbk",
-      group_members: ["Shambhavi", "Aakriti"],
-    },
-  ]);
-  const handleExpand = (val) => {
-    setExpnd(true);
-    setprojetList(val);
+  const [groups, setGroups] = useState([]);
+  const [groupPro, setGroupPro] = useState([]);
+  const [proOwn, setProOwn] = useState([]);
+  const [groupOwn, setGroupOwn] = useState([]);
+  const [groupEx, setGroupEx] = useState(false);
+  const [proOwnEx, setProOwnEx] = useState(false);
+  const [fileId, setFileId] = useState(null);
+  const [fileName, setFileName] = useState(null);
+  const [err, setErr] = useState(null);
+
+  useEffect(() => {
+    const fetchOwnPro = async () => {
+      try {
+        const data = await getOwnPro();
+        setProOwn(data);
+
+        // console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchOwnPro();
+  }, [proOwn]);
+  // console.log(proOwn);
+  useEffect(() => {
+    const fetchOwnPro = async () => {
+      try {
+        const data = await getOwnGroup();
+        setGroupOwn(data);
+        // if(data)
+        // console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchOwnPro();
+  }, [groupOwn]);
+  // console.log(groupOwn);
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const data = await getProjectList();
+
+        setProjectList(data);
+        // console.log(projectList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchProject();
+  }, [projectList]);
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const data = await getGroupProject();
+        setGroups(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchProject();
+  }, [groups]);
+
+  useEffect(() => {
+    groups.map((val) => {
+      if (project.group_id === val._id) setGroupPro(val);
+    });
+  }, [project]);
+
+  const sendId = (btn) => {
+    setFileId(btn);
+    // setDocument({ ...document, fileID: fileId });
+  };
+
+  const sendName = (name) => {
+    console.log("Name" + name);
+    setFileName(name);
+    console.log("File Name" + fileName);
+    // setDocument({ ...document, name: name });
+  };
+
+  const ViewPDf = (fileId) => {
+    //   try {
+    console.log(fileId);
+    fetch(`/api/files/view/${fileId}`)
+      .then((res) => {
+        // convert the response to a blob
+        return res.blob();
+      })
+      .then((blob) => {
+        // create a URL for the blob
+        const url = URL.createObjectURL(blob);
+
+        // create a new window to display the PDF
+        const newWindow = window.open();
+        newWindow.document.write(
+          `<iframe src="${url}" width="100%" height="100%"></iframe>`
+        );
+      });
+  };
+
+  //delete uploaded file
+  const deletePdf = async (fileId) => {
+    try {
+      console.log(fileId);
+      const data = await axios.get("/file/delete/" + fileId);
+      // const res = data.json();
+      if (data.status === 500) window.alert("error while deleting file");
+      else {
+        setFileId(null);
+        setFileName(null);
+
+        // setDocument({ ...document, fileID: null });
+        // setDocument({ ...document, name: null });
+      }
+    } catch (error) {
+      setErr(error);
+      console.log(error);
+    }
+  };
+
+  const deleteUpPdf = async (fileId) => {
+    try {
+      console.log(fileId);
+      const data = await axios.get("/file/delete/" + fileId);
+      if (data.status === 500) window.alert("error while deleting file");
+      else {
+        const data = await pullDocument({
+          fileId: fileId,
+        });
+        console.log(data);
+      }
+    } catch (error) {
+      setErr(error);
+      console.log(error);
+    }
+  };
+
+  const postPDF = async () => {
+    try {
+      const data = await uploadFile({
+        fileID: fileId,
+        fileName: fileName,
+      });
+      if (data === "Success") {
+        setFileId(null);
+        setFileName(null);
+      } else {
+        window.alert("Error");
+      }
+    } catch (error) {
+      console.log(err);
+    }
   };
 
   return (
     <>
-      <div className="project-divUp">
-        <ProgressBar />
-
-        <div className="proj-list-outer">
-          {/* <div className="proj-list">Project Deatils</div> */}
-          <h1 className="pro"> Project Details </h1>
-          <div className="form-body-pro">
-            {projet ? (
-              <>
-                {projet.map((val) => (
-                  <div className="proName">
-                    <div className="down-button" id="arrowDown-button">
+      <div className="trainee-pro-body">
+        <div className="project-listUp">
+          <div className="project-list">
+            <div className="project-list-inner">
+              <h3 className="project-heading">Project List</h3>
+              {projectList.length > 0 ? (
+                projectList.map((val) => (
+                  <>
+                    <div className="project-title-trainee">{val.title}</div>
+                    <button
+                      className="expnd-btn-trainee-project"
+                      onClick={() => {
+                        setProEx(true);
+                        setProject(val);
+                      }}
+                    >
                       <img
+                        className="expnd-img-trainee-project"
                         src={expand}
                         alt=""
-                        className="downarrow-imagee"
-                        onClick={() => handleExpand(val)}
                       />
-                    </div>
-                    {val.name}
-                    <hr
-                      style={{
-                        backgroundColor: "#393e46",
-                        opacity: "0.2",
-                      }}
-                    />
-                  </div>
-                ))}
-              </>
-            ) : null}
+                    </button>
+                  </>
+                ))
+              ) : (
+                <div style={{ color: "#eee", textAlign: "center" }}>
+                  No project yet
+                </div>
+              )}
+            </div>
           </div>
         </div>
-        {expnd ? (
-          <div className="expanded-div1">
-            <button onClick={() => setExpnd(false)} className="expnd-remove">
-              <img className="expnd-imagee" src={cancel} alt="" />
-            </button>
-            <div className="info-box">
-              <div className="information">
-                <div className="info1">
-                  {projetList.name}
+        <div className="project-submissionUp">
+          {proOwn === "no project" ? (
+            <>
+              <h2 className="Nogroup">No Project Assigned Yet</h2>
+            </>
+          ) : (
+            <div className="project-own-div">
+              <div>
+                <div className="proOwn-title">{proOwn.title}</div>{" "}
+                <button
+                  className="down-btn-expand"
+                  onClick={() => {
+                    proOwnEx ? setProOwnEx(false) : setProOwnEx(true);
+                  }}
+                >
+                  <img className="arrowDown-img" src={arrowDown} alt="" />
+                </button>
+              </div>
+
+              {proOwnEx ? (
+                <>
+                  <div className="proOwnDesc-div">{proOwn.description}</div>
+                </>
+              ) : null}
+            </div>
+          )}
+          {groupOwn === "No Group" ? (
+            <>
+              <h2 className="Nogroup">No Group Assigned Yet</h2>
+            </>
+          ) : (
+            <>
+              <div className="group-own-div">
+                <div>
+                  <div className="groupOwn-title">Group Details </div>{" "}
+                  <button
+                    className="down-btn-expand"
+                    onClick={() => {
+                      groupEx ? setGroupEx(false) : setGroupEx(true);
+                    }}
+                  >
+                    <img className="arrowDown-img" src={arrowDown} alt="" />
+                  </button>
                 </div>
-                <div className="info2">
-                  <p style={{marginTop:"0%", fontWeight:"bolder", fontSize:"x-large"}}>Description:</p>
-                  <div className="info-desc">
-                    {projetList.desc}
+                {groupEx ? (
+                  <>
+                    <div className="groupDeet-div">
+                      <div> Group: {groupOwn.name}</div>
+                      <h4
+                        style={{ textDecoration: "underline" }}
+                        className="groupEx-h4"
+                      >
+                        Group Members
+                      </h4>
+                      {groupOwn.members?.map((val) => (
+                        <div>
+                          {val.prefix} {val.first_name} {val.middle_name}{" "}
+                          {val.last_name}
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                ) : null}
+              </div>
+            </>
+          )}
+
+          <div className="workSub-divUp">
+            <div className="workSub-heading">Work Submission</div>
+            <WatchTrainee
+              sendId={sendId}
+              sendName={sendName}
+              className="upload-file"
+            />
+            {fileId ? (
+              <>
+                <div className="file-info">
+                  <div className="file-info1">{fileName}</div> <br />
+                  <br />
+                  <div className="document-btn">
+                    <div
+                      className="file-info6"
+                      onClick={() => deletePdf(fileId)}
+                    >
+                      Delete
+                    </div>
+                    <div className="file-info5" onClick={() => ViewPDf(fileId)}>
+                      View
+                    </div>
+                    <div onClick={postPDF} className="file-info4">
+                      Submit
+                    </div>
                   </div>
                 </div>
+              </>
+            ) : null}
 
-                <div className="info3">
-                  <div className="info-group">
-                  <p style={{marginTop:"0%", fontWeight:"bolder", fontSize:"x-large"}}>Group Members:</p>
-                    {projetList.group_members.map((val) => (
+            <h4 className="docTitle">Documents</h4>
+            {proOwn.document?.map((val) => (
+              <>
+                <div className="worksub-trainee-tile">
+                  <div className="fileName-Trainee">{val.fileName}</div>
+                  <div
+                    className="file-info3"
+                    onClick={() => deleteUpPdf(val.fileID)}
+                  >
+                    Delete
+                  </div>
+                  <div
+                    className="file-info2"
+                    onClick={() => ViewPDf(val.fileID)}
+                  >
+                    View
+                  </div>
+                  <br />
+                  <br />
+                  {val.remark ? (
+                    <>
+                      <div className="remark-trainee">
+                        <h5
+                          className="groupEx-h4"
+                          style={{ textDecoration: "underline" }}
+                        >
+                          Remark
+                        </h5>
+                        <div>{val.remark}</div>
+                      </div>
+                    </>
+                  ) : null}
+                </div>
+              </>
+            ))}
+          </div>
+        </div>
+
+        {proEx ? (
+          <>
+            <div className="expanded-div">
+              <button
+                className="cancel-btn-project"
+                onClick={() => setProEx(false)}
+              >
+                <img className="cancel-img" src={cancel} alt="" />
+              </button>
+              <div className="projectEx-outer">
+                <div className="project-div-inner">
+                  <div className="project-title-div">
+                    <div className="project-title-inner">{project.title}</div>
+                  </div>
+                  <div className="project-desc-div">{project.description}</div>
+                  <div className="project-mem-div">
+                    {project.group_id !== "null" ? (
                       <>
-                        {val}
-                        <hr
-                          style={{ backgroundColor: "#393e46", opacity: "0.2" }}
-                        />
+                        <div className="group-name-trainee-project">
+                          <h3 className="groupEx-h3">Group {groupPro.name}</h3>
+                        </div>
+                        <h4 className="groupEx-h4">Group Members</h4>
+                        {groupPro ? (
+                          <>
+                            {groupPro.members?.map((val) => (
+                              <div>
+                                {val.prefix} {val.first_name} {val.middle_name}{" "}
+                                {val.last_name}
+                              </div>
+                            ))}
+                          </>
+                        ) : null}
                       </>
-                    ))}
+                    ) : (
+                      <div style={{ textAlign: "center", padding: "1%" }}>
+                        Not yet Assigned
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </>
         ) : null}
-        
-        <div className="proj-sub-outer">
-          <div className="proj-sub">Project Submission</div>
-        </div>
       </div>
-      {/* <div className="DivUPro">
-
-      <div className="progress">
-        <div class="circle1">
-          <h1 className="text1">SRS</h1>
-          <div class="fadedbox1">
-            <h1 class="title1 text1"> 10-MARCH-2023 </h1>
-          </div>
-        </div>
-
-        <hr style={{ width:"17.4%", marginLeft:"27.9%", marginTop:"-6%" }} ></hr>
-        
-        <div class="circle2">
-          <h1 className="text2">SDS</h1>
-          <div class="fadedbox2">
-            <h1 class="title2 text2"> 20-MARCH-2023 </h1>
-          </div>
-        </div>
-
-        <hr style={{ width:"17.4%", marginLeft:"58%", marginTop:"-6%" }} ></hr>
-        
-        <div class="circle3">
-          <h1 className="text3">Project Report</h1>
-          <div class="fadedbox3">
-            <h1 class="title3 text3"> 30-MARCH-2023 </h1>
-          </div>
-        </div>
-
-      </div>
-
-      <div className="project">
-        <h1 className="pro"> Project Details </h1>
-        <div className="form-body-pro">
-        {projet.map((val, key) => (
-          <div className="proName">
-            {" "}
-            {val.name}{" "}
-            <hr
-              style={{
-                backgroundColor: "#393e46",
-                opacity: "0.2",
-              }}
-            />{" "}
-          </div>
-        ))}
-        </div>
-      </div>
-      <div className="document">
-      </div>
-      </div> */}
     </>
   );
 };

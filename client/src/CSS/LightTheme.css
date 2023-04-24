@@ -32,7 +32,7 @@
 #light .regHead,
 #light .regHead1,
 #light .head-stud,
-#light input[file],
+#light .file-input,
 #light .studReg-h4,
 #light .file-info1 {
   color: #393e46;
@@ -476,11 +476,16 @@
 }
 
 /* - - - - - - - - - -COORD PROJECT- - - - - - - - - - */
-#light .event {
+#light .event,
+#light .pro-tile,
+#light .Nodoc,
+#light .document-tile {
   background-color: #aad7d4;
 }
 
-#light .no-event {
+#light .no-event,
+#light .pro-tile,
+#light .Nodoc {
   color: #0f1010;
 }
 
@@ -500,12 +505,14 @@
   border: 2px #00adb5 solid;
 }
 
-#light .event-item {
+#light .event-item,
+#light .remark-text {
   background-color: #eeeeee;
 }
 
 #light .event-title,
-#light .event-deadline {
+#light .event-deadline,
+#light .doc-title-tile {
   color: #0f1010;
 }
 
@@ -523,6 +530,11 @@
   color: #00adb5;
   font-weight: bold;
   border: 2px #00adb5 solid;
+}
+
+#light .remark-submit-btn:hover {
+  color: #0f1010;
+  border: 2px #0f1010 solid;
 }
 /* ----------------------------------TRAINEE DASH---------------------------------------------- */
 #light .selector-stud,
@@ -556,7 +568,8 @@
   color: #0f1010;
 }
 
-#light .eve-timestamp {
+#light .eve-timestamp,
+#light .remark-title {
   color: #393e46;
 }
 
@@ -583,4 +596,57 @@
   background-color: #aad7d4;
   color: #0f1010;
   border: 1px #00adb5 solid;
+}
+
+/* - - - - - - - - - - TRAINEE PROJECT- - - - - - - - - - - - - */
+#light .trainee-pro-body,
+#light .project-submissionUp {
+  background-color: #eeeeee;
+}
+
+#light .project-listUp,
+#light .projectEx-outer,
+#light .cancel-btn-project,
+#light .project-own-div,
+#light .group-own-div,
+#light .workSub-divUp {
+  background-color: #aad7d4;
+}
+
+#light .project-list,
+#light .project-title-div,
+#light .worksub-trainee-tile {
+  background-color: #00adb5;
+  border: 2px #eee solid;
+}
+
+#light .project-heading,
+#light .groupEx-h3,
+#light .proOwn-title,
+#light .groupOwn-title,
+#light .workSub-heading {
+  color: #0f1010;
+}
+
+#light .project-title-div,
+#light .fileName-Trainee {
+  color: #eeeeee;
+}
+
+#light .project-desc-div,
+#light .project-mem-div {
+  background-color: #eeeeee;
+  border: 2px #00adb5 solid;
+}
+
+#light .group-name-trainee-project {
+  border-bottom: 1px #00adb5 solid;
+}
+
+#light .groupEx-h4,
+#light .groupDeet-div,
+#light .proOwnDesc-div,
+#light .Nogroup,
+#light .docTitle {
+  color: #393e46;
 }
