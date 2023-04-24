@@ -12,6 +12,9 @@ const Group = require("../model/groupSchema");
 // const { request } = require("express");
 const Event = require("../model/eventsSchema");
 const Project = require("../model/projectSchema");
+const Archive = require("../model/archiveSchema");
+// const archival = require("../model/archivalSchema");
+// const Archival = require("../model/archivalSchema");
 
 router.post("/coordinator-reg", async (req, res) => {
   try {
@@ -436,5 +439,129 @@ router.post("/send-remark", coordAuthenticate, async (req, res) => {
     console.log(error);
   }
 });
+
+// router.post("/delete-pro-assign", coordAuthenticate, async (req, res) => {
+//   try {
+//     const { projectId } = req.body;
+//     const ID = req.rootUser._id;
+//     console.log(projectId);
+//     const data = await Project.findOne({ _id: projectId });
+//     console.log(data.document);
+//     if(data.document.length>0){
+//       data.document?.map((val) =>
+//        Archive.insert
+//       )
+//     }
+//     db.products.insert( { coordinator_id: ID , project_title: data.title,  fileID: "card", fileNnam: 15 } )
+//     const data = await Project.findOneAndUpdate(
+//       { _id: projectId },
+//       { $set: { group_id: "null" } }
+//     );
+
+//     if (data) res.send("Updated");
+//     else res.send("Failed");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+// router.post("/delete-pro-assign", coordAuthenticate, (req, res) => {
+//   const { projectId } = req.body;
+//   const ID = req.rootUser._id;
+//   Project.findOne({ _id: projectId })
+//     .then((val) => {
+//       val.document.map((data) => {
+//         const user = new Archive({
+//           coordintor_id: ID,
+//           project_name: val.title,
+//           file_id: data.fileID,
+//           file_name: data.fileName,
+//         });
+//         user
+//           .save()
+//           .then((value) => {
+//             Project.findOneAndUpdate(
+//               { _id: projectId },
+//               { $set: { group_id: "null" } }
+//             )
+//               .then((data) => {
+//                 Project.findOneAndUpdate(
+//                   { _id: projectId },
+//                   { $pullAll: { document: 1 } }
+//                 );
+//               })
+//               .catch((err) => console.log(err));
+//           })
+//           .catch((err) => console.log(err));
+//       });
+//     })
+//     .catch((err) => console.log(err));
+// });
+
+router.post("/delete-pro-assign", coordAuthenticate, (req, res) => {
+  const { projectId } = req.body;
+  const ID = req.rootUser._id;
+  Project.findOne({ _id: projectId })
+    .then((val) => {
+      val.document.map((data) => {
+        const user = new Archive({
+          coordintor_id: ID,
+          project_name: val.title,
+          file_id: data.fileID,
+          file_name: data.fileName,
+        });
+        user
+          .save()
+          .then((value) => {
+            Project.findOneAndUpdate(
+              { _id: projectId },
+              { $set: { group_id: "null" } }
+            )
+              .then((data) => {
+                Project.findOneAndUpdate(
+                  { _id: projectId },
+                  { $pullAll: { document: 1 } }
+                );
+              })
+              .catch((err) => console.log(err));
+          })
+          .catch((err) => console.log(err));
+      });
+    })
+    .catch((err) => console.log(err));
+});
+
+router.post("/delete-pro", coordAuthenticate, async (req, res) => {
+  try {
+    const { projectId } = req.body;
+    console.log(projectId);
+
+    // if (data) res.send("Updated");
+    // else res.send("Failed");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// router.post("/delete-pro-assign", coordAuthenticate, (req, res) => {
+//   const { projectId } = req.body;
+//   Project.findOne({ _id: projectId })
+//     .then((val) => {
+//       if (val.document.length > 0) {
+//         const user = Archival({
+//           coordinator_id: val.coordinator_id,
+//           project_name: val.title,
+//           document: val.document,
+//         });
+//         user
+//           .save()
+//           .then((data) => console.log(data))
+//           .catch((err) => console.log(err));
+//       } else {
+//         console.log("No doc for archival");
+//       }
+//     })
+//     .catch((err) => console.log(err));
+// });
 
 module.exports = router;

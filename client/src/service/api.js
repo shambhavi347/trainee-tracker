@@ -732,6 +732,28 @@ export const uploadFile = async (data) => {
   }
 };
 
+export const delProAssign = async (data) => {
+  try {
+    // console.log("Hello");
+    const response = await axios.post("/delete-pro-assign", data);
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const delPro = async (data) => {
+  try {
+    // console.log("Hello");
+    const response = await axios.post("/delete-pro", data);
+    return response.data;
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const pullDocument = async (data) => {
   try {
     // console.log("Hello");

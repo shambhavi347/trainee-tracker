@@ -14,6 +14,17 @@
   /* font-weight: 100; */
 }
 
+.group-delete-detail {
+  background-color: #eeeeee;
+  border: 2px #00adb5 solid;
+  width: 35%;
+  height: 50%;
+  /* height: auto; */
+  margin-top: 13%;
+  margin-left: 33%;
+  padding: 1%;
+}
+
 .docuTitle {
   color: #00adb5;
 }

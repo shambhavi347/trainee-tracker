@@ -4,10 +4,13 @@ import {
   getGroups,
   assignProject,
   sendRemark,
+  delProAssign,
+  delPro,
 } from "../../service/api";
 import { cancel, arrowDown, bin } from "../../Images/Images";
 import axios from "axios";
 import "../../CSS/Coordinator/ProjectDetails.css";
+
 // import { use } from "../../../../server/router/traineeRegRoute";
 
 const ProjectDetails = ({ project }) => {
@@ -22,6 +25,8 @@ const ProjectDetails = ({ project }) => {
   const [remark, setRemark] = useState("");
   const [groupDivEx, setGroupDivEx] = useState(false);
   const [proOwnEx, setProOwnEx] = useState(false);
+  const [cnfrm, setCnfrm] = useState(false);
+  const [cnfrmPro, setCnfrmPro] = useState(false);
 
   const ViewPDf = (fileId) => {
     //   try {
@@ -102,6 +107,7 @@ const ProjectDetails = ({ project }) => {
       });
       // console.log(data);
       if (data.message === "Saved") {
+        window.location.reload(false);
         setGroups((oldValue) => {
           return oldValue.filter((group) => group.name !== name);
         });
@@ -114,13 +120,46 @@ const ProjectDetails = ({ project }) => {
       console.log(error);
     }
   };
+
+  const handleDelGroup = async () => {
+    try {
+      const data = await delProAssign({
+        projectId: project._id,
+      });
+      console.log(data);
+      if (data === "Updated") {
+        // console.log(data);
+        window.location.reload(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelPro = async () => {
+    try {
+      const data = await delPro({
+        projectId: project._id,
+      });
+      console.log(data);
+      if (data === "Deleted") {
+        // console.log(data);
+        window.location.reload(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="project-sub-divup">
         {/* ProjectDetails */}
         <div className="project-own-div">
           <div>
-            <div className="proOwn-title">{project.title}</div>{" "}
+            <div className="proOwn-title">{project.title}</div>
+            <button className="bin-btn" onClick={() => setCnfrmPro(true)}>
+              <img className="bin-img" src={bin} alt="" />
+            </button>
             <button
               className="down-btn-expand"
               onClick={() => {
@@ -198,7 +237,10 @@ const ProjectDetails = ({ project }) => {
                             <div style={{ flex: "1" }}>
                               Group: {proGroup.name}{" "}
                             </div>{" "}
-                            <button className="bin-btn">
+                            <button
+                              className="bin-btn"
+                              onClick={() => setCnfrm(true)}
+                            >
                               <img className="bin-img" src={bin} alt="" />
                             </button>
                           </div>
@@ -278,6 +320,75 @@ const ProjectDetails = ({ project }) => {
             )}
           </>
         )}
+        {cnfrmPro ? (
+          <div className="expanded-div">
+            <div className="group-delete-detail">
+              <button
+                className="close-btn-event"
+                onClick={() => setCnfrmPro(false)}
+              >
+                <img className="img-event" src={cancel} alt="close model box" />
+              </button>
+              <div className="cnfrm-group">
+                <h4>Do you really want to permanently delete this project?</h4>
+                <p
+                  style={{
+                    fontSize: "small",
+                    color: "#f48484",
+                    fontWeight: "normal",
+                  }}
+                >
+                  (Note: Download documents related to this project otherwise it
+                  will be gone forever! You can't undo the changes later!!)
+                </p>
+                <div className="cnfrm-btn">
+                  <button className="cnfrm-yes" onClick={handleDelPro}>
+                    Yes
+                  </button>
+                  <button
+                    className="cnfrm-no"
+                    onClick={() => setCnfrmPro(false)}
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
+        {cnfrm ? (
+          <div className="expanded-div">
+            <div className="group-delete-detail">
+              <button
+                className="close-btn-event"
+                onClick={() => setCnfrm(false)}
+              >
+                <img className="img-event" src={cancel} alt="close model box" />
+              </button>
+              <div className="cnfrm-group">
+                <h4>Do you really want to de-assign this project?</h4>
+                <p
+                  style={{
+                    fontSize: "small",
+                    color: "#f48484",
+                    fontWeight: "normal",
+                  }}
+                >
+                  (Note: Download documents related to this project otherwise it
+                  will be gone forever! You can't undo the changes later!!)
+                </p>
+                <div className="cnfrm-btn">
+                  <button className="cnfrm-yes" onClick={handleDelGroup}>
+                    Yes
+                  </button>
+                  <button className="cnfrm-no" onClick={() => setCnfrm(false)}>
+                    No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
 
         {groupEx ? (
           <>
