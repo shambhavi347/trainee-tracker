@@ -136,19 +136,36 @@ const ProjectDetails = ({ project }) => {
     }
   };
 
-  const handleDelPro = async () => {
-    try {
-      const data = await delPro({
-        projectId: project._id,
-      });
-      console.log(data);
-      if (data === "Deleted") {
-        // console.log(data);
-        window.location.reload(false);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const handleDelPro = () => {
+    delProAssign({
+      projectId: project._id,
+    })
+      .then((data) => {
+        delPro({
+          projectId: project._id,
+        })
+          .then((data) => {
+            window.location.reload(false);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+    // try {
+    //   const data = await delProAssign({
+    //     projectId: project._id,
+    //   });
+    //   console.log(data);
+    //   if (data === "Updated") {
+    //     const data1 = await delPro({
+    //       projectId: project._id,
+    //     });
+    //     // console.log(data);
+    //     if (data1 === "Deleted") window.location.reload(false);
+    //     window.alert(data1);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   return (
     <>

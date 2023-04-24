@@ -7,12 +7,11 @@ const archiveSchema = new mongoose.Schema({
   project_name: {
     type: String,
   },
-  file_id: {
-    type: String,
-  },
-  file_name: {
-    type: String,
-  },
+  document: [
+    {
+      type: Object,
+    },
+  ],
 });
 
 const Archive = mongoose.model("ARCHIVE", archiveSchema);

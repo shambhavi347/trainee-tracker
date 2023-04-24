@@ -465,68 +465,50 @@ router.post("/send-remark", coordAuthenticate, async (req, res) => {
 //   }
 // });
 
-// router.post("/delete-pro-assign", coordAuthenticate, (req, res) => {
-//   const { projectId } = req.body;
-//   const ID = req.rootUser._id;
-//   Project.findOne({ _id: projectId })
-//     .then((val) => {
-//       val.document.map((data) => {
-//         const user = new Archive({
-//           coordintor_id: ID,
-//           project_name: val.title,
-//           file_id: data.fileID,
-//           file_name: data.fileName,
-//         });
-//         user
-//           .save()
-//           .then((value) => {
-//             Project.findOneAndUpdate(
-//               { _id: projectId },
-//               { $set: { group_id: "null" } }
-//             )
-//               .then((data) => {
-//                 Project.findOneAndUpdate(
-//                   { _id: projectId },
-//                   { $pullAll: { document: 1 } }
-//                 );
-//               })
-//               .catch((err) => console.log(err));
-//           })
-//           .catch((err) => console.log(err));
-//       });
-//     })
-//     .catch((err) => console.log(err));
-// });
-
 router.post("/delete-pro-assign", coordAuthenticate, (req, res) => {
   const { projectId } = req.body;
   const ID = req.rootUser._id;
+
   Project.findOne({ _id: projectId })
     .then((val) => {
-      val.document.map((data) => {
+      if (val.document.length > 0) {
         const user = new Archive({
           coordintor_id: ID,
           project_name: val.title,
-          file_id: data.fileID,
-          file_name: data.fileName,
+          document: val.document,
         });
         user
           .save()
-          .then((value) => {
+          .then((data) => {
+            // len = val.document.length;
+            val.document?.map((value) => {
+              Project.findOneAndUpdate(
+                { _id: projectId },
+                { $pull: { document: { fileID: value.fileId } } }
+              )
+                .then((data) => {
+                  console.log("Pulled");
+                  // count = count + 1;
+                })
+                .catch((err) => console.log(err));
+            });
+
             Project.findOneAndUpdate(
               { _id: projectId },
               { $set: { group_id: "null" } }
             )
-              .then((data) => {
-                Project.findOneAndUpdate(
-                  { _id: projectId },
-                  { $pullAll: { document: 1 } }
-                );
-              })
+              .then((data) => res.send("Updated"))
               .catch((err) => console.log(err));
           })
           .catch((err) => console.log(err));
-      });
+      } else {
+        Project.findOneAndUpdate(
+          { _id: projectId },
+          { $set: { group_id: "null" } }
+        )
+          .then((data) => res.send("Updated"))
+          .catch((err) => console.log(err));
+      }
     })
     .catch((err) => console.log(err));
 });
@@ -535,9 +517,9 @@ router.post("/delete-pro", coordAuthenticate, async (req, res) => {
   try {
     const { projectId } = req.body;
     console.log(projectId);
-
-    // if (data) res.send("Updated");
-    // else res.send("Failed");
+    const data = await Project.findOneAndDelete({ _id: projectId });
+    if (data) res.send("Deleted");
+    else res.send("Failed");
   } catch (error) {
     console.log(error);
   }
