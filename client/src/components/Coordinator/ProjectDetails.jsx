@@ -5,7 +5,7 @@ import {
   assignProject,
   sendRemark,
 } from "../../service/api";
-import { cancel, arrowDown } from "../../Images/Images";
+import { cancel, arrowDown, bin } from "../../Images/Images";
 import axios from "axios";
 import "../../CSS/Coordinator/ProjectDetails.css";
 // import { use } from "../../../../server/router/traineeRegRoute";
@@ -189,7 +189,19 @@ const ProjectDetails = ({ project }) => {
                     {groupDivEx ? (
                       <>
                         <div className="groupDeet-div">
-                          <div> Group: {proGroup.name}</div>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <div style={{ flex: "1" }}>
+                              Group: {proGroup.name}{" "}
+                            </div>{" "}
+                            <button className="bin-btn">
+                              <img className="bin-img" src={bin} alt="" />
+                            </button>
+                          </div>
                           <h4
                             style={{ textDecoration: "underline" }}
                             className="groupEx-h4"
