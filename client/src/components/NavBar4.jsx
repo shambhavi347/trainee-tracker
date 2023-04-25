@@ -128,7 +128,11 @@ const NavBar4 = ({ retTheme }) => {
           >
             {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
 
-            <MenuItem id="menu-items" onClick={handlePassword}>
+            <MenuItem
+              id="menu-items"
+              onClick={handlePassword}
+              style={{ color: "#00adb5" }}
+            >
               Change Password
             </MenuItem>
             <Link to="/trainee-profile">
