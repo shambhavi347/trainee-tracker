@@ -651,6 +651,59 @@
   color: #393e46;
 }
 
+/* - - - - - - -- - - - - - - - - -TRAINEE PROFILE- - - - - - - - - - -- - - - - - - - - - - - */
+#light .profileUpper {
+  background: #eeeeee;
+}
+
+#light .profile-box,
+#light .form-edit-profile {
+  background-color: #aad7d4;
+}
+
+#light .line-one p,
+#light .line-two p,
+#light .line-three p {
+  background-color: #eeeeee;
+  color: #0f1010;
+}
+
+#light .profileHead-edit,
+#light .profileHead {
+  color: #00adb5;
+}
+#light .editPhone {
+  color: #393e46;
+}
+#light .form-edit-profile input {
+  border: 1px #00adb5 solid;
+}
+
+#light .form-edit-profile input:active,
+#light .form-edit-profile input:focus {
+  border: 2px #00adb5 solid;
+}
+#light .p-name {
+  background-color: #00adb5;
+  color: #eeeeee;
+  border: 2px #eee solid;
+}
+
+#light .btn-edit,
+#light .btn-save,
+#light .btn-cncl {
+  background-color: #00adb5;
+  color: #eeeeee;
+}
+
+#light .btn-edit:hover,
+#light .btn-save:hover,
+#light .btn-cncl:hover {
+  background-color: #eeeeee;
+  border: 2px #0f1010 solid;
+  color: #0f1010;
+}
+
 /* --------------------------ARCHIVE----------------------------------------------------------------- */
 #light .archive-divUP {
   background-color: #eeeeee;

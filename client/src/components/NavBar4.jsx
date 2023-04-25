@@ -136,16 +136,21 @@ const NavBar4 = ({ retTheme }) => {
                 Profile
               </MenuItem>
             </Link>
-            {/* <MenuItem id="menu-items">
-              <label htmlFor="switch"> Dark Mode </label>{" "}
-              <Switch onChange={toggleTheme} checked={theme === "light"} />
-            </MenuItem> */}
-            <MenuItem id="menu-items" style={{color:theme === "light" ? "#FFB319" : "#00abd5"}} className="switch-toggle-coord">
-              <label htmlFor="switch" className="switchLabel-coord"> 
-              {theme === "dark" ? "Dark Mode" : "Light Mode"}
+
+            <MenuItem
+              id="menu-items"
+              style={{ color: theme === "light" ? "#FFB319" : "#00abd5" }}
+              className="switch-toggle-coord"
+            >
+              <label htmlFor="switch" className="switchLabel">
+                {theme === "dark" ? "Dark Mode" : "Light Mode"}
               </label>
               {/* <Switch onChange={toggleTheme} checked={theme === "light"} /> */}
-              <DarkModeSwitch onChange={toggleTheme} checked={theme === "dark"} style={{color:theme === "light" ? "FFB319" : "lightblue"}} />
+              <DarkModeSwitch
+                onChange={toggleTheme}
+                checked={theme === "dark"}
+                style={{ color: theme === "light" ? "FFB319" : "#00adb5" }}
+              />
             </MenuItem>
             <Link to="/trainee-logout">
               <MenuItem id="menu-items" onClick={handleClose}>

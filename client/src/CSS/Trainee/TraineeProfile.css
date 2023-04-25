@@ -1,88 +1,164 @@
+.profileUpper {
+  background: linear-gradient(to bottom, #393e46, #00adb5);
+  height: 100vh;
+}
+
 .btn-save {
-    text-align: center;
-    border-radius: 20px;
-    border: 0;
-    height: 55px;
-    width: 15%;
-    margin: 1%;
-    padding: 1%;
-    margin-left: 33.5%;
-    font-size: x-large;
-    font-weight: bolder;
-    background-color: #222831;
-    border: 2px #00adb5 solid;
-    color: #00adb5;
-  }
-  .btn-save:hover {
-    background-color: #222831;
-    color: #eeeeee;
-    font-weight: bolder;
-    font-style: italic;
-  }
+  margin: 1%;
+  padding: 1%;
+  margin-left: 40%;
+}
 
-  .btn-cncl {
-    text-align: center;
-    border-radius: 20px;
-    border: 0;
-    height: 55px;
-    width: 14.5%;
-    margin: 1%;
-    padding: 1%;
-    font-size: x-large;
-    font-weight: bolder;
-    background-color: #222831;
-    border: 2px #00adb5 solid;
-    color: #00adb5;
-  }
-  .btn-cncl:hover {
-    background-color: #222831;
-    color: #eeeeee;
-    font-weight: bolder;
-    font-style: italic;
-  }
+.btn-cncl {
+  margin: 1%;
+  padding: 1%;
+}
+.btn-cncl:hover,
+.btn-save:hover {
+  cursor: pointer;
+  background-color: #222831;
+  color: #eeeeee;
+  background-color: #00adb5;
+  font-weight: bold;
+  /* font-style: italic; */
+}
 
-  .btn-edit {
-    text-align: center;
-    border-radius: 20px;
-    border: 0;
-    height: 13%;
-    width: 18%;
-    margin: 2%;
-    padding: 0%;
-    margin-top: 0%;
-    margin-left: 42%;
-    font-size: large;
-    font-weight: bolder;
-    background-color: #222831;
-    border: 2px #00adb5 solid;
-    color: #00adb5;
-  }
-  .btn-edit:hover {
-    background-color: #222831;
-    color: #eeeeee;
-    font-weight: bolder;
-    font-style: italic;
-  }
+.btn-edit {
+  /* justify-content: center; */
+  text-align: center;
+  border-radius: 10px;
+  padding: 1% 2%;
+  /* border: 0;
+  height: 13%;
+  width: 18%;
+  margin: 2%;
+  padding: 0%;
+  margin-top: 0%; */
+  margin: 2% 0%;
+  margin-left: 42%;
+  font-size: large;
+  /* font-weight: bolder; */
+  background-color: #222831;
+  border: 2px #00adb5 solid;
+  color: #00adb5;
+}
+.btn-save,
+.btn-cncl {
+  text-align: center;
+  border-radius: 10px;
+  padding: 1% 2%;
+  font-size: large;
+  background-color: #222831;
+  border: 2px #00adb5 solid;
+  color: #00adb5;
+}
 
-  .profileHead {
-    align-content: center;
-    justify-content: center;
-    display: flex;
-    margin-bottom: 5px;
-    font-size: 30px;
-  }
-  .profileHead {
-    color: white;
-  }
+.btn-edit:hover {
+  background-color: #222831;
+  color: #eeeeee;
+  background-color: #00adb5;
+  cursor: pointer;
+  font-weight: bold;
+  /* font-weight: bolder;
+  font-style: italic; */
+}
 
-  .editPhone {
-    align-content: center;
-    justify-content: center;
-    display: flex;
-    margin: 1%;
-    padding: 0%;
-    font-size: large;
-  }
-  .editPhone {
-    color: white;
-  }
+.profileHead,
+.profileHead-edit {
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 5px;
+  font-size: 30px;
+  color: white;
+}
+.profileHead-edit {
+  margin-top: 3%;
+}
+
+.editPhone {
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  margin: 1%;
+  padding: 0%;
+  font-size: large;
+}
+.editPhone {
+  color: white;
+}
+
+.profile-box {
+  background-color: #222831;
+  width: 80%;
+  margin: 1% 10%;
+  padding: 1% 2%;
+  border: 1px #00adb5 solid;
+  border-radius: 10px;
+  box-shadow: 5px 5px 8px #1c1c1c;
+}
+
+.p-name {
+  border: 1px #00adb5 solid;
+  color: #00adb5;
+  border-radius: 10px;
+  padding: 1.5% 1%;
+  background: #eeeeee;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+.line-one,
+.line-three {
+  justify-content: center;
+  display: flex;
+}
+.line-one p {
+  flex: 1;
+  border: 1px #00adb5 solid;
+  border-radius: 10px;
+  background-color: #393e46;
+  text-align: center;
+  margin: 1% 2%;
+  padding: 1%;
+  color: #eeeeee;
+}
+
+.line-two {
+  width: 100%;
+}
+.line-two p,
+.line-three p {
+  border: 1px #00adb5 solid;
+  border-radius: 10px;
+  background-color: #393e46;
+  text-align: center;
+  margin: 1% 2%;
+  padding: 1%;
+  color: #eeeeee;
+}
+
+.two-inst {
+  width: 62.5%;
+  float: left;
+}
+
+.two-course {
+  width: 29.5%;
+  float: right;
+}
+
+.three-stream {
+  flex: 1;
+}
+
+.form-edit-profile {
+  background-color: #222831;
+  width: 80%;
+  /* position: absolute; */
+  margin: 2% 10%;
+  border-radius: 18px;
+  padding: 1%;
+  /* height: 68%; */
+}
