@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../CSS/Captcha.css";
+import { reloadd } from "../Images/Images";
 
 const Captcha = ({ retValid }) => {
 
@@ -35,12 +36,16 @@ const Captcha = ({ retValid }) => {
 
   return (
     <div className="captcha-container">
-      <div className="captcha">{captcha}</div>
-      <img src={"refresh"} onClick={generateCaptcha} />
-      <div className="input-container">
+      <div className="captcha-refresh-container">
+        <div className="captcha">
+          {captcha}
+        </div>
+      <img className="reload-icon" src={reloadd} alt="" onClick={generateCaptcha} />
+      </div>
+      <div className="input-container" id="text-box">
         <input
           type="text"
-          placeholder="Type the code above"
+          placeholder="Enter Captcha"
           value={inputValue}
           onChange={handleInputChange}
         />
@@ -50,9 +55,6 @@ const Captcha = ({ retValid }) => {
       ) : (
         <div className="not-valid">Not Valid</div>
       )}
-      {/* <button className="refresh" onClick={generateCaptcha}>
-        Refresh code
-      </button> */}
     </div>
   );
 };

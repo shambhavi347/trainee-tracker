@@ -13,7 +13,6 @@ export const ThemeContext = createContext(null);
 
 const Demo = () => {
   const [theme, setTheme] = useState("light");
-
   const retTheme = (btn) => {
     setTheme(btn);
   };
@@ -254,34 +253,9 @@ const Demo = () => {
   };
 
   const postData = async (e) => {
-    if(valid === true) {
-    e.preventDefault();
-    const {
-      prefix,
-      first_name,
-      middle_name,
-      last_name,
-      email,
-      dob,
-      gender,
-      instname,
-      course,
-      stream,
-      phone_no,
-      semester,
-      cgpa,
-      passout_year,
-      status,
-      fileID,
-      group,
-    } = user;
-
-    const res = await fetch("/reg-stud", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    if (valid === true) {
+      e.preventDefault();
+      const {
         prefix,
         first_name,
         middle_name,
@@ -296,28 +270,52 @@ const Demo = () => {
         semester,
         cgpa,
         passout_year,
-        famtech,
-        inttech,
         status,
         fileID,
         group,
-      }),
-    });
+      } = user;
 
-    const data = await res.json();
-    console.log(data);
+      const res = await fetch("/reg-stud", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prefix,
+          first_name,
+          middle_name,
+          last_name,
+          email,
+          dob,
+          gender,
+          instname,
+          course,
+          stream,
+          phone_no,
+          semester,
+          cgpa,
+          passout_year,
+          famtech,
+          inttech,
+          status,
+          fileID,
+          group,
+        }),
+      });
 
-    if (data.error) {
-      setErr(data.error);
-      window.alert("Invalid Registration, " + data.error);
-      // console.log("Invalid Regestration");
+      const data = await res.json();
+      console.log(data);
+
+      if (data.error) {
+        setErr(data.error);
+        window.alert("Invalid Registration, " + data.error);
+        // console.log("Invalid Regestration");
+      } else {
+        window.alert("Registration Successfully");
+        // console.log("Successfull Regestration");
+      }
     } else {
-      window.alert("Registration Successfully");
-      // console.log("Successfull Regestration");
-    }
-    }
-    else {
-      window.alert("Captcha not Matched");
+      window.alert("Captcha does not match");
       // console.log("Successfull Regestration");
     }
   };
@@ -762,7 +760,7 @@ const Demo = () => {
                           </div>
                         </>
                       )}
-                      <Captcha retValid={retValid}/>
+                      <Captcha retValid={retValid} />
                       {/* demo */}
 
                       <button

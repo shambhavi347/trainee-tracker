@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../CSS/Trainee/RegStudent.css";
 import NavBarTr from "../NavBarTr";
+import Captcha from "../Captcha";
 
 const TraineeReg = () => {
   const [req, setReq] = useState(false);
@@ -78,7 +79,7 @@ const TraineeReg = () => {
 
   const postData = async (e) => {
     e.preventDefault();
-    if (password === user.confirmPassword) {
+    if (password === user.confirmPassword && valid === true) {
       const { email } = user;
 
       const res = await fetch("/trainee-reg", {
@@ -104,9 +105,18 @@ const TraineeReg = () => {
         console.log("Successfull Regestration");
         routeChange();
       }
-    } else {
+    } 
+    else if(valid !== true) {
+      setError("Captcha does not match");
+    }
+    else {
       setError("Confirm Password does not match");
     }
+  };
+  const [valid, setValid] = useState(false);
+
+  const retValid = (btn) => {
+    setValid(btn);
   };
 
   return (
@@ -152,7 +162,7 @@ const TraineeReg = () => {
               onChange={handleChange}
             />
             <br />
-
+            <Captcha retValid={retValid}/>
             {btnDisable ? (
               <button className="btn-trainee-disable" disabled={btnDisable}>
                 SUBMIT

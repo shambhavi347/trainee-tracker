@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../CSS/NavBar1.css";
 import { cdacLogo, cancel } from "../Images/Images";
 import { useNavigate } from "react-router-dom";
+import Captcha from "./Captcha";
+
 const NavBar1 = () => {
   let navigate = useNavigate();
   const [openLogin, setOpenLogin] = useState(false);
@@ -39,42 +41,53 @@ const NavBar1 = () => {
     console.log(admin);
   };
 
+  const [valid, setValid] = useState(false);
+
+  const retValid = (btn) => {
+    setValid(btn);
+  };
+
   const PostData = async (e) => {
-    e.preventDefault();
+    if (valid === true) {
+      e.preventDefault();
 
-    const { email, password } = admin;
+      const { email, password } = admin;
 
-    e.preventDefault();
-    const res = await fetch("/admin-login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-    const reason = await res.json();
-    console.log(reason);
+      e.preventDefault();
+      const res = await fetch("/admin-login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+      const reason = await res.json();
+      console.log(reason);
 
-    if (res.status === 400) {
-      window.alert(reason.error);
+      if (res.status === 400) {
+        window.alert(reason.error);
+      } else {
+        if (reason.message === "Admin") {
+          // console.log("Admin login");
+          routeChangeAdmin();
+        } else if (reason.message === "Institute") {
+          // console.log("Trainee Login");
+          routeChangeInst();
+        } else if (reason.message === "Trainee") {
+          // console.log("Trainee Login");
+          routeChangeTrainee();
+        } else if (reason.message === "Coordinator") {
+          // console.log("Trainee Login");
+          routeChangeCoord();
+        } else console.log("Coord Login");
+      }
     } else {
-      if (reason.message === "Admin") {
-        // console.log("Admin login");
-        routeChangeAdmin();
-      } else if (reason.message === "Institute") {
-        // console.log("Trainee Login");
-        routeChangeInst();
-      } else if (reason.message === "Trainee") {
-        // console.log("Trainee Login");
-        routeChangeTrainee();
-      } else if (reason.message === "Coordinator") {
-        // console.log("Trainee Login");
-        routeChangeCoord();
-      } else console.log("Coord Login");
+      window.alert("Captcha does not match");
+      // console.log("Successfull Regestration");
     }
   };
 
@@ -129,6 +142,7 @@ const NavBar1 = () => {
                 >
                   Forgot Password?
                 </p>
+                <Captcha retValid={retValid} />
                 <button
                   onClick={PostData}
                   className="login-component login-btn"

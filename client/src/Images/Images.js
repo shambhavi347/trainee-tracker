@@ -20,6 +20,7 @@ import icon from "../Images/icon.png";
 import resume from "../Images/resume.png";
 import bin from "../Images/bin.png";
 import downloading from "../Images/downloading.png";
+import reloadd from "../Images/reloadd.png";
 export {
   cdacLogo,
   instagram,
@@ -43,4 +44,5 @@ export {
   resume,
   bin,
   downloading,
+  reloadd,
 };

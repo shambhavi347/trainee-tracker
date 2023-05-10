@@ -3,6 +3,7 @@ import NavBar2 from "../NavBar2";
 import "../../CSS/Coordinator/RegCoordinator.css";
 import { useNavigate } from "react-router-dom";
 import { createContext } from "react";
+import Captcha from "../Captcha";
 
 export const ThemeContext = createContext(null);
 const CoordReg = () => {
@@ -36,9 +37,15 @@ const CoordReg = () => {
     navigate(path);
   };
 
+  const [valid, setValid] = useState(false);
+
+  const retValid = (btn) => {
+    setValid(btn);
+  };
+
   const PostData = async (e) => {
     e.preventDefault();
-    if (user.password === user.confirm_pass) {
+    if (user.password === user.confirm_pass && valid === true) {
       console.log(user);
       const {
         salutation,
@@ -76,6 +83,9 @@ const CoordReg = () => {
         window.alert("Registration Successfull !✔");
         routeChange();
       }
+    } else if (valid !== true) {
+      window.alert("Captcha does not match");
+      // console.log("Successfull Regestration");
     } else {
       window.alert("Confirm Password does not match");
       console.log("Confirm Password does not match");
@@ -177,6 +187,8 @@ const CoordReg = () => {
                   id="password"
                   placeholder="Confirm Password *"
                 />
+
+                <Captcha retValid={retValid} />
 
                 <div className="footer-coord">
                   <button
