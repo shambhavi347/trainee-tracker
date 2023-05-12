@@ -4,6 +4,7 @@ import NavBar2 from "../NavBar2";
 import "../../CSS/Institute/RegInstitute.css";
 import { useEffect } from "react";
 import axios from "axios";
+import Captcha from "../Captcha";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { Country, State, City } from "country-state-city";
@@ -39,6 +40,12 @@ const RegInstitute = () => {
   };
 
   const [value, setValue] = useState();
+
+  const [valid, setValid] = useState(false);
+
+  const retValid = (btn) => {
+    setValid(btn);
+  };
 
   const [userRegistration, setUserRegistration] = useState({
     name: "",
@@ -196,43 +203,11 @@ const RegInstitute = () => {
   };
 
   const PostData = async (e) => {
-    e.preventDefault();
-    console.log(userRegistration);
-    if (userRegistration.password === userRegistration.confirmPassword) {
-      const {
-        name,
-        email,
-        smonth,
-        emonth,
-        duration,
-        rating,
-        rvalue,
-        type,
-        addressline1,
-        addressline2,
-        city,
-        state,
-        country,
-        zipcode,
-        landline,
-        extension,
-        phoneno,
-        status,
-        salutation,
-        coordfirstName,
-        coordmiddleName,
-        coordlastName,
-        coordEmail,
-        coordPhone,
-        password,
-      } = userRegistration;
-
-      const res = await fetch("/institute-reg", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+    if (valid === true) {
+      e.preventDefault();
+      console.log(userRegistration);
+      if (userRegistration.password === userRegistration.confirmPassword) {
+        const {
           name,
           email,
           smonth,
@@ -247,9 +222,9 @@ const RegInstitute = () => {
           state,
           country,
           zipcode,
-          phoneno,
           landline,
           extension,
+          phoneno,
           status,
           salutation,
           coordfirstName,
@@ -258,37 +233,75 @@ const RegInstitute = () => {
           coordEmail,
           coordPhone,
           password,
-        }),
-      });
+        } = userRegistration;
 
-      const data = await res.json();
-      console.log(data);
+        const res = await fetch("/institute-reg", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            smonth,
+            emonth,
+            duration,
+            rating,
+            rvalue,
+            type,
+            addressline1,
+            addressline2,
+            city,
+            state,
+            country,
+            zipcode,
+            phoneno,
+            landline,
+            extension,
+            status,
+            salutation,
+            coordfirstName,
+            coordmiddleName,
+            coordlastName,
+            coordEmail,
+            coordPhone,
+            password,
+          }),
+        });
 
-      //email and password validation
-      // if (!validEmail.test(email)) {
-      //   window.alert("Invalid Institute Email ID☹");
-      //   console.log("Invalid Email ID");
+        const data = await res.json();
+        console.log(data);
 
-      // } else if (!validEmail.test(coordEmail)) {
-      //   window.alert("Invalid Coordinator Email ID☹");
-      //   console.log("Invalid Email ID");
-      // } else if (!validPassword.test(password)) {
-      //   window.alert(
-      //     "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
-      //   );
-      //console.log("Make the Password Strong !!");
-      // } else
-      if (data.status === 422 || data.error) {
-        window.alert("Invalid Registration!❌" + data.error);
-        console.log("Invalid Registration!❌");
+        //email and password validation
+        // if (!validEmail.test(email)) {
+        //   window.alert("Invalid Institute Email ID☹");
+        //   console.log("Invalid Email ID");
+
+        // } else if (!validEmail.test(coordEmail)) {
+        //   window.alert("Invalid Coordinator Email ID☹");
+        //   console.log("Invalid Email ID");
+        // } else if (!validPassword.test(password)) {
+        //   window.alert(
+        //     "Password should be of minimum 8 characters and should contain a digit, an uppercase alphabet,a lowercase alphabet and a special symbol!!"
+        //   );
+        //console.log("Make the Password Strong !!");
+        // } else
+        if (data.status === 422 || data.error) {
+          window.alert("Invalid Registration!❌" + data.error);
+          console.log("Invalid Registration!❌");
+        } else {
+          window.alert("Registration Successful!✔");
+          routeChange();
+          //console.log("Registration Successful!✔");
+        }
       } else {
-        window.alert("Registration Successful!✔");
-        routeChange();
-        //console.log("Registration Successful!✔");
+        window.alert("Confirm Password does not match");
+        console.log("Confirm Password does not match");
       }
-    } else {
-      window.alert("Confirm Password does not match");
-      console.log("Confirm Password does not match");
+    }
+    else {
+      window.alert("Captcha not Matched");
+      // console.log("Successfull Regestration");
     }
   };
 
@@ -676,6 +689,8 @@ const RegInstitute = () => {
                       a digit, an uppercase alphabet,a lowercase alphabet and a
                       special symbol)
                     </div>
+
+                    <Captcha retValid={retValid} />
 
                     <div className="footer-inst">
                       <button

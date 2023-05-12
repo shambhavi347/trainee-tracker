@@ -76,7 +76,7 @@
   /* padding-top: 0vh; */
 /* margin: 0;
   height: 100%;
-  color: azure;
+  color: #eeeeee;
   overflow-y: scroll; */
 /* } */
 /* #main {
@@ -90,7 +90,7 @@
   padding-top: 0px;
   align-content: center;
   background-size: cover;
-  color: azure;
+  color: #eeeeee;
   /* overflow-y: scroll; */
 }
 
@@ -127,7 +127,7 @@ input {
 
 /* input[file] {
   border: 0 !important;
-  color: white;
+  color: #eeeeee;
 }
 input:focus {
   outline: none !important;
@@ -137,7 +137,7 @@ input:focus {
   margin-top: 10px;
   margin-bottom: -10px;
   padding: 10px;
-  color: white;
+  color: #eeeeee;
 }
 input[type="file"]::file-selector-button1 {
   font-family: "Itim", cursive;
@@ -193,15 +193,16 @@ input[type="file"]::file-selector-button1:hover {
   margin-left: 2%;
   padding: 1%;
   border-radius: 6px;
+  background-color: #eeeeee;
 }
 
 .loginWelcome {
   opacity: 0.7;
   text-align: center;
-  color: #f2f4f4;
+  color: #eeeeee;
 }
 .regHead {
-  color: white;
+  color: #eeeeee;
   margin-top: -3%;
 }
 
@@ -231,7 +232,7 @@ input[type="file"]::file-selector-button1:hover {
 .drop-down11 {
   /*padding: 20px;*/
   color: black;
-  background-color: white;
+  background-color: #eeeeee;
   /*border-radius: 20px;*/
   border: 1px solid rgba(52, 73, 94, 0.1);
   font-size: medium;
@@ -249,7 +250,7 @@ input[type="file"]::file-selector-button1:hover {
   margin-top: 20px;
   padding: 20px;*/
   color: black;
-  background-color: white;
+  background-color: #eeeeee;
   /*border-radius: 20px;*/
   border: 1px solid rgba(52, 73, 94, 0.1);
   font-size: medium;
