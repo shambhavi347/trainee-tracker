@@ -586,7 +586,8 @@
 }
 
 #light .coordEmailTrainee,
-#light .coordPhoneTrainee {
+#light .coordPhoneTrainee,
+#light .coord-not-assigned {
   background-color: #aad7d4;
   color: #0f1010;
   border: 1px #00adb5 solid;

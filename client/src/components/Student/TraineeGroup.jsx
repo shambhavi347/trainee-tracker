@@ -42,7 +42,9 @@ const TraineeGroup = () => {
           <h2 className="coordTitle">Coordinator Name</h2>
           <hr className="lineCoordName" />
           <div className="CoordDetails">
-            <div className="coordNameTrainee">
+            {mentor.first_name ? (
+              <div>
+              <div className="coordNameTrainee">
               {mentor.salutation} {mentor.first_name} {mentor.middle_name}
               {mentor.last_name}
             </div>
@@ -50,6 +52,18 @@ const TraineeGroup = () => {
               <div className="coordEmailTrainee">Email : {mentor.email}</div>
               <div className="coordPhoneTrainee">Phone No: {mentor.phone}</div>
             </div>
+            </div>
+            ) : (
+              <div className="coord-not-assigned">Coordinator Not Assigned Yet !!</div>
+            )}
+            {/* <div className="coordNameTrainee">
+              {mentor.salutation} {mentor.first_name} {mentor.middle_name}
+              {mentor.last_name}
+            </div>
+            <div className="coordInfo">
+              <div className="coordEmailTrainee">Email : {mentor.email}</div>
+              <div className="coordPhoneTrainee">Phone No: {mentor.phone}</div>
+            </div> */}
           </div>
         </div>
         <div className="TraineeDiv">

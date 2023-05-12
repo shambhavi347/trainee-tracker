@@ -34,6 +34,18 @@
   border: 1.5px #222831 solid;
 }
 
+.coord-not-assigned {
+  background-color: #393e46;
+  width: 45%;
+  padding: 1%;
+  border-radius: 10px;
+  text-align: center;
+  color: #00adb5;
+  border: 1.5px #222831 solid;
+  margin-left: 25%;
+  margin-top: 4%;
+}
+
 .coordEmailTrainee {
   float: left;
 }
