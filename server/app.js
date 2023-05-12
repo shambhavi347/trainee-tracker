@@ -31,30 +31,6 @@ app.use(require("./router/traineeRegRoute"));
 app.use(require("./router/coordinatorRoute"));
 app.use(require("./router/documentRoute"));
 
-//MiddleWare
-
-// const middleware = (req, res, next) => {
-//   console.log("Hello from MW");
-//   next();
-// };
-
-// const adminAuth = require("./middleware/adminauth");
-
-// app.get("/admin-dashboard", (req, res) => {
-//   console.log(`hello admin`);
-//   res.send(`hello about from the server`);
-// });
-
-// app.get("/admin-dashboard", middleware, (req, res) => {
-//   console.log(`hello admin`);
-//   res.send(`hello admin about from the server`);
-// });
-
-// app.get("/reg-institute", (req, res) => {
-//   console.log(`hello insititute`);
-//   res.send(`hello insititute about from the server`);
-// });
-
 server.listen(PORT, () => {
   console.log(`server is running on port no. ${PORT}`);
 });
