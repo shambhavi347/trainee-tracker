@@ -298,8 +298,7 @@ const RegInstitute = () => {
         window.alert("Confirm Password does not match");
         console.log("Confirm Password does not match");
       }
-    }
-    else {
+    } else {
       window.alert("Captcha not Matched");
       // console.log("Successfull Regestration");
     }
@@ -689,8 +688,15 @@ const RegInstitute = () => {
                       a digit, an uppercase alphabet,a lowercase alphabet and a
                       special symbol)
                     </div>
+                    {/* <br />
+                    <br /> */}
 
-                    <Captcha retValid={retValid} />
+                    <Captcha
+                      retValid={retValid}
+                      captchaRefreshContainer="captcha-refresh-container captcha-refresh-container-reg-inst"
+                      inputContainerClass="input-container input-container-reg-inst"
+                      captchaClass="captcha captcha-login"
+                    />
 
                     <div className="footer-inst">
                       <button

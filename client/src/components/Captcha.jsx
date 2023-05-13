@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import "../CSS/Captcha.css";
 import { reloadd } from "../Images/Images";
 
-const Captcha = ({ retValid }) => {
-
+const Captcha = ({
+  retValid,
+  captchaRefreshContainer,
+  inputContainerClass,
+  captchaClass,
+}) => {
   const [captcha, setCaptcha] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [valid, setValid] = useState(false);
+  const [colorValid, setColorValid] = useState("red");
 
   // Define the captcha generation function
   const generateCaptcha = () => {
@@ -26,6 +31,10 @@ const Captcha = ({ retValid }) => {
     generateCaptcha();
   }, []);
 
+  useEffect(() => {
+    valid ? setColorValid("1px green solid") : setColorValid("1px  red solid");
+  }, [valid]);
+
   //   Define the input change handler function
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -36,25 +45,33 @@ const Captcha = ({ retValid }) => {
 
   return (
     <div className="captcha-container">
-      <div className="captcha-refresh-container">
-        <div className="captcha">
-          {captcha}
-        </div>
-      <img className="reload-icon" src={reloadd} alt="" onClick={generateCaptcha} />
+      <div className={captchaRefreshContainer}>
+        <div className={captchaClass}>{captcha}</div>
+        <img
+          className="reload-icon"
+          src={reloadd}
+          alt=""
+          onClick={generateCaptcha}
+        />
       </div>
-      <div className="input-container" id="text-box">
+      <div
+        className={inputContainerClass}
+        id="text-box"
+        style={{ border: colorValid }}
+      >
         <input
           type="text"
+          className="captcha-text"
           placeholder="Enter Captcha"
           value={inputValue}
           onChange={handleInputChange}
         />
       </div>
-      {valid ? (
+      {/* {valid ? (
         <div className="valid">Valid code</div>
       ) : (
         <div className="not-valid">Not Valid</div>
-      )}
+      )} */}
     </div>
   );
 };

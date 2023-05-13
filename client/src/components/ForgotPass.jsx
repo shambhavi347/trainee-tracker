@@ -13,37 +13,37 @@ const ForgotPass = () => {
     setEmail(value);
   };
 
-  const [valid, setValid] = useState(false);
+  // const [valid, setValid] = useState(false);
 
-  const retValid = (btn) => {
-    setValid(btn);
-  };
+  // const retValid = (btn) => {
+  //   setValid(btn);
+  // };
 
   const postData = async (e) => {
-    if (valid === true) {
-      e.preventDefault();
-      const res = await fetch("/forgot-pass", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          email,
-        }),
-      });
-      const reason = await res.json();
-      console.log("Reason" + reason);
-      if (res.status === 422) {
-        window.alert(reason.error);
-      } else {
-        console.log(reason.message);
-        setMailSent(true);
-      }
+    // if (valid === true) {
+    e.preventDefault();
+    const res = await fetch("/forgot-pass", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        email,
+      }),
+    });
+    const reason = await res.json();
+    console.log("Reason" + reason);
+    if (res.status === 422) {
+      window.alert(reason.error);
     } else {
-      window.alert("Captcha does not match");
-      // console.log("Successfull Regestration");
+      console.log(reason.message);
+      setMailSent(true);
     }
+    // } else {
+    //   window.alert("Captcha does not match");
+    //   // console.log("Successfull Regestration");
+    // }
   };
   return (
     <>
@@ -68,7 +68,7 @@ const ForgotPass = () => {
                   onChange={handleChange}
                 />
                 <br />
-                <Captcha retValid={retValid} />
+                {/* <Captcha retValid={retValid} /> */}
                 <button className="pass-btn" onClick={postData}>
                   Send a password reset mail
                 </button>

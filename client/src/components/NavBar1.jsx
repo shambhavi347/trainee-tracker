@@ -142,7 +142,12 @@ const NavBar1 = () => {
                 >
                   Forgot Password?
                 </p>
-                <Captcha retValid={retValid} />
+                <Captcha
+                  retValid={retValid}
+                  captchaRefreshContainer="captcha-refresh-container captcha-refresh-container-login"
+                  inputContainerClass="input-container input-container-login"
+                  captchaClass="captcha captcha-login"
+                />
                 <button
                   onClick={PostData}
                   className="login-component login-btn"

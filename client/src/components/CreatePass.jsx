@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar1 from "./NavBar1";
 import { useParams } from "react-router-dom";
+import Captcha from "./Captcha";
 
 const CreatePass = () => {
   const { userId } = useParams();
@@ -13,6 +14,11 @@ const CreatePass = () => {
   const [passSpe, setPassSpe] = useState("red");
   const [passMin, setPassMin] = useState("red");
   const [btnDisable, setBtnDisable] = useState(true);
+  const [valid, setValid] = useState(false);
+
+  const retValid = (btn) => {
+    setValid(btn);
+  };
   useEffect(() => {
     var hasNumber = /\d/;
     var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -54,26 +60,28 @@ const CreatePass = () => {
   };
   const postData = async (e) => {
     e.preventDefault();
+    if (valid) {
+      const res = await fetch("/create-pass", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          userId,
+          password,
+        }),
+      });
+      const reason = await res.json();
+      console.log(reason);
 
-    e.preventDefault();
-    const res = await fetch("/create-pass", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        userId,
-        password,
-      }),
-    });
-    const reason = await res.json();
-    console.log(reason);
-
-    if (res.status === 422) {
-      window.alert(reason.error);
+      if (res.status === 422) {
+        window.alert(reason.error);
+      } else {
+        setChangePass(true);
+      }
     } else {
-      setChangePass(true);
+      window.alert("Captcha does not match");
     }
   };
   return (
@@ -103,7 +111,9 @@ const CreatePass = () => {
                   className="pass-input-change"
                   onChange={handleChange}
                 />
-
+                <br />
+                <br />
+                <Captcha retValid={retValid} />
                 {btnDisable ? (
                   <button
                     className="pass-btn-change-disable"

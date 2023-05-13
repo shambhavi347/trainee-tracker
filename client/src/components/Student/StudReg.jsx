@@ -760,7 +760,12 @@ const Demo = () => {
                           </div>
                         </>
                       )}
-                      <Captcha retValid={retValid} />
+                      <Captcha
+                        retValid={retValid}
+                        captchaRefreshContainer="captcha-refresh-container captcha-refresh-container-stud-inst"
+                        inputContainerClass="input-container input-container-stud-inst"
+                        captchaClass="captcha captcha-login"
+                      />
                       {/* demo */}
 
                       <button

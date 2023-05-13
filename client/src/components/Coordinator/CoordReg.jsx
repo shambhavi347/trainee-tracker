@@ -188,7 +188,12 @@ const CoordReg = () => {
                   placeholder="Confirm Password *"
                 />
 
-                <Captcha retValid={retValid} />
+                <Captcha
+                  retValid={retValid}
+                  captchaRefreshContainer="captcha-refresh-container captcha-refresh-container-reg-coord"
+                  inputContainerClass="input-container input-container-reg-coord"
+                  captchaClass="captcha captcha-login"
+                />
 
                 <div className="footer-coord">
                   <button

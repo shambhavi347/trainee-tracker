@@ -105,11 +105,9 @@ const TraineeReg = () => {
         console.log("Successfull Regestration");
         routeChange();
       }
-    } 
-    else if(valid !== true) {
+    } else if (valid !== true) {
       setError("Captcha does not match");
-    }
-    else {
+    } else {
       setError("Confirm Password does not match");
     }
   };
@@ -162,7 +160,12 @@ const TraineeReg = () => {
               onChange={handleChange}
             />
             <br />
-            <Captcha retValid={retValid}/>
+            <Captcha
+              retValid={retValid}
+              captchaRefreshContainer="captcha-refresh-container captcha-refresh-container-reg-coord"
+              inputContainerClass="input-container input-container-reg-coord"
+              captchaClass="captcha captcha-login"
+            />
             {btnDisable ? (
               <button className="btn-trainee-disable" disabled={btnDisable}>
                 SUBMIT

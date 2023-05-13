@@ -71,7 +71,108 @@ const MainPage = () => {
         </div>
 
         <div className="footer">
+          <div className="footer-left">
+            {/* <div className="center">Centers</div> */}
+            <ul>
+              <li className="center">Centers</li>
+
+              <a href="https://www.cdac.in/index.aspx?id=BL">
+                <li className="centers">Bengaluru</li>
+              </a>
+              <a href="https://www.cdac.in/index.aspx?id=CH">
+                <li className="centers">Chennai</li>
+              </a>
+
+              <a href="https://www.cdac.in/index.aspx?id=DL">
+                <li className="centers">Delhi</li>
+              </a>
+
+              <a href="https://www.cdac.in/index.aspx?id=HY">
+                <li className="centers">Hyderabad</li>
+              </a>
+              <a href="https://www.cdac.in/index.aspx?id=KL">
+                <li className="centers">Kolkata</li>
+              </a>
+              <a href="https://www.cdac.in/index.aspx?id=ML">
+                <li className="centers">Mohali</li>
+              </a>
+              <a href="https://www.cdac.in/index.aspx?id=MB">
+                {" "}
+                <li className="centers">Mumbai</li>
+              </a>
+              <a href="https://www.cdac.in/index.aspx?id=ND">
+                <li className="centers">Nodia</li>
+              </a>
+              <a href="https://www.cdac.in/index.aspx?id=PT">
+                <li className="centers">Patna</li>
+              </a>
+              <a href="https://www.cdac.in/index.aspx?id=PN">
+                <li className="centers">Pune</li>
+              </a>
+
+              <a href="https://www.cdac.in/index.aspx?id=SL">
+                <li className="centers">Silcher</li>
+              </a>
+              <a href="https://www.cdac.in/index.aspx?id=TVM">
+                <li className="centers">Thiruvananthpuram</li>
+              </a>
+            </ul>
+          </div>
           <div className="footer-right">
+            <div className="footer-media">
+              {" "}
+              <div className="media-left">Follow Us</div>
+              <div className="media-right">
+                <a href="https://www.instagram.com/cdacnoida/?hl=en">
+                  <img className="mediaLogo" src={instagram} alt="" />
+                </a>
+                <a href="https://www.facebook.com/CDACINDIA/">
+                  <img className="mediaLogo" src={facebook} alt="" />
+                </a>
+                <a href="https://twitter.com/cdacindia?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                  <img className="mediaLogo" src={twitter} alt="" />
+                </a>
+                <a href="https://www.youtube.com/@CDACOfficial">
+                  <img className="mediaLogo" src={youtube} alt="" />
+                </a>
+              </div>{" "}
+            </div>
+            <ul>
+              <a href="https://www.cdac.in/index.aspx?id=about">
+                <li className="links link">About Us</li>
+              </a>
+              <a href="https://www.cdac.in/index.aspx?id=reach_us">
+                <li className="links link">Reach Us</li>
+              </a>
+
+              <li className="links">Contact Us</li>
+              <p className="address">
+                Centre for Development of Advanced Computing C-DAC
+                <br />
+                Innovation Park, Panchavati, Pashan, Pune - 411 008, <br />{" "}
+                Maharashtra (India) <br />
+                Phone: +91-20-25503100 <br />
+                Fax: +91-20-25503131
+              </p>
+            </ul>
+          </div>
+          {/*<div className="footer-media"> <div className="media-left">Follow:</div>
+            <div className="media-right">
+              <a href="https://www.instagram.com/cdacnoida/?hl=en">
+                <img className="mediaLogo" src={instagram} alt="" />
+              </a>
+              <a href="https://www.facebook.com/CDACINDIA/">
+                <img className="mediaLogo" src={facebook} alt="" />
+              </a>
+              <a href="https://twitter.com/cdacindia?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                <img className="mediaLogo" src={twitter} alt="" />
+              </a>
+              <a href="https://www.youtube.com/@CDACOfficial">
+                <img className="mediaLogo" src={youtube} alt="" />
+              </a>
+            </div> </div>*/}
+
+          {/* <div className="footer-right">
             <ul>
               <a href="https://www.cdac.in/index.aspx?id=about">
                 <li className="links">About Us</li>
@@ -111,7 +212,7 @@ const MainPage = () => {
                 <img className="mediaLogo" src={youtube} alt="" />
               </a>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
