@@ -181,6 +181,13 @@
   margin-top: 2%;
   color: #eeeeee;
   font-weight: normal;
+  /* background-color: aquamarine; */
+  /* background-color: #393e46; */
+  width: 90%;
+  float: left;
+  margin-bottom: 2%;
+  padding: 1% 0%;
+  border-bottom: 1px #393e46 solid;
 }
 
 #traineeTileID {
@@ -207,4 +214,18 @@
 .lineGroupName {
   background-color: #393e46;
   opacity: 0.4;
+}
+
+.remove-mem {
+  width: 3%;
+  height: 3%;
+  float: right;
+  margin-top: 2%;
+  margin-right: 1%;
+  margin-bottom: 2%;
+}
+.remove-group {
+  float: right;
+  width: 25px;
+  height: 25px;
 }

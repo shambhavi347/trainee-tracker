@@ -659,6 +659,15 @@ export const removeGroup = async (data) => {
   }
 };
 
+export const editsGroup = async (data) => {
+  try {
+    let respone = await axios.post("/edit-group", data);
+    return respone.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const sendSetudentMail = async (data) => {
   try {
     let respone = await axios.post("/send-student-mail", data);

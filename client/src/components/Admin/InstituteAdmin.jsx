@@ -442,8 +442,8 @@ const InstituteAdmin = () => {
 
           <div className="search-bar">
             <input
+              type="search"
               className="search-text"
-              type="text"
               name=""
               id=""
               placeholder="Search by name..."

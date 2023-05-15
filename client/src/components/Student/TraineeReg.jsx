@@ -140,7 +140,7 @@ const TraineeReg = () => {
               onChange={handleChange}
             />
             <input
-              className="form-element-trainee"
+              className="form-element-trainee-pass"
               type="text"
               // type="password"
               name="password"

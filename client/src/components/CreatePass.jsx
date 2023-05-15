@@ -3,6 +3,7 @@ import axios from "axios";
 import NavBar1 from "./NavBar1";
 import { useParams } from "react-router-dom";
 import Captcha from "./Captcha";
+import { closeeye, seen } from "../Images/Images";
 
 const CreatePass = () => {
   const { userId } = useParams();
@@ -15,6 +16,8 @@ const CreatePass = () => {
   const [passMin, setPassMin] = useState("red");
   const [btnDisable, setBtnDisable] = useState(true);
   const [valid, setValid] = useState(false);
+  const [showPass, setShowPass] = useState("password");
+  const [eye, setEye] = useState(closeeye);
 
   const retValid = (btn) => {
     setValid(btn);
@@ -84,6 +87,15 @@ const CreatePass = () => {
       window.alert("Captcha does not match");
     }
   };
+  const handlePass = () => {
+    if (showPass === "password") {
+      setShowPass("text");
+      setEye(seen);
+    } else {
+      setShowPass("password");
+      setEye(closeeye);
+    }
+  };
   return (
     <>
       <NavBar1 />
@@ -100,42 +112,71 @@ const CreatePass = () => {
             </>
           ) : (
             <>
-              <h2 className="pass-title">
-                Let's find your Trainee Tacker Account
-              </h2>
-              <p className="forgot-p">What's your email address ?</p>
-              <form method="POST">
-                <input
-                  type="text"
-                  placeholder="New Password"
-                  className="pass-input-change"
-                  onChange={handleChange}
-                />
-                <br />
-                <br />
-                <Captcha retValid={retValid} />
-                {btnDisable ? (
-                  <button
-                    className="pass-btn-change-disable"
-                    disabled={btnDisable}
-                  >
-                    Change Password
-                  </button>
-                ) : (
-                  <button className="pass-btn-change" onClick={postData}>
-                    Change Password
-                  </button>
-                )}
+              <div className="trainee-reg-box">
+                <div className="formRegTrainee">
+                  <h2 className="pass-title">
+                    Let's find your Trainee Tacker Account
+                  </h2>
+                  <p className="forgot-p">What's your email address ?</p>
+                  {/* className="form-element-trainee" */}
+                  <div className="form-element-trainee-pass">
+                    {/* {showPass ? ( */}
+                    <input
+                      type={showPass}
+                      name="password"
+                      placeholder="Set Password"
+                      autoComplete="off"
+                      onChange={handleChange}
+                      className="input-pass"
+                    />
 
-                <ul className="password-rules">
-                  <li style={{ color: passUpper }}>Uppercase letter</li>
-                  <li style={{ color: passLower }}>Lowercase letter</li>
-                  <li style={{ color: passSpe }}>Special symbol</li>
-                  <li style={{ color: passNum }}>Numeric value</li>
-                  <li style={{ color: passMin }}>Minimum of 8 letters</li>
-                </ul>
-                {/* <br /> */}
-              </form>
+                    <button className="show-pass" onClick={handlePass}>
+                      <img className="pass-img" src={eye} alt="" />
+                    </button>
+                  </div>
+
+                  <br />
+                  <Captcha
+                    retValid={retValid}
+                    captchaRefreshContainer="captcha-refresh-container captcha-refresh-container-reg-coord"
+                    inputContainerClass="input-container input-container-reg-coord"
+                    captchaClass="captcha captcha-login"
+                  />
+                  {btnDisable ? (
+                    <button
+                      className="btn-trainee-disable"
+                      disabled={btnDisable}
+                    >
+                      SUBMIT
+                    </button>
+                  ) : (
+                    <button className="btn-form-trainee" onClick={postData}>
+                      SUBMIT
+                    </button>
+                  )}
+                </div>
+                <div className="rules">
+                  {/* <p style={{ fontSize: "small" }}> */}
+                  <ul>
+                    <p style={{ color: passUpper }}>
+                      Must Conatin Uppercase Letter
+                    </p>
+                    <p style={{ color: passLower }}>
+                      Must Contain Lowercase Letter
+                    </p>
+                    <p style={{ color: passNum }}>
+                      Must Contain a Numeric Value
+                    </p>
+                    <p style={{ color: passSpe }}>
+                      Must Contain a Special Symbol
+                    </p>
+                    <p style={{ color: passMin }}>
+                      Must Contain Minimum 8 Characters
+                    </p>
+                  </ul>
+                  {/* </p> */}
+                </div>
+              </div>
             </>
           )}
         </div>

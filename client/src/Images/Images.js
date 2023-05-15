@@ -17,10 +17,13 @@ import remove from "../Images/remove.png";
 import loading from "../Images/loading.gif";
 import add from "../Images/add.png";
 import icon from "../Images/icon.png";
-import resume from "../Images/resume.png";
+// import resume from "../Images/resume.png";
 import bin from "../Images/bin.png";
 import downloading from "../Images/downloading.png";
 import reloadd from "../Images/reloadd.png";
+import closeeye from "../Images/closeeye.png";
+import seen from "../Images/seen.png";
+
 export {
   cdacLogo,
   instagram,
@@ -41,8 +44,10 @@ export {
   loading,
   add,
   icon,
-  resume,
+  // resume,
   bin,
   downloading,
   reloadd,
+  closeeye,
+  seen,
 };

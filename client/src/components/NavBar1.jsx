@@ -48,9 +48,8 @@ const NavBar1 = () => {
   };
 
   const PostData = async (e) => {
-    if (valid === true) {
-      e.preventDefault();
-
+    e.preventDefault();
+    if (valid) {
       const { email, password } = admin;
 
       e.preventDefault();

@@ -150,22 +150,6 @@ const ProjectDetails = ({ project }) => {
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
-    // try {
-    //   const data = await delProAssign({
-    //     projectId: project._id,
-    //   });
-    //   console.log(data);
-    //   if (data === "Updated") {
-    //     const data1 = await delPro({
-    //       projectId: project._id,
-    //     });
-    //     // console.log(data);
-    //     if (data1 === "Deleted") window.location.reload(false);
-    //     window.alert(data1);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
   return (
     <>

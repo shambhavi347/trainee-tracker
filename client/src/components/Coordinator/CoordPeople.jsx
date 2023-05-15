@@ -6,8 +6,11 @@ import {
   postGroup,
   getGroups,
   removeGroup,
+  editsGroup,
+  delProAssign,
+  getProjects,
 } from "../../service/api";
-import { expand, cancel } from "../../Images/Images";
+import { expand, cancel, bin, remove } from "../../Images/Images";
 
 var trainee_tile_div = {
   padding: "2% 15%",
@@ -63,7 +66,26 @@ const CoordPeople = () => {
   const [count, setCount] = useState("");
   const [groups, setGroups] = useState([]);
   const [groupDelete, setGroupDelete] = useState(0);
-  const [countErr, setCountErr] = useState(false);
+  const [btnClicked, setBtnClicked] = useState(false);
+  const [projects, setProjects] = useState([]);
+  const [delGroup, setDelGroup] = useState({
+    project: "",
+    members: "",
+  });
+
+  // console.log(delGroup);
+
+  useEffect(() => {
+    const getProjectList = async () => {
+      try {
+        const data = await getProjects();
+        setProjects(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProjectList();
+  }, [projects]);
 
   //get group details
   useEffect(() => {
@@ -72,6 +94,7 @@ const CoordPeople = () => {
         const data = await getGroups();
         if (data) {
           setGroups(data);
+          // console.log(groups);
         }
       } catch (error) {
         console.log(error);
@@ -100,8 +123,12 @@ const CoordPeople = () => {
         const data = await getTraineeDeets();
         if (data) {
           setTraineeList(data);
-          if (trainee.length === 0 && groupList.length === 0) {
+          if (
+            (trainee.length === 0 && groupList.length === 0) ||
+            btnClicked === true
+          ) {
             setTrainee(traineeList);
+            setBtnClicked(false);
           }
         }
       } catch (error) {
@@ -140,7 +167,7 @@ const CoordPeople = () => {
     setGroupList(groupList.filter((item) => item._id !== val._id));
   };
 
-  //change css back when file groupList is empty
+  // change css back when file groupList is empty
   useEffect(() => {
     if (groupList.length === 0) {
       setTraineeTileDiv(trainee_tile_div);
@@ -148,37 +175,22 @@ const CoordPeople = () => {
     }
   }, [groupList]);
 
-  //create an group
-
   const postData = async () => {
-    setCountErr(false);
-    groups?.map((val) => {
-      if (count.includes(Number(val.name))) {
-        setCount(null);
-        window.alert("This group no already exists");
-        setCountErr(true);
-        setCount(null);
-        setGroupName(false);
-      }
+    let memId = [];
+    let name1 = count;
+
+    groupList.map((val) => memId.push(val._id));
+
+    const data = await postGroup({
+      members: memId,
+      name: name1,
     });
-    if (countErr === true) console.log("Error");
-    if (countErr === false) {
-      let memId = [];
-      let name1 = count;
 
-      groupList.map((val) => memId.push(val._id));
+    if (data.error) window.alert("Groups Creation Failed " + data.error);
 
-      const data = await postGroup({
-        members: memId,
-        name: name1,
-      });
-
-      if (data.error) window.alert("Groups Creation Failed " + data.error);
-
-      if (data.message === "saved") {
-        setGroupList([]);
-        setGroupName(false);
-      }
+    if (data.message === "saved") {
+      setGroupList([]);
+      setGroupName(false);
     }
   };
 
@@ -198,6 +210,69 @@ const CoordPeople = () => {
     }
   };
 
+  const handleDelPro = () => {
+    const studId = [];
+    let projectId;
+    const { project, members } = delGroup;
+    // console.log(members);
+    members.map((val) => studId.push(val._id));
+    projects.map((val) => {
+      if (val.group_id === project._id) projectId = val._id;
+    });
+    if (projectId) {
+      delProAssign({
+        projectId: projectId,
+      })
+        .then((data) => {
+          removeGroup({ groupId: project._id, studID: studId })
+            .then((data) => {
+              if (data.message) {
+                setGroupDelete(1);
+                setDelGroup({});
+              }
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    } else {
+      removeGroup({ groupId: project._id, studID: studId })
+        .then((data) => {
+          if (data.message) {
+            setGroupDelete(1);
+            setDelGroup({});
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    // getProjects()
+    //   .then((data) => console.log(data))
+    //   .catch((err) => console.log(err));
+
+    // delProAssign({
+    //   projectId: project._id,
+    // })
+    //   .then((data) => {
+    //     removeGroup({ groupId: project._id, studID: studId })
+    //       .then((data) => {
+    //         window.location.reload(false);
+    //       })
+    //       .catch((err) => console.log(err));
+    //   })
+    //   .catch((err) => console.log(err));
+  };
+  //edit person out of a group
+  const editGroup = async (mem, groupID) => {
+    try {
+      const data = await editsGroup({
+        groupID,
+        mem,
+      });
+      if (data.message === "pulled") setBtnClicked(true);
+      // console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   //set green tick back on an trainee whenver a group is deleted
   useEffect(() => {
     if (groupDelete === 1) {
@@ -331,13 +406,12 @@ const CoordPeople = () => {
                   Group {val.name}
                   <div
                     className="check-div-group"
-                    onClick={() => removeData(val._id, val.members)}
+                    // onClick={() => removeData(val._id, val.members)}
+                    onClick={() =>
+                      setDelGroup({ project: val, members: val.members })
+                    }
                   >
-                    <img
-                      src="./Images/remove.png"
-                      alt=""
-                      className="check-img"
-                    />
+                    <img src={bin} alt="" className="remove-group" />
                   </div>
                   {val.members.map((value, memkey) => (
                     <>
@@ -345,7 +419,13 @@ const CoordPeople = () => {
                         {value.salutation} {value.first_name}{" "}
                         {value.middle_name} {value.last_name}
                       </div>
-                      <hr className="lineGroupName" />
+                      <img
+                        className="remove-mem"
+                        src={remove}
+                        alt=""
+                        onClick={() => editGroup(value, val.name)}
+                      />
+                      <br />
                     </>
                   ))}
                 </div>
@@ -379,6 +459,44 @@ const CoordPeople = () => {
                   />
                   <button className="grpN-submit" onClick={postData}>
                     Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : null}
+        {delGroup.project ? (
+          <>
+            <div className="expanded-div">
+              <div className="groupNo">
+                <button
+                  className="close-btn-group"
+                  onClick={() => setDelGroup({})}
+                >
+                  <img
+                    className="img-close"
+                    src={cancel}
+                    alt="close model box"
+                  />
+                </button>
+                <br />
+                <h4>Do you really want to delete this group ?</h4>
+                <p
+                  style={{
+                    fontSize: "small",
+                    color: "#f48484",
+                    fontWeight: "normal",
+                  }}
+                >
+                  (Note: All the document related to this project will be saved
+                  in archive)
+                </p>
+                <div className="cnfrm-btn">
+                  <button className="cnfrm-yes" onClick={handleDelPro}>
+                    Yes
+                  </button>
+                  <button className="cnfrm-no" onClick={() => setDelGroup({})}>
+                    No
                   </button>
                 </div>
               </div>

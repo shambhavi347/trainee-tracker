@@ -13,6 +13,9 @@ const Group = require("../model/groupSchema");
 const Event = require("../model/eventsSchema");
 const Project = require("../model/projectSchema");
 const Archive = require("../model/archiveSchema");
+const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
+
 // const archival = require("../model/archivalSchema");
 // const Archival = require("../model/archivalSchema");
 
@@ -361,22 +364,72 @@ router.post("/create-group", coordAuthenticate, async (req, res) => {
 
   const mem = await Student.find({ _id: { $in: members } });
   // console.log(mem);
+  const GroupExist = await Group.findOne({
+    $and: [{ coordinatorID: coordID }, { name: name }],
+  });
+  if (GroupExist) {
+    console.log("Add to existing group ");
 
-  const group = new Group({
-    name: name,
-    coordinatorID: coordID,
-    members: mem,
-  });
-  group.save(function (err, result) {
-    if (err) {
-      return res.status(422).json({ error: "Unable to save" });
-    } else {
-      console.log("saved");
-      handleStudent(result._id, members);
+    console.log(mem[0].first_name);
+    const data = await Group.findOneAndUpdate(
+      { _id: GroupExist._id },
+      { $push: { members: mem[0] } }
+    );
+
+    if (data) {
+      console.log("Saved to new group");
+      handleStudent(GroupExist._id, members);
       return res.status(200).json({ message: "saved" });
-      // console.log("Result: " + res);
+    } else return res.status(422).json({ error: "Unable to save" });
+  } else {
+    const group = new Group({
+      name: name,
+      coordinatorID: coordID,
+      members: mem,
+    });
+    group.save(function (err, result) {
+      if (err) {
+        return res.status(422).json({ error: "Unable to save" });
+      } else {
+        console.log("saved");
+        handleStudent(result._id, members);
+        return res.status(200).json({ message: "saved" });
+      }
+    });
+  }
+});
+
+handleRemoveStud = async (email) => {
+  try {
+    const data = await Student.findOneAndUpdate(
+      { email: email },
+      { group: "null" }
+    );
+    if (data) {
+      console.log("Edit group Updated");
+      return data;
     }
-  });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+router.post("/edit-group", coordAuthenticate, async (req, res) => {
+  try {
+    const id = req.rootUser.id;
+    const { mem, groupID } = req.body;
+    console.log(mem.email);
+    const data = await Group.findOneAndUpdate(
+      { $and: [{ coordinatorID: id }, { name: groupID }] },
+      { $pull: { members: { email: mem.email } } }
+    );
+    if (data) {
+      handleRemoveStud(mem.email);
+      return res.status(200).json({ message: "pulled" });
+    } else return res.status(422).json({ error: "Unable to pull" });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.get("/get-groups", coordAuthenticate, async (req, res) => {
