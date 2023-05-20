@@ -3,10 +3,14 @@ import "../CSS/NavBar1.css";
 import { cdacLogo, cancel } from "../Images/Images";
 import { useNavigate } from "react-router-dom";
 import Captcha from "./Captcha";
+import { closeeye, seen } from "../Images/Images";
 
 const NavBar1 = () => {
   let navigate = useNavigate();
   const [openLogin, setOpenLogin] = useState(false);
+
+  const [showPass, setShowPass] = useState("password");
+  const [eye, setEye] = useState(closeeye);
   const routeChangeAdmin = () => {
     let path = "/admin-dashboard";
     navigate(path);
@@ -89,6 +93,16 @@ const NavBar1 = () => {
       // console.log("Successfull Regestration");
     }
   };
+  const handlePass = (e) => {
+    e.preventDefault();
+    if (showPass === "password") {
+      setShowPass("text");
+      setEye(seen);
+    } else {
+      setShowPass("password");
+      setEye(closeeye);
+    }
+  };
 
   return (
     <>
@@ -122,19 +136,34 @@ const NavBar1 = () => {
                   type="email"
                   name="email"
                   className="login-component"
-                  placeholder="email..."
+                  placeholder="Email..."
                   autoComplete="off"
                   onChange={handleChange}
                 />
 
-                <input
+                {/* <input
                   type="text"
                   name="password"
                   className="login-component"
                   placeholder="Password.."
                   autoComplete="off"
                   onChange={handleChange}
-                />
+                /> */}
+                <div className="form-element-login-pass">
+                  {/* {showPass ? ( */}
+                  <input
+                    type={showPass}
+                    name="password"
+                    placeholder="Set Password"
+                    autoComplete="off"
+                    onChange={handleChange}
+                    className="input-pass"
+                  />
+
+                  <button className="show-pass" onClick={handlePass}>
+                    <img className="pass-img" src={eye} alt="" />
+                  </button>
+                </div>
                 <p
                   className="forgot-pass-link"
                   onClick={() => navigate("/forgot-password")}

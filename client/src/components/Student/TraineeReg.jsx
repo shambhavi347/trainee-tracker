@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "../../CSS/Trainee/RegStudent.css";
 import NavBarTr from "../NavBarTr";
 import Captcha from "../Captcha";
+// import { closeeye, seen } from "../Images/Images";
+import { closeeye, seen } from "../../Images/Images";
 
 const TraineeReg = () => {
   const [req, setReq] = useState(false);
@@ -14,6 +16,8 @@ const TraineeReg = () => {
   const [passMin, setPassMin] = useState("red");
   const [btnDisable, setBtnDisable] = useState(true);
   const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState("password");
+  const [eye, setEye] = useState(closeeye);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -116,7 +120,15 @@ const TraineeReg = () => {
   const retValid = (btn) => {
     setValid(btn);
   };
-
+  const handlePass = () => {
+    if (showPass === "password") {
+      setShowPass("text");
+      setEye(seen);
+    } else {
+      setShowPass("password");
+      setEye(closeeye);
+    }
+  };
   return (
     <>
       {/* <ThemeContext.Provider value={{ theme, retTheme }}>
@@ -139,7 +151,7 @@ const TraineeReg = () => {
               autoComplete="off"
               onChange={handleChange}
             />
-            <input
+            {/* <input
               className="form-element-trainee-pass"
               type="text"
               // type="password"
@@ -148,10 +160,27 @@ const TraineeReg = () => {
               placeholder="Set Password"
               autoComplete="off"
               onChange={(e) => setPassword(e.target.value)}
-            />
+            /> */}
+            <div className="form-element-trainee-pass">
+              {/* {showPass ? ( */}
+              <input
+                type={showPass}
+                name="password"
+                value={password}
+                placeholder="Set Password"
+                autoComplete="off"
+                onChange={(e) => setPassword(e.target.value)}
+                className="input-pass"
+              />
+
+              <button className="show-pass" onClick={handlePass}>
+                <img className="pass-img" src={eye} alt="" />
+              </button>
+            </div>
+
             <input
               className="form-element-trainee"
-              type="text"
+              type="password"
               // type="password"
               name="confirmPassword"
               value={user.confirmPassword}

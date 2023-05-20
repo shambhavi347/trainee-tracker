@@ -119,6 +119,19 @@
   border: 2px #00adb5 solid;
 }
 
+.form-element-login-pass {
+  /* background-color: #00adb5; */
+  width: 95%;
+  height: 65px;
+  /* padding: 3%; */
+  background-color: white;
+  /* height: 60%; */
+  margin: 2%;
+  border-radius: 10px;
+  padding: 0% 3%;
+  border: 2px #00adb5 solid;
+}
+
 .login-btn {
   background-color: #00adb5;
   color: #eeeeee;
