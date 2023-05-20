@@ -115,6 +115,18 @@
   padding: 1%;
   border-radius: 6px;
 }
+.form-text-password {
+  /* background-color: #00adb5; */
+  width: 36%;
+  height: 35px;
+  /* padding: 3%; */
+  background-color: white;
+  /* height: 60%; */
+  margin: 1% 0%;
+  margin-left: 2%;
+  border-radius: 6px;
+  float: left;
+}
 
 .fieldd1 {
   width: 84%;

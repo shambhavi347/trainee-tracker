@@ -9,6 +9,7 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { Country, State, City } from "country-state-city";
 import { createContext } from "react";
+import { closeeye, seen } from "../../Images/Images";
 
 export const ThemeContext = createContext(null);
 
@@ -20,8 +21,8 @@ const RegInstitute = () => {
   const [stateCode, setStateCode] = useState("");
   const [cities, setCities] = useState([]);
   const [req, setReq] = useState(false);
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPass, setShowPass] = useState("password");
+  const [eye, setEye] = useState(closeeye);
   const [isError, setIsError] = useState("");
   const [display, setDisplay] = useState(false); //will not show tpo to us until we make display true
   const [inst, setInst] = useState(true); //will show us institute foem and on clicking next it will become false
@@ -301,6 +302,17 @@ const RegInstitute = () => {
     } else {
       window.alert("Captcha not Matched");
       // console.log("Successfull Regestration");
+    }
+  };
+
+  const handlePass = (e) => {
+    e.preventDefault();
+    if (showPass === "password") {
+      setShowPass("text");
+      setEye(seen);
+    } else {
+      setShowPass("password");
+      setEye(closeeye);
     }
   };
 
@@ -653,7 +665,7 @@ const RegInstitute = () => {
 
                     <h4 className="head-inst-home-2">Credentials</h4>
                     <div className="box">
-                      <input
+                      {/* <input
                         className="form-text-inst2 fieldd6 required"
                         type="password"
                         autoComplete="off"
@@ -662,7 +674,22 @@ const RegInstitute = () => {
                         name="password"
                         id="password"
                         placeholder="Set Password *"
-                      />
+                      /> */}
+                      <div className="fieldd6 form-text-password">
+                        <input
+                          type={showPass}
+                          placeholder="Set Password *"
+                          autoComplete="off"
+                          value={userRegistration.password}
+                          onChange={handlechange}
+                          className="input-pass-reg"
+                          name="password"
+                        />
+
+                        <button className="show-pass-reg" onClick={handlePass}>
+                          <img className="pass-img" src={eye} alt="" />
+                        </button>
+                      </div>
 
                       <input
                         className="form-text-inst2 fieldd6 required"

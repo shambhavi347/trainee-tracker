@@ -273,15 +273,33 @@
   /* background-color: #eeeeee; */
   padding: 2%;
 }
+.input-pass-reg {
+  width: 85%;
+  height: 100%;
+  margin: 0;
+
+  float: left;
+  /* background-color: #eeeeee; */
+  padding: 2%;
+}
 .show-pass {
   height: 40px;
   width: 7%;
   float: right;
-  margin-top: 1%;
+  /* margin-top: 1%; */
   background-color: transparent;
   border: none;
 }
-.show-pass :hover {
+.show-pass-reg {
+  height: 38px;
+  width: 9%;
+  float: right;
+  /* margin-top: 1%; */
+  background-color: transparent;
+  border: none;
+}
+.show-pass :hover,
+.show-pass-reg:hover {
   cursor: pointer;
 }
 

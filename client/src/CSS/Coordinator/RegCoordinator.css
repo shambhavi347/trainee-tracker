@@ -56,9 +56,18 @@
   padding: 3%;
   border-radius: 15px;
 }
-/* ::placeholder {
-  color: black;
-} */
+.form-element-coord-pass {
+  /* background-color: #00adb5; */
+  width: 70%;
+  height: 50px;
+  /* padding: 3%; */
+  background-color: white;
+  /* height: 60%; */
+
+  margin: 2% 0%;
+  margin-left: 15%;
+  border-radius: 10px;
+}
 
 .drop-down-coord {
   font-size: medium;

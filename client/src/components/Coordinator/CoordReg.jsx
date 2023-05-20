@@ -4,10 +4,13 @@ import "../../CSS/Coordinator/RegCoordinator.css";
 import { useNavigate } from "react-router-dom";
 import { createContext } from "react";
 import Captcha from "../Captcha";
+import { closeeye, seen } from "../../Images/Images";
 
 export const ThemeContext = createContext(null);
 const CoordReg = () => {
   const [theme, setTheme] = useState("light");
+  const [showPass, setShowPass] = useState("password");
+  const [eye, setEye] = useState(closeeye);
 
   const retTheme = (btn) => {
     setTheme(btn);
@@ -91,7 +94,16 @@ const CoordReg = () => {
       console.log("Confirm Password does not match");
     }
   };
-
+  const handlePass = (e) => {
+    e.preventDefault();
+    if (showPass === "password") {
+      setShowPass("text");
+      setEye(seen);
+    } else {
+      setShowPass("password");
+      setEye(closeeye);
+    }
+  };
   return (
     <>
       <ThemeContext.Provider value={{ theme, retTheme }}>
@@ -167,7 +179,7 @@ const CoordReg = () => {
                   placeholder="Phone No. *"
                 />
 
-                <input
+                {/* <input
                   className="form-text-coord"
                   type="password"
                   autoComplete="off"
@@ -176,7 +188,23 @@ const CoordReg = () => {
                   name="password"
                   id="password"
                   placeholder="Set Password *"
-                />
+                /> */}
+                <div className="form-element-coord-pass">
+                  {/* {showPass ? ( */}
+                  <input
+                    type={showPass}
+                    name="password"
+                    placeholder="Set Password"
+                    autoComplete="off"
+                    value={user.password}
+                    onChange={handlechange}
+                    className="input-pass"
+                  />
+
+                  <button className="show-pass" onClick={handlePass}>
+                    <img className="pass-img" src={eye} alt="" />
+                  </button>
+                </div>
                 <input
                   className="form-text-coord"
                   type="password"
