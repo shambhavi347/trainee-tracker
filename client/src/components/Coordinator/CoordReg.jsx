@@ -11,7 +11,7 @@ const CoordReg = () => {
   const [theme, setTheme] = useState("light");
   const [showPass, setShowPass] = useState("password");
   const [eye, setEye] = useState(closeeye);
-
+  const [hover, setHover] = useState(false);
   const retTheme = (btn) => {
     setTheme(btn);
   };
@@ -111,6 +111,20 @@ const CoordReg = () => {
           <NavBar2 retTheme={retTheme} />
           <div className="body-reg-coord">
             <h1 className="regHead-coord">Register Yourself</h1>
+            {hover ? (
+              <>
+                <div className="pass-rules">
+                  <h4>Password Rules</h4>
+                  <ul>
+                    <li>Must conatain an uppercase letter</li>
+                    <li>Must conatain a lowercase letter</li>
+                    <li>Must conatain a number</li>
+                    <li>Must conatain a special character </li>
+                    <li>Must be of minimum 8 character</li>
+                  </ul>
+                </div>
+              </>
+            ) : null}
             <div className="form-body-coord-up">
               <form action="" method="POST" className="form-body-coord">
                 <select
@@ -189,7 +203,11 @@ const CoordReg = () => {
                   id="password"
                   placeholder="Set Password *"
                 /> */}
-                <div className="form-element-coord-pass">
+                <div
+                  className="form-element-coord-pass"
+                  onMouseOver={() => setHover(true)}
+                  onMouseOut={() => setHover(false)}
+                >
                   {/* {showPass ? ( */}
                   <input
                     type={showPass}

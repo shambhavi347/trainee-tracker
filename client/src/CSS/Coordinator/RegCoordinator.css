@@ -95,3 +95,15 @@
   font-size: larger;
   cursor: pointer;
 }
+
+.pass-rules {
+  /* background-color: #eeeeee; */
+  /* border: 1px #00adb5 solid; */
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 250px;
+  margin-right: 10px;
+  color: black;
+  /* padding: 1%; */
+}
